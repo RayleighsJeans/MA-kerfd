@@ -1,0 +1,267 @@
+% Copyright (C)  2016  Philipp Hacker.
+% Permission is granted to copy, distribute and/or modify this document
+% under the terms of the GNU Free Documentation License, Version 1.3
+% or any later version published by the Free Software Foundation;
+% with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
+% The lincense itself can be found at <https://www.gnu.org/licenses>.
+
+%LICENSE:
+%CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+
+% Masters Thesis 
+% LaTeX Template
+% Version 2.3 (25/3/16)
+
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+
+% Version 2.x major modifications by:
+% Vel (vel@latextemplates.com)
+
+% This template is based on a template by:
+% Steve Gunn (http://users.ecs.soton.ac.uk/srg/softwaretools/document/templates/)
+% Sunil Patel (http://www.sunilpatel.co.uk/thesis-template/)
+
+
+
+%START OF TEX
+
+\documentclass[
+10pt, % The default document font size, options: 10pt, 11pt, 12pt
+twoside, % Two side (alternating margins) for binding by default, uncomment to switch to one side
+chapterinoneline,% Have the chapter title next to the number in one single line
+onehalfspacing, % Single line spacing, alternatives: onehalfspacing or doublespacing
+nolistspacing, % If the document is onehalfspacing or doublespacing, uncomment this to set spacing in lists to single
+%liststotoc, % Uncomment to add the list of figures/tables/etc to the table of contents
+%toctotoc, % Uncomment to add the main table of contents to the table of contents
+parskip, % Uncomment to add space between paragraphs
+headsepline, % Uncomment to get a line under the header
+english,
+]{MastersDoctoralThesis} % The class file specifying the document structure
+
+\usepackage[utf8]{inputenc} % Required for inputting international characters
+\usepackage[T1]{fontenc} % Output font encoding for international characters
+
+\usepackage{lmodern} %TODO Schriftart
+% Use the Latin Modern font by default
+
+\usepackage[backend=bibtex,style=authoryear,natbib=true]{biblatex} % Use the bibtex backend with the authoryear citation style (which resembles APA)
+
+\addbibresource{master_thesis.bib} % The filename of the bibliography
+
+\usepackage[autostyle=true]{csquotes} % Required to generate language-dependent quotes in the bibliography
+
+%TODO MARGIN
+
+\geometry{
+paper=a4paper, % Change to letterpaper for US letter
+inner=2cm, % Inner margin
+outer=3.3cm, % Outer margin
+bindingoffset=1.5cm, % Binding offset
+top=1.5cm, % Top margin
+bottom=1.5cm, % Bottom margin
+%showframe,% show how the type block is set on the page
+}
+
+%TODO THESI INFORMATION
+
+\thesistitle{Title} % Your thesis title, this is used in the title and abstract, print it elsewhere with \ttitle
+\supervisor{Supervisor} % Your supervisor's name, this is used in the title page, print it elsewhere with \supname
+\examiner{Examiner} % Your examiner's name, this is not currently used anywhere in the template, print it elsewhere with \examname
+\degree{Degree} % Your degree name, this is used in the title page and abstract, print it elsewhere with \degreename
+\author{Author} % Your name, this is used in the title page and abstract, print it elsewhere with \authorname
+\addresses{Adresses} % Your address, this is not currently used anywhere in the template, print it elsewhere with \addressname
+\subject{Subject} % Your subject area, this is not currently used anywhere in the template, print it elsewhere with \subjectname
+\keywords{Keyword1, Keyword2} % Keywords for your thesis, this is not currently used anywhere in the template, print it elsewhere with \keywordnames
+\university{\href{http://www.university-url.com}{University}} % Your university's name and URL, this is used in the title page and abstract, print it elsewhere with \univname
+\department{\href{http://department-url.university.com}{Department of University}} % Your department's name and URL, this is used in the title page and abstract, print it elsewhere with \deptname
+\group{\href{http://researchgroup-url.university.com}{Research Group}} % Your research group's name and URL, this is used in the title page, print it elsewhere with \groupname
+\faculty{\href{http://faculty-url.university.com}{Faculty}} % Your faculty's name and URL, this is used in the title page and abstract, print it elsewhere with \facname
+
+\hypersetup{pdftitle=\ttitle} % Set the PDF's title to your title
+\hypersetup{pdfauthor=\authorname} % Set the PDF's author to your name
+\hypersetup{pdfkeywords=\keywordnames} % Set the PDF's keywords to your keywords
+
+
+%TODO PACKAGES
+
+\usepackage{amsmath,mathtools}
+\usepackage{amssymb}
+\usepackage{units}
+\usepackage{upgreek}
+\usepackage{esint}
+\usepackage{graphicx}
+\usepackage{ziffer}
+
+\usepackage{float}
+
+\usepackage{wrapfig}
+\usepackage{subcaption}
+
+\usepackage{csquotes}
+
+\usepackage{sectsty}
+
+\setlength{\parindent}{0pt}
+
+\newcommand{\diff}{\textnormal{d}}
+\newcommand{\tenpo}[1]{ 10^{#1}}
+\newcommand{\greek}[1]{\greektext#1\latintext}
+\newcommand{\ix}[1]{_\text{#1}}
+\newcommand{\imag}{\mathbf{i}}
+\newcommand{\tilt}[1]{\textit{#1}}
+\newcommand{\grad}[1]{\textit{grad}\left(#1\right)}
+\newcommand{\divergenz}[1]{\textit{div}\left(#1\right)}
+\newcommand{\euler}{\mathnormal{e}}
+\newcommand{\fett}[1]{\textbf{#1}}
+\newcommand{\ket}[1]{|#1\rangle}
+\newcommand{\bra}[1]{\langle#1|}
+
+\usepackage{nomencl}
+\setlength{\nomlabelwidth}{.20\hsize}
+\renewcommand{\nomlabel}[1]{#1 \dotfill}
+
+\date{\today} %TODO SET DATE
+
+
+%DOCUMENT START
+
+\begin{document}
+
+\frontmatter % Use roman page numbering style (i, ii, iii, iv...) for the pre-content pages
+
+\pagestyle{plain} % Default to the plain heading style until the thesis style is called for the body content
+
+%TITLEPAGE
+
+\begin{titlepage}
+	
+	\begin{center}
+		
+		{\scshape\LARGE \univname\par}\vspace{1.5cm} % University name
+		\textsc{\Large Thesis}\\[0.5cm] %TODO THESIS TYPE
+		
+		\HRule \\[0.4cm] % Horizontal line
+		{\huge \bfseries \ttitle\par}\vspace{0.4cm} % Thesis title
+		\HRule \\[1.5cm] % Horizontal line
+		
+		\begin{minipage}[htbp]{0.4\textwidth}
+			
+			\begin{flushleft} \large
+				\emph{Author:}\\
+				\authorname %TODO AUTHOR NAME
+			\end{flushleft}
+			
+		\end{minipage}
+		\hfill
+		\begin{minipage}[htbp]{0.4\textwidth}
+			
+			\begin{flushright}\large
+				
+				\emph{Supervisor:} \\
+				\supname %TODO SUPERVISOR
+				 
+			\end{flushright}
+			
+		\end{minipage}\\[3cm]
+		
+		\large \textit{A thesis submitted in fulfillment of the requirements\\ for the degree of \degreename}\\[0.3cm] %TODO UNIVERSITY TEXT
+		\textit{in the}\\[0.4cm]
+		\groupname\\\deptname\\[2cm] %TODO RESEARCH GROUP/DEPARTMENT
+		
+		{\large \today}\\[4cm] % Date
+		\includegraphics[width=0.3\textwidth]{images/logo.pdf} % University/department logo - uncomment to place it
+		
+		\vfill
+		
+	\end{center}
+	
+\end{titlepage}
+
+
+%TODO INSERT MOTIVATIONAL QUOTE
+
+%\vspace*{0.2\textheight}
+%
+%\noindent\enquote{\itshape Thanks to my solid academic training, today I can write hundreds of words on virtually any topic without possessing a shred of information, which is how I got a good job in journalism.}\bigbreak
+%
+%\hfill Dave Barry
+
+%TODO INSERT ABSTRACT
+
+%\begin{abstract}
+%	
+%	\addchaptertocentry{\abstractname} % Add the abstract to the table of contents
+%	
+%	The Thesis Abstract is written here (and usually kept to just this page). The page is kept centered vertically so can expand into the blank space above the title too\ldots
+%	
+%\end{abstract}
+
+%TODO ACKNOWLEDGMENTS
+
+%\begin{acknowledgements}
+%
+%	\addchaptertocentry{\acknowledgementname} % Add the acknowledgements to the table of contents
+%	
+%	The acknowledgments and the people to thank go here, don't forget to include your project advisor\ldots
+%	
+%\end{acknowledgements}
+
+%TODO TOCTOCTOC FOR EVERYTHING
+
+\tableofcontents % Prints the main table of contents
+
+%\listoffigures % Prints the list of figures
+
+%\listoftables % Prints the list of tables
+
+%TODO INSERT ABBREVIATIONS
+
+\begin{abbreviations}{ll} % Include a list of abbreviations (a table of two columns)
+	
+	%\textbf{abbrevation} & \textbf{A}bb \textbf{R}evat \textbf{I}on\\
+	
+	\textbf{u.U.} & \textbf{u}nter \textbf{U}mständen\\
+	
+\end{abbreviations}
+
+%TODO CONSTANTS AND SYMBOLS LIST
+
+\begin{constants}{lr@{${}={}$}l} % The list of physical constants is a three column table
+	
+	%Constant Name & $Symbol$ & $Constant Value$ with units\\
+	
+	Speed of Light & $c_{0}$ & $\unit{2.99792458e8}{\frac{m}{s}}$\\
+
+	
+\end{constants}
+
+%TODO THESIS BEGINS HERE
+
+\mainmatter % Begin numeric (1,2,3...) page numbering
+
+\pagestyle{thesis} % Return the page headers back to the "thesis" style
+
+% Include the chapters of the thesis as separate files from the content folder
+% Uncomment the lines as you write the chapters
+
+\include{content/Chapter}
+%\include{content/Chapter2}
+
+%TODO APPENDICES
+
+\appendix % Cue to tell LaTeX that the following "chapters" are Appendices
+
+% Include the appendices of the thesis as separate files from the Appendices folder
+% Uncomment the lines as you write the Appendices
+
+\include{appendices/appendixa}
+
+%TODO BIBLIOGRAPHY
+
+\printbibliography[heading=bibintoc]
+
+
+%TODO END OF DOCUMENT
+
+\end{document}  
