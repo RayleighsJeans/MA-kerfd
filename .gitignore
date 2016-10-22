@@ -185,3 +185,8 @@ TSWLatexianTemp*
 */*~
 .*.swp
 .*.swo
+
+# Exclude backup-brain
+# and pic2d-comment folders
+pic2d-comment/*
+backup-brain/*
