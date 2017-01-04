@@ -3,17 +3,12 @@ scriptencoding utf-8
 set nocompatible               " be iMproved
 filetype off                   " required!
 
-
 set rtp+=/opt/vim/bundle/vundle
 call vundle#rc("/opt/vim/bundle/")
-
-"set rtp+=/home/kemnitzs/.vim/bundle/vundle
-"call vundle#rc("/home/kemnitzs/.vim/bundle/")
 
 Bundle 'gmarik/vundle'
 
 " My Bundles here:
-"
 " original repos on github
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'scrooloose/syntastic'

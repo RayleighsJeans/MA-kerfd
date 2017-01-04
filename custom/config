@@ -1,0 +1,7 @@
+Host hpc-access
+	HostName hpc-access.physik.uni-greifswald.de
+	User ph123693
+	Port 22
+Host brain
+	HostName brain.rz.uni-greifswald.de
+	User ph123693

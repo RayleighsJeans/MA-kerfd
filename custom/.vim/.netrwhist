@@ -1,2 +1,7 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =0
+let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_1='/home/ph123693/Documents/2D/pic2d-comment/results/wd_26907.4(x3)'
+let g:netrw_dirhist_2='/home/ph123693/Documents/2D/pic2d-comment/results/wd_26941.4(x3)'
+let g:netrw_dirhist_3='/home/ph123693/Documents/2D/pic2d-comment/results/wd_26931.4(x3)'
+let g:netrw_dirhist_4='/home/ph123693/Documents/2D/pic2d-comment/results/wd_26940.4(x3)'
+let g:netrw_dirhist_5='/home/ph123693/Documents/2D/pic2d-comment/results/bak_slurm'

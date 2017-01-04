@@ -3,7 +3,7 @@
 ! http://ethanschoonover.com/solarized
 
 *faceName: Bitstream Vera Serif Mono
-*faceSize: 11 
+*faceSize: 11
 *vt100*geometry: 80x60
 *saveLines: 16384
 *charClass: 33:48,35:48,37:48,43:48,45-47:48,64:48,95:48,126:48
