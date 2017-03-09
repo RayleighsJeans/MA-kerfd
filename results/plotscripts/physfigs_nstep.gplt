@@ -1,0 +1,228 @@
+reset 
+
+## what dimensions the picture will have
+## hubbe is x, seti is y
+if (tempzdiag == 1 && velzdiag == 1) {
+  seti = 3;
+	if (negion == 1) {
+		seti = 4;
+	}
+	#if (ntrlzconst == 0) {
+		seti = 4;
+		if (negion == 1) {
+			seti = 5;
+		}
+	#}
+  hubbel = 6;
+}
+if (tempzdiag == 0 && velzdiag == 1) {
+	seti = 3;
+	if (negion == 1) {
+		seti = 4;
+	}
+	#if (ntrlzconst == 0) {
+		seti = 4;
+		if (negion == 1) {
+			seti = 5;
+		}
+	#}
+	hubbel = 4;
+}
+if (tempzdiag == 1 && velzdiag == 0) {
+	seti = 3;
+	if (negion == 1) {
+		seti = 4;
+	}
+	#if (ntrlzconst == 0) {
+		seti = 4;
+		if (negion == 1) {
+			seti = 5;
+		}
+	#}
+	hubbel = 3;
+	if (debyediag == 1) {
+		hubbel = 4;
+	}
+}
+debyediag=0;
+if (tempzdiag == 0 && velzdiag == 0) {
+	seti = 1;
+	hubbel = 3;
+	if (negion == 1) {
+		hubbel = 2;
+		seti = 2;
+	}
+	#if (ntrlzconst == 0) {
+		hubbel = 4;
+		if (negion == 1) {
+			hubbel = 3;
+			seti = 2;
+		}
+	#}
+	if (debyediag == 1) {
+		hubbel = 3;
+		seti = 2;
+		if (negion == 1) {
+		hubbel = 4;
+		seti = 2;
+		}
+	}
+}
+
+## size and time
+nstep = time2d;
+xeich=1256
+yeich=1024
+x=hubbel*xeich;
+y=seti*yeich;
+
+## DEBUG
+print "size ".x.",".y
+print "multiplot layout ".seti.",".hubbel
+
+## input parameters
+set terminal pngcairo size x,y enhanced font 'PT Serif,30'
+set termoption dash
+set output '../../figs/'.twodrunid.'.allfigs.'.nstep.'.png'
+set samples samplesiso
+set isosamples samplesiso
+
+## how it looks
+load 'jet.pal'
+set grid
+unset key
+set border linewidth 4.0
+set tics nomirror out scale 1.5
+
+## COLORS AND DASHES 
+## define line styles using explicit rgbcolor names
+set style line 1 lt 1 lc rgb "black" lw 2
+set style line 2 lt 2 lc rgb "black" lw 2
+set style line 3 lt 5 lc rgb "black" lw 2
+set style line 4 lt 1 lc rgb "red" lw 2
+set style line 5 lt 2 lc rgb "red" lw 2
+set style line 6 lt 5 lc rgb "red" lw 2
+set style line 7 lt 1 lc rgb "blue" lw 2
+set style line 8 lt 2 lc rgb "blue" lw 2
+set style line 9 lt 5 lc rgb "blue" lw 2
+set style line 10 lt 1 lc rgb "cyan" lw 2
+set style line 11 lt 2 lc rgb "cyan" lw 2
+set style line 12 lt 5 lc rgb "cyan" lw 2
+
+## plot definitions
+set multiplot layout seti,hubbel 
+set xlabel 'z (cell)'
+set ylabel 'r (cell)'
+set logscale cb
+set format cb "10^{%T}"
+
+## ALL PLOTS PHYSFIGS
+#####################
+
+set title "electron density at ".nstep
+p '../out/e_dens_'.nstep.'.dat' matrix with image 
+if (tempzdiag == 1) {
+	set title "electron temperature at ".nstep
+	p '../out/e_temp_'.nstep.'.dat' matrix with image
+	set title "electron thermal temperature ".nstep
+	p '../out/e_temp_therm_'.nstep.'.dat' matrix with image
+}
+if (velzdiag == 1) {
+	set title "electron z velocity at ".nstep
+	p '../out/e_velz_'.nstep.'.dat' matrix with image
+	set title "electron r velocity at ".nstep
+	p '../out/e_velr_'.nstep.'.dat' matrix with image 
+	set title "electron thermal velocity at ".nstep
+	p '../out/e_velt_'.nstep.'.dat' matrix with image
+}
+set title "ion density at ".nstep
+p '../out/i_dens_'.nstep.'.dat' matrix with image 
+if (tempzdiag == 1) {
+	set title "ion temperature at ".nstep
+	p '../out/i_temp_'.nstep.'.dat' matrix with image 
+	set title "ion thermal temperature ".nstep
+	p '../out/i_temp_therm_'.nstep.'.dat' matrix with image
+}
+if (velzdiag == 1) {
+	set title "ion z velocity at ".nstep
+	p '../out/i_velz_'.nstep.'.dat' matrix with image 
+	set title "ion r velocity at ".nstep
+	p '../out/i_velr_'.nstep.'.dat' matrix with image 
+	set title "ion thermal velocity at ".nstep
+	p '../out/i_velt_'.nstep.'.dat' matrix with image
+}
+if (negion == 1) {
+	set title "nion density at ".nstep
+	p '../out/ni_dens_'.nstep.'.dat' matrix with image 
+	if (tempzdiag == 1) {
+		set title "nion temperature at ".nstep
+		p '../out/ni_temp_'.nstep.'.dat' matrix with image 
+		set title "nion thermal temperature ".nstep
+		p '../out/ni_temp_therm_'.nstep.'.dat' matrix with image
+	}
+	if (velzdiag == 1) {
+		set title "nion z velocity at ".nstep
+		p '../out/ni_velz_'.nstep.'.dat' matrix with image 
+		set title "nion r velocity at ".nstep
+		p '../out/ni_velr_'.nstep.'.dat' matrix with image 
+		set title "nion thermal velocity at ".nstep
+		p '../out/ni_velt_'.nstep.'.dat' matrix with image
+	}
+}
+#if (ntrlzconst == 0) {
+	set title "neutral density at ".nstep
+	p '../out/n_dens_'.nstep.'.dat' matrix with image 
+	if (tempzdiag == 1) {
+		set title "neutral temperature at ".nstep
+		p '../out/n_temp_'.nstep.'.dat' matrix with image 
+		set title "neutral thermal temperature ".nstep
+		p '../out/n_temp_therm_'.nstep.'.dat' matrix with image
+	}
+	if (velzdiag == 1) {
+		set title "neutral z velocity at ".nstep
+		p '../out/n_velz_'.nstep.'.dat' matrix with image 
+		set title "neutral r velocity at ".nstep
+		p '../out/n_velr_'.nstep.'.dat' matrix with image 
+		set title "neutral thermal velocity at ".nstep
+		p '../out/n_velt_'.nstep.'.dat' matrix with image
+	}
+#}
+if (debyediag == 1) {
+	set cbrange [0.0:10.0]
+	set title "local debye length from temp. (total energy) at ".nstep
+	p '../out/e_debye_'.nstep.'.dat' matrix with image
+	set title "local debye length test1 at ".nstep
+	p '../out/e_debye_t1_'.nstep.'.dat' matrix with image
+	set title "local debye length test2 at ".nstep
+	p '../out/e_debye_t2_'.nstep.'.dat' matrix with image
+} 
+unset logscale cb
+set cbrange [*:*]
+set format cb "%g
+set format cb "%g"
+set title "potential at ".nstep
+p '../out/phi'.nstep.'.dat' matrix with image 
+
+## RESET
+unset multiplot
+unset terminal 
+unset size
+unset output
+
+#####################
+## NEW PLOT FOR TRACE
+set terminal pngcairo size 1920,1080 enhanced font 'PT Serif, 21'
+set output '../../figs/'.twodrunid.'.trace.png'
+
+## LABELS AND TICKS
+set xlabel "nstep (#)"
+set ylabel "trace counts (#)"
+set title "particle counts at ".nstep
+set key outside
+set border linewidth 2.0
+set tics nomirror out scale 0.7
+
+p '../trace.dat' u 2:3 with lines ls 1 title 'electrons', \
+	'../trace.dat' u 2:4 with lines ls 4 title 'pos. ions', \
+	'../trace.dat' u 2:5 with lines ls 7 title 'neg. ions', \
+	'../trace.dat' u 2:6 with lines ls 3 title 'neutrals'

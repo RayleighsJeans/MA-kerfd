@@ -1,0 +1,35 @@
+## input parameters
+set terminal pngcairo enhanced size 1080,3840 font 'PT Serif,24'
+set termoption dash
+set samples samplesiso
+set isosamples samplesiso
+
+## MAKE STATS TO CERTAIN PLOT BOUNDARYS
+## stats 'tmp.dat' u 1:2 nooutput
+
+# LABELS AND BORDERS/TICKS
+# COLORS AND DASHES 
+set grid
+set key outside
+set border linewidth 3.0
+set tics nomirror out scale 0.7
+unset colorbox
+
+# define line styles using explicit rgbcolor names
+set style line 1 lt 1 lc rgb "black" lw 2
+set style line 2 lt 2 lc rgb "black" lw 2
+set style line 3 lt 5 lc rgb "black" lw 2
+set style line 4 lt 1 lc rgb "red" lw 2
+set style line 5 lt 2 lc rgb "red" lw 2
+set style line 6 lt 5 lc rgb "red" lw 2
+set style line 7 lt 1 lc rgb "blue" lw 2
+set style line 8 lt 2 lc rgb "blue" lw 2
+set style line 9 lt 5 lc rgb "blue" lw 2
+
+do for [id in ids] {
+	do for [pfx in prefix] {
+	print ">>doing ".id." and ".pfx
+	}
+}
+
+#p 'transpose2dedens.dat' using ($0*dr_02d):(sum[col=1:lines] column(col)*ne02d/lines) with lines ls 1 title 'e' ,\

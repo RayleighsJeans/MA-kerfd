@@ -1,0 +1,89 @@
+## input parameters
+set terminal pngcairo enhanced size 3840,2160 font 'PT Serif,24'
+set termoption dash
+set samples samplesiso
+set isosamples samplesiso
+
+## MAKE STATS TO CERTAIN PLOT BOUNDARYS
+## stats 'tmp.dat' u 1:2 nooutput
+
+# LABELS AND BORDERS/TICKS
+# COLORS AND DASHES 
+set grid
+set key outside
+set border linewidth 3.0
+set tics nomirror out scale 0.7
+unset colorbox
+
+# define line styles using explicit rgbcolor names
+set style line 1 lt 1 lc rgb "black" lw 2
+set style line 2 lt 2 lc rgb "black" lw 2
+set style line 3 lt 5 lc rgb "black" lw 2
+set style line 4 lt 1 lc rgb "red" lw 2
+set style line 5 lt 2 lc rgb "red" lw 2
+set style line 6 lt 5 lc rgb "red" lw 2
+set style line 7 lt 1 lc rgb "blue" lw 2
+set style line 8 lt 2 lc rgb "blue" lw 2
+set style line 9 lt 5 lc rgb "blue" lw 2
+
+## DEBYE AND STATS
+lines=60;
+dr_02d=0.5*L_db02d;
+length2d=sizez2d*0.5*L_db02d; 
+length1d=nz1d*L_db01d*0.5;
+
+## TICS AXIS OUTPUT
+set output '../../figs/pot1D-'.onedrunid.'.'.time1d.'_2D-'.twodrunid.'.'.time2d.'.png'
+set multiplot layout 2,1
+set xlabel 'z [cm]'
+set ylabel 'Potential/U_{a}'
+
+set xrange [0.0:length1d]
+## VOLTAGE BREAK FIX
+if (voltage1d == 0) {voltage1d = 1;}
+set title '1D potential, time '.time1d.' with '.voltage1d.' V applied'
+p onedfolder.'phi'.timeX1d.'.dat' using ($0*0.5*L_db01d):($2/(voltage1d)) with lines ls 1 title ''
+
+set xrange [0.0:length2d]
+## VOLTAGE BREAK FIX
+if (voltage2d == 0) {voltage2d = 1;}
+set title '2D potential at axis, time '.time2d.' with '.voltage2d.' V applied'
+p 'transpose2dpot.dat' using ($0*dr_02d):(sum[col=1:lines] column(col)/(lines*voltage2d)) with lines ls 2 title ''
+
+unset multiplot
+## DONE ##########################
+
+## NEW PLOT INPUT
+set output '../../figs/dens1D-'.onedrunid.'.'.time1d.'_2D-'.twodrunid.'.'.time2d.'.png'
+set multiplot layout 2,1
+set xlabel 'z [cm]'
+set ylabel 'density in cm^{-3}'
+
+set xrange [0.0:length1d]
+## 1D DENSITIES
+set title '1D dens, time '.time1d.' with '.ne01d.' cm^{-3} target density and collfac '.collfac1d
+p onedfolder.'ne'.timeX1d.'.dat' using ($0*0.5*L_db01d):($2*ne01d) with lines ls 1 title 'e' ,\
+	onedfolder.'O2p'.timeX1d.'.dat' using ($0*0.5*L_db01d):($2*ne01d) with lines ls 4 title 'O2p' ,\
+	onedfolder.'Omin'.timeX1d.'.dat' using ($0*0.5*L_db01d):($2*ne01d) with lines ls 7 title 'Omin' ,\
+	onedfolder.'Oms'.timeX1d.'.dat' using ($0*0.5*L_db01d):($2*ne01d) with lines ls 6 title 'Oms'
+
+set xrange [0.0:length2d]
+## 2D DENSITIES
+set title '2D dens with, time '.time2d.' '.ne02d.' cm^{-3} target density and collfac '.collfac2d
+p 'transpose2dedens.dat' using ($0*dr_02d):(sum[col=1:lines] column(col)*ne02d/lines) with lines ls 1 title 'e' ,\
+	'transpose2dnidens.dat' using ($0*dr_02d):(sum[col=1:lines] column(col)*ne02d/lines) with lines ls 7 title 'ni',\
+	'transpose2didens.dat' using ($0*dr_02d):(sum[col=1:lines] column(col)*ne02d/lines) with lines ls 4 title 'i'
+
+unset multiplot
+## DONE ########################
+
+## NEXT PLOT NDENS COMPARE
+print '>> doing n dens compare'
+set output '../../figs/ndens1D-'.onedrunid.'.'.time1d.'_2D-'.twodrunid.'.'.time2d.'.png'
+set xlabel 'z [cm]'
+set ylabel 'density in cm^{-3}'
+set title 'n dens 1D/2D with ne01D '.ne01d.'cm^{-3}, ne02D '.ne02d.'cm^{-3} & fac1d '.collfac1d.' fac2d '.collfac2d
+
+p 'transpose2dnndens.dat' using ($0*0.5*L_db02d):(sum[col=1:lines] collfac2d*column(col)*ne02d/lines) with lines ls 1 title 'n2d' ,\
+	onedfolder.'ntrlz'.timeX1d.'.dat' using ($0*0.5*L_db01d):(collfac1d*$2*ne01d) with lines ls 4 title 'n1d'
+

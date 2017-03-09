@@ -1,0 +1,115 @@
+reset
+
+print ">> xsections plot"
+
+set terminal pngcairo size 1920,1080 enhanced font 'PT Serif, 21'
+set termoption dashed
+
+set samples samplesiso
+set isosamples samplesiso
+
+set grid
+
+# COLORS AND DASHES 
+# define line styles using explicit rgbcolor names
+set style line 1 lt 1 lc rgb "black" lw 2
+set style line 2 lt 2 lc rgb "black" lw 2
+set style line 3 lt 5 lc rgb "black" lw 2
+set style line 4 lt 1 lc rgb "red" lw 2
+set style line 5 lt 2 lc rgb "red" lw 2
+set style line 6 lt 5 lc rgb "red" lw 2
+set style line 7 lt 1 lc rgb "blue" lw 2
+set style line 8 lt 2 lc rgb "blue" lw 2
+set style line 9 lt 5 lc rgb "blue" lw 2
+set style line 10 lt 1 lc rgb "cyan" lw 2
+set style line 11 lt 2 lc rgb "cyan" lw 2
+set style line 12 lt 5 lc rgb "cyan" lw 2
+set output '../../figs/'.twodrunid.'.xsections.png'
+
+set xlabel "energy/eV"
+set ylabel "cross section/cm^{2}"
+set title 'collision cross section for '.twodrunid.' with oxygen'
+set key outside
+
+# LABELS AND BORDERS/TICKS
+set border linewidth 2.0
+set tics nomirror out scale 0.7
+
+set logscale xy
+set format y "10^{%T}"
+set format x "10^{%T}"
+
+set xrange [0.1:110]
+set yrange [1e-20:1e-12]
+
+p [0.1:100] '../xsct/O2_dat.dat' w l ls 4 title 'O2', \
+					 	  '../xsct/O2_e_el.dat' w l ls 7 title 'O2 e el', \
+					 	  '../xsct/O2_ex1D_brung.dat' w l ls 5 title 'O2 ex 1D brung', \
+					 	  '../xsct/O2_ex1D.dat' w l ls 3 title 'O2 ex 1D', \
+						  '../xsct/O2_ex1S.dat' w l ls 8 title 'O2 ex 1S', \
+						  '../xsct/O2_i.dat' w l ls 2 title 'O2 i', \
+						  '../xsct/O2_n_detach.dat' w l ls 6 title 'O2 n detach', \
+						  '../xsct/O2_Op_Om_ntrlzFr.dat' w l ls 1 title 'O2 Op Om ntrlz', \
+						  '../xsct/O2p_O2_el.dat' w l ls 9 title 'O2p O2 el', \
+						  '../xsct/O_dissrec.dat' w l ls 10 title 'O dissrec.dat', \
+						  '../xsct/O_edet.dat' w l ls 11 title 'O edet', \
+						  '../xsct/Omin_O2_el.dat' w l ls 12 title 'Omin O2 el'
+
+print "xsections plot done"
+reset
+
+## WHEN REACTION DEBUG
+if (reactdebug != 0) {
+
+	print ">> reaction test plot"
+	
+	set terminal pngcairo size 1920,1080 enhanced font 'PT Serif, 21'
+	set termoption dashed
+	
+	set grid
+	
+	# COLORS AND DASHES 
+	# define line styles using explicit rgbcolor names
+	set style line 1 lt 1 lc rgb "black" lw 2
+	set style line 2 lt 2 lc rgb "black" lw 2
+	set style line 3 lt 5 lc rgb "black" lw 2
+	set style line 4 lt 1 lc rgb "red" lw 2
+	set style line 5 lt 2 lc rgb "red" lw 2
+	set style line 6 lt 5 lc rgb "red" lw 2
+	set style line 7 lt 1 lc rgb "blue" lw 2
+	set style line 8 lt 2 lc rgb "blue" lw 2
+	set style line 9 lt 5 lc rgb "blue" lw 2
+	set style line 10 lt 1 lc rgb "cyan" lw 2
+	set style line 11 lt 2 lc rgb "cyan" lw 2
+	set style line 12 lt 5 lc rgb "cyan" lw 2
+	
+	set output '../../figs/'.twodrunid.'.reactiontest.png'
+	set xlabel "energy/eV"
+	set ylabel "cross section/cm^{2}"
+	set title 'reaction coefficients for '.twodrunid.' with oxygen'
+	set key outside
+	
+	##LABELS AND BORDERS/TICKS
+	set border linewidth 2.0
+	set tics nomirror out scale 0.7
+	
+	set logscale xy
+	set format y "10^{%T}"
+	set format x "10^{%T}"
+	
+	#set xrange [1e-5:1e5]
+	#set yrange [1e-20:1e0]
+	
+	p '../xsct/reaction_O2_dat.dat' u 1:($2/collfac2d) w l ls 4 title 'O2', \
+		'../xsct/reaction_O2_el.dat' u 1:($2/collfac2d) w l ls 7 title 'O2 el', \
+		'../xsct/reaction_O2_i.dat' u 1:($2/collfac2d) w l ls 2 title 'O2 i', \
+		'../xsct/reaction_O2_n_detach.dat' u 1:($2/collfac2d) w l ls 6 title 'O2 n detach', \
+		'../xsct/reaction_O2_Op_Om_ntrlzFr.dat' u 1:2 w l ls 1 title 'O2 Op Om ntrlz', \
+		'../xsct/reaction_O2p_O2_el.dat' u 1:($2/collfac2d) w l ls 9 title 'O2p O2 el', \
+		'../xsct/reaction_O2_dissrec.dat' u 1:2 w l ls 10 title 'O dissrec.dat', \
+		'../xsct/reaction_O2_edet.dat' u 1:2 w l ls 11 title 'O edet', \
+		'../xsct/reaction_Omin_O2_el.dat' u 1:($2/collfac2d) w l ls 12 title 'Omin O2 el'
+	
+	print "reaction test plot done"
+
+}
