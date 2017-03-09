@@ -43,16 +43,23 @@ length1d=nz1d*L_db01d*0.5;
 ## SI SPEEDS
 mi_over_me = 1832*atom_mass - 1;
 mn_over_me = 1832*atom_mass;
-v_te = (dt/dr)*dr_02d/100./dt_02d; print "v_te = "; print v_te;
-v_ti = v_te/dt_ion; print "v_ti = "; print v_ti;
-v_tni = v_te/dt_nion; print "v_tni = "; print v_tni;
-v_tn = v_te/dt_ntrl; print "v_tn = "; print v_tn;
+v_te = (dt/dr)*dr_02d/100./dt_02d;
+v_ti = v_te/dt_ion;
+v_tni = v_te/dt_nion;
+v_tn = v_te/dt_ntrl;
+## print "v_te = "; print v_te;
+## print "v_tni = "; print v_tni;
+## print "v_ti = "; print v_ti;
+## print "v_tn = "; print v_tn; 
 
-cs_e = (1/mi_over_me)**(1/2)*v_te; print "cs_e = "; print cs_e;
-cs_ntrl = dt_ntrl*cs_e; print "cs_ntrl= "; print cs_ntrl;
-cs_ion = dt_ion*cs_e; print "cs_ion = "; print cs_ion;
-cs_nion = dt_nion*cs_e; print "cs_nion = "; print cs_nion;
-
+cs_e = (1/mi_over_me)**(1/2)*v_te;
+cs_ntrl = dt_ntrl*cs_e;
+cs_ion = dt_ion*cs_e;
+cs_nion = dt_nion*cs_e;
+## print "cs_ntrl= "; print cs_ntrl;
+## print "cs_e = "; print cs_e;
+## print "cs_ion = "; print cs_ion;
+## print "cs_nion = "; print cs_nion;
 
 ## TICS AXIS OUTPUT
 set output '../../figs/vel1D-'.onedrunid.'.'.time1d.'_2D-'.twodrunid.'.'.time2d.'.png'
@@ -80,16 +87,17 @@ unset logscale y
 set title '2D velocities, time '.time2d
 p 'transpose2develr.dat' using ($0*dr_02d):(sum[col=1:lines] column(col)*cs_e/(lines)) with lines ls 1 title 'e-vel r' ,\
   'transpose2develz.dat' using ($0*dr_02d):(sum[col=1:lines] column(col)*cs_e/(lines)) with lines ls 2 title 'e-vel z' ,\
-  ##'transpose2develt.dat' using ($0*dr_02d):(sum[col=1:lines] column(col)*cs_e/(lines)) with lines ls 3 title 'e-vel t' ,\
 	'transpose2divelr.dat' using ($0*dr_02d):(sum[col=1:lines] column(col)*cs_ion/(lines)) with lines ls 4 title 'i-vel r' ,\
   'transpose2divelz.dat' using ($0*dr_02d):(sum[col=1:lines] column(col)*cs_ion/(lines)) with lines ls 5 title 'i-vel z' ,\
-  ##'transpose2divelt.dat' using ($0*dr_02d):(sum[col=1:lines] column(col)*cs_ion/(lines)) with lines ls 6 title 'i-vel t' ,\
 	'transpose2dnivelr.dat' using ($0*dr_02d):(sum[col=1:lines] column(col)*cs_nion/(lines)) with lines ls 7 title 'ni-vel r' ,\
   'transpose2dnivelz.dat' using ($0*dr_02d):(sum[col=1:lines] column(col)*cs_nion/(lines)) with lines ls 8 title 'ni-vel z' ,\
-  ##'transpose2dnivelt.dat' using ($0*dr_02d):(sum[col=1:lines] column(col)*cs_nion/(lines)) with lines ls 9 title 'ni-vel t' ,\
 	'transpose2dnvelr.dat' using ($0*dr_02d):(sum[col=1:lines] column(col)*cs_ntrl/(lines)) with lines ls 10 title 'n-vel r' ,\
   'transpose2dnvelz.dat' using ($0*dr_02d):(sum[col=1:lines] column(col)*cs_ntrl/(lines)) with lines ls 11 title 'n-vel z'
+
   ##'transpose2dnvelt.dat' using ($0*dr_02d):(sum[col=1:lines] column(col)*cs_ntrl/(lines)) with lines ls 12 title 'n-vel t'
+  ##'transpose2dnivelt.dat' using ($0*dr_02d):(sum[col=1:lines] column(col)*cs_nion/(lines)) with lines ls 9 title 'ni-vel t'
+  ##'transpose2divelt.dat' using ($0*dr_02d):(sum[col=1:lines] column(col)*cs_ion/(lines)) with lines ls 6 title 'i-vel t' 
+  ##'transpose2develt.dat' using ($0*dr_02d):(sum[col=1:lines] column(col)*cs_e/(lines)) with lines ls 3 title 'e-vel t'
 
 unset multiplot
 ## DONE ##########################

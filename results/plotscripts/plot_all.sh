@@ -1,19 +1,24 @@
 #!/bin/bash
 
+TWODRUNDIR=`exec pwd`
+tmp=$(pwd | grep -Po '(_=?)+[0-9]+(?=.)')
+TWODRUNID=${tmp##*[^0-9]}
+TWODJOBNAME=$(grep -w "\#\# jobname\:" "../../slurms/slurm-${TWODRUNID}.out" | awk '{print($3)}') # jobname
+
 ## COPY STUFF
-TWODBASEDIR=/home/ph123693/Documents/2D/pic2d
+TWODBASEDIR=$TWODRUNID/../../../tmpic2d
 ONEDBASEDIR=$TWODBASEDIR/../pic1d
-cp $TWODBASEDIR/slurm-*.out $TWODBASEDIR/../results/slurms/ 2>/dev/null
-cp $ONEDBASEDIR/slurm-*.out $TWODBASEDIR/../results/slurms/ 2>/dev/null
+
+## cp $TWODBASEDIR/slurm-*.out $TWODBASEDIR/../results/slurms/ 2>/dev/null
+## cp $ONEDBASEDIR/slurm-*.out $TWODBASEDIR/../results/slurms/ 2>/dev/null
+## cp $TWODRUNDIR/../save/particle_backup0.h5 $TWODRUNDIR/../../particles/w2d_${TWODRUNID}-${TWODJOBNAME}_particles0.h5 2>/dev/null
+## cp $TWODRUNDIR/../save/particle_backup1.h5 $TWODRUNDIR/../../particles/w2d_${TWODRUNID}-${TWODJOBNAME}_particles1.h5 2>/dev/null
+## cp $TWODRUNDIR/../input.dat $TWODRUNDIR/../../inputs/2D-${TWODRUNID}-${TWODJOBNAME}.dat 2>/dev/null
 
 ## define which runs are to be compared
 ONEDRUNID=31521;
 ONEDRUNNAME=D288-6e4-31496;
 ONEDRUNDIR=../../w1d_$ONEDRUNID.$ONEDRUNNAME
-
-TWODRUNDIR=`exec pwd`
-tmp=$(pwd | grep -Po '(_=?)+[0-9]+(?=.)')
-TWODRUNID=${tmp##*[^0-9]}
 
 ## shell input parameters #############################################
 ## get 2D LAST NUMBER #################################################
@@ -33,38 +38,37 @@ echo "realtime2d=${realtime2d}"
 
 ## get 1D NUMBER closest to 2D number ########################################
 cd $ONEDRUNDIR
-echo ">> get 1D step number"
-if ! [ "$1" -eq "$1" ] 2> /dev/null # checking if $1 is a number or not
-	then 
-		LAST1D=`exec ls out/ | sed 's/\([0-9]\+\).*/\1/g' | sort -n | tail -1`
-		time1d=${LAST1D##*[^0-9]} # last timestep in folder out
-		nstep1d=`expr $time1d + 0`
-		## CHECK IF POSSIBLE TO GET NEAREST STEP
-		#echo "${nstep1d} == ${nstep2d} : " && bc <<< "${nstep1d} == ${nstep2d}"
-		if [ "${nstep2d}" != "${nstep1d}" ]
-			then
-				i=1
-				firstdiff=`bc <<< "sqrt((${nstep2d} - ${nstep1d})^2)"`
-				oldiff=$firstdiff
-				newdiff=1
-				#echo "${firstdiff} >= ${newdiff} : " && bc <<< "${firstdiff} > ${newdiff}"
-				while [ "$oldiff" -ge "$newdiff" ]
-				do
-					if [ $i -gt 1 ]; then
-						oldiff=$newdiff
-					fi
-					OUT1D=`ls out/phi* | grep -Po '[0-9]+(?=.dat)' | sort -n | head -$i | tail -1`
-					time1d=${OUT1D##*^[0-9]}
-					nstep1d=`expr ${time1d} + 0`
-					newdiff=`bc <<< "sqrt((${nstep2d} - ${nstep1d})^2)"`
-					i=$[$i+1]
-				done
-	fi
-	else
-		printf -v time1d "%08d" $1 # given timestep
-fi
-
-echo "time1d=${time1d}"
+## echo ">> get 1D step number"
+## if ! [ "$1" -eq "$1" ] 2> /dev/null # checking if $1 is a number or not
+## 	then 
+## 		LAST1D=`exec ls out/ | sed 's/\([0-9]\+\).*/\1/g' | sort -n | tail -1`
+## 		time1d=${LAST1D##*[^0-9]} # last timestep in folder out
+## 		nstep1d=`expr $time1d + 0`
+## 		#echo "${nstep1d} == ${nstep2d} : " && bc <<< "${nstep1d} == ${nstep2d}"
+## 		if [ "${nstep2d}" != "${nstep1d}" ]
+## 			then
+## 				i=1
+## 				firstdiff=`bc <<< "sqrt((${nstep2d} - ${nstep1d})^2)"`
+## 				oldiff=$firstdiff
+## 				newdiff=1
+## 				#echo "${firstdiff} >= ${newdiff} : " && bc <<< "${firstdiff} > ${newdiff}"
+## 				while [ "$oldiff" -ge "$newdiff" ]
+## 				do
+## 					if [ $i -gt 1 ]; then
+## 						oldiff=$newdiff
+## 					fi
+## 					OUT1D=`ls out/phi* | grep -Po '[0-9]+(?=.dat)' | sort -n | head -$i | tail -1`
+## 					time1d=${OUT1D##*^[0-9]}
+## 					nstep1d=`expr ${time1d} + 0`
+## 					newdiff=`bc <<< "sqrt((${nstep2d} - ${nstep1d})^2)"`
+## 					i=$[$i+1]
+## 				done
+## 	fi
+## 	else
+## 		printf -v time1d "%08d" $1 # given timestep
+## fi
+## 
+## echo "time1d=${time1d}"
 
 ## IMPORTANTÈ ################################################################
 cd $TWODRUNDIR
@@ -112,7 +116,7 @@ velzdiag=$(grep -w "DIAG_VELZ" "../../slurms/slurm-$TWODRUNID.out" | awk '{print
 debyediag=$(grep -w "DIAG_DEBYE_LENGTH" "../../slurms/slurm-$TWODRUNID.out" | awk '{print($2)}'| sort -n | tail -1) # if debye flag is set
 ntrlzconst=$(grep -w "NTRL_CONST" "../../slurms/slurm-$TWODRUNID.out" | awk '{print($2)}'| sort -n | tail -1) # if ntrlz const
 reactdebug=$(grep -w "DEBUG_REACT" "../../slurms/slurm-$TWODRUNID.out" | awk '{print($2)}'| sort -n | tail -1) # if reaction debug
-negion=$(grep -w "USE_NEGATIVE_IONS" "../../slurms/slurm-$TWODRUNID.out" | awk '{print($2)}'| sort -n | tail -1) # if negative ions are used 
+negion=$(grep -w "USE_NEGATIVE_IONS" "../../slurms/slurm-$TWODRUNID.out" | awk '{print($2)}'| sort -n | tail -1) # if negative ions 
 ranknmb=$(cat ../../slurms/slurm-$TWODRUNID.out | grep "Rank #" | grep -Po '[0-9]+(?= is here and ready!)' | sort -n | tail -1) # who many ranks are used
 
 ##############################################################################
@@ -169,15 +173,15 @@ lines=60
 ## GnuVars
 # 2D #########################################################################
 echo ">> 2D GnuVars"
-GnuVars+="dr='${dr2d}'; "
-GnuVars+="dt='${dt2d}'; "
-GnuVars+="atom_mass='${atom_mass2d}'; "
-GnuVars+="particlenorm='${particlenorm}'; "
-GnuVars+="collfac2d='${collfac2d}'; "
-GnuVars+="fac1d2d='${fac1d2d}'; "
-GnuVars+="L_db02d='${L_db02d}'; "
-GnuVars+="Ti_over_Te2d='${Ti_over_Te2d}'; "
-GnuVars+="Te02d='${Te02d}'; "
+GnuVars+="dr='${dr2d}'; "; export dr;
+GnuVars+="dt='${dt2d}'; "; export dt;
+GnuVars+="atom_mass='${atom_mass2d}'; "; export atom_mass;
+GnuVars+="particlenorm='${particlenorm}'; "; export particlenorm;
+GnuVars+="collfac2d='${collfac2d}'; "export collfac2d;
+GnuVars+="fac1d2d='${fac1d2d}'; "; export fac1d2d;
+GnuVars+="L_db02d='${L_db02d}'; "; export L_db02d;
+GnuVars+="Ti_over_Te2d='${Ti_over_Te2d}'; "; export Ti_over_Te2d;
+GnuVars+="Te02d='${Te02d}'; "; export Te02d;
 GnuVars+="voltage2d='${voltage2d}'; "
 GnuVars+="ne02d='${ne02d}'; "
 GnuVars+="sizez2d='${sizez2d}'; "
@@ -221,6 +225,7 @@ echo ">> MISC GnuVars"
 GnuVars+="lines='${lines}'; "
 GnuVars+="samplesiso='${samples}'; "
 GnuVars+="taskpernode='${taskpernode}'; "
+GnuVars+="nocalc='1'; "
 
 ##############################################################################
 ## ECHOING
@@ -282,9 +287,8 @@ echo "taskpernode=${taskpernode}"
 echo "isosamples=${samples}"
 echo "lines=${lines}"
 
-## TRANSPOSING ###############################################################
-echo ""
 echo "TRANSPOSING ###########################################################"
+## TRANSPOSING ###############################################################
 ##############################################################################
 ## POTENTIAL AND DENSITY #####################################################
 ## transpose potential
@@ -596,17 +600,33 @@ END {
 			print str
 		}
 }' tmp.dat > transpose2dnvelt.dat
-##############################################################################
-## DUMP ######################################################################
-echo ${GnuVars} > GnuVars.tmp
+
+
+## ANIMATION #################################################################
+echo "GIFS ##################################################################" 
+TIMEVEC=`exec ls ../out/e_dens_* | grep -Po '[0-9]+(?=.dat)' | sort -n`
+
+j="0"
+
+GnuVars+="timevec2d= ' ";
+while [ $j -lt "${#TIMEVEC[@]}" ]; do
+	GnuVars+="${TIMEVEC[$j]} ";
+	j=$[$j+1];
+done
+GnuVars+="'; "
+framenumber="${#TIMEVEC[@]}"
+GnuVars+="framenumber='${framenumber}'; "
+
+## making gifs
+echo "## ANIMATION EDENS/IDENS/NIDENS"
+gnuplot -e "${GnuVars}" animation.gplt
 
 ##############################################################################
 ## FINALIZING AND PLOTS ######################################################
 echo ""
 echo "PLOTS #################################################################"
-echo "## PHYSCALC"
-GnuVars+="nocalc='1'; "
-gnuplot -e "${GnuVars}" calc.gplt
+##echo "## PHYSCALC"
+##gnuplot -e "${GnuVars}" calc.gplt
 ## plotting electron and positive ion density
 echo "## 1D/2D COMPARE"
 gnuplot -e "${GnuVars}" compare1D2D.gplt
@@ -629,7 +649,11 @@ then
 	gnuplot -e "${GnuVars}" velzcompare.gplt
 fi
 
-sleep 0.5
+## DUMP ######################################################################
+echo ${GnuVars} > GnuVars.tmp
+
 rm GnuVars.tmp 2>/dev/null
 rm tmp.dat 2>/dev/null
 rm transpose* 2>/dev/null
+
+exit
