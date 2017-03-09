@@ -110,6 +110,8 @@ set style line 11 lt 2 lc rgb "cyan" lw 2
 set style line 12 lt 5 lc rgb "cyan" lw 2
 
 ## plot definitions
+set xrange [0.0:sizez2d]
+set yrange [0.0:nr]
 set multiplot layout seti,hubbel 
 set xlabel 'z (cell)'
 set ylabel 'r (cell)'
