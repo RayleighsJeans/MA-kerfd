@@ -21,7 +21,7 @@ print ">> STARTING GIF"
 
 set xrange [0.0:sizez2d]
 set yrange [0.0:nr]
-set cbrange [*:1.0]
+set cbrange [1e-15:10.0]
 
 set output 'densities-'.twodrunid.'.gif'
 

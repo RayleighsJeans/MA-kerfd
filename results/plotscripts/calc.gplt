@@ -7,7 +7,7 @@ if (nocalc != 1) {
 	#system "echo lines=60 >> GnuVars.tmp"	
 	#system "echo collfac2d=194020228.02 >> GnuVars.tmp"	
 
-	print "## NO INPUT FILE - READ CALC.GPLT FOR INFO"
+	print ">> NO INPUT FILE - READ CALC.GPLT FOR INFO "
 	## 2D
 	Te02d= 5.0;
 	voltage2d= 400.0;
@@ -105,7 +105,7 @@ print ">> collfac 1D = "; print collfac1d;
 
 ## AXIAL PROFILE APPROX ##############################
 print ""
-print "## AXIAL PROFILE APPROX (for n_e0~5e9) ####";
+print ">> AXIAL PROFILE APPROX (for n_e0~5e9) <<<<";
 ndens1d = 1.25*collfac1d*ne01d;
 print ">> n_n 1D = "; print ndens1d;
 ndens2d = 1.25*collfac2d*ne02d*fac1d2d;
@@ -115,7 +115,7 @@ print ">> ~ fac1d2d = "; print suggestedfac;
 
 ## REST ##############################################
 print "";
-print "## REST #####################################";
+print ">> REST <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
 # electron velocity in dimensionless units
 print ">> v_te (diml.)= "; print v_te;
 v_ti = v_te * sqrt(Ti_over_Te2d * me_over_mi) * dt_ion;
@@ -164,4 +164,4 @@ Ndb2 = ne02d * L_db01d;
 # false number of particles in debye cell
 print ">> N_db 1D = "; print Ndb2;
 
-print "## DONE #####################################";
+print ">> DONE <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";

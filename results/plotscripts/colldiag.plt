@@ -1,3 +1,12 @@
+## RESET
+reset;
+unset multiplot
+unset terminal 
+unset size
+unset output
+unset format cb
+unset logscale cb
+
 nstep = time2d;
 
 ## seti is y, hubbel is x
@@ -7,8 +16,8 @@ xeich=1256
 yeich=1024
 x=hubbel*xeich;
 y=seti*yeich;
-print "size ".x.",".y
-print "multiplot layout ".seti.",".hubbel
+print ">> size ".x.",".y
+print ">> multiplot layout ".seti.",".hubbel;
 
 ## input parameters for plot
 set terminal pngcairo size x,y enhanced font 'PT Serif,30'
@@ -43,6 +52,7 @@ set style line 12 lt 5 lc rgb "cyan" lw 2
 set multiplot layout seti,hubbel 
 set xlabel 'z (cell)'
 set ylabel 'r (cell)'
+
 set logscale cb
 set format cb "10^{%T}"
 
@@ -61,8 +71,10 @@ set title "mean free path coll at ".nstep
 p '../out/coll_mfp'.nstep.'.dat' matrix with image 
 set title "nion neutral coll at ".nstep
 p '../out/coll_nion_ntrl'.nstep.'.dat' matrix with image 
+
 ## RESET CB
 unset logscale cb
+unset format cb
 if (debyediag == 1) {
 	set title "local debye length from temp. (total energy) at ".nstep
 	p '../out/e_debye_'.nstep.'.dat' matrix with image

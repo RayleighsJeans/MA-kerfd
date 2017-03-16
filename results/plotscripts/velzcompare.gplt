@@ -29,7 +29,7 @@ set style line 13 lt 1 lc rgb "green" lw 2
 set style line 14 lt 2 lc rgb "green" lw 2
 set style line 15 lt 5 lc rgb "green" lw 2
 
-print '>> doing velocity compare'
+print '>> doing velocity compare <<<<<<<<<<<<<<<<<';
 ## DEBYE AND STATS
 lines=60;
 lines1d=401;
@@ -56,10 +56,10 @@ cs_e = (1/mi_over_me)**(1/2)*v_te;
 cs_ntrl = dt_ntrl*cs_e;
 cs_ion = dt_ion*cs_e;
 cs_nion = dt_nion*cs_e;
-## print "cs_ntrl= "; print cs_ntrl;
-## print "cs_e = "; print cs_e;
-## print "cs_ion = "; print cs_ion;
-## print "cs_nion = "; print cs_nion;
+print ">> cs_ntrl= "; print cs_ntrl;
+print ">> cs_e = "; print cs_e;
+print ">> cs_ion = "; print cs_ion;
+print ">> cs_nion = "; print cs_nion;
 
 ## TICS AXIS OUTPUT
 set output '../../figs/vel1D-'.onedrunid.'.'.time1d.'_2D-'.twodrunid.'.'.time2d.'.png'
@@ -93,7 +93,6 @@ p 'transpose2develr.dat' using ($0*dr_02d):(sum[col=1:lines] column(col)*cs_e/(l
   'transpose2dnivelz.dat' using ($0*dr_02d):(sum[col=1:lines] column(col)*cs_nion/(lines)) with lines ls 8 title 'ni-vel z' ,\
 	'transpose2dnvelr.dat' using ($0*dr_02d):(sum[col=1:lines] column(col)*cs_ntrl/(lines)) with lines ls 10 title 'n-vel r' ,\
   'transpose2dnvelz.dat' using ($0*dr_02d):(sum[col=1:lines] column(col)*cs_ntrl/(lines)) with lines ls 11 title 'n-vel z'
-
   ##'transpose2dnvelt.dat' using ($0*dr_02d):(sum[col=1:lines] column(col)*cs_ntrl/(lines)) with lines ls 12 title 'n-vel t'
   ##'transpose2dnivelt.dat' using ($0*dr_02d):(sum[col=1:lines] column(col)*cs_nion/(lines)) with lines ls 9 title 'ni-vel t'
   ##'transpose2divelt.dat' using ($0*dr_02d):(sum[col=1:lines] column(col)*cs_ion/(lines)) with lines ls 6 title 'i-vel t' 

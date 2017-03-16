@@ -1,5 +1,6 @@
 reset 
 
+print ">> DIMENSION <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
 ## what dimensions the picture will have
 ## hubbe is x, seti is y
 if (tempzdiag == 1 && velzdiag == 1) {
@@ -77,11 +78,12 @@ x=hubbel*xeich;
 y=seti*yeich;
 
 ## DEBUG
-print "size ".x.",".y
-print "multiplot layout ".seti.",".hubbel
+print ">> SIZES <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
+print ">> size ".x.",".y;
+print ">> multiplot layout ".seti.",".hubbel;
 
 ## input parameters
-set terminal pngcairo size x,y enhanced font 'PT Serif,30'
+set terminal pngcairo size x,y enhanced font 'PT Serif,27'
 set termoption dash
 set output '../../figs/'.twodrunid.'.allfigs.'.nstep.'.png'
 set samples samplesiso
@@ -115,12 +117,12 @@ set yrange [0.0:nr]
 set multiplot layout seti,hubbel 
 set xlabel 'z (cell)'
 set ylabel 'r (cell)'
-set logscale cb
-set format cb "10^{%T}"
 
 ## ALL PLOTS PHYSFIGS
 #####################
-
+print ">> ELECTRONS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
+set logscale cb
+set format cb "10^{%T}"
 set title "electron density at ".nstep
 p '../out/e_dens_'.nstep.'.dat' matrix with image 
 if (tempzdiag == 1) {
@@ -130,6 +132,8 @@ if (tempzdiag == 1) {
 	p '../out/e_temp_therm_'.nstep.'.dat' matrix with image
 }
 if (velzdiag == 1) {
+	unset logscale cb
+	set format cb "%g"
 	set title "electron z velocity at ".nstep
 	p '../out/e_velz_'.nstep.'.dat' matrix with image
 	set title "electron r velocity at ".nstep
@@ -137,6 +141,9 @@ if (velzdiag == 1) {
 	set title "electron thermal velocity at ".nstep
 	p '../out/e_velt_'.nstep.'.dat' matrix with image
 }
+print ">> IONS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
+set logscale cb
+set format cb "10^{%T}"
 set title "ion density at ".nstep
 p '../out/i_dens_'.nstep.'.dat' matrix with image 
 if (tempzdiag == 1) {
@@ -146,6 +153,8 @@ if (tempzdiag == 1) {
 	p '../out/i_temp_therm_'.nstep.'.dat' matrix with image
 }
 if (velzdiag == 1) {
+	unset logscale cb
+	set format cb "%g"
 	set title "ion z velocity at ".nstep
 	p '../out/i_velz_'.nstep.'.dat' matrix with image 
 	set title "ion r velocity at ".nstep
@@ -154,6 +163,9 @@ if (velzdiag == 1) {
 	p '../out/i_velt_'.nstep.'.dat' matrix with image
 }
 if (negion == 1) {
+	print ">> NIONS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
+	set logscale cb
+	set format cb "10^{%T}"
 	set title "nion density at ".nstep
 	p '../out/ni_dens_'.nstep.'.dat' matrix with image 
 	if (tempzdiag == 1) {
@@ -163,6 +175,8 @@ if (negion == 1) {
 		p '../out/ni_temp_therm_'.nstep.'.dat' matrix with image
 	}
 	if (velzdiag == 1) {
+		unset logscale cb
+		set format cb "%g"
 		set title "nion z velocity at ".nstep
 		p '../out/ni_velz_'.nstep.'.dat' matrix with image 
 		set title "nion r velocity at ".nstep
@@ -172,6 +186,9 @@ if (negion == 1) {
 	}
 }
 #if (ntrlzconst == 0) {
+	print ">> NEUTRALS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
+	set logscale cb
+	set format cb "10^{%T}"
 	set title "neutral density at ".nstep
 	p '../out/n_dens_'.nstep.'.dat' matrix with image 
 	if (tempzdiag == 1) {
@@ -181,6 +198,8 @@ if (negion == 1) {
 		p '../out/n_temp_therm_'.nstep.'.dat' matrix with image
 	}
 	if (velzdiag == 1) {
+		unset logscale cb
+		set format cb "%g"
 		set title "neutral z velocity at ".nstep
 		p '../out/n_velz_'.nstep.'.dat' matrix with image 
 		set title "neutral r velocity at ".nstep
@@ -190,17 +209,18 @@ if (negion == 1) {
 	}
 #}
 if (debyediag == 1) {
-	set cbrange [0.0:10.0]
+	print ">> DEBYE DIAG <<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
+	set logscale cb
+	set format cb "10^{%T}"
 	set title "local debye length from temp. (total energy) at ".nstep
 	p '../out/e_debye_'.nstep.'.dat' matrix with image
-	set title "local debye length test1 at ".nstep
-	p '../out/e_debye_t1_'.nstep.'.dat' matrix with image
-	set title "local debye length test2 at ".nstep
-	p '../out/e_debye_t2_'.nstep.'.dat' matrix with image
+	#set title "local debye length test1 at ".nstep
+	#p '../out/e_debye_t1_'.nstep.'.dat' matrix with image
+	#set title "local debye length test2 at ".nstep
+	#p '../out/e_debye_t2_'.nstep.'.dat' matrix with image
 } 
+print ">> POTENTIAL <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
 unset logscale cb
-set cbrange [*:*]
-set format cb "%g
 set format cb "%g"
 set title "potential at ".nstep
 p '../out/phi'.nstep.'.dat' matrix with image 
@@ -210,10 +230,13 @@ unset multiplot
 unset terminal 
 unset size
 unset output
+set format cb "%g"
+unset logscale cb
 
 #####################
 ## NEW PLOT FOR TRACE
-set terminal pngcairo size 1920,1080 enhanced font 'PT Serif, 21'
+print ">> TRACEPLOT <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
+set terminal pngcairo size 1920,1080 enhanced font 'PT Serif, 24'
 set output '../../figs/'.twodrunid.'.trace.png'
 
 ## LABELS AND TICKS
