@@ -1,14 +1,14 @@
 function octave_pac
 more off; warning off;
 close all; clear all;
-set(0,'defaultfigurevisible','off');
 
-set(0,'defaultaxesfontsize',24);
-set(0,'DefaultLinelinewidth',5);
-set(0,'Defaultaxeslinewidth',4);
-set(0,'defaulttextfontsize',24);
-set(0,'defaulttextfontweight','bold');
-axis('tick')
+%set(0,'defaultfigurevisible','off');
+%set(0,'defaultaxesfontsize',24);
+%set(0,'DefaultLinelinewidth',5);
+%set(0,'Defaultaxeslinewidth',4);
+%set(0,'defaulttextfontsize',24);
+%set(0,'defaulttextfontweight','bold');
+%axis('tick')
 
 source variables.tmp;
 
@@ -89,17 +89,17 @@ Ndb2 = ne02d * L_db01d;
 %% FILES AND DATA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% VELOCITIES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% 1D
-file=strcat(onedfolder,'uex',num2str(timeX1d,'%08d'),'.dat'); uex=load(file);
-file=strcat(onedfolder,'uey',num2str(timeX1d,'%08d'),'.dat'); uey=load(file);
-file=strcat(onedfolder,'uez',num2str(timeX1d,'%08d'),'.dat'); uez=load(file);
+file=strcat(onedfolder,'uex',num2str(time1d,'%08d'),'.dat'); uex=load(file);
+file=strcat(onedfolder,'uey',num2str(time1d,'%08d'),'.dat'); uey=load(file);
+file=strcat(onedfolder,'uez',num2str(time1d,'%08d'),'.dat'); uez=load(file);
 
-file=strcat(onedfolder,'uO2px',num2str(timeX1d,'%08d'),'.dat'); uO2px=load(file);
-file=strcat(onedfolder,'uO2py',num2str(timeX1d,'%08d'),'.dat'); uO2py=load(file);
-file=strcat(onedfolder,'uO2pz',num2str(timeX1d,'%08d'),'.dat'); uO2pz=load(file);
+file=strcat(onedfolder,'uO2px',num2str(time1d,'%08d'),'.dat'); uO2px=load(file);
+file=strcat(onedfolder,'uO2py',num2str(time1d,'%08d'),'.dat'); uO2py=load(file);
+file=strcat(onedfolder,'uO2pz',num2str(time1d,'%08d'),'.dat'); uO2pz=load(file);
 
-file=strcat(onedfolder,'uOmx',num2str(timeX1d,'%08d'),'.dat'); uOmx=load(file);
-file=strcat(onedfolder,'uOmy',num2str(timeX1d,'%08d'),'.dat'); uOmy=load(file);
-file=strcat(onedfolder,'uOmz',num2str(timeX1d,'%08d'),'.dat'); uOmz=load(file);
+file=strcat(onedfolder,'uOmx',num2str(time1d,'%08d'),'.dat'); uOmx=load(file);
+file=strcat(onedfolder,'uOmy',num2str(time1d,'%08d'),'.dat'); uOmy=load(file);
+file=strcat(onedfolder,'uOmz',num2str(time1d,'%08d'),'.dat'); uOmz=load(file);
 
 %% 2D
 file='transpose2develr.dat'; evr=load(file); evelr=(1/lines)*sum(evr(:,:),2);
@@ -121,44 +121,43 @@ length2d=linspace(0.0,explength,length(evelr));
 
 %% PLOTS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 figure; xlabel('z/cm'); ylabel('v, dim.less');
-		subplot(4,1,1);
+		subplot(2,1,1);
 		hold on;
 		figtitle=strcat('electron velocities step-2D=',num2str(nstep2d),
 								 ' nstep-1D=',num2str(nstep1d)); title(figtitle);
-			plot(length1d,uez(:,2),'-.+k','linewidth',3);
-			plot(length1d,uer(:,2),'--^k','linewidth',3);
-			plot(length2d,evelr(:,1),'-.*r','linewidth',3);
-			plot(length2d,evelz(:,1),'--pr','linewidth',3);
+			plot(length1d,uez(:,2),'-.*k','linewidth',4);
+			plot(length1d,uer(:,2),'--^k','linewidth',4);
+			plot(length2d,evelr(:,1),'-.+r','linewidth',4);
+			plot(length2d,evelz(:,1),'--pr','linewidth',4);
 			legend('e velz 1D','e velr 1D','e velr 2D','e velz 2D'); hold off;
-		subplot(4,1,2); hold on;
+		subplot(2,1,2); hold on;
 		figtitle=strcat('ion velocities step-2D=',num2str(nstep2d),
 								 ' nstep-1D=',num2str(nstep1d)); title(figtitle);
-			plot(length1d,uO2pz(:,2),'-.+k','linewidth',3);
-			plot(length1d,uO2pr(:,2),'--^k','linewidth',3);
-			plot(length2d,ivelr(:,1),'-.*r','linewidth',3);
-			plot(length2d,ivelz(:,1),'--pr','linewidth',3);
+			plot(length1d,uO2pz(:,2),'-.*k','linewidth',4);
+			plot(length1d,uO2pr(:,2),'--^k','linewidth',4);
+			plot(length2d,ivelr(:,1),'-.^+r','linewidth',4);
+			plot(length2d,ivelz(:,1),'--pr','linewidth',4);
 			legend('O2p velz 1D','O2p velr 1D','i velr 2D','i velz 2D'); hold off;
 			hold off;
-		subplot(4,1,3); hold on;
-		figtitle=strcat('negative ion velocities step-2D=',num2str(nstep2d),
-								 ' nstep-1D=',num2str(nstep1d)); title(figtitle);
-			plot(length1d,uOmz(:,2),'-.+k','linewidth',3);
-			plot(length1d,uOmr(:,2),'--^k','linewidth',3);
-			plot(length2d,nivelr(:,1),'-.*r','linewidth',3);
-			plot(length2d,nivelz(:,1),'--pr','linewidth',3);
-			legend('Om velz 1D','Om velr 1D','ni velr 2D','ni velz 2D'); hold off;
-			hold off;
-		subplot(4,1,4); hold on;
-		figtitle=strcat('neutral velocities step-2D=',num2str(nstep2d)); 
-		title(figtitle);
-			plot(length2d,nvelr(:,1),'-.*r','linewidth',3);
-			plot(length2d,nvelz(:,1),'--pr','linewidth',3);
-			legend('n velr 2D','n velz 2D'); hold off;
-			hold off;
-		filename=strcat('figs/velz.1D-',num2str(ONEDRUNID),'.',num2str(nstep1d),
-										'-2D.',num2str(TWODRUNID),'.',num2str(nstep2d),'.png');
-print(filename,'-dpng','-S1080,4320'); close;
+%		subplot(4,1,3); hold on;
+%		figtitle=strcat('negative ion velocities step-2D=',num2str(nstep2d),
+%								 ' nstep-1D=',num2str(nstep1d)); title(figtitle);
+%			plot(length1d,uOmz(:,2),'-.*k','linewidth',4);
+%			plot(length1d,uOmr(:,2),'--^k','linewidth',4);
+%			plot(length2d,nivelr(:,1),'-.+r','linewidth',4);
+%			plot(length2d,nivelz(:,1),'--pr','linewidth',4);
+%			legend('Om velz 1D','Om velr 1D','ni velr 2D','ni velz 2D'); hold off;
+%			hold off;
+%		subplot(4,1,4); hold on;
+%		figtitle=strcat('neutral velocities step-2D=',num2str(nstep2d)); 
+%		title(figtitle);
+%			plot(length2d,nvelr(:,1),'-.*r','linewidth',4);
+%			plot(length2d,nvelz(:,1),'--pr','linewidth',4);
+%			legend('n velr 2D','n velz 2D'); hold off;
+%			hold off;
+filename=strcat('figs/velz.1D-',num2str(ONEDRUNID),'.',num2str(nstep1d),
+								'-2D.',num2str(TWODRUNID),'.',num2str(nstep2d),'.png');
+print(filename,'-dpng','-S720,2160'); close;
 
 keyboard;
-
 end 

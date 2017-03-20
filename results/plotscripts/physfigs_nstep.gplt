@@ -85,7 +85,7 @@ print ">> multiplot layout ".seti.",".hubbel;
 ## input parameters
 set terminal pngcairo size x,y enhanced font 'PT Serif,27'
 set termoption dash
-set output '../../figs/'.twodrunid.'.allfigs.'.nstep.'.png'
+set output 'figs/'.twodrunid.'.allfigs.'.nstep.'.png'
 set samples samplesiso
 set isosamples samplesiso
 
@@ -237,7 +237,7 @@ unset logscale cb
 ## NEW PLOT FOR TRACE
 print ">> TRACEPLOT <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
 set terminal pngcairo size 1920,1080 enhanced font 'PT Serif, 24'
-set output '../../figs/'.twodrunid.'.trace.png'
+set output 'figs/'.twodrunid.'.trace.png'
 
 ## LABELS AND TICKS
 set xlabel "nstep (#)"

@@ -1,5 +1,5 @@
 ## input parameters
-set terminal gif animate delay 10 enhanced size 2160,720
+set terminal gif animate delay 2 enhanced size 2160,720
 set samples samplesiso
 set isosamples samplesiso
 
@@ -17,13 +17,13 @@ set format cb "10^{%T}"
 
 load 'jet.pal'
 
-print ">> STARTING GIF"
+print ">> STARTING 2D GIF"
 
 set xrange [0.0:sizez2d]
 set yrange [0.0:nr]
 set cbrange [1e-15:10.0]
 
-set output 'densities-'.twodrunid.'.gif'
+set output 'figs/densities-'.twodrunid.'.gif'
 
 ## frame=0
 do for [timecode in timevec2d] {
@@ -36,6 +36,60 @@ do for [timecode in timevec2d] {
 	set title 'nidens '.timecode
 	plot '../out/ni_dens_'.timecode.'.dat' matrix with image
 	## frame=frame+1
+	unset multiplot
+}
+
+reset
+
+## input parameters
+set terminal gif animate delay 2 enhanced size 720,2160
+set samples samplesiso
+set isosamples samplesiso
+
+## LABELS AND BORDERS/TICKS
+## COLORS AND DASHES 
+unset grid
+unset key
+set border linewidth 2.0
+set tics nomirror out scale 0.7
+
+set xlabel 'z (cell)'
+set ylabel 'r (cell)'
+unset colorbox
+
+# define line styles using explicit rgbcolor names
+set style line 1 lt 1 lc rgb "black" lw 2
+set style line 2 lt 2 lc rgb "black" lw 2
+set style line 3 lt 5 lc rgb "black" lw 2
+set style line 4 lt 1 lc rgb "red" lw 2
+set style line 5 lt 2 lc rgb "red" lw 2
+set style line 6 lt 5 lc rgb "red" lw 2
+set style line 7 lt 1 lc rgb "blue" lw 2
+set style line 8 lt 2 lc rgb "blue" lw 2
+set style line 9 lt 5 lc rgb "blue" lw 2
+set style line 10 lt 1 lc rgb "cyan" lw 2
+set style line 11 lt 2 lc rgb "cyan" lw 2
+set style line 12 lt 5 lc rgb "cyan" lw 2
+set style line 13 lt 1 lc rgb "green" lw 2
+set style line 14 lt 2 lc rgb "green" lw 2
+set style line 15 lt 5 lc rgb "green" lw 2
+
+print ">> STARTING 1D GIF"
+
+size1d=nz1d*L_db01d/2;
+set xrange [0.0:sizez1d]
+
+set output 'figs/densities-'.onedrunid.'.gif'
+
+## frame=0
+do for [timecode in timevec1d] {
+	set multiplot layout 3,1
+	set title 'electrons '.timecode
+	plot onedfolder.'ne'.timecode.'.dat' with lines linestyle 2
+	set title 'O2+ '.timecode
+	plot onedfolder.'O2p'.timecode.'.dat' with lines linestyle 5
+	set title 'O- '.timecode
+	plot onedfolder.'Omin'.timecode.'.dat' with lines linestyle 8
 	unset multiplot
 }
 

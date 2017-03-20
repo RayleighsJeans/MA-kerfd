@@ -62,7 +62,7 @@ print ">> cs_ion = "; print cs_ion;
 print ">> cs_nion = "; print cs_nion;
 
 ## TICS AXIS OUTPUT
-set output '../../figs/vel1D-'.onedrunid.'.'.time1d.'_2D-'.twodrunid.'.'.time2d.'.png'
+set output 'figs/vel1D-'.onedrunid.'.'.nstep1d.'_2D-'.twodrunid.'.'.time2d.'.png'
 set multiplot layout 2,1
 set xlabel 'z [cm]'
 set ylabel 'velocity'
@@ -70,16 +70,16 @@ set ylabel 'velocity'
 set xrange [0.0:length1d]
 ## set logscale y
 ## 1D ##########################
-set title '1D velocities, time '.time1d
-p onedfolder.'vfex'.timeX1d.'.dat' using ($0*L_db01d):(sum[col=1:lines1d] column(col)/(lines1d)) with lines ls 1 title 'el-v x' ,\
-  onedfolder.'vfey'.timeX1d.'.dat' using ($0*L_db01d):(sum[col=1:lines1d] column(col)/(lines1d)) with lines ls 2 title 'el-v y' ,\
-  onedfolder.'vfez'.timeX1d.'.dat' using ($0*L_db01d):(sum[col=1:lines1d] column(col)/(lines1d)) with lines ls 3 title 'el-v z' ,\
-  onedfolder.'vfOmx'.timeX1d.'.dat' using ($0*L_db01d):(sum[col=1:lines1d] column(col)/(lines1d)) with lines ls 4 title 'Om-v x' ,\
-  onedfolder.'vfOmy'.timeX1d.'.dat' using ($0*L_db01d):(sum[col=1:lines1d] column(col)/(lines1d)) with lines ls 5 title 'Om-v y' ,\
-  onedfolder.'vfOmz'.timeX1d.'.dat' using ($0*L_db01d):(sum[col=1:lines1d] column(col)/(lines1d)) with lines ls 6 title 'Om-v z' ,\
-  onedfolder.'vfO2px'.timeX1d.'.dat' using ($0*L_db01d):(sum[col=1:lines1d] column(col)/(lines1d)) with lines ls 7 title 'O2p-v x' ,\
-  onedfolder.'vfO2py'.timeX1d.'.dat' using ($0*L_db01d):(sum[col=1:lines1d] column(col)/(lines1d)) with lines ls 8 title 'O2p-v y' ,\
-  onedfolder.'vfO2pz'.timeX1d.'.dat' using ($0*L_db01d):(sum[col=1:lines1d] column(col)/(lines1d)) with lines ls 9 title 'O2p-v z'
+set title '1D velocities, time '.nstep1d
+p onedfolder.'vfex'.time1d.'.dat' using ($0*L_db01d):(sum[col=1:lines1d] column(col)/(lines1d)) with lines ls 1 title 'el-v x' ,\
+  onedfolder.'vfey'.time1d.'.dat' using ($0*L_db01d):(sum[col=1:lines1d] column(col)/(lines1d)) with lines ls 2 title 'el-v y' ,\
+  onedfolder.'vfez'.time1d.'.dat' using ($0*L_db01d):(sum[col=1:lines1d] column(col)/(lines1d)) with lines ls 3 title 'el-v z' ,\
+  onedfolder.'vfOmx'.time1d.'.dat' using ($0*L_db01d):(sum[col=1:lines1d] column(col)/(lines1d)) with lines ls 4 title 'Om-v x' ,\
+  onedfolder.'vfOmy'.time1d.'.dat' using ($0*L_db01d):(sum[col=1:lines1d] column(col)/(lines1d)) with lines ls 5 title 'Om-v y' ,\
+  onedfolder.'vfOmz'.time1d.'.dat' using ($0*L_db01d):(sum[col=1:lines1d] column(col)/(lines1d)) with lines ls 6 title 'Om-v z' ,\
+  onedfolder.'vfO2px'.time1d.'.dat' using ($0*L_db01d):(sum[col=1:lines1d] column(col)/(lines1d)) with lines ls 7 title 'O2p-v x' ,\
+  onedfolder.'vfO2py'.time1d.'.dat' using ($0*L_db01d):(sum[col=1:lines1d] column(col)/(lines1d)) with lines ls 8 title 'O2p-v y' ,\
+  onedfolder.'vfO2pz'.time1d.'.dat' using ($0*L_db01d):(sum[col=1:lines1d] column(col)/(lines1d)) with lines ls 9 title 'O2p-v z'
 
 set xrange [0.0:length2d]
 unset logscale y

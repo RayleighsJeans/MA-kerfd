@@ -5,18 +5,17 @@
 copyanything=0; if [ "0" = "$copyanything" ]; then echo "## WILL NOT COPY ANYTHING"; fi
 copyh5s=0; if [ "0" = "$copyh5s" ]; then echo "## WILL NOT COPY *.H5's"; fi
 axoffset=10; fullines=60;lines=50;
-search_1dstep=1; if [ "0" = "$search_1dstep" ]; then echo "## WILL NOT SEARCH FOR 1D STEP NUMBER"; fi
+search_1dstep=0; if [ "0" = "$search_1dstep" ]; then echo "## WILL NOT SEARCH FOR 1D STEP NUMBER"; fi
+uselast1dstep=0; if [ "1" = "$uselast1dstep" ]; then echo "## WILL USE LAST 1D STEP"; fi
 search_2dstep=0; if [ "0" = "$search_1dstep" ]; then echo "## WILL NOT SEARCH FOR 2D STEP NUMBER"; fi
-makegifs=0; if [ "0" = "$makegifs" ]; then echo "## WILL NOT MAKE GIFS"; fi
-octavepics=1; if [ "0" = "$octavepics" ]; then echo "## WILL NOT USE OCTAVE"; fi
-gnuplots=0; if [ "0" = "$gnuplots" ]; then echo "## WILL NOT MAKE GNUPLOTS"; fi
-
-sleep .5
+makegifs=1; if [ "0" = "$makegifs" ]; then echo "## WILL NOT MAKE GIFS"; fi
+octavepics=0; if [ "0" = "$octavepics" ]; then echo "## WILL NOT USE OCTAVE"; fi
+gnuplots=1; if [ "0" = "$gnuplots" ]; then echo "## WILL NOT MAKE GNUPLOTS"; fi
 
 ## >> define 1dstepnumber
 if [ "0" = "$search_1dstep" ]; then
-	time1d=00142745
-	nstep1d=142745
+	time1d=00000025
+	nstep1d=25
 fi
 
 ## >> define 2dstepnumber
@@ -53,45 +52,41 @@ ONEDRUNDIR=../../w1d_$ONEDRUNID.$ONEDRUNNAME
 
 ## shell input parameters #############################################
 ## get 2D LAST NUMBER #################################################
+timevec2d=( $(ls ../out/e_dens_* | grep -Po '[0-9]+(?=.dat)') ); timesize2d=${#timevec2d[*]};
 if [ "1" = "$search_2dstep" ]; then
 	 echo ">> get 2D step number"
-	 if ! [ "$1" -eq "$1" ] 2> /dev/null; then # checking if $1 is a number or not
-	 		LAST2D=`exec ls ../out/e_dens_* | grep -Po '[0-9]+(?=.dat)' | sort -n | tail -1`
-			FIRST2D=`exec ls ../out/e_dens_* | grep -Po '[0-9]+(?=.dat)' | sort -n | head -1`
-	 		time2d=${LAST2D##*[^0-9]} # last timestep in folder out
-	 		nstep2d=`expr $time2d + 0`; # timestep in nstep
-	 		realtime2d=`awk -v "nstep=$nstep2d" '$2==nstep {print($1)}' ../trace.dat`; # clock time from nstep
-		else printf -v time2d "%08d" $nstep2d # given timestep
+	 if ! [ "$1" -eq "$1" ] 2> /dev/null; then 
+	 		LAST2D=${timevec2d[$timesize2d-1]}; FIRST2D=${timevec2d[0]};
+	 		time2d=${LAST2D##*[^0-9]}; start2d=${FIRST2D##*[^0-9]}; 
+	 		nstep2d=`expr $time2d + 0`; 
+	 else printf -v time2d "%08d" $nstep2d # given timestep
 	 fi
-	 echo "realtime2d=${realtime2d}"
 fi
 
 ## get 1D NUMBER closest to 2D number ########################################
 cd $ONEDRUNDIR
+timevec1d=( $(ls out/ne* | grep -Po '[0-9]+(?=.dat)') ); timesize1d=${#timevec1d[*]};
 if [ "1" = "$search_1dstep" ]; then
 	 echo ">> get 1D step number"
 	 if ! [ "$1" -eq "$1" ] 2> /dev/null; then # checking if $1 is a number or not
-	 		LAST1D=`exec ls out/ | sed 's/\([0-9]\+\).*/\1/g' | sort -n | tail -1`
-			FIRST1D=`exec ls out/ne* | grep -Po '[0-9]+(?=.dat)' | sort -n | head -1`
-	 		time1d=${LAST1D##*[^0-9]} # last timestep in folder out
-	 		nstep1d=`expr $time1d + 0`
-	 		# echo "${nstep1d} == ${nstep2d} : " && bc <<< "${nstep1d} == ${nstep2d}"
-	 		if [ "${nstep2d}" != "${nstep1d}" ]; then
-	 				i=1
-	 				firstdiff=`bc <<< "sqrt((${nstep2d} - ${nstep1d})^2)"`
-	 				oldiff=$firstdiff
-	 				newdiff=1
-	 				# echo "${firstdiff} >= ${newdiff} : " && bc <<< "${firstdiff} > ${newdiff}"
-	 				while [ "$oldiff" -ge "$newdiff" ]; do
-	 					if [ $i -gt 1 ]; then oldiff=$newdiff; fi
-	 					OUT1D=`ls out/phi* | grep -Po '[0-9]+(?=.dat)' | sort -n | head -$i | tail -1`
-	 					time1d=${OUT1D##*^[0-9]}
-	 					nstep1d=`expr ${time1d} + 0`
-	 					newdiff=`bc <<< "sqrt((${nstep2d} - ${nstep1d})^2)"`
-	 					i=$[$i+1]
-	 					echo -e ">> >> iterating...$newdiff"
-	 				done
-	 	fi
+			LAST1D=${timevec1d[$timesize1d-1]}; FIRST1D=${timevec1d[0]};
+	 		time1d=${LAST1D##*[^0-9]}; start1d=`expr ${FIRST1D##*[^0-9]}`;
+	 		nstep1d=`expr $time1d + 0`;
+			if [ "0" = "$uselast1dstep" ]; then
+				echo ">> search 1D step number closest to 2D number"
+				if [ "${nstep2d}" != "${nstep1d}" ]; then
+					i=0; base=100; newdiff=1; nstep1d=`expr ${timevec1d[$i]} + 0`;
+					oldiff=`bc <<< "sqrt((${nstep2d} - ${nstep1d})^2)"`;
+					echo -ne ">> >> iterating... "
+					while [ "$oldiff" -ge "$newdiff" ]; do							
+						i=$[$i+1];
+						if [ $i -gt "1" ]; then oldiff=$newdiff; fi
+						time1d=${timevec1d[$i]}; nstep1d=`expr ${time1d} + 0`;
+						newdiff=`bc <<< "sqrt((${nstep2d} - ${nstep1d})^2)"`
+						if [ $i -gt $base ]; then echo -ne "$newdiff ... "; base=$[$base+100]; fi
+					done
+				fi
+			fi
 	 else printf -v time1d "%08d" $1 # given timestep
 	 fi
 fi
@@ -163,7 +158,7 @@ cd $TWODRUNDIR
 ## GnuVars
 # 2D #########################################################################
 echo ">> 2D GnuVars"
-GnuVars+="dr='${dr2d}'; "; printf '%s\n' ${GnuVars};
+GnuVars+="dr='${dr2d}'; ";
 GnuVars+="dt='${dt2d}'; ";
 GnuVars+="atom_mass='${atom_mass2d}'; ";
 GnuVars+="particlenorm='${particlenorm}'; ";
@@ -198,10 +193,15 @@ GnuVars+="time2d='${time2d}'; " # gnuplot variable of time
 GnuVars+="nstep2d='${nstep2d}'; "
 GnuVars+="twodfolder='${TWODRUNDIR}/../out/'; "
 GnuVars+="twodrunid='${TWODRUNID}'; "
+if [ ${search_2dstep} = "2" ]; then 
+	GnuVars+="first2d='${FIRST2d}'; "
+	GnuVars+="start2d='${start2d}';"
+	GnuVars+="last2d='${LAST2d}'; "
+fi
 ## 1D ########################################################################
 echo ">> 1D GnuVars"
-GnuVars+="timeX1d='${time1d}'; " # gnuplot variable of time
-GnuVars+="time1d='${nstep1d}'; "
+GnuVars+="time1d='${time1d}'; " # gnuplot variable of time
+GnuVars+="nstep1d='${nstep1d}'; "
 GnuVars+="onedrunid='${ONEDRUNID}'; "
 GnuVars+="onedfolder='${ONEDRUNDIR}/out/'; "
 GnuVars+="collfac1d='${collfac1d}'; "
@@ -210,6 +210,10 @@ GnuVars+="Te01d='${Te01d}'; "
 GnuVars+="nz1d='${nz1d}'; "
 GnuVars+="L_db01d='${L_db01d}'; "
 GnuVars+="voltage1d='${voltage1d}'; "
+if [ ${search_1dstep} = "1" ]; then 
+	GnuVars+="first1d='${FIRST1d}'; "
+	GnuVars+="last1d='${LAST1d}'; "
+fi
 ## MISC ######################################################################
 echo ">> MISC GnuVars"
 GnuVars+="lines='${lines}'; "
@@ -225,7 +229,6 @@ echo > variables.tmp
 echo ""
 echo "2D STUFF ##############################################################"
 echo "time2d=${time2d}"; echo "time2d=${time2d};" >> variables.tmp;  
-echo "first2d=${FIRST2D}"; # echo "first2d=${FIRST2D};" >> variables.tmp;
 echo "nstep2d=${nstep2d}"; echo "nstep2d=${nstep2d};" >> variables.tmp;
 echo "twodfolder=${TWODRUNDIR}/../out/"; echo "twodfolder='${TWODRUNDIR}/../out/';" >> variables.tmp; 
 echo "TWODRUNID=${TWODRUNID}"; echo "TWODRUNID=${TWODRUNID};" >> variables.tmp; 
@@ -249,11 +252,15 @@ echo "nn_pc=${nn_pc}"; echo "nn_pc=${nn_pc};" >> variables.tmp;
 echo "Ncell1=${Ncell1}"; echo "Ncell1=${Ncell1};" >> variables.tmp; 
 echo "navdt=${navdt}"; echo "navdt=${navdt};" >> variables.tmp; 
 echo "nr=${sizer}"; echo "nr=${sizer};" >> variables.tmp; 
-echo "time2d=${time2d}"; echo "time2d=${time2d};" >> variables.tmp; 
+if [ ${search_2dstep} = "1" ]; then
+	echo "first2d=${FIRST2d}"; echo "first1d=${FIRST2d};" >> variables.tmp;
+	echo "last2d=${LAST2d}"; echo "last2d=${LAST2d};" >> variables.tmp;
+	echo "start2d=${start2d}"; echo "start2d=${start2d}" >> variables.tmp;
+fi
 echo ""
 ## 1D ########################################################################
 echo "1D STUFF ##############################################################"
-echo "timeX1d=${time1d}"; echo "timeX1d=${time1d};" >> variables.tmp;
+echo "time1d=${time1d}"; echo "time1d=${time1d};" >> variables.tmp;
 echo "nstep1d=${nstep1d}"; echo "nstep1d=${nstep1d};" >> variables.tmp;
 echo "onedfolder=${ONEDRUNDIR}/out/"; echo "onedfolder='${ONEDRUNDIR}/out/';" >> variables.tmp; 
 echo "ONEDRUNID=${ONEDRUNID}"; echo "ONEDRUNID=${ONEDRUNID};" >> variables.tmp; 
@@ -263,6 +270,11 @@ echo "Te01d=${Te01d}"; echo "Te01d=${Te01d};" >> variables.tmp;
 echo "voltage1d=${voltage1d}"; echo "voltage1d=${voltage1d};" >> variables.tmp; 
 echo "nz1d=${nz1d}"; echo "nz1d=${nz1d};" >> variables.tmp; 
 echo "L_db01d=${L_db01d}"; echo "L_db01d=${L_db01d};" >> variables.tmp; 
+if [ ${search_1dstep} = "1" ]; then
+	echo "first1d=${FIRST1d}"; echo "first1d=${FIRST1d};" >> variables.tmp;
+	echo "last1d=${LAST1d}"; echo "last1d=${LAST1d};" >> variables.tmp;
+	echo "start1d=${start1d}"; echo "start1d=${start1d}" >> variables.tmp;
+fi
 echo "";  
 ## FLAGS #####################################################################
 echo "FLAG STUFF ############################################################"
@@ -603,19 +615,23 @@ mkdir -p figs 2>/dev/null
 
 ## ANIMATION #################################################################
 echo "GIFS ##################################################################" 
-TIMEVEC=`exec ls ../out/e_dens_* | grep -Po '[0-9]+(?=.dat)' | sort -n`;
 j="0";
-GnuVars+="timevec2d= ' ";
-while [ $j -lt "${#TIMEVEC[@]}" ]; do
-	GnuVars+="${TIMEVEC[$j]} ";	j=$[$j+1];
-done
-GnuVars+="'; "
+GnuVarsVec+="timevec2d= ' "; while [ $j -lt "$timesize2d" ]; do
+	GnuVarsVec+="${timevec2d[$j]} ";	j=$[$j+1];
+done; GnuVarsVec+="'; "
 
-framenumber="${#TIMEVEC[@]}";
-GnuVars+="framenumber='${framenumber}'; ";
-echo "framenumber=${framenumber}"; 
-echo "framenumber=${framenumber};" >> variables.tmp; 
-echo -e "timevec2d=[ ${TIMEVEC} ];" >> variables.tmp;
+j="0";
+GnuVarsVec+="timevec1d= ' "; while [ $j -lt "$timesize1d" ]; do
+	GnuVarsVec+="${timevec1d[$j]} ";	j=$[$j+1];
+done; GnuVarsVec+="'; "
+
+echo "timesize2d=${timesize2d};"; GnuVarsVec+="timesize2d='${timesize2d}'; ";
+echo "timesize2d=${timesize2d};" >> variables.tmp; 
+echo "timesize1d=${timesize1d};"; GnuVarsVec+="timesize1d='${timesize1d}'; ";
+echo "timesize1d=${timesize1d};" >> variables.tmp; 
+
+echo -e "timevec2d=[ ${timevec2d[@]} ];" >> variables.tmp;
+echo -e "timevec1d=[ ${timevec1d[@]} ];" >> variables.tmp;
 
 ## making gifs
 if [ "1" = "${makegifs}" ]; then echo ">> ANIMATION EDENS/IDENS/NIDENS"; gnuplot -e "${GnuVars}" animation.gplt; fi

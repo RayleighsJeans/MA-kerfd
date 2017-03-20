@@ -36,7 +36,7 @@ length2d=sizez2d*0.5*L_db02d;
 length1d=nz1d*L_db01d*0.5;
 
 ## TICS AXIS OUTPUT
-set output '../../figs/pot1D-'.onedrunid.'.'.time1d.'_2D-'.twodrunid.'.'.time2d.'.png'
+set output 'figs/pot1D-'.onedrunid.'.'.nstep1d.'_2D-'.twodrunid.'.'.time2d.'.png'
 set multiplot layout 2,1
 set xlabel 'z/cm'
 set ylabel 'Potential/V'
@@ -44,8 +44,8 @@ set ylabel 'Potential/V'
 set xrange [0.0:length1d]
 ## VOLTAGE BREAK FIX
 if (voltage1d == 0) {voltage1d = 1;}
-set title '1D potential, time '.time1d.' with '.voltage1d.' V applied'
-p onedfolder.'phi'.timeX1d.'.dat' using ($0*0.5*L_db01d):($2) with lines ls 1 title ''
+set title '1D potential, time '.nstep1d.' with '.voltage1d.' V applied'
+p onedfolder.'phi'.time1d.'.dat' using ($0*0.5*L_db01d):($2) with lines ls 1 title ''
 
 set xrange [0.0:length2d]
 ## VOLTAGE BREAK FIX
@@ -57,18 +57,18 @@ unset multiplot
 ## DONE ##########################
 
 ## NEW PLOT INPUT
-set output '../../figs/dens1D-'.onedrunid.'.'.time1d.'_2D-'.twodrunid.'.'.time2d.'.png'
+set output 'figs/dens1D-'.onedrunid.'.'.nstep1d.'_2D-'.twodrunid.'.'.time2d.'.png'
 set multiplot layout 2,1
 set xlabel 'z/cm'
 set ylabel 'n/cm^{-3}'
 
 set xrange [0.0:length1d]
 ## 1D DENSITIES
-set title 'n(1D) x n_{e,0 1D}='.ne01d.'cm^{-3}, collfac.='.collfac1d.' at '.time1d
-p onedfolder.'ne'.timeX1d.'.dat' using ($0*0.5*L_db01d):($2*ne01d) with lines ls 1 title 'e' ,\
-	onedfolder.'O2p'.timeX1d.'.dat' using ($0*0.5*L_db01d):($2*ne01d) with lines ls 4 title 'O2p' ,\
-	onedfolder.'Omin'.timeX1d.'.dat' using ($0*0.5*L_db01d):($2*ne01d) with lines ls 7 title 'Omin' ,\
-	onedfolder.'Oms'.timeX1d.'.dat' using ($0*0.5*L_db01d):($2*ne01d) with lines ls 6 title 'Oms'
+set title 'n(1D) x n_{e,0 1D}='.ne01d.'cm^{-3}, collfac.='.collfac1d.' at '.nstep1d
+p onedfolder.'ne'.time1d.'.dat' using ($0*0.5*L_db01d):($2*ne01d) with lines ls 1 title 'e' ,\
+	onedfolder.'O2p'.time1d.'.dat' using ($0*0.5*L_db01d):($2*ne01d) with lines ls 4 title 'O2p' ,\
+	onedfolder.'Omin'.time1d.'.dat' using ($0*0.5*L_db01d):($2*ne01d) with lines ls 7 title 'Omin' ,\
+	onedfolder.'Oms'.time1d.'.dat' using ($0*0.5*L_db01d):($2*ne01d) with lines ls 6 title 'Oms'
 
 set xrange [0.0:length2d]
 ## 2D DENSITIES
@@ -82,11 +82,11 @@ unset multiplot
 
 ## NEXT PLOT NDENS COMPARE
 print '>> doing n dens compare'
-set output '../../figs/ndens1D-'.onedrunid.'.'.time1d.'_2D-'.twodrunid.'.'.time2d.'.png'
+set output 'figs/ndens1D-'.onedrunid.'.'.nstep1d.'_2D-'.twodrunid.'.'.time2d.'.png'
 set xlabel 'z/cm'
 set ylabel 'n_{n}/cm^{-3}'
-set title 'n_{n}(2D) x n_{e,0 2D}='.ne02d.'cm^{-3}, collfac.='.collfac2d.' at '.time2d.', n_{n}(1D) x n_{e,0 1D}='.ne01d.'cm^{-3}, collfac.='.collfac1d.' at '.time1d
+set title 'n_{n}(2D) x n_{e,0 2D}='.ne02d.'cm^{-3}, collfac.='.collfac2d.' at '.time2d.', n_{n}(1D) x n_{e,0 1D}='.ne01d.'cm^{-3}, collfac.='.collfac1d.' at '.nstep1d
 
 p 'transpose2dnndens.dat' using ($0*0.5*L_db02d):(sum[col=1:lines] collfac2d*column(col)*ne02d/lines) with lines ls 1 title 'n2d' ,\
-	onedfolder.'ntrlz'.timeX1d.'.dat' using ($0*0.5*L_db01d):(collfac1d*$2*ne01d) with lines ls 4 title 'n1d'
+	onedfolder.'ntrlz'.time1d.'.dat' using ($0*0.5*L_db01d):(collfac1d*$2*ne01d) with lines ls 4 title 'n1d'
 

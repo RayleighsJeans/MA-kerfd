@@ -24,7 +24,7 @@ set style line 9 lt 5 lc rgb "blue" lw 2
 set style line 10 lt 1 lc rgb "cyan" lw 2
 set style line 11 lt 2 lc rgb "cyan" lw 2
 set style line 12 lt 5 lc rgb "cyan" lw 2
-set output '../../figs/'.twodrunid.'.xsections.png'
+set output 'figs/'.twodrunid.'.xsections.png'
 
 set xlabel "energy/eV"
 set ylabel "cross section/cm^{2}"
@@ -83,7 +83,7 @@ if (reactdebug != 0) {
 	set style line 11 lt 2 lc rgb "cyan" lw 2
 	set style line 12 lt 5 lc rgb "cyan" lw 2
 	
-	set output '../../figs/'.twodrunid.'.reactiontest.png'
+	set output 'figs/'.twodrunid.'.reactiontest.png'
 	set xlabel "energy/eV"
 	set ylabel "cross section/cm^{2}"
 	set title 'reaction coefficients for '.twodrunid.' with oxygen'
