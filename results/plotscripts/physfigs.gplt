@@ -181,6 +181,7 @@ p '../out/phi'.time2d.'.dat' matrix with image
 unset xrange; unset yrange; 
 
 print ">> TRACEPLOT <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
+set xrange [0.0:nstep2d]; set yrange [0.0:*];
 set xlabel "time2d (#)"
 set ylabel "trace counts (#)"
 set title "particle counts"
