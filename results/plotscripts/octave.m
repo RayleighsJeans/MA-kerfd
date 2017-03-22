@@ -82,7 +82,7 @@ Ndb2 = ne02d * L_db01d;
 %% SI SPEEDS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 mi_over_me = 1832*atom_mass - 1;
 mn_over_me = 1832*atom_mass;
-v_te = (dt/dr)*dr_02d/100./dt_02d;
+v_te = (dt/dr)*dr_0/100./dt_0;
 v_ti = v_te/dt_ion;
 v_tni = v_te/dt_nion;
 v_tn = v_te/dt_ntrl;

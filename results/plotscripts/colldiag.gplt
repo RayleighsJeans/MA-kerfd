@@ -1,15 +1,9 @@
-## RESET
-reset
-
 ## input parameters for plot
 set terminal pngcairo size 3072,2160 enhanced font 'PT Serif,30'
-unset key
-set border linewidth 4.0
-set tics nomirror out scale 1.5
-set xlabel 'z (cell)'
-set ylabel 'r (cell)'
-set logscale cb
-set format cb "10^{%T}"
+unset key; load 'jet.pal';
+set border linewidth 4.0; set tics nomirror out scale 1.5;
+set xlabel 'z (cell)'; set ylabel 'r (cell)';
+set logscale cb; set format cb "10^{%T}";
 
 set output 'figs/'.twodrunid.'.collfigs.'.time2d.'.png'
 set multiplot layout 3,3
@@ -29,7 +23,6 @@ set title "mean free path coll at ".time2d
 p '../out/coll_mfp'.time2d.'.dat' matrix with image 
 set title "nion neutral coll at ".time2d
 p '../out/coll_nion_ntrl'.time2d.'.dat' matrix with image 
-
 ## RESET CB
 unset logscale cb
 unset format cb

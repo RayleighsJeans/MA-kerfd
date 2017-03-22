@@ -1,5 +1,3 @@
-reset 
-
 ## hubbe is x, seti is y
 if (tempzdiag == 1 && velzdiag == 1) {
   seti = 3;
@@ -67,12 +65,13 @@ x=hubbel*xeich;
 y=seti*yeich;
 
 ## input parameters
-set terminal pngcairo size x,y enhanced font 'PT Serif,21'
-set output 'figs/'.twodrunid.'.allfigs.'.time2d.'.png'
+set terminal pngcairo size x,y enhanced font 'PT Serif,21';
+set output 'figs/'.twodrunid.'.allfigs.'.time2d.'.png';
 set grid; unset key; set border linewidth 4.0; set tics nomirror out scale 0.7;
-set xlabel 'z (cell)'
-set ylabel 'r (cell)'
+set xlabel 'z (cell)';
+set ylabel 'r (cell)';
 set xrange [0.0:sizez2d]; set yrange [0.0:nr]; set multiplot layout seti,hubbel;
+load 'jet.pal';
 
 #####################
 ## ALL PLOTS PHYSFIGS
@@ -97,6 +96,7 @@ if (velzdiag == 1) {
 	set title "electron thermal velocity at ".time2d
 	p '../out/e_velt_'.time2d.'.dat' matrix with image
 }
+
 print ">> IONS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
 set logscale cb
 set format cb "10^{%T}"
@@ -119,7 +119,8 @@ if (velzdiag == 1) {
 	p '../out/i_velt_'.time2d.'.dat' matrix with image
 }
 if (negion == 1) {
-	print ">> NIONS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
+
+print ">> NIONS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
 	set logscale cb
 	set format cb "10^{%T}"
 	set title "nion density at ".time2d
@@ -141,7 +142,8 @@ if (negion == 1) {
 		p '../out/ni_velt_'.time2d.'.dat' matrix with image
 	}
 }
-	print ">> NEUTRALS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
+
+print ">> NEUTRALS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
 	set logscale cb
 	set format cb "10^{%T}"
 	set title "neutral density at ".time2d
@@ -163,17 +165,21 @@ if (negion == 1) {
 		p '../out/n_velt_'.time2d.'.dat' matrix with image
 	}
 if (debyediag == 1) {
-	print ">> DEBYE DIAG <<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
+
+print ">> DEBYE DIAG <<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
 	set logscale cb
 	set format cb "10^{%T}"
 	set title "local debye length from temp. (total energy) at ".time2d
 	p '../out/e_debye_'.time2d.'.dat' matrix with image
 } 
+
 print ">> POTENTIAL <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
 unset logscale cb
 set format cb "%g"
 set title "potential at ".time2d
-p '../out/phi'.time2d.'.dat' matrix with image 
+p '../out/phi'.time2d.'.dat' matrix with image
+unset xrange; unset yrange; 
+
 print ">> TRACEPLOT <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
 set xlabel "time2d (#)"
 set ylabel "trace counts (#)"

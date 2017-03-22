@@ -1,7 +1,5 @@
-reset
-
 ## input parameters
-set terminal pngcairo enhanced size 2048,2160 font 'PT Serif,21'
+set terminal pngcairo enhanced size 1024,4320 font 'PT Serif,18'
 set grid; set key outside;
 set border linewidth 3.0; set tics nomirror out scale 0.7;
 lines=50;
@@ -13,7 +11,7 @@ if (voltage1d == 0) {voltage1d = 1;}
 if (voltage2d == 0) {voltage2d = 1;}
 
 set output  'figs/compare1D-'.onedrunid.'.2D-'.twodrunid.'.png'
-set multiplot layout 2,3
+set multiplot layout 6,1
 
 set ylabel 'Potential/V'
 set xlabel 'z/cm'

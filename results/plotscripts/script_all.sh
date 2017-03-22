@@ -29,22 +29,7 @@ fi
 TWODRUNDIR=`exec pwd`
 tmp=$(pwd | grep -Po '(_=?)+[0-9]+(?=.)')
 TWODRUNID=${tmp##*[^0-9]}
-
-##############################################################################
-## COPY STUFF ################################################################
-TWODBASEDIR=$TWODRUNDIR/../../../tmpic2
-ONEDBASEDIR=$TWODBASEDIR/../pic1d
-if [ "1" = "$copyanything" ]; then
-	 echo ">> copy slurms";
-	 cp $TWODBASEDIR/slurm-*.out $TWODBASEDIR/../results/slurms/ 2>/dev/null;
-	 cp $ONEDBASEDIR/slurm-*.out $TWODBASEDIR/../results/slurms/ 2>/dev/null;
-	 if [ "1" = "$coph5s" ]; then
-		  echo ">> copy 2D particle *.h5's";
-		  cp $TWODRUNDIR/../save/particle_backup0.h5 $TWODRUNDIR/../../particles/w2d_${TWODRUNID}-${TWODJOBNAME}_particles0.h5 2>/dev/null;
-		  cp $TWODRUNDIR/../save/particle_backup1.h5 $TWODRUNDIR/../../particles/w2d_${TWODRUNID}-${TWODJOBNAME}_particles1.h5 2>/dev/null;
-		  cp $TWODRUNDIR/../input.dat $TWODRUNDIR/../../inputs/2D-${TWODRUNID}-${TWODJOBNAME}.dat 2>/dev/null
-	 fi
-fi
+TWODJOBNAME=$(grep -w "\#\# jobname\:" "../../slurms/slurm-${TWODRUNID}.out" | awk '{print($3)}')
 
 ## define which runs are to be compared
 ONEDRUNID=31872;
@@ -56,6 +41,23 @@ ONEDRUNDIR=../../w1d_$ONEDRUNID.$ONEDRUNNAME;
 ## PREPARATIONS ##############################################################
 mkdir -p figs 2>/dev/null;
 mkdir -p transpose 2>/dev/null;
+
+##############################################################################
+## COPY STUFF ################################################################
+TWODBASEDIR=$TWODRUNDIR/../../../tmpic2
+ONEDBASEDIR=$TWODBASEDIR/../pic1d
+if [ "1" = "$copyanything" ]; then
+	 echo ">> copy slurms";
+	 cp -fv $TWODBASEDIR/slurm-*.out $TWODBASEDIR/../results/slurms/ 2>/dev/null;
+	 cp -fv $ONEDBASEDIR/slurm-*.out $TWODBASEDIR/../results/slurms/ 2>/dev/null;
+	 if [ "1" = "$copyh5s" ]; then
+		  echo ">> copy 2D particle *.h5's";
+		  cp -fv ../save/particle_backup0.h5 $TWODRUNDIR/../../particles/w2d_${TWODRUNID}-${TWODJOBNAME}_particles0.h5 2>/dev/null;
+		  cp -fv ../save/particle_backup1.h5 $TWODRUNDIR/../../particles/w2d_${TWODRUNID}-${TWODJOBNAME}_particles1.h5 2>/dev/null;
+		  cp -fv ../input.dat $TWODRUNDIR/../../inputs/2D-${TWODRUNID}-${TWODJOBNAME}.dat 2>/dev/null
+	 fi
+fi
+
 
 ##############################################################################
 ## shell input parameters ####################################################
@@ -121,7 +123,6 @@ particlenorm=$(grep -oP '(?<=>> Density scaling neutrals: For particle norm \(nn
 Ti_over_Te2d=$(grep -w "Ti_over_Te" "../input.dat" | awk '{print($2)}') # electron temp in eV
 L_db02d=$(grep -oP '(?<=L_db0=).*.(?<=e-02)' "../../slurms/slurm-$TWODRUNID.out") # debye length in cm
 taskpernode=$(exec cat ../../slurms/slurm-$TWODRUNID.out | grep "## SLURM TASKS PER NODE =" | grep -Po '[0-9]' | sort -n | tail -1)
-TWODJOBNAME=$(grep -w "\#\# jobname\:" "../../slurms/slurm-${TWODRUNID}.out" | awk '{print($3)}') # jobname
 samples=10000
 
 ##############################################################################
@@ -312,7 +313,7 @@ GnuVarsVec+="timevec1d= ' "; echo -ne "timevec1d=[ " >> variables.tmp;
 while [ $j -lt "$timesize1d" ]; do
 	GnuVarsVec+="${timevec1d[$j]} ";
 	echo -ne "${timevec1d[$j]} " >> variables.tmp;
-	j=$[$j+50];
+	j=$[$j+10];
 done;
 GnuVarsVec+="'; "; echo "];" >> variables.tmp;
 
@@ -324,7 +325,7 @@ echo "timesize1d=${timesize1d};" >> variables.tmp;
 ##############################################################################
 ## SUBSCRIPTS ################################################################
 echo ">> subscripting"
-#. ./transpose.sh 
+# . ./transpose.sh 
 . ./plots.sh 
 echo ">> done subscripting"
 
