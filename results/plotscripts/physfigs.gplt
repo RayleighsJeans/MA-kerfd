@@ -1,0 +1,187 @@
+reset 
+
+## hubbe is x, seti is y
+if (tempzdiag == 1 && velzdiag == 1) {
+  seti = 3;
+	if (negion == 1) {
+		seti = 4;
+	}
+		seti = 4;
+		if (negion == 1) {
+			seti = 5;
+		}
+  hubbel = 6;
+}
+if (tempzdiag == 0 && velzdiag == 1) {
+	seti = 3;
+	if (negion == 1) {
+		seti = 4;
+	}
+		seti = 4;
+		if (negion == 1) {
+			seti = 5;
+		}
+	hubbel = 4;
+}
+if (tempzdiag == 1 && velzdiag == 0) {
+	seti = 3;
+	if (negion == 1) {
+		seti = 4;
+	}
+		seti = 4;
+		if (negion == 1) {
+			seti = 5;
+		}
+	hubbel = 3;
+	if (debyediag == 1) {
+		hubbel = 4;
+	}
+}
+debyediag=0;
+if (tempzdiag == 0 && velzdiag == 0) {
+	seti = 1;
+	hubbel = 3;
+	if (negion == 1) {
+		hubbel = 2;
+		seti = 2;
+	}
+		hubbel = 4;
+		if (negion == 1) {
+			hubbel = 3;
+			seti = 2;
+		}
+	if (debyediag == 1) {
+		hubbel = 3;
+		seti = 2;
+		if (negion == 1) {
+		hubbel = 4;
+		seti = 2;
+		}
+	}
+}
+
+## size and time
+xeich=1024
+yeich=720
+x=hubbel*xeich;
+y=seti*yeich;
+
+## input parameters
+set terminal pngcairo size x,y enhanced font 'PT Serif,21'
+set output 'figs/'.twodrunid.'.allfigs.'.time2d.'.png'
+set grid; unset key; set border linewidth 4.0; set tics nomirror out scale 0.7;
+set xlabel 'z (cell)'
+set ylabel 'r (cell)'
+set xrange [0.0:sizez2d]; set yrange [0.0:nr]; set multiplot layout seti,hubbel;
+
+#####################
+## ALL PLOTS PHYSFIGS
+print ">> ELECTRONS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
+set logscale cb
+set format cb "10^{%T}"
+set title "electron density at ".time2d
+p '../out/e_dens_'.time2d.'.dat' matrix with image 
+if (tempzdiag == 1) {
+	set title "electron temperature at ".time2d
+	p '../out/e_temp_'.time2d.'.dat' matrix with image
+	set title "electron thermal temperature ".time2d
+	p '../out/e_temp_therm_'.time2d.'.dat' matrix with image
+}
+if (velzdiag == 1) {
+	unset logscale cb
+	set format cb "%g"
+	set title "electron z velocity at ".time2d
+	p '../out/e_velz_'.time2d.'.dat' matrix with image
+	set title "electron r velocity at ".time2d
+	p '../out/e_velr_'.time2d.'.dat' matrix with image 
+	set title "electron thermal velocity at ".time2d
+	p '../out/e_velt_'.time2d.'.dat' matrix with image
+}
+print ">> IONS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
+set logscale cb
+set format cb "10^{%T}"
+set title "ion density at ".time2d
+p '../out/i_dens_'.time2d.'.dat' matrix with image 
+if (tempzdiag == 1) {
+	set title "ion temperature at ".time2d
+	p '../out/i_temp_'.time2d.'.dat' matrix with image 
+	set title "ion thermal temperature ".time2d
+	p '../out/i_temp_therm_'.time2d.'.dat' matrix with image
+}
+if (velzdiag == 1) {
+	unset logscale cb
+	set format cb "%g"
+	set title "ion z velocity at ".time2d
+	p '../out/i_velz_'.time2d.'.dat' matrix with image 
+	set title "ion r velocity at ".time2d
+	p '../out/i_velr_'.time2d.'.dat' matrix with image 
+	set title "ion thermal velocity at ".time2d
+	p '../out/i_velt_'.time2d.'.dat' matrix with image
+}
+if (negion == 1) {
+	print ">> NIONS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
+	set logscale cb
+	set format cb "10^{%T}"
+	set title "nion density at ".time2d
+	p '../out/ni_dens_'.time2d.'.dat' matrix with image 
+	if (tempzdiag == 1) {
+		set title "nion temperature at ".time2d
+		p '../out/ni_temp_'.time2d.'.dat' matrix with image 
+		set title "nion thermal temperature ".time2d
+		p '../out/ni_temp_therm_'.time2d.'.dat' matrix with image
+	}
+	if (velzdiag == 1) {
+		unset logscale cb
+		set format cb "%g"
+		set title "nion z velocity at ".time2d
+		p '../out/ni_velz_'.time2d.'.dat' matrix with image 
+		set title "nion r velocity at ".time2d
+		p '../out/ni_velr_'.time2d.'.dat' matrix with image 
+		set title "nion thermal velocity at ".time2d
+		p '../out/ni_velt_'.time2d.'.dat' matrix with image
+	}
+}
+	print ">> NEUTRALS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
+	set logscale cb
+	set format cb "10^{%T}"
+	set title "neutral density at ".time2d
+	p '../out/n_dens_'.time2d.'.dat' matrix with image 
+	if (tempzdiag == 1) {
+		set title "neutral temperature at ".time2d
+		p '../out/n_temp_'.time2d.'.dat' matrix with image 
+		set title "neutral thermal temperature ".time2d
+		p '../out/n_temp_therm_'.time2d.'.dat' matrix with image
+	}
+	if (velzdiag == 1) {
+		unset logscale cb
+		set format cb "%g"
+		set title "neutral z velocity at ".time2d
+		p '../out/n_velz_'.time2d.'.dat' matrix with image 
+		set title "neutral r velocity at ".time2d
+		p '../out/n_velr_'.time2d.'.dat' matrix with image 
+		set title "neutral thermal velocity at ".time2d
+		p '../out/n_velt_'.time2d.'.dat' matrix with image
+	}
+if (debyediag == 1) {
+	print ">> DEBYE DIAG <<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
+	set logscale cb
+	set format cb "10^{%T}"
+	set title "local debye length from temp. (total energy) at ".time2d
+	p '../out/e_debye_'.time2d.'.dat' matrix with image
+} 
+print ">> POTENTIAL <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
+unset logscale cb
+set format cb "%g"
+set title "potential at ".time2d
+p '../out/phi'.time2d.'.dat' matrix with image 
+print ">> TRACEPLOT <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
+set xlabel "time2d (#)"
+set ylabel "trace counts (#)"
+set title "particle counts"
+set key outside
+p '../trace.dat' u 2:3 with lines ls 1 title 'electrons', \
+	'../trace.dat' u 2:4 with lines ls 4 title 'pos. ions', \
+	'../trace.dat' u 2:5 with lines ls 7 title 'neg. ions', \
+	'../trace.dat' u 2:6 with lines ls 3 title 'neutrals'
+
+unset multiplot

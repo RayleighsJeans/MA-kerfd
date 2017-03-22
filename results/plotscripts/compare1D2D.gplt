@@ -1,92 +1,51 @@
+reset
+
 ## input parameters
-set terminal pngcairo enhanced size 3840,2160 font 'PT Serif,24'
-set termoption dash
-set samples samplesiso
-set isosamples samplesiso
+set terminal pngcairo enhanced size 2048,2160 font 'PT Serif,21'
+set grid; set key outside;
+set border linewidth 3.0; set tics nomirror out scale 0.7;
+lines=50;
 
-# LABELS AND BORDERS/TICKS
-# COLORS AND DASHES 
-set grid
-set key outside
-set border linewidth 3.0
-set tics nomirror out scale 0.7
-unset colorbox
-
-# define line styles using explicit rgbcolor names
-set style line 1 lt 1 lc rgb "black" lw 2
-set style line 2 lt 2 lc rgb "black" lw 2
-set style line 3 lt 5 lc rgb "black" lw 2
-set style line 4 lt 1 lc rgb "red" lw 2
-set style line 5 lt 2 lc rgb "red" lw 2
-set style line 6 lt 5 lc rgb "red" lw 2
-set style line 7 lt 1 lc rgb "blue" lw 2
-set style line 8 lt 2 lc rgb "blue" lw 2
-set style line 9 lt 5 lc rgb "blue" lw 2
-set style line 10 lt 1 lc rgb "cyan" lw 2
-set style line 11 lt 2 lc rgb "cyan" lw 2
-set style line 12 lt 5 lc rgb "cyan" lw 2
-set style line 13 lt 1 lc rgb "green" lw 2
-set style line 14 lt 2 lc rgb "green" lw 2
-set style line 15 lt 5 lc rgb "green" lw 2
-
-## DEBYE AND STATS
-lines=60;
 dr_02d=0.5*L_db02d;
-length2d=sizez2d*0.5*L_db02d; 
-length1d=nz1d*L_db01d*0.5;
-
-## TICS AXIS OUTPUT
-set output 'figs/pot1D-'.onedrunid.'.'.nstep1d.'_2D-'.twodrunid.'.'.time2d.'.png'
-set multiplot layout 2,1
-set xlabel 'z/cm'
-set ylabel 'Potential/V'
-
-set xrange [0.0:length1d]
-## VOLTAGE BREAK FIX
+length2d=sizez2d*0.5*L_db02d; length1d=nz1d*L_db01d*0.5;
+if (length2d > length1d) { set xrange [0.0:length2d]; } else { set xrange [0.0:length1d]; } 
 if (voltage1d == 0) {voltage1d = 1;}
-set title '1D potential, time '.nstep1d.' with '.voltage1d.' V applied'
-p onedfolder.'phi'.time1d.'.dat' using ($0*0.5*L_db01d):($2) with lines ls 1 title ''
-
-set xrange [0.0:length2d]
-## VOLTAGE BREAK FIX
 if (voltage2d == 0) {voltage2d = 1;}
-set title '2D potential at axis, time '.time2d.' with '.voltage2d.' V applied'
-p 'transpose2dpot.dat' using ($0*dr_02d):(sum[col=1:lines] column(col)/(lines)) with lines ls 2 title ''
 
-unset multiplot
-## DONE ##########################
+set output  'figs/compare1D-'.onedrunid.'.2D-'.twodrunid.'.png'
+set multiplot layout 2,3
 
-## NEW PLOT INPUT
-set output 'figs/dens1D-'.onedrunid.'.'.nstep1d.'_2D-'.twodrunid.'.'.time2d.'.png'
-set multiplot layout 2,1
+set ylabel 'Potential/V'
 set xlabel 'z/cm'
-set ylabel 'n/cm^{-3}'
+set title 'potential, 1Dtime '.nstep1d.', '.voltage1d.' V and 2Dstep '.nstep2d.', '.voltage2d.' V'
+p onedfolder.'phi'.time1d.'.dat' using ($0*0.5*L_db01d):($2*voltage1d) with lines ls 1 title '1D' ,\
+  'transpose/trans-phi'.time2d.'.dat' using ($0*dr_02d):(sum[col=1:lines] column(col)/(lines)) with lines ls 4 title '2D'
 
-set xrange [0.0:length1d]
-## 1D DENSITIES
+set ylabel 'n/cm^{-3}'
+set title 'n_{n}(2D) x n_{e,0 2D}='.ne02d.'cm^{-3}, collfac.='.collfac2d.' at '.time2d.', n_{n}(1D) x n_{e,0 1D}='.ne01d.'cm^{-3}, collfac.='.collfac1d.' at '.nstep1d
+p 'transpose/trans-n_dens_'.time2d.'.dat' using ($0*0.5*L_db02d):(sum[col=1:lines] collfac2d*column(col)*ne02d/lines) with lines ls 1 title 'n2d' ,\
+	onedfolder.'ntrlz'.time1d.'.dat' using ($0*0.5*L_db01d):(collfac1d*$2*ne01d) with lines ls 4 title 'n1d'
+
 set title 'n(1D) x n_{e,0 1D}='.ne01d.'cm^{-3}, collfac.='.collfac1d.' at '.nstep1d
 p onedfolder.'ne'.time1d.'.dat' using ($0*0.5*L_db01d):($2*ne01d) with lines ls 1 title 'e' ,\
 	onedfolder.'O2p'.time1d.'.dat' using ($0*0.5*L_db01d):($2*ne01d) with lines ls 4 title 'O2p' ,\
 	onedfolder.'Omin'.time1d.'.dat' using ($0*0.5*L_db01d):($2*ne01d) with lines ls 7 title 'Omin' ,\
-	onedfolder.'Oms'.time1d.'.dat' using ($0*0.5*L_db01d):($2*ne01d) with lines ls 6 title 'Oms'
+	onedfolder.'Oms'.time1d.'.dat' using ($0*0.5*L_db01d):($2*ne01d) with lines ls 10 title 'Oms'
 
-set xrange [0.0:length2d]
-## 2D DENSITIES
 set title 'n(2D) x n_{e,0 2D}='.ne02d.'cm^{-3}, collfac.='.collfac2d.' at '.time2d
-p 'transpose2dedens.dat' using ($0*dr_02d):(sum[col=1:lines] column(col)*ne02d/lines) with lines ls 1 title 'e' ,\
-	'transpose2dnidens.dat' using ($0*dr_02d):(sum[col=1:lines] column(col)*ne02d/lines) with lines ls 7 title 'ni',\
-	'transpose2didens.dat' using ($0*dr_02d):(sum[col=1:lines] column(col)*ne02d/lines) with lines ls 4 title 'i'
+p 'transpose/trans-e_dens_'.time2d.'.dat' using ($0*dr_02d):(sum[col=1:lines] column(col)*ne02d/lines) with lines ls 1 title 'e' ,\
+	'transpose/trans-ni_dens_'.time2d.'.dat' using ($0*dr_02d):(sum[col=1:lines] column(col)*ne02d/lines) with lines ls 7 title 'ni',\
+	'transpose/trans-i_dens_'.time2d.'.dat' using ($0*dr_02d):(sum[col=1:lines] column(col)*ne02d/lines) with lines ls 4 title 'i'
+
+set title 'AT START: n(1D) x n_{e,0 1D}='.ne01d.'cm^{-3}, collfac.='.collfac1d.' at '.first1d
+p onedfolder.'ne'.first1d.'.dat' using ($0*0.5*L_db01d):($2*ne01d) with lines ls 1 title 'e' ,\
+	onedfolder.'O2p'.first1d.'.dat' using ($0*0.5*L_db01d):($2*ne01d) with lines ls 4 title 'O2p' ,\
+	onedfolder.'Omin'.first1d.'.dat' using ($0*0.5*L_db01d):($2*ne01d) with lines ls 7 title 'Omin' ,\
+	onedfolder.'Oms'.first1d.'.dat' using ($0*0.5*L_db01d):($2*ne01d) with lines ls 10 title 'Oms'
+
+set title 'n(2D) x n_{e,0 2D}='.ne02d.'cm^{-3}, collfac.='.collfac2d.' at '.first2d
+p 'transpose/trans-e_dens_'.first2d.'.dat' using ($0*dr_02d):(sum[col=1:lines] column(col)*ne02d/lines) with lines ls 1 title 'e' ,\
+	'transpose/trans-ni_dens_'.first2d.'.dat' using ($0*dr_02d):(sum[col=1:lines] column(col)*ne02d/lines) with lines ls 7 title 'ni',\
+	'transpose/trans-i_dens_'.first2d.'.dat' using ($0*dr_02d):(sum[col=1:lines] column(col)*ne02d/lines) with lines ls 4 title 'i'
 
 unset multiplot
-## DONE ########################
-
-## NEXT PLOT NDENS COMPARE
-print '>> doing n dens compare'
-set output 'figs/ndens1D-'.onedrunid.'.'.nstep1d.'_2D-'.twodrunid.'.'.time2d.'.png'
-set xlabel 'z/cm'
-set ylabel 'n_{n}/cm^{-3}'
-set title 'n_{n}(2D) x n_{e,0 2D}='.ne02d.'cm^{-3}, collfac.='.collfac2d.' at '.time2d.', n_{n}(1D) x n_{e,0 1D}='.ne01d.'cm^{-3}, collfac.='.collfac1d.' at '.nstep1d
-
-p 'transpose2dnndens.dat' using ($0*0.5*L_db02d):(sum[col=1:lines] collfac2d*column(col)*ne02d/lines) with lines ls 1 title 'n2d' ,\
-	onedfolder.'ntrlz'.time1d.'.dat' using ($0*0.5*L_db01d):(collfac1d*$2*ne01d) with lines ls 4 title 'n1d'
-

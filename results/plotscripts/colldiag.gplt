@@ -1,0 +1,43 @@
+## RESET
+reset
+
+## input parameters for plot
+set terminal pngcairo size 3072,2160 enhanced font 'PT Serif,30'
+unset key
+set border linewidth 4.0
+set tics nomirror out scale 1.5
+set xlabel 'z (cell)'
+set ylabel 'r (cell)'
+set logscale cb
+set format cb "10^{%T}"
+
+set output 'figs/'.twodrunid.'.collfigs.'.time2d.'.png'
+set multiplot layout 3,3
+
+## PLOTS ITSELF
+set title "coulomb coll at ".time2d
+p '../out/coll_coulomb'.time2d.'.dat' matrix with image 
+set title "electron neutral coll at ".time2d
+p '../out/coll_el_ntrl'.time2d.'.dat' matrix with image 
+set title "electron neutral excitation coll at ".time2d
+p '../out/coll_el_ntrl_exc'.time2d.'.dat' matrix with image 
+set title "collisional ionization at ".time2d
+p '../out/coll_ioniz'.time2d.'.dat' matrix with image 
+set title "ion neutral collisions at ".time2d
+p '../out/coll_ion_ntrl'.time2d.'.dat' matrix with image 
+set title "mean free path coll at ".time2d
+p '../out/coll_mfp'.time2d.'.dat' matrix with image 
+set title "nion neutral coll at ".time2d
+p '../out/coll_nion_ntrl'.time2d.'.dat' matrix with image 
+
+## RESET CB
+unset logscale cb
+unset format cb
+if (debyediag == 1) {
+	set title "local debye length from temp. (total energy) at ".time2d
+	p '../out/e_debye_'.time2d.'.dat' matrix with image
+}
+set title "potential at ".time2d
+p '../out/phi'.time2d.'.dat' matrix with image 
+
+unset multiplot
