@@ -43,7 +43,7 @@ p 'transpose/uer'.first1d.'.dat' using ($0*L_db01d):($2) with lines ls 1 title '
   onedfolder.'uO2pz'.first1d.'.dat' using ($0*L_db01d):($2) with lines ls 9 title 'O2p-v z'
 
 set xrange [0.0:length2d]
-set title '2D velocities, time '.first2d
+set title 'AT START: 2D velocities, time '.first2d
 p 'transpose/trans-e_velr_'.first2d.'.dat' using ($0*dr_02d):(sum[col=1:lines] column(col)/(lines)) with lines ls 1 title 'e-vel r' ,\
   'transpose/trans-e_velz_'.first2d.'.dat' using ($0*dr_02d):(sum[col=1:lines] column(col)/(lines)) with lines ls 2 title 'e-vel z' ,\
 	'transpose/trans-i_velr_'.first2d.'.dat' using ($0*dr_02d):(sum[col=1:lines] column(col)/(lines)) with lines ls 4 title 'i-vel r' ,\

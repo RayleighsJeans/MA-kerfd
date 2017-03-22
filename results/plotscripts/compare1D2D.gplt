@@ -1,5 +1,5 @@
 ## input parameters
-set terminal pngcairo enhanced size 1024,4320 font 'PT Serif,18'
+set terminal pngcairo enhanced size 1440,4320 font 'PT Serif,18'
 set grid; set key outside;
 set border linewidth 3.0; set tics nomirror out scale 0.7;
 lines=50;
@@ -41,7 +41,7 @@ p onedfolder.'ne'.first1d.'.dat' using ($0*0.5*L_db01d):($2*ne01d) with lines ls
 	onedfolder.'Omin'.first1d.'.dat' using ($0*0.5*L_db01d):($2*ne01d) with lines ls 7 title 'Omin' ,\
 	onedfolder.'Oms'.first1d.'.dat' using ($0*0.5*L_db01d):($2*ne01d) with lines ls 10 title 'Oms'
 
-set title 'n(2D) x n_{e,0 2D}='.ne02d.'cm^{-3}, collfac.='.collfac2d.' at '.first2d
+set title 'AT START: n(2D) x n_{e,0 2D}='.ne02d.'cm^{-3}, collfac.='.collfac2d.' at '.first2d
 p 'transpose/trans-e_dens_'.first2d.'.dat' using ($0*dr_02d):(sum[col=1:lines] column(col)*ne02d/lines) with lines ls 1 title 'e' ,\
 	'transpose/trans-ni_dens_'.first2d.'.dat' using ($0*dr_02d):(sum[col=1:lines] column(col)*ne02d/lines) with lines ls 7 title 'ni',\
 	'transpose/trans-i_dens_'.first2d.'.dat' using ($0*dr_02d):(sum[col=1:lines] column(col)*ne02d/lines) with lines ls 4 title 'i'
