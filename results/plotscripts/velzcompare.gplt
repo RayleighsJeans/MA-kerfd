@@ -1,6 +1,6 @@
 ## input parameters
 set terminal pngcairo enhanced size 3840,2160 font 'PT Serif,24'
-set grid; set key outside; set border linewidth 3.0; set tics nomirror out scale 0.7;
+set grid; set key outside; set border linewidth 1.0; set tics nomirror out scale 0.5;
 
 ## DEBYE AND STATS
 lines=50; dr_02d=0.5*L_db02d;

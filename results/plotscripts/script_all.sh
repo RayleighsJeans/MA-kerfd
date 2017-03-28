@@ -14,28 +14,15 @@ axisoffset=10; fullines=60; lines=50;
 names2d=( 'phi' 'e_dens_' 'i_dens_' 'ni_dens_' 'n_dens_');
 namev2d=( 'e_vel' 'i_vel' 'ni_vel' 'n_vel' ); velsuf2d=( 'r_' 'z_' 't_' );
 
-## >> define 1dstepnumber
-if [ "0" = "$search_1dstep" ]; then
-	time1d=00000025
-	nstep1d=25
-fi
-
-## >> define 2dstepnumber
-if [ "0" = "$search_2dstep" ]; then
-	time2d=00142745
-	nstep2d=142745
-fi
-
 TWODRUNDIR=`exec pwd`
 tmp=$(pwd | grep -Po '(_=?)+[0-9]+(?=.)')
 TWODRUNID=${tmp##*[^0-9]}
 TWODJOBNAME=$(grep -w "\#\# jobname\:" "../../slurms/slurm-${TWODRUNID}.out" | awk '{print($3)}')
 
 ## define which runs are to be compared
-ONEDRUNID=31872;
-ONEDRUNNAME=D288-1D;
+ONEDRUNID=32063;
+ONEDRUNNAME=D288-1DTest;
 ONEDRUNDIR=../../w1d_$ONEDRUNID.$ONEDRUNNAME;
-
 
 ##############################################################################
 ## PREPARATIONS ##############################################################
@@ -57,7 +44,6 @@ if [ "1" = "$copyanything" ]; then
 		  cp -fv ../input.dat $TWODRUNDIR/../../inputs/2D-${TWODRUNID}-${TWODJOBNAME}.dat 2>/dev/null
 	 fi
 fi
-
 
 ##############################################################################
 ## shell input parameters ####################################################
@@ -98,6 +84,9 @@ timevec1d=( $(ls out/ne* | grep -Po '[0-9]+(?=.dat)') ); timesize1d=${#timevec1d
 ## IMPORTANTÈ ################################################################
 cd $TWODRUNDIR
 
+#time1d=00000002; nstep1d=2;
+#time2d=00000002; nstep2d=2;
+maxtime=00001600;
 
 ##############################################################################
 ## 2D ########################################################################
@@ -193,6 +182,7 @@ GnuVars+="twodrunid='${TWODRUNID}'; "
 GnuVars+="first2d='${FIRST2D}'; "
 GnuVars+="start2d='${start2d}'; "
 GnuVars+="last2d='${LAST2D}'; "
+GnuVars+="maxtime='${maxtime}'; "
 
 ##############################################################################
 ## 1D ########################################################################
@@ -251,6 +241,7 @@ echo "nr=${sizer}"; echo "nr=${sizer};" >> variables.tmp;
 echo "first2d=${FIRST2D}"; echo "first1d=${FIRST2D};" >> variables.tmp;
 echo "last2d=${LAST2D}"; echo "last2d=${LAST2D};" >> variables.tmp;
 echo "start2d=${start2d}"; echo "start2d=${start2d};" >> variables.tmp;
+echo "maxtime=${maxtime}"; echo "maxtime=${maxtime};" >> variables.tmp; 
 echo ""
 
 ##############################################################################
@@ -304,7 +295,7 @@ GnuVarsVec+="timevec2d= ' "; echo -ne "timevec2d=[ " >> variables.tmp;
 while [ $j -lt "$timesize2d" ]; do
 	GnuVarsVec+="${timevec2d[$j]} ";
 	echo -ne "${timevec2d[$j]} " >> variables.tmp;
-	j=$[$j+1];
+	j=$[$j+10];
 done;
 GnuVarsVec+="'; "; echo "];" >> variables.tmp;
 
@@ -325,7 +316,7 @@ echo "timesize1d=${timesize1d};" >> variables.tmp;
 ##############################################################################
 ## SUBSCRIPTS ################################################################
 echo ">> subscripting"
-# . ./transpose.sh 
+. ./transpose.sh 
 . ./plots.sh 
 echo ">> done subscripting"
 

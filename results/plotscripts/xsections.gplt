@@ -1,6 +1,6 @@
 print ">> xsections plot"
 set terminal pngcairo size 1920,1080 enhanced font 'PT Serif, 21'
-set border linewidth 3.0; set tics nomirror out scale 0.7;
+set border linewidth 1.0; set tics nomirror out scale 0.5;
 set grid; set xlabel "energy/eV"; set ylabel "cross section/cm^{2}";
 set title 'collision cross section for '.twodrunid.' with oxygen';
 set key outside;

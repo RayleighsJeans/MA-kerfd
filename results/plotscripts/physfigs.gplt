@@ -1,3 +1,5 @@
+## USE FIRST TIMESTEP In 2D HERE?
+time2d=first2d;
 ## hubbe is x, seti is y
 if (tempzdiag == 1 && velzdiag == 1) {
   seti = 3;
@@ -67,7 +69,7 @@ y=seti*yeich;
 ## input parameters
 set terminal pngcairo size x,y enhanced font 'PT Serif,21';
 set output 'figs/'.twodrunid.'.allfigs.'.time2d.'.png';
-set grid; unset key; set border linewidth 4.0; set tics nomirror out scale 0.7;
+set grid; unset key; set border linewidth 1.0; set tics nomirror out scale 0.5;
 set xlabel 'z (cell)';
 set ylabel 'r (cell)';
 set xrange [0.0:sizez2d]; set yrange [0.0:nr]; set multiplot layout seti,hubbel;
@@ -181,7 +183,8 @@ p '../out/phi'.time2d.'.dat' matrix with image
 unset xrange; unset yrange; 
 
 print ">> TRACEPLOT <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
-set xrange [0.0:nstep2d]; set yrange [0.0:*];
+last2d=last2d+0;
+set xrange [0.0:last2d]; set yrange [0.0:*];
 set xlabel "time2d (#)"
 set ylabel "trace counts (#)"
 set title "particle counts"
