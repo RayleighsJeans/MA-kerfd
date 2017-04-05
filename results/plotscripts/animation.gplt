@@ -5,6 +5,7 @@ set grid; unset key; set border linewidth 1.0; set tics nomirror out scale 0.5;
 
 load 'jet.pal'
 
+# DENSITY 2D GIF
 set xlabel 'z (cell)'; set ylabel 'r (cell)'; 
 set logscale cb; set format cb "10^{%T}";
 set xrange [0.0:sizez2d]; set yrange [0.0:nr];
@@ -15,19 +16,49 @@ set output 'figs/densities2D-'.twodrunid.'.gif';
 
 do for [timecode in timevec2d] {
 	test=timecode+0;
-	if (test <= maxtime) {
-	set multiplot layout 1,4; print '2DENS...'.timecode.' ';
-	set title 'edens '.timecode
-	plot '../out/e_dens_'.timecode.'.dat' matrix with image
-	set title 'idens '.timecode
-	plot '../out/i_dens_'.timecode.'.dat' matrix with image
-	set title 'nidens '.timecode
-	plot '../out/ni_dens_'.timecode.'.dat' matrix with image
-	set title 'phi '.timecode; unset logscale cb; set format cb "%g";
-	set cbrange [-maxvolt:maxvolt];
-	plot '../out/phi'.timecode.'.dat' matrix with image
-	set logscale cb; set format cb "10^{%T}"; set cbrange [1e-10:10.0];
-	unset multiplot
+	if (test >= mintime2d) {
+		if (test <= maxtime2d) {
+			set multiplot layout 1,4; print '2DENS...'.timecode.' ';
+			set title 'edens '.timecode
+			plot '../out/e_dens_'.timecode.'.dat' matrix with image
+			set title 'idens '.timecode
+			plot '../out/i_dens_'.timecode.'.dat' matrix with image
+			set title 'nidens '.timecode
+			plot '../out/ni_dens_'.timecode.'.dat' matrix with image
+			set title 'phi '.timecode; unset logscale cb; set format cb "%g";
+			set cbrange [-maxvolt:maxvolt];
+			plot '../out/phi'.timecode.'.dat' matrix with image
+			set logscale cb; set format cb "10^{%T}"; set cbrange [1e-10:10.0];
+			unset multiplot
+		}
+	}
+}
+
+reset;
+# VELOCITIES 2D GIF
+set terminal gif animate delay 10 enhanced size 1024,720
+set grid; set border linewidth 1.0; set tics nomirror out scale 0.5;
+set xrange [0.0:sizez2d*L_db02d/2]; set yrange[-200.0:200.0];
+
+set xlabel 'z/cm'; set ylabel 'velocities/(cell p. step)';
+
+print ">> STARTING 2D VELOCITIES GIF"
+set output 'figs/velocities2D-'.twodrunid.'.gif'
+
+do for [timecode in timevec2d] {
+	test=timecode+0;
+	if (test >= mintime2d) {
+		if (test <= maxtime2d) {
+		  set title '2d velocities at '.timecode; print '2DVEL...'.timecode.' ';
+		  plot 'transpose/trans-e_velr_'.timecode.'.dat' u ($0*L_db02d/2):(sum[col=1:lines] column(col)/(lines)) w l linestyle 1 title 'v el r' ,\
+		  		 'transpose/trans-e_velz_'.timecode.'.dat' u ($0*L_db02d/2):(sum[col=1:lines] column(col)/(lines)) w l linestyle 2 title 'v el z' ,\
+		  		 'transpose/trans-i_velr_'.timecode.'.dat' u ($0*L_db02d/2):(sum[col=1:lines] column(col)/(lines)) w l linestyle 4 title 'v i r' ,\
+		  		 'transpose/trans-i_velz_'.timecode.'.dat' u ($0*L_db02d/2):(sum[col=1:lines] column(col)/(lines)) w l linestyle 5 title 'v i z' ,\
+		  		 'transpose/trans-ni_velr_'.timecode.'.dat' u ($0*L_db02d/2):(sum[col=1:lines] column(col)/(lines)) w l linestyle 7 title 'v ni r' ,\
+		  		 'transpose/trans-ni_velz_'.timecode.'.dat' u ($0*L_db02d/2):(sum[col=1:lines] column(col)/(lines)) w l linestyle 8 title 'v ni z' ,\
+		  		 'transpose/trans-n_velr_'.timecode.'.dat' u ($0*L_db02d/2):(sum[col=1:lines] column(col)/(lines)) w l linestyle 10 title 'v n r' ,\
+		  		 'transpose/trans-n_velz_'.timecode.'.dat' u ($0*L_db02d/2):(sum[col=1:lines] column(col)/(lines)) w l linestyle 11 title 'v n z'
+		}
 	}
 }
 
@@ -46,11 +77,13 @@ set output 'figs/densities1D-'.onedrunid.'.gif'
 
 do for [timecode in timevec1d] {
 	test=timecode+0;
-	if (test <= maxtime) {
-		set title 'densities at '.timecode; print '1DENS...'.timecode.' ';
-		plot onedfolder.'ne'.timecode.'.dat' u ($1*L_db01d):($2*ne01d) w l linestyle 1 title 'electrons' ,\
-				 onedfolder.'O2p'.timecode.'.dat' u ($1*L_db01d):($2*ne01d) w l linestyle 4 title 'O2+' ,\
-				 onedfolder.'Omin'.timecode.'.dat'  u ($1*L_db01d):($2*ne01d) w l linestyle 7 title 'O-'
+	if (test >= mintime1d) {
+		if (test <= maxtime1d) {
+			set title 'densities at '.timecode; print '1DENS...'.timecode.' ';
+			plot onedfolder.'ne'.timecode.'.dat' u ($1*L_db01d):($2*ne01d) w l linestyle 1 title 'electrons' ,\
+					 onedfolder.'O2p'.timecode.'.dat' u ($1*L_db01d):($2*ne01d) w l linestyle 4 title 'O2+' ,\
+					 onedfolder.'Omin'.timecode.'.dat'  u ($1*L_db01d):($2*ne01d) w l linestyle 7 title 'O-'
+		}
 	}
 }
 
@@ -68,84 +101,18 @@ set output 'figs/velocities1D-'.onedrunid.'.gif'
 
 do for [timecode in timevec1d] {
 	test=timecode+0;
-	if (test <= maxtime) {
-		set title '1d velocities at '.timecode; print '1DVEL...'.timecode.' ';
-		plot onedfolder.'uez'.timecode.'.dat' u ($1*L_db01d):($2) w l linestyle 1 title 'v el z' ,\
-				 'transpose/uer'.timecode.'.dat' u ($1*L_db01d):($2) w l linestyle 2 title 'v el r' ,\
-				 onedfolder.'uOmz'.timecode.'.dat'  u ($1*L_db01d):($2) w l linestyle 4 title 'v O- z' ,\
-				 'transpose/uOmr'.timecode.'.dat'  u ($1*L_db01d):($2) w l linestyle 5 title 'v O- r ' ,\
-				 onedfolder.'uO2pz'.timecode.'.dat'  u ($1*L_db01d):($2) w l linestyle 7 title 'v O2+ z' ,\
-				 'transpose/uO2pr'.timecode.'.dat'  u ($1*L_db01d):($2) w l linestyle 8 title 'v O2+ r
+	if (test >= mintime1d) {
+		if (test <= maxtime1d) {
+			set title '1d velocities at '.timecode; print '1DVEL...'.timecode.' ';
+			plot onedfolder.'uez'.timecode.'.dat' u ($1*L_db01d):($2) w l linestyle 1 title 'v el z' ,\
+					 'transpose/uer'.timecode.'.dat' u ($1*L_db01d):($2) w l linestyle 2 title 'v el r' ,\
+					 onedfolder.'uOmz'.timecode.'.dat'  u ($1*L_db01d):($2) w l linestyle 4 title 'v O- z' ,\
+					 'transpose/uOmr'.timecode.'.dat'  u ($1*L_db01d):($2) w l linestyle 5 title 'v O- r ' ,\
+					 onedfolder.'uO2pz'.timecode.'.dat'  u ($1*L_db01d):($2) w l linestyle 7 title 'v O2+ z' ,\
+					 'transpose/uO2pr'.timecode.'.dat'  u ($1*L_db01d):($2) w l linestyle 8 title 'v O2+ r
+		}
 	}
 }
 
-reset;
-if (velzdiag == 1) {
-	 # VELOCITIES 2D GIF
-	 set terminal gif animate delay 10 enhanced size 1024,720
-	 set grid; set border linewidth 1.0; set tics nomirror out scale 0.5;
-	 set xrange [0.0:sizez2d*L_db02d/2]; set yrange[-200.0:200.0];
-	 
-	 set xlabel 'z/cm'; set ylabel 'velocities/(cell p. step)';
-	 
-	 print ">> STARTING 2D VELOCITIES GIF"
-	 set output 'figs/velocities2D-'.twodrunid.'.gif'
-	 
-	 do for [timecode in timevec2d] {
-	   test=timecode+0;
-	  	if (test <= maxtime) {
-	  	  set title '2d velocities at '.timecode; print '2DVEL...'.timecode.' ';
-	  	  plot 'transpose/trans-e_velr_'.timecode.'.dat' u ($0*L_db02d/2):(sum[col=1:lines] column(col)/(lines)) w l linestyle 1 title 'v el r' ,\
-	  	  		 'transpose/trans-e_velz_'.timecode.'.dat' u ($0*L_db02d/2):(sum[col=1:lines] column(col)/(lines)) w l linestyle 2 title 'v el z' ,\
-	  	  		 'transpose/trans-i_velr_'.timecode.'.dat' u ($0*L_db02d/2):(sum[col=1:lines] column(col)/(lines)) w l linestyle 4 title 'v i r' ,\
-	  	  		 'transpose/trans-i_velz_'.timecode.'.dat' u ($0*L_db02d/2):(sum[col=1:lines] column(col)/(lines)) w l linestyle 5 title 'v i z' ,\
-	  	  		 'transpose/trans-ni_velr_'.timecode.'.dat' u ($0*L_db02d/2):(sum[col=1:lines] column(col)/(lines)) w l linestyle 7 title 'v ni r' ,\
-	  	  		 'transpose/trans-ni_velz_'.timecode.'.dat' u ($0*L_db02d/2):(sum[col=1:lines] column(col)/(lines)) w l linestyle 8 title 'v ni z' ,\
-	  	  		 'transpose/trans-n_velr_'.timecode.'.dat' u ($0*L_db02d/2):(sum[col=1:lines] column(col)/(lines)) w l linestyle 10 title 'v n r' ,\
-	  	  		 'transpose/trans-n_velz_'.timecode.'.dat' u ($0*L_db02d/2):(sum[col=1:lines] column(col)/(lines)) w l linestyle 11 title 'v n z'
-	  	}
-	 }
-}
-
-reset;
-if (colldiag == 1) {
-  ## 2D COLLDIAG
-  set terminal gif animate delay 10 size 3072,3027 enhanced 
-  unset key; load 'jet.pal'; set grid;
-  set border linewidth 1.0; set tics nomirror out scale 0.5;
-  set xlabel 'z (cell)'; set ylabel 'r (cell)';
-  set logscale cb; set format cb "10^{%T}";
-  
-	print ">> STARTING 2D COLLS GIF"
-  set output 'figs/'.twodrunid.'.collfigs.gif'
-  
-  do for [timecode in timevec2d] {
-  	test=timecode+0;
-  	if (text <= maxtime) {
-  		set multiplot layout 3,3
-  	  print '2DCOLLS...'.timecode.' ';
-  	  set title "coulomb coll at ".time2d
-  	  p '../out/coll_coulomb'.time2d.'.dat' matrix with image 
-  	  set title "electron neutral coll at ".time2d
-  	  p '../out/coll_el_ntrl'.time2d.'.dat' matrix with image 
-  	  set title "electron neutral excitation coll at ".time2d
-  	  p '../out/coll_el_ntrl_exc'.time2d.'.dat' matrix with image 
-  	  set title "collisional ionization at ".time2d
-  	  p '../out/coll_ioniz'.time2d.'.dat' matrix with image 
-  	  set title "ion neutral collisions at ".time2d
-  	  p '../out/coll_ion_ntrl'.time2d.'.dat' matrix with image 
-  	  set title "mean free path coll at ".time2d
-  	  p '../out/coll_mfp'.time2d.'.dat' matrix with image 
-  	  set title "nion neutral coll at ".time2d
-  	  p '../out/coll_nion_ntrl'.time2d.'.dat' matrix with image 
-  		set title 'phi '.timecode; unset logscale cb; set format cb "%g";
-  		set cbrange [-maxvolt:maxvolt];
-  		plot '../out/phi'.timecode.'.dat' matrix with image
-  		set logscale cb; set format cb "10^{%T}"; set cbrange [1e-10:10.0];
-  		unset multiplot
-  	}
-  }
-}
-
-unset multiplot;
+unset output
 print ">> DONE GIF'ING"

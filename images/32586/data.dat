@@ -1,0 +1,501 @@
+# Created by Octave 3.8.2, Wed Apr 05 10:05:32 2017 CEST <ph123693@frontend>
+# name: L_db01d
+# type: scalar
+0.02101521353686419
+
+
+# name: L_db02d
+# type: scalar
+0.02101521353686419
+
+
+# name: Ncell1
+# type: scalar
+6
+
+
+# name: Ndb
+# type: scalar
+194383.7854681226
+
+
+# name: Ndb2
+# type: scalar
+105076067.684321
+
+
+# name: ONEDRUNID
+# type: scalar
+32579
+
+
+# name: Omega_pe01d
+# type: scalar
+3988082245.892128
+
+
+# name: Omega_pe02d
+# type: scalar
+3988082245.892128
+
+
+# name: TWODRUNID
+# type: scalar
+32586
+
+
+# name: T_i0
+# type: scalar
+371.3608575981457
+
+
+# name: Te01d
+# type: scalar
+4
+
+
+# name: Te02d
+# type: scalar
+4
+
+
+# name: Te02d_K
+# type: scalar
+46420.10719976822
+
+
+# name: Ti_over_Te2d
+# type: scalar
+0.008
+
+
+# name: atom_mass
+# type: scalar
+32
+
+
+# name: axisoffset
+# type: scalar
+10
+
+
+# name: boltzman
+# type: scalar
+1.3806e-23
+
+
+# name: colldiag
+# type: scalar
+0
+
+
+# name: collfac1d
+# type: scalar
+38000
+
+
+# name: collfac2d
+# type: scalar
+195942028.9855072
+
+
+# name: cs_e
+# type: scalar
+3461.496474961314
+
+
+# name: cs_ion
+# type: scalar
+13845.98589984525
+
+
+# name: cs_nion
+# type: scalar
+6922.992949922627
+
+
+# name: cs_ntrl
+# type: scalar
+69229.92949922627
+
+
+# name: debye_L1
+# type: scalar
+0.001873149632217828
+
+
+# name: debye_L2
+# type: scalar
+0.02102605247376219
+
+
+# name: debyediag
+# type: scalar
+1
+
+
+# name: dr
+# type: scalar
+0.5
+
+
+# name: dr1d_0
+# type: scalar
+0.0105076067684321
+
+
+# name: dr_0
+# type: scalar
+0.0105076067684321
+
+
+# name: dr_0test1
+# type: scalar
+0.0009365748161089142
+
+
+# name: dr_0test2
+# type: scalar
+0.01051302623688109
+
+
+# name: dt
+# type: scalar
+0.2
+
+
+# name: dt_0
+# type: scalar
+5.01494171054289e-11
+
+
+# name: dt_ion
+# type: scalar
+4
+
+
+# name: dt_nion
+# type: scalar
+2
+
+
+# name: dt_ntrl
+# type: scalar
+20
+
+
+# name: elementary_chrg
+# type: scalar
+1.60219e-19
+
+
+# name: expdiameter
+# type: scalar
+14.18526913738333
+
+
+# name: explength
+# type: scalar
+10.61268283611642
+
+
+# name: explength1d
+# type: scalar
+6.724868331796542
+
+
+# name: f_RF
+# type: scalar
+13650000
+
+
+# name: fac1d2d
+# type: scalar
+1
+
+
+# name: first1d
+# type: scalar
+730
+
+
+# name: fullines
+# type: scalar
+60
+
+
+# name: isosamples
+# type: scalar
+10000
+
+
+# name: last1d
+# type: scalar
+576335
+
+
+# name: last2d
+# type: scalar
+1469
+
+
+# name: lines
+# type: scalar
+50
+
+
+# name: maxtime1d
+# type: scalar
+2000
+
+
+# name: maxtime2d
+# type: scalar
+10000000
+
+
+# name: me_over_mi
+# type: scalar
+1.702098687681912e-05
+
+
+# name: mi_over_me
+# type: scalar
+58623
+
+
+# name: mintime1d
+# type: scalar
+0
+
+
+# name: mintime2d
+# type: scalar
+0
+
+
+# name: mn_over_me
+# type: scalar
+58624
+
+
+# name: n_RF1d
+# type: scalar
+1460.835987506274
+
+
+# name: n_RF2d
+# type: scalar
+1460.835987506274
+
+
+# name: names2d
+# type: sq_string
+# elements: 1
+# length: 32
+phie_dens_i_dens_ni_dens_n_dens_
+
+
+# name: namev2d
+# type: sq_string
+# elements: 1
+# length: 21
+e_veli_velni_veln_vel
+
+
+# name: navdt
+# type: scalar
+367
+
+
+# name: ndens1d
+# type: scalar
+237500000000000
+
+
+# name: ndens2d
+# type: scalar
+1.22463768115942e+18
+
+
+# name: ne01d
+# type: scalar
+5000000000
+
+
+# name: ne02d
+# type: scalar
+5000000000
+
+
+# name: negion
+# type: scalar
+1
+
+
+# name: nn_pc
+# type: scalar
+10
+
+
+# name: nr
+# type: scalar
+1350
+
+
+# name: nstep1d
+# type: scalar
+1825
+
+
+# name: nstep2d
+# type: scalar
+1469
+
+
+# name: ntr_fly
+# type: scalar
+0.001027272497007315
+
+
+# name: ntrlzconst
+# type: scalar
+1
+
+
+# name: nz1d
+# type: scalar
+640
+
+
+# name: onedfolder
+# type: sq_string
+# elements: 1
+# length: 31
+../../w1d_32579.D288-MeiMa/out/
+
+
+# name: particlenorm
+# type: scalar
+4056
+
+
+# name: pressure
+# type: scalar
+10
+
+
+# name: sizez2d
+# type: scalar
+1010
+
+
+# name: start1d
+# type: scalar
+730
+
+
+# name: start2d
+# type: scalar
+368
+
+
+# name: suggestedfac
+# type: scalar
+5156.369183829139
+
+
+# name: taskpernode
+# type: scalar
+8
+
+
+# name: tempzdiag
+# type: scalar
+1
+
+
+# name: test
+# type: scalar
+1825
+
+
+# name: time1d
+# type: scalar
+1825
+
+
+# name: time2d
+# type: scalar
+1469
+
+
+# name: timecode
+# type: scalar
+1825
+
+
+# name: timesize1d
+# type: scalar
+1578
+
+
+# name: timesize2d
+# type: scalar
+4
+
+
+# name: twodfolder
+# type: sq_string
+# elements: 1
+# length: 76
+/home/ph123693/Documents/2D/results/w2d_32586.D288-MaMei2DSurf/plots/../out/
+
+
+# name: v_te
+# type: scalar
+838104.0000000001
+
+
+# name: v_ti
+# type: scalar
+209526
+
+
+# name: v_tn
+# type: scalar
+41905.2
+
+
+# name: v_tni
+# type: scalar
+419052.0000000001
+
+
+# name: vac_permit
+# type: scalar
+8.853999999999999e-12
+
+
+# name: velsuf2d
+# type: sq_string
+# elements: 1
+# length: 6
+r_z_t_
+
+
+# name: velzdiag
+# type: scalar
+1
+
+
+# name: voltage1d
+# type: scalar
+800
+
+
+# name: voltage2d
+# type: scalar
+800
+
+

@@ -20,8 +20,8 @@ TWODRUNID=${tmp##*[^0-9]}
 TWODJOBNAME=$(grep -w "\#\# jobname\:" "../../slurms/slurm-${TWODRUNID}.out" | awk '{print($3)}')
 
 ## define which runs are to be compared
-ONEDRUNID=32063;
-ONEDRUNNAME=D288-1DTest;
+ONEDRUNID=31872;
+ONEDRUNNAME=D288-1D;
 ONEDRUNDIR=../../w1d_$ONEDRUNID.$ONEDRUNNAME;
 
 ##############################################################################
@@ -86,7 +86,8 @@ cd $TWODRUNDIR
 
 #time1d=00000002; nstep1d=2;
 #time2d=00000002; nstep2d=2;
-maxtime=00001600;
+mintime1d=$start2d; maxtime1d=$nstep2d;
+mintime2d=00000000; maxtime2d=10000000;
 
 ##############################################################################
 ## 2D ########################################################################
@@ -182,7 +183,8 @@ GnuVars+="twodrunid='${TWODRUNID}'; "
 GnuVars+="first2d='${FIRST2D}'; "
 GnuVars+="start2d='${start2d}'; "
 GnuVars+="last2d='${LAST2D}'; "
-GnuVars+="maxtime='${maxtime}'; "
+GnuVars+="mintime2d='${mintime2d}'; "
+GnuVars+="maxtime2d='${maxtime2d}'; "
 
 ##############################################################################
 ## 1D ########################################################################
@@ -199,6 +201,8 @@ GnuVars+="L_db01d='${L_db01d}'; "
 GnuVars+="voltage1d='${voltage1d}'; "
 GnuVars+="first1d='${FIRST1D}'; "
 GnuVars+="last1d='${LAST1D}'; "
+GnuVars+="mintime1d='${mintime1d}'; "
+GnuVars+="maxtime1d='${maxtime1d}'; "
 
 ##############################################################################
 ## MISC ######################################################################
@@ -241,7 +245,8 @@ echo "nr=${sizer}"; echo "nr=${sizer};" >> variables.tmp;
 echo "first2d=${FIRST2D}"; echo "first1d=${FIRST2D};" >> variables.tmp;
 echo "last2d=${LAST2D}"; echo "last2d=${LAST2D};" >> variables.tmp;
 echo "start2d=${start2d}"; echo "start2d=${start2d};" >> variables.tmp;
-echo "maxtime=${maxtime}"; echo "maxtime=${maxtime};" >> variables.tmp; 
+echo "mintime2d=${mintime2d}"; echo "mintime2d=${mintime2d};" >> variables.tmp;
+echo "maxtime2d=${maxtime2d}"; echo "maxtime2d=${maxtime2d};" >> variables.tmp;
 echo ""
 
 ##############################################################################
@@ -260,6 +265,8 @@ echo "L_db01d=${L_db01d}"; echo "L_db01d=${L_db01d};" >> variables.tmp;
 echo "first1d=${FIRST1D}"; echo "first1d=${FIRST1D};" >> variables.tmp;
 echo "last1d=${LAST1D}"; echo "last1d=${LAST1D};" >> variables.tmp;
 echo "start1d=${start1d}"; echo "start1d=${start1d};" >> variables.tmp;
+echo "mintime1d=${mintime1d}"; echo "mintime1d=${mintime1d};" >> variables.tmp;
+echo "maxtime1d=${maxtime1d}"; echo "maxtime1d=${maxtime1d};" >> variables.tmp;
 echo "";  
 
 ##############################################################################
@@ -295,7 +302,7 @@ GnuVarsVec+="timevec2d= ' "; echo -ne "timevec2d=[ " >> variables.tmp;
 while [ $j -lt "$timesize2d" ]; do
 	GnuVarsVec+="${timevec2d[$j]} ";
 	echo -ne "${timevec2d[$j]} " >> variables.tmp;
-	j=$[$j+10];
+	j=$[$j+1];
 done;
 GnuVarsVec+="'; "; echo "];" >> variables.tmp;
 
@@ -304,7 +311,7 @@ GnuVarsVec+="timevec1d= ' "; echo -ne "timevec1d=[ " >> variables.tmp;
 while [ $j -lt "$timesize1d" ]; do
 	GnuVarsVec+="${timevec1d[$j]} ";
 	echo -ne "${timevec1d[$j]} " >> variables.tmp;
-	j=$[$j+10];
+	j=$[$j+5];
 done;
 GnuVarsVec+="'; "; echo "];" >> variables.tmp;
 
@@ -320,4 +327,6 @@ echo ">> subscripting"
 . ./plots.sh 
 echo ">> done subscripting"
 
+cp -fv data.dat figs/ 2>/dev/null;
+cp -fv variables.tmp figs 2>/dev/null;
 exit

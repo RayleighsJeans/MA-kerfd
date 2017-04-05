@@ -1,5 +1,6 @@
 ## USE FIRST TIMESTEP In 2D HERE?
-time2d=first2d;
+## time2d=first2d;
+
 ## hubbe is x, seti is y
 if (tempzdiag == 1 && velzdiag == 1) {
   seti = 3;
