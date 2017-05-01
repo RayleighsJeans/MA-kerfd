@@ -20,8 +20,8 @@ TWODRUNID=${tmp##*[^0-9]}
 TWODJOBNAME=$(grep -w "\#\# jobname\:" "../../slurms/slurm-${TWODRUNID}.out" | awk '{print($3)}')
 
 ## define which runs are to be compared
-ONEDRUNID=31872;
-ONEDRUNNAME=D288-1D;
+ONEDRUNID=32579;
+ONEDRUNNAME=D288-MeiMa;
 ONEDRUNDIR=../../w1d_$ONEDRUNID.$ONEDRUNNAME;
 
 ##############################################################################
@@ -41,6 +41,7 @@ if [ "1" = "$copyanything" ]; then
 		  echo ">> copy 2D particle *.h5's";
 		  cp -fv ../save/particle_backup0.h5 $TWODRUNDIR/../../particles/w2d_${TWODRUNID}-${TWODJOBNAME}_particles0.h5 2>/dev/null;
 		  cp -fv ../save/particle_backup1.h5 $TWODRUNDIR/../../particles/w2d_${TWODRUNID}-${TWODJOBNAME}_particles1.h5 2>/dev/null;
+		  cp -fv ../geom* $TWODRUNDIR/../../geometries/geom_${TWODRUNID}-${TWODJOBNAME}.txt 2>/dev/null
 		  cp -fv ../input.dat $TWODRUNDIR/../../inputs/2D-${TWODRUNID}-${TWODJOBNAME}.dat 2>/dev/null
 	 fi
 fi
@@ -86,7 +87,7 @@ cd $TWODRUNDIR
 
 #time1d=00000002; nstep1d=2;
 #time2d=00000002; nstep2d=2;
-mintime1d=$start2d; maxtime1d=$nstep2d;
+mintime1d=$start2d; maxtime1d=$nstep2d; #$nstep2d;
 mintime2d=00000000; maxtime2d=10000000;
 
 ##############################################################################
@@ -111,7 +112,7 @@ collfac2d=$(grep -oP '(?<=coll_fac_ntrl_ntrl=\ ).*' ../../slurms/slurm-$TWODRUNI
 fac1d2d=$(grep -w "fac1d2d" "../input.dat" | awk '{print($2)}') # fac for 1D/2D neutral profile near axis
 particlenorm=$(grep -oP '(?<=>> Density scaling neutrals: For particle norm \(nn_pc\) is ).*' "../../slurms/slurm-$TWODRUNID.out") # 2D particle norm
 Ti_over_Te2d=$(grep -w "Ti_over_Te" "../input.dat" | awk '{print($2)}') # electron temp in eV
-L_db02d=$(grep -oP '(?<=L_db0=).*.(?<=e-02)' "../../slurms/slurm-$TWODRUNID.out") # debye length in cm
+L_db02d=$(grep -oP '(?<=Debye-length=\ ).*' "../../slurms/slurm-$TWODRUNID.out" | sort -n | head -1) # debye length in cm
 taskpernode=$(exec cat ../../slurms/slurm-$TWODRUNID.out | grep "## SLURM TASKS PER NODE =" | grep -Po '[0-9]' | sort -n | tail -1)
 samples=10000
 
@@ -128,12 +129,12 @@ L_db01d=$(grep -w "Debye-length=" "../../slurms/slurm-$ONEDRUNID.out" | tail -1 
 ##############################################################################
 ## 2D FLAGS ##################################################################
 echo ">> get 2D flags"
-tempzdiag=$(grep -w "DIAG_TEMPZ" "../../slurms/slurm-$TWODRUNID.out" | awk '{print($2)}'| sort -n | tail -1) # if tempz flag is set
-colldiag=$(grep -w "DIAG_COLL" "../../slurms/slurm-$TWODRUNID.out" | awk '{print($2)}'| sort -n | tail -1) # if colldiag flag is set
-velzdiag=$(grep -w "DIAG_VELZ" "../../slurms/slurm-$TWODRUNID.out" | awk '{print($2)}'| sort -n | tail -1) # if velz flag is set
-debyediag=$(grep -w "DIAG_DEBYE_LENGTH" "../../slurms/slurm-$TWODRUNID.out" | awk '{print($2)}'| sort -n | tail -1) # if debye flag is set
-ntrlzconst=$(grep -w "NTRL_CONST" "../../slurms/slurm-$TWODRUNID.out" | awk '{print($2)}'| sort -n | tail -1) # if ntrlz const
-negion=$(grep -w "USE_NEGATIVE_IONS" "../../slurms/slurm-$TWODRUNID.out" | awk '{print($2)}'| sort -n | tail -1) # if negative ions 
+tempzdiag=$(grep -oP "(?<=DIAG_TEMPZ=).*" "../../slurms/slurm-$TWODRUNID.out" |  sort -n | tail -1) # tempz flag
+colldiag=$(grep -oP "(?<=DIAG_COLL=).*" "../../slurms/slurm-$TWODRUNID.out" | sort -n | tail -1) # colldiag flag
+velzdiag=$(grep -oP "(?<=DIAG_VELZ=).*" "../../slurms/slurm-$TWODRUNID.out" | sort -n | tail -1) # velz flag
+debyediag=$(grep -oP "(?<=DIAG_DEBYE_LENGTH=).*" "../../slurms/slurm-$TWODRUNID.out" | sort -n | tail -1) # debye flag
+ntrlzconst=$(grep -oP "(?<=NTRL_CONST=).*" "../../slurms/slurm-$TWODRUNID.out" | sort -n | tail -1) # ntrlz const
+negion=$(grep -oP "(?<=USE_NEGATIVE_IONS=).*" "../../slurms/slurm-$TWODRUNID.out" | sort -n | tail -1) # neg ions 
 
 ##############################################################################
 ## 2D FLAG CHECK #############################################################
@@ -141,7 +142,7 @@ true=$(echo "1")
 if [ "${velzdiag}" != "${true}" ]; then velzdiag=$(echo "0"); fi; ## VELZ
 if [ "${colldiag}" != "${true}" ]; then colldiag=$(echo "0"); fi ## COLLZ
 if [ "${negion}" != "${true}" ]; then negion=0; fi ## NEGATIVE IONS
-if [ "${tempzdiag}" != "${true}" ]; then tempfdiag=0; fi ## TEMPZ
+if [ "${tempzdiag}" != "${true}" ]; then tempzdiag=0; fi ## TEMPZ
 if [ "${debyediag}" != "${true}" ]; then debyediag=0; fi ## DEBYE
 if [ "${ntrlzconst}" != "${true}" ]; then ntrlzconst=0; fi ## NTRLZ
 cd $TWODRUNDIR

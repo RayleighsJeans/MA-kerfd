@@ -6,7 +6,6 @@
 ##############################################################################
 ## POTENTIAL AND DENSITY #####################################################
 echo ">> transposing"
-
 echo ""; echo ">> transposing potential and density: ";
 for time2d in ${timevec2d[@]}
 do
@@ -37,39 +36,40 @@ do
 		fi
 	done
 done
-echo ""; echo ">> transposing velocities: ";
-for time2d in ${timevec2d[@]}
-do
-	for name2d in ${namev2d[@]}
+if [ ${velzdiag} = "1" ]; then
+	echo ""; echo ">> transposing velocities: ";
+	for time2d in ${timevec2d[@]}
 	do
-		for vsuf2d in ${velsuf2d[@]}
+		for name2d in ${namev2d[@]}
 		do
-			test=`expr $time2d + 0`;
-			if [ ${test} -gt ${mintime2d} ]; then
-				if [ ${test} -lt ${maxtime2d} ]; then
-					echo -ne "... ${name2d}${vsuf2d}${time2d}.dat ";
-					head -${fullines} ../out/${name2d}${vsuf2d}${time2d}.dat | tail -${lines} > tmp.dat
-					awk '
-					{
-						for (i=1; i<=NF; i++){
-							a[NR,i]=$i
-						}
-					}
-					NF>p { p = NF }
-					END {
-							for(j=1; j<=p; j++) {
-								str=a[1,j]
-								for(i=2; i<=NR; i++){
-									str=str" "a[i,j];
-								}
-								print str
+			for vsuf2d in ${velsuf2d[@]}
+			do
+				test=`expr $time2d + 0`;
+				if [ ${test} -gt ${mintime2d} ]; then
+					if [ ${test} -lt ${maxtime2d} ]; then
+						echo -ne "... ${name2d}${vsuf2d}${time2d}.dat ";
+						head -${fullines} ../out/${name2d}${vsuf2d}${time2d}.dat | tail -${lines} > tmp.dat
+						awk '
+						{
+							for (i=1; i<=NF; i++){
+								a[NR,i]=$i
 							}
-					}' tmp.dat  > transpose/trans-${name2d}${vsuf2d}${time2d}.dat
+						}
+						NF>p { p = NF }
+						END {
+								for(j=1; j<=p; j++) {
+									str=a[1,j]
+									for(i=2; i<=NR; i++){
+										str=str" "a[i,j];
+									}
+									print str
+								}
+						}' tmp.dat  > transpose/trans-${name2d}${vsuf2d}${time2d}.dat
+					fi
 				fi
-			fi
+			done
 		done
 	done
-done
-
+fi
 rm tmp.dat
 echo ""

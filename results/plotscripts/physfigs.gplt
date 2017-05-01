@@ -38,7 +38,6 @@ if (tempzdiag == 1 && velzdiag == 0) {
 		hubbel = 4;
 	}
 }
-debyediag=0;
 if (tempzdiag == 0 && velzdiag == 0) {
 	seti = 1;
 	hubbel = 3;
@@ -55,15 +54,15 @@ if (tempzdiag == 0 && velzdiag == 0) {
 		hubbel = 3;
 		seti = 2;
 		if (negion == 1) {
-		hubbel = 4;
-		seti = 2;
+			hubbel = 4;
+			seti = 2;
 		}
 	}
 }
 
 ## size and time
-xeich=1024
-yeich=720
+xeich=1256
+yeich=960
 x=hubbel*xeich;
 y=seti*yeich;
 
@@ -79,18 +78,19 @@ load 'jet.pal';
 #####################
 ## ALL PLOTS PHYSFIGS
 print ">> ELECTRONS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
-set logscale cb
+set logscale cb; set cbrange [1e-5:1e1];
 set format cb "10^{%T}"
 set title "electron density at ".time2d
 p '../out/e_dens_'.time2d.'.dat' matrix with image 
 if (tempzdiag == 1) {
+	set cbrange [*:*];
 	set title "electron temperature at ".time2d
 	p '../out/e_temp_'.time2d.'.dat' matrix with image
 	set title "electron thermal temperature ".time2d
 	p '../out/e_temp_therm_'.time2d.'.dat' matrix with image
 }
 if (velzdiag == 1) {
-	unset logscale cb
+	unset logscale cb; set cbrange [*:*];
 	set format cb "%g"
 	set title "electron z velocity at ".time2d
 	p '../out/e_velz_'.time2d.'.dat' matrix with image
@@ -101,18 +101,19 @@ if (velzdiag == 1) {
 }
 
 print ">> IONS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
-set logscale cb
+set logscale cb; set cbrange [1e-5:1e1];
 set format cb "10^{%T}"
 set title "ion density at ".time2d
 p '../out/i_dens_'.time2d.'.dat' matrix with image 
 if (tempzdiag == 1) {
+	set cbrange [*:*];
 	set title "ion temperature at ".time2d
 	p '../out/i_temp_'.time2d.'.dat' matrix with image 
 	set title "ion thermal temperature ".time2d
 	p '../out/i_temp_therm_'.time2d.'.dat' matrix with image
 }
 if (velzdiag == 1) {
-	unset logscale cb
+	unset logscale cb; set cbrange [*:*];
 	set format cb "%g"
 	set title "ion z velocity at ".time2d
 	p '../out/i_velz_'.time2d.'.dat' matrix with image 
@@ -124,18 +125,21 @@ if (velzdiag == 1) {
 if (negion == 1) {
 
 print ">> NIONS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
-	set logscale cb
+	#set logscale cb;
+	set cbrange [1e-5:1e2];
 	set format cb "10^{%T}"
 	set title "nion density at ".time2d
 	p '../out/ni_dens_'.time2d.'.dat' matrix with image 
 	if (tempzdiag == 1) {
+		set cbrange [1e-20:1e5];
 		set title "nion temperature at ".time2d
 		p '../out/ni_temp_'.time2d.'.dat' matrix with image 
 		set title "nion thermal temperature ".time2d
 		p '../out/ni_temp_therm_'.time2d.'.dat' matrix with image
 	}
 	if (velzdiag == 1) {
-		unset logscale cb
+		#unset logscale cb;
+		set cbrange [-2000:1000];
 		set format cb "%g"
 		set title "nion z velocity at ".time2d
 		p '../out/ni_velz_'.time2d.'.dat' matrix with image 
@@ -147,18 +151,21 @@ print ">> NIONS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
 }
 
 print ">> NEUTRALS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
-	set logscale cb
+	#set logscale cb;
+	set cbrange [1e-5:1e2];
 	set format cb "10^{%T}"
 	set title "neutral density at ".time2d
 	p '../out/n_dens_'.time2d.'.dat' matrix with image 
 	if (tempzdiag == 1) {
+		set cbrange [1e-20:1e5];
 		set title "neutral temperature at ".time2d
 		p '../out/n_temp_'.time2d.'.dat' matrix with image 
 		set title "neutral thermal temperature ".time2d
 		p '../out/n_temp_therm_'.time2d.'.dat' matrix with image
 	}
 	if (velzdiag == 1) {
-		unset logscale cb
+		#unset logscale cb;
+		set cbrange [-2000:1000];
 		set format cb "%g"
 		set title "neutral z velocity at ".time2d
 		p '../out/n_velz_'.time2d.'.dat' matrix with image 
@@ -170,23 +177,23 @@ print ">> NEUTRALS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
 if (debyediag == 1) {
 
 print ">> DEBYE DIAG <<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
-	set logscale cb
+	set logscale cb; set cbrange [*:*];
 	set format cb "10^{%T}"
 	set title "local debye length from temp. (total energy) at ".time2d
 	p '../out/e_debye_'.time2d.'.dat' matrix with image
 } 
 
 print ">> POTENTIAL <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
-unset logscale cb
+unset logscale cb; set cbrange [*:*];
 set format cb "%g"
 set title "potential at ".time2d
 p '../out/phi'.time2d.'.dat' matrix with image
-unset xrange; unset yrange; 
+	unset xrange; unset yrange; 
 
 print ">> TRACEPLOT <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
 last2d=last2d+0;
-set xrange [0.0:last2d]; set yrange [0.0:*];
-set xlabel "time2d (#)"
+set xrange [start2d:last2d]; set yrange [0.0:*];
+set xlabel "time2d (#)"; set format x "%1.1l*10^{%T}";
 set ylabel "trace counts (#)"
 set title "particle counts"
 set key outside
