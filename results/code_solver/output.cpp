@@ -24,6 +24,7 @@
 #include "init_diag.h"
 #include "macros.h"
 #include "output.h"
+#include "fem_solver.h"
 #include "engy.h"
 #include "emission.h"
 #include "mpi_wrapper.h"
@@ -230,16 +231,14 @@ void write_diagnostics_cell_based()
     out_dens_pr(layer, get_full_path(specie+"_pr_dens_"));
     out_velz_pr(layer, get_full_path(specie+"_pr_velr_"), get_full_path(specie+"_pr_velt_"), get_full_path(specie+"_pr_velz_")); // TODO bug
     out_and_zero_dist_pr(layer, get_full_path(specie+"_pr_distzall_"), get_full_path(specie+"_pr_distrall_"), get_full_path(specie+"_pr_distcell_"));
-		
-		if (layer.name == "electrons" ) {
-#if DIAG_DEBYE_LENGTH
-			// local resolved debye length
-			out_debye(layer, get_full_path(specie + "_debye_"),
-					get_full_path(specie + "_debye_t1_" ),
-					get_full_path(specie + "_debye_t2_"));
-#endif
-		}
   }
+
+#if USE_FEM_SOLVER
+	printf(">> current and area charge output ...\n");
+		out_area_density(get_full_path("aw_charge_"));
+		out_cellcurrent(get_full_path("cell_current_"));
+	printf(">> done!\n");
+#endif
 
 #if DIAG_EMISSION
   //Emission diagnostic, mainly used in eads
@@ -1887,159 +1886,3 @@ void out_variables_to_gnuplot() {
 	out << "Bcoef=" << Bcoef << endl;	
 	}
 }
-
-//########################
-// LOCAL DEBYE LENGTH DIAG
-//########################
-
-void out_debye(GridLayer &layer, std::string dat1, std::string dat2, std::string dat3) {
-#if DIAG_DEBYE_LENGTH
-
-	int mpi_rank = get_rank();
-	// dens calculation
-  if (layer.n_aver < 1) {layer.n_aver = 1;}
-  std::vector<double> number_of_particles(layer.r_dim * layer.z_dim);
-	std::vector<double> density(layer.r_dim * layer.z_dim);
-  for (unsigned int r = 0; r < layer.r_dim; r++) {
-    for (unsigned int z = 0; z < layer.z_dim; z++) {
-      int ig = r * layer.z_dim + z;
-      Cell &cell = layer.get_cell(r, z);
-      number_of_particles[ig] = cell.diagnostic_arrays.particle_number;
-    }
-  }
-
-  reduce(number_of_particles);
-	for (unsigned int r = 0; r < layer.r_dim; ++r) {
-		double fi =
-			1. / (Ncell1 * (r + 0.5) * layer.n_aver); // = old version (due to NGP)
-		for (unsigned int z = 0; z < layer.z_dim; ++z) {
-			int ig = r * layer.z_dim + z;
-			 density[ig] = n_e0 * fi * number_of_particles[ig];
-		}
-	}
-	reduce(density);
-
-	// temp calculation
-  double u0 = layer.cs;
-  double fnorm = 1.;
-  if (layer.name == "electrons") fnorm = me_over_mi;
-
-	std::vector<int> pn(layer.r_dim * layer.z_dim);
-
-  std::vector<double> temp_r(layer.r_dim * layer.z_dim);
-  std::vector<double> temp_t(layer.r_dim * layer.z_dim);
-  std::vector<double> temp_z(layer.r_dim * layer.z_dim);
-
-	std::vector<double> temp_all(layer.r_dim * layer.z_dim);
-
-  for (int i = 0; i < layer.r_dim; ++i) {
-    for (int j = 0; j < layer.z_dim; ++j) {
-      Cell &cell = layer.get_cell(i, j);
-      int ind = layer.cell_number(i, j);
-      auto &diag = cell.diagnostic_arrays;
-      pn[ind] = diag.particle_number;
-
-      temp_r[ind] = diag.particle_velocity_squared[0];
-      temp_t[ind] = diag.particle_velocity_squared[1];
-      temp_z[ind] = diag.particle_velocity_squared[2];
-    }
-  }
-
-  reduce(pn);
-  
-	reduce(temp_r);
-  reduce(temp_t);
-  reduce(temp_z);
-
-    for (int n = 0; n < layer.r_dim * layer.z_dim; n++) {
-      if (pn[n] >= 1) {
-        temp_r[n] = temp_r[n] / (u0 * u0 * pn[n]) * fnorm;
-        temp_t[n] = temp_t[n] / (u0 * u0 * pn[n]) * fnorm;
-        temp_z[n] = temp_z[n] / (u0 * u0 * pn[n]) * fnorm;
-
-      } else {
-        temp_r[n] = temp_t[n] = temp_z[n] = 0.;
-      }
-    }
-    for (int i = 0; i < layer.r_dim; ++i) {
-      for (int j = 0; j < layer.z_dim; ++j) {
-				temp_all[i * layer.z_dim + j] = temp_r[i * layer.z_dim + j] + temp_t[i * layer.z_dim + j] + temp_z[i * layer.z_dim + j];
-      }
-    }
-
-	// calculate local debye
-	std::vector<double> debye0(layer.r_dim * layer.z_dim);
-	std::vector<double> debyeT1(layer.r_dim * layer.z_dim);
-	std::vector<double> debyeT2(layer.r_dim * layer.z_dim);
-
-	reduce(debye0);
-	reduce(debyeT1);
-	reduce(debyeT2);
-	if (mpi_rank == 0) {
-  int index = 0;
-
-    // FILE *file1, *file2, *file3; 
-			
-			FILE *file1 = fopen(dat1.c_str(), "w");
-			/*
-			FILE *file2 = fopen(dat2.c_str(), "w");
-			FILE *file3 = fopen(dat3.c_str(), "w");
-			*/
-
-    if (!file1) { // || !file2 || !file3) { 
-      printf("could not open %s .\n", dat1.c_str()); //, dat2.c_str(), dat3.c_str());
-      exit(EXIT_FAILURE);
-    }
-		
-		for (int r = 0; r < layer.r_dim; r++) {
-			for (int z = 0; z < layer.z_dim; z++) {
-				index = r * layer.z_dim + z;
-				if (density[index] == 0) {
-					debye0[index] = 0.0;
-				} else {
-				debye0[index]=(7.43e2*sqrt((temp_all[index]*T_e0)/(density[index])))/L_db0;
-				}
-				fprintf(file1, "%5.5e ", debye0[index]);
-			}
-			fprintf(file1, "\n");
-		}
-		fclose(file1);
-
-		/*
-		for (int r = 0; r < layer.r_dim; r++) {
-			for (int z = 0; z < layer.z_dim; z++) {
-				index = r * layer.z_dim + z;
-				if (density[index] == 0) {
-					debyeT2[index] = 0.0;
-				} else {
-				debyeT2[index]=(1e2*sqrt(vac_permit*boltzman*temp_all[index]*(elementary_chrg/boltzman)/(density[index]*1e6*elementary_chrg*elementary_chrg)))/debye_L2;
-				}
-				fprintf(file3, "%5.5e ", debyeT2[index]);
-			}
-			fprintf(file3, "\n");
-		}
-		fclose(file3);
-		
-		for (int r = 0; r < layer.r_dim; r++) {
-			for (int z = 0; z < layer.z_dim; z++) {
-				index = r * layer.z_dim + z;
-				if (density[index] == 0) {
-					debye0[index] = 0.0;
-					debyeT1[index] = 0.0;
-					debyeT2[index] = 0.0;
-				} else {
-				debyeT1[index]=(1e2/sqrt((elementary_chrg*elementary_chrg)/(vac_permit*boltzman)*(density[index]*1e6)*(1/T_i0+1/(temp_all[index]*(elementary_chrg/boltzman)))))/debye_L1;
-				}
-				fprintf(file2, "%5.5e ", debyeT1[index]);
-			}
-			fprintf(file2, "\n");
-		}
-		fclose(file2);
-	*/
-
-	}
-
-#endif
-}
-
-		

@@ -37,6 +37,7 @@
 #include "efield.h"
 #include "read.h"
 #include "output.h"
+#include "fem_solver.h"
 #include "moms.h"
 #include "memory.h"
 #include "init_diag.h"
@@ -371,6 +372,14 @@ int main(int argc, char** argv) {
     for (nstep = minstep; nstep < maxstep; ++nstep) 
     {
 	printst0("---> nstep = %i \n",nstep);
+		
+#if USE_FEM_SOLVER
+	printf(">> area weighted density calculation at %i ...\n", mpi_rank);
+		area_density();
+	printf(">> current through cell faces at %i ...\n", mpi_rank);
+		cellfacecurrent();
+	printf(" done!\n");
+#endif
 
         if (is_statistics_step()){
 	  global_grid.print_size_all();
