@@ -1,9 +1,21 @@
 function octave;
 more off; warning off;
 close all; clear all;
-f_RF = 13.65e6;
 
+f_RF = 13.65e6;
 source variables.tmp;
+
+% PARTICLE NORM AND COLLFAC
+particle_i = Ncell1/2;
+particle_a = particle_i;
+for i=1:nr
+	particle_io = particle_i;
+	particle_i = particle_io + Ncell1/2;
+	particle_ao = particle_a;
+	particle_a = particle_ao + particle_i;
+end
+particlenorm = particle_a/nr; 
+dt_nion=dt_ion;
 
 L_db02d = 7.43e2 * sqrt(Te02d / ne02d);
 L_db01d = 7.43e2 * sqrt(Te01d / ne01d);

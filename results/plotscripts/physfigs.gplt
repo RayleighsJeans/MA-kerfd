@@ -1,5 +1,5 @@
 ## USE FIRST TIMESTEP In 2D HERE?
-## time2d=first2d;
+## time2d='00010120';
 
 ## hubbe is x, seti is y
 if (tempzdiag == 1 && velzdiag == 1) {
@@ -7,10 +7,12 @@ if (tempzdiag == 1 && velzdiag == 1) {
 	if (negion == 1) {
 		seti = 4;
 	}
+	if (ntrlzconst == 0) {
 		seti = 4;
 		if (negion == 1) {
 			seti = 5;
 		}
+	}
   hubbel = 6;
 }
 if (tempzdiag == 0 && velzdiag == 1) {
@@ -18,10 +20,12 @@ if (tempzdiag == 0 && velzdiag == 1) {
 	if (negion == 1) {
 		seti = 4;
 	}
+	if (ntrlzconst == 0) {
 		seti = 4;
 		if (negion == 1) {
 			seti = 5;
 		}
+	}
 	hubbel = 4;
 }
 if (tempzdiag == 1 && velzdiag == 0) {
@@ -29,40 +33,42 @@ if (tempzdiag == 1 && velzdiag == 0) {
 	if (negion == 1) {
 		seti = 4;
 	}
+	if (ntrlzconst == 0) {
 		seti = 4;
 		if (negion == 1) {
 			seti = 5;
 		}
+	}
 	hubbel = 3;
 	if (debyediag == 1) {
 		hubbel = 4;
 	}
 }
 if (tempzdiag == 0 && velzdiag == 0) {
-	seti = 1;
-	hubbel = 3;
+	seti = 2;
+	hubbel = 2;
 	if (negion == 1) {
-		hubbel = 2;
-		seti = 2;
+		hubbel = 3;
 	}
-		hubbel = 4;
+	if (ntrlzconst == 0) {
+		hubbel = 3;
 		if (negion == 1) {
 			hubbel = 3;
-			seti = 2;
 		}
+	}
 	if (debyediag == 1) {
 		hubbel = 3;
-		seti = 2;
 		if (negion == 1) {
+			if (ntrlzconst == 1) {
 			hubbel = 4;
-			seti = 2;
+		}
 		}
 	}
 }
 
 ## size and time
-xeich=1256
-yeich=960
+xeich=1280
+yeich=1280
 x=hubbel*xeich;
 y=seti*yeich;
 
@@ -125,8 +131,7 @@ if (velzdiag == 1) {
 if (negion == 1) {
 
 print ">> NIONS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
-	#set logscale cb;
-	set cbrange [1e-5:1e2];
+	set logscale cb; set cbrange [1e-5:1e2];
 	set format cb "10^{%T}"
 	set title "nion density at ".time2d
 	p '../out/ni_dens_'.time2d.'.dat' matrix with image 
@@ -138,7 +143,7 @@ print ">> NIONS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
 		p '../out/ni_temp_therm_'.time2d.'.dat' matrix with image
 	}
 	if (velzdiag == 1) {
-		#unset logscale cb;
+		unset logscale cb;
 		set cbrange [-2000:1000];
 		set format cb "%g"
 		set title "nion z velocity at ".time2d
@@ -149,10 +154,10 @@ print ">> NIONS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
 		p '../out/ni_velt_'.time2d.'.dat' matrix with image
 	}
 }
+if (ntrlzconst == 0) {
 
 print ">> NEUTRALS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
-	#set logscale cb;
-	set cbrange [1e-5:1e2];
+	set logscale cb; set cbrange [1e-5:1e2];
 	set format cb "10^{%T}"
 	set title "neutral density at ".time2d
 	p '../out/n_dens_'.time2d.'.dat' matrix with image 
@@ -164,7 +169,7 @@ print ">> NEUTRALS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
 		p '../out/n_temp_therm_'.time2d.'.dat' matrix with image
 	}
 	if (velzdiag == 1) {
-		#unset logscale cb;
+		unset logscale cb;
 		set cbrange [-2000:1000];
 		set format cb "%g"
 		set title "neutral z velocity at ".time2d
@@ -174,6 +179,7 @@ print ">> NEUTRALS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
 		set title "neutral thermal velocity at ".time2d
 		p '../out/n_velt_'.time2d.'.dat' matrix with image
 	}
+}
 if (debyediag == 1) {
 
 print ">> DEBYE DIAG <<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
@@ -188,7 +194,7 @@ unset logscale cb; set cbrange [*:*];
 set format cb "%g"
 set title "potential at ".time2d
 p '../out/phi'.time2d.'.dat' matrix with image
-	unset xrange; unset yrange; 
+unset xrange; unset yrange; 
 
 print ">> TRACEPLOT <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
 last2d=last2d+0;
