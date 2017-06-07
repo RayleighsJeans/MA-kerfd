@@ -126,7 +126,7 @@ void ten_face_current (	unsigned int rO, unsigned int zO, // old cell indices
         Dz1 = -0.5-zP0;                       // delta to this move part
         zP1 = 0.5; prefix =-1.0;              // position after this move
       } else {
-        iprintf(">> ten face move: no upwards/downwards move, acutally seven four face ?!\n");
+        iiprintf(">> ten face move: no upwards/downwards move, acutally seven face ?!\n");
         seven_face_current ( rO, zO, qu, Dr, Dz, rP0, zP0 );
         return;
       }
@@ -142,7 +142,7 @@ void ten_face_current (	unsigned int rO, unsigned int zO, // old cell indices
         Dr2 = -0.5-rP0-Dr1;                   // delta to this move part
         rP2 = 0.5;                            // position after this move
       } else {
-        iprintf(">> ten face move: no left hand/ right hand move, acutally seven four face ?!\n");
+        iiprintf(">> ten face move: no left hand/ right hand move, acutally seven face ?!\n");
         seven_face_current ( rO, zO, qu, Dr, Dz, rP0, zP0 );
         return;
       }

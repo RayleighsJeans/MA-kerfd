@@ -1569,18 +1569,27 @@ void out_and_zero_current_to_walls( std::vector<CountParticles>& count_particles
 
 void out_eps(vector<vector<double> > Eps)
 {
- if ( get_rank() == 0 ) {
+ if (get_rank()==0) {
   ofstream out("eps_matrix.dat");
 
-  for (int i = 0; i < global_grid.mesh_r_dim; ++i)
-  {
+  for (int i = 0; i < global_grid.mesh_r_dim; ++i) {
     for (int j = 0; j < global_grid.mesh_z_dim; ++j)
     {
-    out << Eps[i][j] << " "; 
+    out << Eps[i][j] << " ";
     }
+    Eps[i].resize(global_grid.mesh_z_dim);
     out << endl;
   }
+  Eps.resize(global_grid.mesh_r_dim);
  }
+#if 0
+  for (unsigned int r=0; r<global_grid.mesh_r_dim; ++r) {
+    for (unsigned int z=0; z<global_grid.mesh_r_dim; ++z) {
+    std::cout << "rank " << get_rank() << " r/z " << r << "/" << z;
+    std::cout << " Eps " << Eps[r][z] << std::endl;
+    }
+  }
+#endif
 }
 
 void out_bounds(GridLayer& layer, std::string f)

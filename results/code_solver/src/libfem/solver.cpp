@@ -162,7 +162,7 @@ void cellfacecurrent(){
 
             // if no move at all
           	if ( (deltar==0.0) && (deltaz==0.0) ) {
-          		iprintf(">> is not moving at all\n");
+          		waprintf(">> is not moving at all\n");
           		break;
           	} else if ( deltar == 0 ) {
           		deltar = 1e-4;
@@ -194,6 +194,15 @@ void cellfacecurrent(){
 
 						// old cell
 						Cell& oldcell=layer.get_cell(rO,zO);
+            
+            #if 0
+              // fail cause check
+              // add info here at which run cacncels
+              pt.oldpart = TOP_LEFT; pt.newpart = TOP_RIGHT;
+              pt.r = 77.5943; pt.z = 232.519; pt.r_old = 76.6852; pt.z_old = 232.29;
+              rO = 76; zO = 232; rN = 77; zN = 232; deltar = 0.909098;
+              deltaz = 0.228778; qu =-1.0 ; rP0 = -0.314843; zP0 = 0.290386;
+            #endif
 
 						iiiprintf ( ">> cell current calculation: oldpart=%s, newpart=%s, r_old=%g"
 												", z_old=%g, rP0=%g, zP0=%g, r_new=%g, z_new=%g, deltar=%g, deltaz=%g"
@@ -204,14 +213,6 @@ void cellfacecurrent(){
 						// ALGORITHMS DECIDING BETWEEN
 						// FOUR, SEVEN, AND TEN FACE CURRENT 
 						// CALCULATIONS
-            
-            // fail cause check
-            #if 0
-              pt.oldpart = TOP_LEFT; pt.newpart = TOP_RIGHT;
-              pt.r = 77.5943; pt.z = 232.519; pt.r_old = 76.6852; pt.z_old = 232.29;
-              rO = 76; zO = 232; rN = 77; zN = 232; deltar = 0.909098;
-              deltaz = 0.228778; qu =-1.0 ; rP0 = -0.314843; zP0 = 0.290386;
-            #endif
 
             decide_face_move (  pt,                // particle handover
                                 rO, zO,            // old cell idices
@@ -219,14 +220,12 @@ void cellfacecurrent(){
                                 deltar, deltaz,		 // delta r/z
                                 qu,   		 			   // charge
                                 rP0, zP0 );        // relative cell pos
-
 						
 					} // particle ids
 	 			} // zdim
 			} // rdim
 		} // except neutrals
 	} // layers
-
 
 #endif
 }
@@ -237,518 +236,114 @@ void decide_face_move ( Particle& pt,                     // particle handover
                         double deltar, double deltaz,	    // delta r/z
                         double qu,   										  // charge
                         double rP0, double zP0 ) {        // relative cell pos
+#if USE_FEM_SOLVER
 
-/* TOP LEFT ********************************************************************************/
-  if ( pt.oldpart==TOP_LEFT ) {
-    if ( pt.newpart==BOTTOM_LEFT ) {
-      iiiprintf ( ">> oldpart==TOP_LEFT && newpart==BOTTOM_LEFT\n" );
-      if ( (rN==rO+1) && (zN==zO) ) {
-        // four face current 
-        // old: top, left; p&m
-        // topleft: bottom, right; m&p
-        four_face_current ( rO, zO, deltar, deltaz, qu, rP0, zP0 );
-      } else if ( (rN==rO) && (zN==zO) ) {
-        // seven face current 
-        // old: top, left; p&m
-        // topleft: bottom, right; m&p 
-        // && 2ND STEP
-        // old: bottom, left; p&p
-        // bottomleft: top, right; m&m
-        seven_face_current ( rO, zO, qu, deltar, deltaz, rP0, zP0 );
-      } else if ( (rN==rO+1) && (zN==zO+1) ) {
-        // seven face current
-        // old: top, left; p&m
-        // topleft: bottom, right, m&p
-        // && 2ND STEP
-        // old: top, right; m&m
-        // topright: bottom, left; p&p
-        seven_face_current ( rO, zO, qu, deltar, deltaz, rP0, zP0 );
-      } else if ( (rN==rO+1) && (zN==zO-1) ) {
-        // seven face current
-        // old: top, left; p&m
-        // topleft: bottom, right, m&p
-        // && 2ND STEP
-        // topleft: bottom, right; p&p
-        // right-right: top, right; m&m
-        seven_face_current ( rO, zO, qu, deltar, deltaz, rP0, zP0 );
-      } else {
-      ten_face_current ( rO, zO, qu, deltar, deltaz, rP0, zP0 );
-      }
-    } else if ( pt.newpart==TOP_RIGHT ) {
-      iiiprintf ( ">> oldpart==TOP_LEFT && newpart==TOP_RIGHT\n" );
-      if ( (rN==rO) && (zN==zO) ) {
-        // seven face current 
-        // old: top, left; p&m
-        // topleft: bottom, right; m&p 
-        // && 2ND STEP
-        // old: top, right; m&m
-        // topright: bottom, left; p&p
-        seven_face_current ( rO, zO, qu, deltar, deltaz, rP0, zP0 );
-      } else if ( (rN==rO+1) && (zN==zO-1) ) {
-        // seven face current 
-        // old: top, left; p&m
-        // topleft: bottom, right; m&p 
-        // && 2ND STEP
-        // topleft: top, right; m&m
-        // top-top: bottom, left; p&p
-        seven_face_current ( rO, zO, qu, deltar, deltaz, rP0, zP0 );
-      } else if ( (rN==rO-1) && (zN==zO-1) ) {
-        // seven face current
-        // old: top, left; p&m
-        // topleft: bottom, right, m&p
-        // && 2ND STEP
-        // old: bottom, left; p&p
-        // topright: top, right; m&m
-        seven_face_current ( rO, zO, qu, deltar, deltaz, rP0, zP0 );
-      } else {
-      ten_face_current ( rO, zO, qu, deltar, deltaz, rP0, zP0 );
-      }
-    } else if ( pt.newpart==BOTTOM_RIGHT ) {
-      iiiprintf ( ">> oldpart==TOP_LEFT && newpart==BOTTOM_RIGHT\n" );
-      if ( (rN==rO+1) && (zN==zO-1) ) {
-        // four face current 
-        // old: top, left; p&m
-        // topleft: bottom, right; m&p 
-        four_face_current ( rO, zO, deltar, deltaz, qu, rP0, zP0 );
-      } else if ( (rN==rO-1) && (zN==zO-1) ) {
-        // seven face current
-        // old: top, left; p&m
-        // topleft: bottom, right, m&p
-        // && 2ND STEP
-        // old: bottom, left; p&p
-        // topright: top, right; m&m
-        seven_face_current ( rO, zO, qu, deltar, deltaz, rP0, zP0 );
-      } else if ( (rN==rO+1) && (zN==zO+1) ) {
-        // seven face current
-        // old: top, left; p&m
-        // topleft: bottom, right, m&p
-        // && 2ND STEP
-        // old: top, right; m&m
-        // topright: bottom, left; p&p
-        seven_face_current ( rO, zO, qu, deltar, deltaz, rP0, zP0 );
-      } else {
-      ten_face_current ( rO, zO, qu, deltar, deltaz, rP0, zP0 );
-      }
-    } else if ( pt.newpart==TOP_LEFT ) {
-      iiiprintf ( ">> oldpart==TOP_LEFT && newpart==TOP_LEFT\n" );
-      if ( (rN==rO+1) && (zN==zO-1) ) {
-        // four face current 
-        // old: top, left; p&m
-        // topleft: bottom, right; m&p 
-        four_face_current ( rO, zO, deltar, deltaz, qu, rP0, zP0 );
-      } else if ( (rN==rO) && (zN==zO) ) {
-        // four face current 
-        // old: top, left; p&m
-        // topleft: bottom, right; m&p 
-        four_face_current ( rO, zO, deltar, deltaz, qu, rP0, zP0 );
-      } else if ( (rN==rO-1) && (zN==zO-1) ) {
-        // seven face current
-        // old: top, left; p&m
-        // topleft: bottom, right, m&p
-        // && 2ND STEP
-        // old: bottom, left; p&p
-        // topright: top, right; m&m
-        seven_face_current ( rO, zO, qu, deltar, deltaz, rP0, zP0 );
-      } else if ( (rN==rO+1) && (zN==zO+1) ) {
-        // seven face current
-        // old: top, left; p&m
-        // topleft: bottom, right, m&p
-        // && 2ND STEP
-        // old: top, right; m&m
-        // topright: bottom, left; p&p
-        seven_face_current ( rO, zO, qu, deltar, deltaz, rP0, zP0 );
-      } else if ( (rN==rO+1) && (zN==zO) ) {
-        // seven face current
-        // old: top, left; p&m
-        // topleft: bottom, right, m&p
-        // && 2ND STEP
-        // topleft: bottom, right; m&p
-        // toptop: top, left; p&m
-        seven_face_current ( rO, zO, qu, deltar, deltaz, rP0, zP0 );
-      } else {
-      ten_face_current ( rO, zO, qu, deltar, deltaz, rP0, zP0 );
-      }
-    }
-/* TOP RIGHT *******************************************************************************/
-  } else if ( pt.oldpart==TOP_RIGHT ) {
-    if ( pt.newpart==TOP_LEFT ) {
-      iiiprintf ( ">> oldpart==TOP_RIGHT && newpart==TOP_LEFT\n" );
-      if ( (rN==rO) && (zN==zO+1) ) {
-        // four face current 
-        // old: top, right; m&m
-        // topright: bottom, left; p&p 
-        four_face_current ( rO, zO, deltar, deltaz, qu, rP0, zP0 );
-      } else if ( (rN==rO) && (zN==zO) ) {
-        // seven face current
-        // old: top, right; m&m
-        // topright: bottom, left, p&p
-        // && 2ND STEP
-        // old: top, left; p&m
-        // topleft: bottom, right; m&p
-        seven_face_current ( rO, zO, qu, deltar, deltaz, rP0, zP0 );
-      } else if ( (rN==rO-1) && (zN==zO+1) ) {
-        // seven face current
-        // old: top, right; m&m
-        // topright: bottom, left, p&p
-        // && 2ND STEP
-        // old: bottom, right; m&p
-        // bottomright: top, left; p&m
-        seven_face_current ( rO, zO, qu, deltar, deltaz, rP0, zP0 );
-      } else if ( (rN==rO+1) && (zN==zO+1) ) {
-        // seven face current
-        // old: top, right; m&m
-        // topright: bottom, left, p&p
-        // && 2ND STEP
-        // topright: top, left; p&m
-        // toptop: bottom, right; m&p
-        seven_face_current ( rO, zO, qu, deltar, deltaz, rP0, zP0 );
-      } else {
-      ten_face_current ( rO, zO, qu, deltar, deltaz, rP0, zP0 );
-      }
-    } else if ( pt.newpart==TOP_RIGHT ) {
-      iiiprintf ( ">> oldpart==TOP_RIGHT && newpart==TOP_RIGHT\n" );
-      if ( (rN==rO) && (zN==zO) ) {
-        // four face current 
-        // old: top, right; m&m
-        // topright: bottom, left; p&p 
-        four_face_current ( rO, zO, deltar, deltaz, qu, rP0, zP0 );
-      } else if ( (rN==rO) && (zN==zO-1) ) {
-        // seven face current
-        // old: top, right; m&m
-        // topright: bottom, left, p&p
-        // && 2ND STEP
-        // old: top, left; p&m
-        // topleft: bottom, right; m&p
-        seven_face_current ( rO, zO, qu, deltar, deltaz, rP0, zP0 );
-      } else if ( (rN==rO-1) && (zN==zO) ) {
-        // seven face current
-        // old: top, right; m&m
-        // topright: bottom, left, p&p
-        // && 2ND STEP
-        // old: bottom, right; m&p
-        // bottom: top, left; p&m
-        seven_face_current ( rO, zO, qu, deltar, deltaz, rP0, zP0 );
-      } else if ( (rN==rO) && (zN==zO+1) ) {
-        // seven face current
-        // old: top, right; m&m
-        // topright: bottom, left, p&p
-        // && 2ND STEP
-        // topright: top, left; p&m
-        // right-right: bottom, left; m&p
-        seven_face_current ( rO, zO, qu, deltar, deltaz, rP0, zP0 );
-      } else {
-      ten_face_current ( rO, zO, qu, deltar, deltaz, rP0, zP0 );
-      }
-    } else if ( pt.newpart==BOTTOM_LEFT ) {
-      iiiprintf ( ">> oldpart==TOP_RIGHT && newpart==BOTTOM_LEFT\n" );
-      if ( (rN==rO+1) && (zN==zO+1) ) {
-        // four face current 
-        // old: top, right; m&m
-        // topright: bottom, left; p&p 
-        four_face_current ( rO, zO, deltar, deltaz, qu, rP0, zP0 );
-      } else if ( (rN==rO) && (zN==zO+1) ) {
-        // seven face current
-        // old: top, right; m&m
-        // topright: bottom, left, p&p
-        // && 2ND STEP
-        // old: bottom, right; p&m
-        // bottomright: top, left; m&p
-        seven_face_current ( rO, zO, qu, deltar, deltaz, rP0, zP0 );
-      } else if ( (rN==rO+1) && (zN==zO-1) ) {
-        // seven face current
-        // old: top, right; m&m
-        // topright: bottom, left, p&p
-        // && 2ND STEP
-        // old: top, left; p&m
-        // topleft: top, left; m&p
-        seven_face_current ( rO, zO, qu, deltar, deltaz, rP0, zP0 );
-      } else {
-      ten_face_current ( rO, zO, qu, deltar, deltaz, rP0, zP0 );
-      }
-    } else if ( pt.newpart==BOTTOM_RIGHT ) {
-      iiiprintf ( ">> oldpart==TOP_RIGHT && newpart==BOTTOM_RIGHT\n" );
-      if ( (rN==rO+1) && (zN==zO) ) {
-        // four face current 
-        // old: top, right; m&m
-        // topright: bottom, left; p&p 
-        four_face_current ( rO, zO, deltar, deltaz, qu, rP0, zP0 );
-      } else if ( (rN==rO) && (zN==zO) ) {
-        // seven face current
-        // old: top, right; m&m
-        // topright: bottom, left, p&p
-        // && 2ND STEP
-        // old: bottom, right; m&p
-        // bottomright: top, left; p&m
-        seven_face_current ( rO, zO, qu, deltar, deltaz, rP0, zP0 );
-      } else if ( (rN==rO+1) && (zN==zO+1) ) {
-        // seven face current
-        // old: top, right; m&m
-        // topright: bottom, left, p&p
-        // && 2ND STEP
-        // topright: top, right; m&p
-        // right-right: bottom, left; p&m
-        seven_face_current ( rO, zO, qu, deltar, deltaz, rP0, zP0 );
-      } else {
-      ten_face_current ( rO, zO, qu, deltar, deltaz, rP0, zP0 );
-      }
-    }
-/* BOTTOM LEFT *****************************************************************************/
-  } else if ( pt.oldpart==BOTTOM_LEFT ) {
-    if ( pt.newpart==TOP_LEFT ) {
-      iiiprintf ( ">> oldpart==BOTTOM_LEFT && newpart==TOP_LEFT\n" );
-      if ( (rN==rO) && (zN==zO) ) {
-        // seven face current 
-        // old: bottom, left; p&p
-        // bottomleft: top, right; m&m 
-        // && 2ND STEP
-        // old: top, left; p&m
-        // topleft: bottom, right; m&p
-        seven_face_current ( rO, zO, qu, deltar, deltaz, rP0, zP0 );
-      } else if ( (rN==rO) && (zN==zO-1) ) {
-        // four face current
-        // old: bottom ,left; p&p
-        // bottomleft: top, right, m&m
-        four_face_current ( rO, zO, deltar, deltaz, qu, rP0, zP0 );
-      } else if ( (rN==rO-1) && (zN==zO+1) ) {
-        // seven face current 
-        // old: bottom, left; p&p
-        // bottomleft: top, right; m&m 
-        // && 2ND STEP
-        // old: bottom, right; m&p
-        // bottomright: bottom, right; p&m
-        seven_face_current ( rO, zO, qu, deltar, deltaz, rP0, zP0 );
-      } else if ( (rN==rO-1) && (zN==zO-1) ) {
-        // seven face current 
-        // old: bottom, left; p&p
-        // bottomleft: top, right; m&m 
-        // && 2ND STEP
-        // bottomleft: top, left; m&p
-        // left-left: bottom, right; p&m
-        seven_face_current ( rO, zO, qu, deltar, deltaz, rP0, zP0 );
-      } else {
-      ten_face_current ( rO, zO, qu, deltar, deltaz, rP0, zP0 );
-      }
-    } else if ( pt.newpart==TOP_RIGHT ) {
-      iiiprintf ( ">> oldpart==BOTTOM_LEFT && newpart==TOP_RIGHT\n" );
-      if ( (rN==rO-1) && (zN==zO) ) {
-        // seven face current 
-        // old: bottom, left; p&p
-        // bottomleft: top, right; m&m 
-        // && 2ND STEP
-        // bottom: top, right; m&p
-        // bottomright: top, left; p&m
-        seven_face_current ( rO, zO, qu, deltar, deltaz, rP0, zP0 );
-      } else if ( (rN==rO) && (zN==zO-1) ) {
-        // seven face current
-        // old: bottom ,left; p&p
-        // bottomleft: top, right, m&m
-        // && 2ND STEP
-        // left: top, right; m&m
-        // top: bottom, left; p&p
-        seven_face_current ( rO, zO, qu, deltar, deltaz, rP0, zP0 );
-      } else if ( (rN==rO-1) && (zN==zO-1) ) {
-        // four face current
-        // old: bottom, left; p&p
-        // bottomleft: top, right; m&m 
-      } else {
-      ten_face_current ( rO, zO, qu, deltar, deltaz, rP0, zP0 );
-      }
-    } else if ( pt.newpart==BOTTOM_LEFT ) {
-      iiiprintf ( ">> oldpart==BOTTOM_LEFT && newpart==BOTTOM_LEFT\n" );
-      if ( (rN==rO-1) && (zN==zO) ) {
-        // seven face current 
-        // old: bottom, left; p&p
-        // bottomleft: top, right; m&m 
-        // && 2ND STEP
-        // bottom: bottom, left; p&p
-        // bottom-bottomleft: top, right; m&m
-        seven_face_current ( rO, zO, qu, deltar, deltaz, rP0, zP0 );
-      } else if ( (rN==rO+1) && (zN==zO-1) ) {
-        // seven face current
-        // old: bottom ,left; p&p
-        // bottomleft: top, right, m&m
-        // && 2ND STEP
-        // old: top, left; p&m
-        // topleft: bottom, right; m&p
-        seven_face_current ( rO, zO, qu, deltar, deltaz, rP0, zP0 );
-      } else if ( (rN==rO) && (zN==zO) ) {
-        // four face current
-        // old: bottom, left; p&p
-        // bottomleft: top, right; m&m 
-        four_face_current ( rO, zO, deltar, deltaz, qu, rP0, zP0 );
-      } else {
-      ten_face_current ( rO, zO, qu, deltar, deltaz, rP0, zP0 );
-      }
-    } else if ( pt.newpart==BOTTOM_RIGHT ) {
-      iiiprintf ( ">> oldpart==BOTTOM_LEFT && newpart==BOTTOM_RIGHT\n" );
-      if ( (rN==rO) && (zN==zO) ) {
-        // seven face current 
-        // old: bottom, left; p&p
-        // bottomleft: top, right; m&m 
-        // && 2ND STEP
-        // old: bottom, right; m&p
-        // bottomright: top, left; p&m
-        seven_face_current ( rO, zO, qu, deltar, deltaz, rP0, zP0 );
-      } else if ( (rN==rO+1) && (zN==zO-1) ) {
-        // sevem face current
-        // old: bottom ,left; p&p
-        // bottomleft: top, right, m&m
-        // && 2ND STEP
-        // old: top, left; p&m
-        // topleft: bottom, right; m&p
-        seven_face_current ( rO, zO, qu, deltar, deltaz, rP0, zP0 );
-      } else if ( (rN==rO) && (zN==zO) ) {
-        // seven face current
-        // old: bottom, left; p&p
-        // bottomleft: top, right; m&m 
-        // && 2ND STEP
-        // old: bottom, right; m&p
-        // bottomright: top, left; p&m 
-        seven_face_current ( rO, zO, qu, deltar, deltaz, rP0, zP0 );
-      } else if ( (rN==rO-1) && (zN==zO-1) ) {
-        // seven face current
-        // old: bottom, left; p&p
-        // bottomleft: top, right; m&m 
-        // && 2ND STEP
-        // bottomleft: bottom, right; m&p
-        // bottom-bottom: top, left; p&m 
-        seven_face_current ( rO, zO, qu, deltar, deltaz, rP0, zP0 );
-      } else {
-      ten_face_current ( rO, zO, qu, deltar, deltaz, rP0, zP0 );
-      }
-    }
-/* BOTTOM RIGHT ****************************************************************************/
-  } else if ( pt.oldpart==BOTTOM_RIGHT ) {
-    if ( pt.newpart==TOP_LEFT ) {
-      iiiprintf ( ">> oldpart==BOTTOM_RIGHT && newpart==TOP_LEFT\n" );
-      if ( (rN==rO-1) && (zN==zO+1) ) {
-        // four face current 
-        // old: bottom, right; m&p
-        // bottomright: top, left; p&m 
-        four_face_current ( rO, zO, deltar, deltaz, qu, rP0, zP0 );
-      } else if ( (rN==rO-1) && (zN==zO) ) {
-        // seven face current
-        // old: bottom, right; m&p
-        // bottomright: top, left, p&m
-        // && 2ND STEP
-        // bottom: top, left; p&m
-        // left-left: bottom, right; m&p
-        seven_face_current ( rO, zO, qu, deltar, deltaz, rP0, zP0 );
-      } else if ( (rN==rO) && (zN==zO+1) ) {
-        // seven face current
-        // old: bottom, right; m&p
-        // bottomright: top, left; p&m 
-        // && 2ND STEP
-        // right: top, left; p&m
-        // top-top: bottom, righ; m&p 
-        seven_face_current ( rO, zO, qu, deltar, deltaz, rP0, zP0 );
-      } else {
-      ten_face_current ( rO, zO, qu, deltar, deltaz, rP0, zP0 );
-      }
-    } else if ( pt.newpart==TOP_RIGHT ) {
-      iiiprintf ( ">> oldpart==BOTTOM_RIGHT && newpart==TOP_RIGHT\n" );
-      if ( (rN==rO-1) && (zN==zO) ) {
-        // four face current 
-        // old: bottom, right; m&p
-        // bottomright: top, left; p&m 
-        four_face_current ( rO, zO, deltar, deltaz, qu, rP0, zP0 );
-      } else if ( (rN==rO) && (zN==zO) ) {
-        // seven face current
-        // old: bottom, right; m&p
-        // bottomright: top, left, p&m
-        // && 2ND STEP
-        // old: top, right; m&m
-        // topright: bottom, left; p&p
-        seven_face_current ( rO, zO, qu, deltar, deltaz, rP0, zP0 );
-      } else if ( (rN==rO-1) && (zN==zO-1) ) {
-        // seven face current
-        // old: bottom, right; m&p
-        // bottomright: top, left; p&m 
-        // && 2ND STEP
-        // old: bottom, left; p&p
-        // bottomleft: top, right; m&m
-        seven_face_current ( rO, zO, qu, deltar, deltaz, rP0, zP0 );
-      } else if ( (rN==rO-1) && (zN==zO+1) ) {
-        // seven face current
-        // old: bottom, right; m&p
-        // bottomright: top, left; p&m 
-        // && 2ND STEP
-        // bottomright: top, right; m&m
-        // right-right: bottom, left; p&p
-        seven_face_current ( rO, zO, qu, deltar, deltaz, rP0, zP0 );
-      } else {
-      ten_face_current ( rO, zO, qu, deltar, deltaz, rP0, zP0 );
-      }
-    } else if ( pt.newpart==BOTTOM_LEFT ) {
-      iiiprintf ( ">> oldpart==BOTTOM_RIGHT && newpart==BOTTOM_LEFT\n" );
-      if ( (rN==rO) && (zN==zO+1) ) {
-        // four face current 
-        // old: bottom, right; m&p
-        // bottomright: top, left; p&m 
-        four_face_current ( rO, zO, deltar, deltaz, qu, rP0, zP0 );
-      } else if ( (rN==rO) && (zN==zO) ) {
-        // seven face current
-        // old: bottom, right; m&p
-        // bottomright: top, left, p&p
-        // && 2ND STEP
-        // old: bottom, left; p&m
-        // bottom-left: top, right; m&p
-        seven_face_current ( rO, zO, qu, deltar, deltaz, rP0, zP0 );
-      } else if ( (rN==rO-1) && (zN==zO+1) ) {
-        // seven face current
-        // old: bottom, right; m&p
-        // bottomright: top, left; p&m 
-        // && 2ND STEP
-        // bottom-right: bottom, left; p&p
-        // bottom-bottom: top, righ; m&m
-        seven_face_current ( rO, zO, qu, deltar, deltaz, rP0, zP0 );
-      } else if ( (rN==rO+1) && (zN==zO+1) ) {
-        // seven face current
-        // old: bottom, right; m&p
-        // bottomright: top, left; p&m 
-        // && 2ND STEP
-        // right: top, left; p&m
-        // top-top: bottom, right; m&p 
-        seven_face_current ( rO, zO, qu, deltar, deltaz, rP0, zP0 );
-      } else {
-      ten_face_current ( rO, zO, qu, deltar, deltaz, rP0, zP0 );
-      }
-    } else if ( pt.newpart==BOTTOM_RIGHT ) {
-      iiiprintf ( ">> oldpart==BOTTOM_RIGHT && newpart==BOTTOM_RIGHT\n" );
-      if ( (rN==rO) && (zN==zO) ) {
-        // four face current 
-        // old: bottom, right; m&p
-        // bottomright: top, left; p&m 
-        four_face_current ( rO, zO, deltar, deltaz, qu, rP0, zP0 );
-      } else if ( (rN==rO+1) && (zN==zO) ) {
-        // seven face current
-        // old: bottom, right; m&p
-        // bottomright: top, left, p&p
-        // && 2ND STEP
-        // right: top, left; p&m
-        // top-top: top, right; m&p
-        seven_face_current ( rO, zO, qu, deltar, deltaz, rP0, zP0 );
-      } else if ( (rN==rO) && (zN==zO-1) ) {
-        // seven face current
-        // old: bottom, right; m&p
-        // bottomright: top, left; p&m 
-        // && 2ND STEP
-        // bottom: top, left; p&m
-        // left-left: bottom, right; m&p
-        seven_face_current ( rO, zO, qu, deltar, deltaz, rP0, zP0 );
-      } else if ( (rN==rO-1) && (zN==zO) ) {
-        // seven face current
-        // old: bottom, right; m&p
-        // bottomright: top, left; p&m 
-        // && 2ND STEP
-        // bottom-right: bottom, left; m&p
-        // bottom-bottom: bottom, right; p&m 
-        seven_face_current ( rO, zO, qu, deltar, deltaz, rP0, zP0 );
-      } else {
-      ten_face_current ( rO, zO, qu, deltar, deltaz, rP0, zP0 );
-      }
-    }
-  }
-/* DONE *******************************************************************************************/
+    if ( 
+  /***************************************************************************/
+  /*********************** FOUR FACE CURRENT MOVES ***************************/ 
+  /*********************** OLDPART == TOP_LEFT *******************************/ 
+  /***************************************************************************/
+         ( (pt.oldpart==TOP_LEFT    ) && (
+         ( (pt.newpart==BOTTOM_LEFT ) && ( (rN==rO+1) && (zN==zO  ) ) ) ||
+         ( (pt.newpart==BOTTOM_RIGHT) && ( (rN==rO+1) && (zN==zO-1) ) ) ||
+         ( (pt.newpart==TOP_RIGHT   ) && ( (rN==rO  ) && (zN==zO-1) ) ) ||
+         ( (pt.newpart==TOP_LEFT    ) && ( (rN==rO  ) && (zN==zO  ) ) ) ) )
+  /***************************************************************************/
+  /*********************** OLDPART == TOP_RIGHT ******************************/ 
+  /***************************************************************************/
+     ||  ( (pt.oldpart==TOP_RIGHT   ) && (
+         ( (pt.newpart==BOTTOM_LEFT ) && ( (rN==rO+1) && (zN==zO+1) ) ) ||
+         ( (pt.newpart==BOTTOM_RIGHT) && ( (rN==rO+1) && (zN==zO  ) ) ) ||
+         ( (pt.newpart==TOP_RIGHT   ) && ( (rN==rO  ) && (zN==zO  ) ) ) ||
+         ( (pt.newpart==TOP_LEFT    ) && ( (rN==rO  ) && (zN==zO+1) ) ) ) )
+  /***************************************************************************/
+  /*********************** OLDPART == BOTTOM_LEFT ****************************/ 
+  /***************************************************************************/
+     ||  ( (pt.oldpart==BOTTOM_LEFT ) && (
+         ( (pt.newpart==BOTTOM_LEFT ) && ( (rN==rO  ) && (zN==zO  ) ) ) ||
+         ( (pt.newpart==TOP_RIGHT   ) && ( (rN==rO-1) && (zN==zO-1) ) ) ||
+         ( (pt.newpart==BOTTOM_RIGHT) && ( (rN==rO  ) && (zN==zO-1) ) ) ||
+         ( (pt.newpart==TOP_LEFT    ) && ( (rN==rO-1) && (zN==zO  ) ) ) ) )
+  /***************************************************************************/
+  /*********************** OLDPART == BOTTOM_RIGHT ***************************/ 
+  /***************************************************************************/
+     ||  ( (pt.oldpart==BOTTOM_RIGHT) && (
+         ( (pt.newpart==BOTTOM_LEFT ) && ( (rN==rO  ) && (zN==zO+1) ) ) ||
+         ( (pt.newpart==TOP_RIGHT   ) && ( (rN==rO-1) && (zN==zO  ) ) ) ||
+         ( (pt.newpart==BOTTOM_RIGHT) && ( (rN==rO  ) && (zN==zO  ) ) ) ||
+         ( (pt.newpart==TOP_LEFT    ) && ( (rN==rO-1) && (zN==zO+1) ) ) ) )
+       ) { four_face_current ( rO, zO, deltar, deltaz, qu, rP0, zP0 );
+  } else if ( 
+  /***************************************************************************/
+  /*********************** SEVEN FACE CURRENT MOVES **************************/ 
+  /************************* OLDPART == TOP_LEFT *****************************/ 
+  /***************************************************************************/
+         ( (pt.oldpart==TOP_LEFT    ) && (
+         ( (pt.newpart==BOTTOM_LEFT ) && ( ( (rN==rO  ) && (zN==zO  ) )   ||
+                                           ( (rN==rO+1) && (zN==zO+1) )   ||
+                                           ( (rN==rO+1) && (zN==zO-1) ) ) )
+      || ( (pt.newpart==TOP_RIGHT   ) && ( ( (rN==rO  ) && (zN==zO  ) )   ||
+                                           ( (rN==rO-1) && (zN==zO-1) )   ||
+                                           ( (rN==rO+1) && (zN==zO-1) ) ) )
+      || ( (pt.newpart==BOTTOM_RIGHT) && ( ( (rN==rO  ) && (zN==zO-1) )   ||
+                                           ( (rN==rO+1) && (zN==zO  ) ) ) ) 
+      || ( (pt.newpart==TOP_LEFT    ) && ( ( (rN==rO+1) && (zN==zO  ) )   ||
+                                           ( (rN==rO  ) && (zN==zO-1) )   ||
+                                           ( (rN==rO  ) && (zN==zO+1) )   ||
+                                           ( (rN==rO-1) && (zN==zO  ) ) ) ) ) )
+  /***************************************************************************/
+  /************************* OLDPART == TOP_RIGHT ****************************/ 
+  /***************************************************************************/
+     ||  ( (pt.oldpart==TOP_RIGHT   ) && (
+         ( (pt.newpart==BOTTOM_LEFT ) && ( ( (rN==rO  ) && (zN==zO+1) )   ||
+                                           ( (rN==rO+1) && (zN==zO  ) ) ) )
+      || ( (pt.newpart==TOP_RIGHT   ) && ( ( (rN==rO  ) && (zN==zO-1) )   ||
+                                           ( (rN==rO-1) && (zN==zO  ) )   ||
+                                           ( (rN==rO  ) && (zN==zO+1) )   ||
+                                           ( (rN==rO+1) && (zN==zO  ) ) ) )
+      || ( (pt.newpart==BOTTOM_RIGHT) && ( ( (rN==rO  ) && (zN==zO  ) )   ||
+                                           ( (rN==rO+1) && (zN==zO-1) )   ||
+                                           ( (rN==rO+1) && (zN==zO+1) ) ) )
+      || ( (pt.newpart==TOP_LEFT    ) && ( ( (rN==rO  ) && (zN==zO  ) )   ||
+                                           ( (rN==rO-1) && (zN==zO+1) )   ||
+                                           ( (rN==rO+1) && (zN==zO+1) ) ) ) ) )
+  /***************************************************************************/
+  /************************* OLDPART == BOTTOM_LEFT **************************/ 
+  /***************************************************************************/
+     ||  ( (pt.oldpart==BOTTOM_LEFT ) && (
+         ( (pt.newpart==BOTTOM_LEFT ) && ( ( (rN==rO-1) && (zN==zO  ) )   ||
+                                           ( (rN==rO  ) && (zN==zO-1) )   ||
+                                           ( (rN==rO  ) && (zN==zO+1) )   ||
+                                           ( (rN==rO+1) && (zN==zO  ) ) ) )
+      || ( (pt.newpart==TOP_RIGHT   ) && ( ( (rN==rO-1) && (zN==zO  ) )   ||
+                                           ( (rN==rO  ) && (zN==zO-1) ) ) )
+      || ( (pt.newpart==BOTTOM_RIGHT) && ( ( (rN==rO  ) && (zN==zO  ) )   ||
+                                           ( (rN==rO-1) && (zN==zO-1) )   ||
+                                           ( (rN==rO+1) && (zN==zO-1) ) ) ) 
+      || ( (pt.newpart==TOP_LEFT    ) && ( ( (rN==rO  ) && (zN==zO  ) )   ||
+                                           ( (rN==rO-1) && (zN==zO+1) )   ||
+                                           ( (rN==rO-1) && (zN==zO-1) ) ) ) ) )
+  /***************************************************************************/
+  /************************* OLDPART == BOTTOM_RIGHT **************************/ 
+  /***************************************************************************/
+     ||  ( (pt.oldpart==BOTTOM_RIGHT) && (
+         ( (pt.newpart==BOTTOM_LEFT ) && ( ( (rN==rO  ) && (zN==zO+1) )   ||
+                                           ( (rN==rO-1) && (zN==zO+1) )   ||
+                                           ( (rN==rO+1) && (zN==zO+1) ) ) )
+      || ( (pt.newpart==TOP_RIGHT   ) && ( ( (rN==rO-1) && (zN==zO-1) )   ||
+                                           ( (rN==rO-1) && (zN==zO+1) )   ||
+                                           ( (rN==rO  ) && (zN==zO  ) ) ) )
+      || ( (pt.newpart==BOTTOM_RIGHT) && ( ( (rN==rO  ) && (zN==zO+1) )   ||
+                                           ( (rN==rO  ) && (zN==zO-1) )   ||
+                                           ( (rN==rO+1) && (zN==zO  ) )   ||
+                                           ( (rN==rO-1) && (zN==zO  ) ) ) )
+      || ( (pt.newpart==TOP_LEFT    ) && ( ( (rN==rO  ) && (zN==zO+1) )   ||
+                                           ( (rN==rO-1) && (zN==zO  ) ) ) ) ) )
+       ) { seven_face_current ( rO, zO, qu, deltar, deltaz, rP0, zP0 );
+  /***************************************************************************/
+  /****************** EVERYTHING ELSE IS TEN FACE CURRENT MOVE ***************/
+  /***************************************************************************/
+  } else { ten_face_current ( rO, zO, qu, deltar, deltaz, rP0, zP0 );         }
 
+#endif
 }

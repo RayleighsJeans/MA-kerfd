@@ -62,7 +62,7 @@
 #include "signal_handling.h"
 #include "program_options.h"
 
-#define DEBUG_LEVEL DEBUG_ERROR  //DEBUG_INFO_3
+#define DEBUG_LEVEL DEBUG_ERROR
 #include "debug_printing.h"
 
 #include "density.h"
@@ -167,7 +167,6 @@ int main(int argc, char** argv) {
     // check if therer are some inf or nan's -> terminate the run
     feenableexcept(FE_INVALID | FE_OVERFLOW);
 #endif
-
 
     ProgramOptions program_options;
     int mpi_rank = 0;
@@ -361,7 +360,6 @@ int main(int argc, char** argv) {
     particle_tracing::init_particle_tracing();
 #endif
 #endif
-
 
     /*************************************************************************
       Main Loop

@@ -17,7 +17,6 @@
 #include "debug_printing.h"
 #include "fem_debug.h"
 
-
 	// this is the area weighted density deposition 
 	// as an predecessor for the finite element solver method using such area weights
 	// and through-cell-wall charge currents

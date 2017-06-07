@@ -12,7 +12,6 @@
 #include "fem_solver.h"
 #include "debug_printing.h"
 #include "fem_debug.h"
-  
 
 	//                       |r+1,z+1              + 
   //                       |                     +
