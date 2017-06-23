@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-
 #include <string>
 #include <iostream>
 #include <fstream>
@@ -14,11 +13,10 @@
 
 #include "fem_solver.h"
 #include "debug_printing.h"
-#include "fem_debug.h"
+//#define DEBUG_LEVEL DEBUG_ERROR
 
 void getcellparts(){
 #if USE_FEM_SOLVER
-	
 	//    |             $              |    
 	//    | r+1,z       $              | r+1,z+1
 	// ---|-------------$--------------|--------
@@ -38,7 +36,7 @@ void getcellparts(){
 	//    | r-1,z       $              | r-1,z+1
 	//    |             $              |
 
-	iprintf(">> get old & new cell parts\n");
+	iiiprintf(">> get old & new cell parts\n");
 	unsigned int		rO,zO;
 	double					r_old, z_old, r_new, z_new;
 	const char*			cellparts[] = {"TOP_LEFT", "TOP_RIGHT", "BOTTOM_LEFT", "BOTTOM_RIGHT"};
@@ -102,14 +100,11 @@ void getcellparts(){
 			} // rdim
 		} // except neutrals
 	} // layers
-
 #endif
 }
 
 void cellfacecurrent(){
 #if USE_FEM_SOLVER
-
-
 	getcellparts();
 	
 	double			 rpO, zpO, rpN, zpN, // old and new particle pos
@@ -119,19 +114,20 @@ void cellfacecurrent(){
 	unsigned int rO, zO, rN, zN;		 // old and new cell indices
 				double qu;								 // charge
 
-	const char*  cellparts[] = {"TOP_LEFT", "TOP_RIGHT", "BOTTOM_LEFT", "BOTTOM_RIGHT"};
+	const char*  cellparts[] = {"TOP_LEFT", "TOP_RIGHT",
+                              "BOTTOM_LEFT", "BOTTOM_RIGHT"};
 				 
 	for (auto& layer: global_grid.layers){ 
 
 		// all except neutrals
 		if ( layer.name=="neutrals" ){ } else { 
 
-			// charge defintion for layer species
-						 if ( layer.name=="electrons" ) { qu =-1.0;
-			} else if ( layer.name=="ions"			) { qu = 1.0; 
-			} else if ( layer.name=="nions"			) { qu =-1.0;
-			} else if ( layer.name=="ions2p"		) { qu = 2.0;
-			} 
+      // charge defintion for layer species
+             if ( layer.name=="electrons" ) { qu =-1.0;
+      } else if ( layer.name=="ions"			) { qu = 1.0; 
+      } else if ( layer.name=="nions"			) { qu =-1.0;
+      } else if ( layer.name=="ions2p"		) { qu = 2.0;
+      } 
 
 			// for layer r dim
 			for ( unsigned int rN = 0; rN < layer.r_dim; ++rN ){
@@ -226,7 +222,6 @@ void cellfacecurrent(){
 			} // rdim
 		} // except neutrals
 	} // layers
-
 #endif
 }
 
@@ -237,7 +232,6 @@ void decide_face_move ( Particle& pt,                     // particle handover
                         double qu,   										  // charge
                         double rP0, double zP0 ) {        // relative cell pos
 #if USE_FEM_SOLVER
-
     if ( 
   /***************************************************************************/
   /*********************** FOUR FACE CURRENT MOVES ***************************/ 
@@ -344,6 +338,5 @@ void decide_face_move ( Particle& pt,                     // particle handover
   /****************** EVERYTHING ELSE IS TEN FACE CURRENT MOVE ***************/
   /***************************************************************************/
   } else { ten_face_current ( rO, zO, qu, deltar, deltaz, rP0, zP0 );         }
-
 #endif
 }

@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-
 #include <string>
 #include <iostream>
 #include <fstream>
@@ -11,7 +10,7 @@
 
 #include "fem_solver.h"
 #include "debug_printing.h"
-#include "fem_debug.h"
+//#define DEBUG_LEVEL DEBUG_ERROR
 
 	//                       |r+1,z+1              + 
   //                       |                     +
@@ -42,11 +41,11 @@
 	// THE CENTER CELL IS THE DESTINATION OF FLIGHT 
 	// HENCE THE OLD CELL IS NEEDED FIRST
 
-
 void four_face_current ( unsigned int rC, unsigned int zC, // cell idices
 												 double Dr, double Dz,					   // delta r/z
 												 double qu,												 // charge
 												 double rP0, double zP0 ) {				 // relative cell pos
+#if USE_FEM_SOLVER
 
   GridLayer& grid_layer = global_grid.layers[ELECTRONS];
 
@@ -84,7 +83,7 @@ void four_face_current ( unsigned int rC, unsigned int zC, // cell idices
 				cell2.fem.current_left += qu * Dz * (0.5-rP0-0.5*Dr);
 			}
 			// diagnostic part for check of calculation
-      part = "BOTTOM_LEFT"; iiprintf(">> into four face: BOTTOM_LEFT ");
+      part = "BOTTOM_LEFT"; iiiprintf(">> into four face: BOTTOM_LEFT ");
 			current_hor1 = qu*Dz*(0.5+rP0+0.5*Dr); current_vert1 = qu*Dr*(0.5+zP0+0.5*Dz);
 			current_hor2 = qu*Dz*(0.5-rP0-0.5*Dr); current_vert2 = qu*Dr*(0.5-zP0-0.5*Dz);
 		} else {
@@ -103,7 +102,7 @@ void four_face_current ( unsigned int rC, unsigned int zC, // cell idices
 				cell2.fem.current_right += qu * Dz * (0.5-rP0-0.5*Dr);
 			}
 			// diagnostic part for check of calculation
-      part = "BOTTOM_RIGHT"; iiprintf(">> into four face: BOTTOM_RIGHT ");
+      part = "BOTTOM_RIGHT"; iiiprintf(">> into four face: BOTTOM_RIGHT ");
 			current_hor1 = qu*Dz*(0.5+rP0+0.5*Dr); current_vert1 = qu*Dr*(0.5-zP0-0.5*Dz);
 			current_hor2 = qu*Dz*(0.5-rP0-0.5*Dr); current_vert2 = qu*Dr*(0.5+zP0+0.5*Dz);
 		}
@@ -124,7 +123,7 @@ void four_face_current ( unsigned int rC, unsigned int zC, // cell idices
 				cell2.fem.current_left += qu * Dz * (0.5-rP0-0.5*Dr);
 			}
 			// diagnostic part for check of calculation
-      part = "TOP_LEFT"; iiprintf(">> into four face: TOP_LEFT ");
+      part = "TOP_LEFT"; iiiprintf(">> into four face: TOP_LEFT ");
 			current_hor1 = qu*Dz*(0.5-rP0-0.5*Dr); current_vert1 = qu*Dr*(0.5+zP0+0.5*Dz);
 			current_hor2 = qu*Dz*(0.5+rP0+0.5*Dr); current_vert2 = qu*Dr*(0.5-zP0-0.5*Dz);
 		} else {
@@ -143,12 +142,11 @@ void four_face_current ( unsigned int rC, unsigned int zC, // cell idices
 				cell2.fem.current_right += qu * Dz * (0.5+rP0+0.5*Dr);
 			}
 			// diagnostic part for check of calculation
-      part = "TOP_RIGHT"; iiprintf(">> into four face: TOP_RIGHT ");
+      part = "TOP_RIGHT"; iiiprintf(">> into four face: TOP_RIGHT ");
 			current_hor1 = qu*Dz*(0.5-rP0-0.5*Dr); current_vert1 = qu*Dr*(0.5-zP0-0.5*Dz);
 			current_hor2 = qu*Dz*(0.5+rP0+0.5*Dr); current_vert2 = qu*Dr*(0.5+zP0+0.5*Dz);
 	  }
   }
-
 		iiiprintf ( ">> four face current %s: cell indices rC=%i, zC=%i,"
 								" relavtive pos to next intersec r=%g, z=%g,"
 								" second cell used rC2=%i, rZ2=%i,"
@@ -158,5 +156,5 @@ void four_face_current ( unsigned int rC, unsigned int zC, // cell idices
 								part, rC, zC, rP0, zP0, rC2, zC2,
 								Dr, Dz, qu, current_vert1, current_hor1,
 								current_vert2, current_hor2 );
-
+#endif
 }

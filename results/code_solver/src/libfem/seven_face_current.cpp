@@ -11,7 +11,7 @@
 
 #include "fem_solver.h"
 #include "debug_printing.h"
-#include "fem_debug.h"
+//#define DEBUG_LEVEL DEBUG_ERROR
 
 	//              $              $              $              
 	//              $              $              $              
@@ -57,7 +57,7 @@ void seven_face_current ( unsigned int rO, unsigned int zO, // old cell indices
 													double qu,												// charge
 													double Dr, double Dz,							// delta r/z
 													double rP0, double zP0 ) {        // relative pos in cell
-
+#if USE_FEM_SOLVER
 	double	Dz1, Dr1,            // FIRST STEP 
 					rP1, zP1,            // after first step
 					Dz2, Dr2;            // SECOND STEP
@@ -109,5 +109,5 @@ void seven_face_current ( unsigned int rO, unsigned int zO, // old cell indices
 					            Dr2, Dz2,	                          // delta r/z
 					            qu, 			                          // charge
                       rP1, zP1 );                         // particle pos
-
+#endif
 }

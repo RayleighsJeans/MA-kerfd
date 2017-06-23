@@ -209,3 +209,72 @@ p '../trace.dat' u 2:3 with lines ls 1 title 'electrons', \
 	'../trace.dat' u 2:6 with lines ls 3 title 'neutrals'
 
 unset multiplot
+
+if (femsolver == 1) {
+  # FEM SOLVER 2D
+  ## input parameters
+  set terminal pngcairo size 3072,2048 enhanced font 'PT Serif,21';
+  set grid; unset key; set border linewidth 1.0; set tics nomirror out scale 0.5;
+  set xlabel 'z (cell)'; set ylabel 'r (cell)';
+  set xrange [0.0:sizez2d]; set yrange [0.0:nr];
+  load 'jet.pal';
+  
+  print ">> FEM DIAG 2D RELAXED <<<<<<<<<<<<<<<<<<<<";
+  set output 'figs/'.twodrunid.'.fem_figs-relaxed.png';
+  set multiplot layout 2,3; timecode='00000001';
+  ## FIRST LINE
+  # 1
+  set title 'area weighted charge '.timecode; 
+  plot '../out/aw_charge_'.timecode.'.dat' matrix with image;
+  # 2
+  set title 'cell face electric field relax'; 
+  plot '../out/fem_efield_relax.dat' matrix with image;
+  # 3
+  set title 'old electric field relax'; 
+  plot '../out/old_field_relax.dat' matrix with image;
+  ## SECOND LINE
+  # 4
+  set title 'cell face current '.timecode; 
+  plot '../out/cell_current_'.timecode.'.dat' matrix with image;
+  # 5
+  set title 'standard electric field relax'; 
+  plot '../out/stand_efield_relax.dat' matrix with image;
+  # 6
+  set title 'difference in electric field relax'; 
+  plot '../out/diff_fields_relax.dat' matrix with image;
+  unset multiplot;
+  reset;
+  
+  set terminal pngcairo size 3072,2048 enhanced font 'PT Serif,21';
+  set grid; unset key; set border linewidth 1.0; set tics nomirror out scale 0.5;
+  set xlabel 'z (cell)'; set ylabel 'r (cell)';
+  set xrange [0.0:sizez2d]; set yrange [0.0:nr];
+  load 'jet.pal';
+  
+  print ">> FEM DIAG 2D <<<<<<<<<<<<<<<<<<<<<<<<<<<<";
+  set output 'figs/'.twodrunid.'.fem_figs.'.time2d.'.png';
+  set multiplot layout 2,3;
+  ## FIRST LINE
+  # 1
+  set title 'area weighted charge '.time2d; 
+  plot '../out/aw_charge_'.time2d.'.dat' matrix with image;
+  # 2
+  set title 'cell face electric field relax'; 
+  plot '../out/fem_efield_'.time2d.'.dat' matrix with image;
+  # 3
+  set title 'old electric field '.time2d; 
+  plot '../out/old_field_'.time2d.'.dat' matrix with image;
+  ## SECOND LINE
+  # 4
+  set title 'cell face current '.time2d; 
+  plot '../out/cell_current_'.time2d.'.dat' matrix with image;
+  # 5
+  set title 'standard electric field '.time2d; 
+  plot '../out/stand_efield_'.time2d.'.dat' matrix with image;
+  # 6
+  set title 'difference in electric field '.time2d; 
+  plot '../out/diff_fields_'.time2d.'.dat' matrix with image;
+  unset multiplot;
+}
+
+reset;

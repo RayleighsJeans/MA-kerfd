@@ -46,6 +46,8 @@ void ten_face_current (	unsigned int rO, unsigned int zO, // old cell indices
 // ELECTRIC FIELD CALCULATIONS
 //**************************************************************
 
+void efield_matrix2fem ( Field E_grid[] );
+
 void efield_fem ( );
 
 void store_old_field ( );
@@ -56,11 +58,17 @@ void reset_fem ( ) ;
 // DIAGNOSTIC OUTPUT
 //**************************************************************
 
+void output_fem ( Field E_grid[] );
+
 void out_cellcurrent ( std::string dat_name );
 
 void out_area_density ( std::string dat_name );
 
-void out_efield ( std::string dat_name1, std::string dat_name2);
+void out_efield ( std::string dat_name1, std::string dat_name2,
+                  std::string dat_name3, Field E_grid[],
+                  std::string dat_name4 );
+
+std::vector<std::vector<double>> out_std_efield ( Field E_grid[], std::string dat_name2 );
 
 //**************************************************************
 // AREA CHARGE PARTS

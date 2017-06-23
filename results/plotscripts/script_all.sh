@@ -7,7 +7,7 @@ copyanything=1; if [ "0" = "$copyanything" ]; then echo "## WILL NOT COPY ANYTHI
 copyh5s=1; if [ "0" = "$copyh5s" ]; then echo "## WILL NOT COPY *.H5's"; fi
 makegifs=1; if [ "0" = "$makegifs" ]; then echo "## WILL NOT MAKE GIFS"; fi
 gnuplots=1; if [ "0" = "$gnuplots" ]; then echo "## WILL NOT MAKE GNUPLOTS"; fi
-onedstuff=1; if [ "0" = "$onedstuff" ]; then echo "## WILL NOT DO ANY ONED STUFF"; fi
+onedstuff=0; if [ "0" = "$onedstuff" ]; then echo "## WILL NOT DO ANY ONED STUFF"; fi
 
 ########################################################################
 ## MISCELLANEOUS #######################################################
@@ -332,10 +332,10 @@ while [ $j -lt "$timesize1d" ]; do
 done;
 GnuVarsVec+="'; "; echo "];" >> variables.tmp;
 
-echo "timesize2d=${timesize2d};"; GnuVarsVec+="timesize2d='${timesize2d}'; ";
-echo "timesize2d=${timesize2d};" >> variables.tmp; 
-echo "timesize1d=${timesize1d};"; GnuVarsVec+="timesize1d='${timesize1d}'; ";
-echo "timesize1d=${timesize1d};" >> variables.tmp; 
+echo "timesize2d=${timesize2d};";       GnuVarsVec+="timesize2d='${timesize2d}'; ";
+echo "timesize2d=${timesize2d};"       >> variables.tmp; 
+echo "timesize1d=${timesize1d};";       GnuVarsVec+="timesize1d='${timesize1d}'; ";
+echo "timesize1d=${timesize1d};"       >> variables.tmp; 
 
 ##############################################################################
 ## SUBSCRIPTS ################################################################

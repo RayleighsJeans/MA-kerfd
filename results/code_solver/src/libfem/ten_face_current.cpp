@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-
 #include <string>
 #include <iostream>
 #include <fstream>
@@ -11,7 +10,7 @@
 
 #include "fem_solver.h"
 #include "debug_printing.h"
-#include "fem_debug.h"
+//#define DEBUG_LEVEL DEBUG_ERROR
 
 	//              $              $              $              
 	//              $              $              $              
@@ -44,7 +43,7 @@ void ten_face_current (	unsigned int rO, unsigned int zO, // old cell indices
 												double qu,												// charge
 												double Dr, double Dz,   					// delta r/z
                         double rP0, double zP0 ) {        // relative particle pos in cell
-	
+#if USE_FEM_SOLVER
        // rP0, zP0,            // FIRST STEP
   double	Dz1, Dr1,            // deltas for step 
 					rP1, zP1,            // after first step
@@ -189,5 +188,5 @@ void ten_face_current (	unsigned int rO, unsigned int zO, // old cell indices
                       Dr3, Dz3,                                       // delta r/z
                       qu,  		 	                                      // charge
                       rP2, zP2 );                                     // relative pos in cell rO/zO
-
+#endif
 }

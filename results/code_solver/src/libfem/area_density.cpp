@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-
 #include <string>
 #include <iostream>
 #include <fstream>
@@ -15,7 +14,7 @@
 
 #include "fem_solver.h"
 #include "debug_printing.h"
-#include "fem_debug.h"
+//#define DEBUG_LEVEL DEBUG_ERROR
 
 	// this is the area weighted density deposition 
 	// as an predecessor for the finite element solver method using such area weights
@@ -64,7 +63,6 @@ void top_left ( double prtr, double prtz,
 		unsigned int rcenter, unsigned int zcenter,
 		double Q, unsigned int n_aver ){
 #if USE_FEM_SOLVER
-	
 	// using algorithm delta
 	double eta=(zcenter+2)-(prtz-0.5); 
 	double ksi=prtr+0.5-rcenter-1;       
@@ -116,7 +114,6 @@ void top_left ( double prtr, double prtz,
 		int rN=rcenter+1; int zN=zcenter;	Cell& north = layer.get_cell(rN,zN);
 		north.fem.area_weighted_charge+=Q*fi*(ksi*(1.0-eta));
 	}
-
 #endif
 }
 
@@ -124,7 +121,6 @@ void top_right (double prtr, double prtz,
 		unsigned int rcenter, unsigned int zcenter,
 		double Q, unsigned int n_aver  ){
 #if USE_FEM_SOLVER
-	
 	// using algorithm gamma
 	double eta=prtz+0.5-zcenter-1;
 	double ksi=prtr+0.5-rcenter-1;
@@ -176,7 +172,6 @@ void top_right (double prtr, double prtz,
 		int rN=rcenter+1; int zN=zcenter;	Cell& north = layer.get_cell(rN,zN);
 		north.fem.area_weighted_charge+=Q*fi*(ksi*(1.0-eta));
 	}
-
 #endif
 }
 
@@ -184,7 +179,6 @@ void bottom_left ( double prtr, double prtz,
 		unsigned int rcenter, unsigned int zcenter,
 		double Q, unsigned int n_aver  ){
 #if USE_FEM_SOLVER
-	
 	// using algorithm beta
 	double ksi=(rcenter-1+1)-(prtr-0.5);
 	double eta=zcenter-1+1-(prtz-0.5);
@@ -236,7 +230,6 @@ void bottom_left ( double prtr, double prtz,
 		int rS=rcenter-1; int zS=zcenter; Cell& south = layer.get_cell(rS,zS);
 		south.fem.area_weighted_charge+=Q*fi*(ksi*(1.0-eta));
 	}
-
 #endif
 }
 
@@ -244,7 +237,6 @@ void bottom_right ( double prtr, double prtz,
 		unsigned int rcenter, unsigned int zcenter,
 		double Q, unsigned int n_aver  ){
 #if USE_FEM_SOLVER
-	
 	// using algorithm alpha
 	double eta=prtz+0.5-zcenter-1;
 	double ksi=(rcenter-1+1)-(prtr-0.5);
@@ -295,25 +287,25 @@ void bottom_right ( double prtr, double prtz,
 		int rS=rcenter-1; int zS=zcenter;	Cell& south = layer.get_cell(rS,zS);
 		south.fem.area_weighted_charge+=Q*fi*(ksi*(1.0-eta));
 	}
-
 #endif
 }
 
 void area_density(){
 #if USE_FEM_SOLVER
-
-	double eta,ksi,fi,qu;
-	unsigned int rO,zO,n_aver;
+	double eta, ksi, fi, qu;
+         eta = ksi = fi = qu = qe = 0.0;
+	unsigned int rO, zO, n_aver;
+               rO = zO = n_aver = 0;
 
 	for (auto& layer: global_grid.layers){			//LAYERS, EXCEPT NEUTRALS
 		if ( layer.name=="neutrals" ){ } else {		//ONLY CHARGED PARTICLES
 			
-			//CHARGE IN UNITS OF E0
-			if ( layer.name=="electrons"		 ) { qu=-1.0;
-			} else if ( layer.name=="ions"	 ) { qu= 1.0; 
-			} else if ( layer.name=="nions"  ) { qu=-1.0;
-			} else if ( layer.name=="ions2p" ) { qu= 2.0;
-			}
+      // charge defintion for layer species
+             if ( layer.name=="electrons" ) { qu =-1.0;
+      } else if ( layer.name=="ions"			) { qu = 1.0; 
+      } else if ( layer.name=="nions"			) { qu =-1.0;
+      } else if ( layer.name=="ions2p"		) { qu = 2.0;
+      } 
 
 		  if ( layer.n_aver < 1) { layer.n_aver = 1; }
         n_aver = layer.n_aver;
@@ -362,6 +354,5 @@ void area_density(){
 				} // rdim
 			} // except neutrals
 		} // layers
-
 #endif
 }
