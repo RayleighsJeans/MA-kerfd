@@ -15,28 +15,28 @@
 #include "debug_printing.h"
 //#define DEBUG_LEVEL DEBUG_ERROR
 
-void getcellparts(){
-#if USE_FEM_SOLVER
-	//    |             $              |    
-	//    | r+1,z       $              | r+1,z+1
-	// ---|-------------$--------------|--------
-	//		|             $              |
-	//    |             $              |
-	//    | top_left    $    top_right |
-	//    |             $              |
-	//    |             $              |
-	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	//    |             $              |
-	//    |             $              |
-	//    |             $              |
-	//    |bottom_left  $ bottom_right |
-	//    |             $              |
-	//    | r,z         $              | r,z+1
-	// ---|-------------$--------------|-------
-	//    | r-1,z       $              | r-1,z+1
-	//    |             $              |
+  //    |             $              |    
+  //    | r+1,z       $              | r+1,z+1
+  // ---|-------------$--------------|--------
+  //		|             $              |
+  //    |             $              |
+  //    | top_left    $    top_right |
+  //    |             $              |
+  //    |             $              |
+  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  //    |             $              |
+  //    |             $              |
+  //    |             $              |
+  //    |bottom_left  $ bottom_right |
+  //    |             $              |
+  //    | r,z         $              | r,z+1
+  // ---|-------------$--------------|-------
+  //    | r-1,z       $              | r-1,z+1
+  //    |             $              |
 
-	iiiprintf(">> get old & new cell parts\n");
+void getcellparts ( ) {
+#if USE_FEM_SOLVER
+
 	unsigned int		rO,zO;
 	double					r_old, z_old, r_new, z_new;
 	const char*			cellparts[] = {"TOP_LEFT", "TOP_RIGHT", "BOTTOM_LEFT", "BOTTOM_RIGHT"};
@@ -51,10 +51,9 @@ void getcellparts(){
 
 						r_old = pt.r_old; z_old = pt.z_old;
 						r_new = pt.r; z_new = pt.z;
+            rO = (int)r_old; zO = (int)z_old;
 
 						//get old cell part
-						//cell indices of old part
-						rO = (int)r_old; zO = (int)z_old;
 						if ( r_old < rO+0.5 ){ 
 							if ( z_old < zO+0.5 ){
 								pt.oldpart=BOTTOM_LEFT;
@@ -100,11 +99,13 @@ void getcellparts(){
 			} // rdim
 		} // except neutrals
 	} // layers
+
 #endif
 }
 
-void cellfacecurrent(){
+void cellfacecurrent ( ) {
 #if USE_FEM_SOLVER
+
 	getcellparts();
 	
 	double			 rpO, zpO, rpN, zpN, // old and new particle pos
@@ -131,24 +132,16 @@ void cellfacecurrent(){
 
 			// for layer r dim
 			for ( unsigned int rN = 0; rN < layer.r_dim; ++rN ){
-
-				// for layer z dim
 				for ( unsigned int zN = 0; zN < layer.z_dim; ++zN ){
-
-					// get corresponding cell
 					Cell& newcell = layer.get_cell(rN,zN);
-
-					// decide on all particles in cell
 					for ( unsigned int ptid = 0; ptid < newcell.size(); ++ptid ){
-
-						//cet particle with ptid
 						Particle& pt=newcell.particles[ptid];
 
 						// old position
 						rO = (int)pt.r_old; rpO = pt.r_old;
 						zO = (int)pt.z_old; zpO = pt.z_old;
 			
-						// newp position
+						// new position
 						rpN = pt.r;
 						zpN = pt.z;
 
@@ -168,7 +161,7 @@ void cellfacecurrent(){
           	
             // if more than one cell move
           	if ( sqrt(SQU(deltar)+SQU(deltaz)) >= 1.0 ) {
-          		iprintf ( ">> flying free path=%g too big\n",
+          		iprintf ( ">> free path=%g too big\n",
 													sqrt(SQU(deltar)+SQU(deltaz)) );
 							break;
           	}
@@ -188,7 +181,6 @@ void cellfacecurrent(){
           		zP0 = zpO - (zO+1);
           	}
 
-						// old cell
 						Cell& oldcell=layer.get_cell(rO,zO);
             
             #if 0
@@ -222,6 +214,7 @@ void cellfacecurrent(){
 			} // rdim
 		} // except neutrals
 	} // layers
+
 #endif
 }
 
@@ -232,7 +225,8 @@ void decide_face_move ( Particle& pt,                     // particle handover
                         double qu,   										  // charge
                         double rP0, double zP0 ) {        // relative cell pos
 #if USE_FEM_SOLVER
-    if ( 
+
+      if ( 
   /***************************************************************************/
   /*********************** FOUR FACE CURRENT MOVES ***************************/ 
   /*********************** OLDPART == TOP_LEFT *******************************/ 
@@ -338,5 +332,6 @@ void decide_face_move ( Particle& pt,                     // particle handover
   /****************** EVERYTHING ELSE IS TEN FACE CURRENT MOVE ***************/
   /***************************************************************************/
   } else { ten_face_current ( rO, zO, qu, deltar, deltaz, rP0, zP0 );         }
+
 #endif
 }

@@ -147,6 +147,7 @@ void four_face_current ( unsigned int rC, unsigned int zC, // cell idices
 			current_hor2 = qu*Dz*(0.5+rP0+0.5*Dr); current_vert2 = qu*Dr*(0.5+zP0+0.5*Dz);
 	  }
   }
+
 		iiiprintf ( ">> four face current %s: cell indices rC=%i, zC=%i,"
 								" relavtive pos to next intersec r=%g, z=%g,"
 								" second cell used rC2=%i, rZ2=%i,"
@@ -156,5 +157,6 @@ void four_face_current ( unsigned int rC, unsigned int zC, // cell idices
 								part, rC, zC, rP0, zP0, rC2, zC2,
 								Dr, Dz, qu, current_vert1, current_hor1,
 								current_vert2, current_hor2 );
+
 #endif
 }

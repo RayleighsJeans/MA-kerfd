@@ -16,7 +16,7 @@
 
 #include "fem_solver.h"
 #include "debug_printing.h"
-//#define DEBUG_LEVEL DEBUG_ERROR
+#define DEBUG_LEVEL DEBUG_INFO_3
 
 void output_fem ( Field E_grid[] ) {
   const int MAX_CHAR_SIZE = 256;
@@ -31,13 +31,12 @@ void output_fem ( Field E_grid[] ) {
     return storage; 
   };
 
-  out_area_density  ( get_full_path("aw_charge_") );
-  out_cellcurrent   ( get_full_path("cell_current_") );
-  out_efield        ( get_full_path("fem_efield_"),
-                      get_full_path("stand_efield_"),
-                      get_full_path("diff_fields_"),
-                      E_grid,
-                      get_full_path("old_field_") );
+  out_area_density    ( get_full_path("aw_charge_") );
+  out_cellcurrent     ( get_full_path("cell_current_") );
+  out_efield          ( get_full_path("fem_efield_"),
+                        get_full_path("stand_efield_"),
+                        get_full_path("diff_fields_"), E_grid,
+                        get_full_path("old_field_") );
   out_vector_femfield ( get_full_path("vector_femfield_") );
   out_vector_stdfield ( E_grid, get_full_path("vector_stdfield_") );
 
@@ -225,6 +224,8 @@ void out_efield ( std::string dat_name1,
 }
 
 std::vector<std::vector<double>> out_std_efield ( Field E_grid[], std::string dat_name2 ) {
+#if USE_FEM_SOLVER
+
   FILE  *file2 = fopen(dat_name2.c_str(), "w");
   if ( !file2 )
   { printf("could not open %s\n",dat_name2.c_str()); 
@@ -283,7 +284,7 @@ std::vector<std::vector<double>> out_std_efield ( Field E_grid[], std::string da
       stdfield[r][z] = ( right_stdfield[r][z] + left_stdfield[r][z] 
                         + top_stdfield[r][z] + bottom_stdfield[r][z] );
 
-      iiiprintf( ">> matrix2fem efield: r=%i/%i, z=%i/%i; "
+      iiiprintf( ">> out stdfield: r=%i/%i, z=%i/%i; "
                  "stdfield[r][z]=%g, top_stdfield=%g,"
                  " bottom_stdfield=%g, left_stdfield=%g, right_stdfield=%g; "
                  "topleftgrid.r=%g, toprightgrid.r=%g, bottomleftgrid.r=%g, "
@@ -302,19 +303,90 @@ std::vector<std::vector<double>> out_std_efield ( Field E_grid[], std::string da
   }
   fclose ( file2 );
   return stdfield;
+
+#endif
 }
 
 void out_vector_femfield ( std::string dat_name ) {
+#if USE_FEM_SOLVER
+  int mpi_rank=get_rank();
+  if (mpi_rank==0) {
 
+    FILE  *file = fopen(dat_name.c_str(), "w");
+    if ( !file )
+    { printf("could not open %s\n",dat_name.c_str());
+      exit(EXIT_FAILURE); }
+    
+    GridLayer& layer=global_grid.layers[ELECTRONS];
+    unsigned int rmax, zmax;
+    rmax = layer.r_dim-1;
+    zmax = layer.z_dim-1;
+    double max_norm = 0.0;
+    
+    /*************** normal ****************************/
+    std::vector<std::vector<double>> f_femfield = {{0.0}};
+    /************ cell face field arrays ***************/
+    std::vector<std::vector<double>> z_femfield = {{0.0}};
+    std::vector<std::vector<double>> r_femfield = {{0.0}};
+    
+    /*************** normal ****************************/
+    f_femfield.resize(layer.r_dim);
+    /************ cell face field arrays ***************/
+    z_femfield.resize(layer.r_dim);
+    r_femfield.resize(layer.r_dim);
+    
+    for (unsigned int r = 0; r <= rmax; ++r) {
+    
+      /*************** normal **************************/
+      f_femfield[r].resize(layer.z_dim);
+      /************ cell face field arrays *************/
+      z_femfield[r].resize(layer.z_dim);
+      r_femfield[r].resize(layer.z_dim);
+    
+      for (unsigned int z = 0; z <= zmax; ++z) {
+        Cell& cell = layer.get_cell(r,z);
+        
+        /************ r and z component from cell fem **/
+        r_femfield[r][z] =  cell.fem.efield_left + cell.fem.efield_right;
+        z_femfield[r][z] =  cell.fem.efield_top  + cell.fem.efield_bottom;
+        /************ summarization ********************/
+        f_femfield[r][z] = sqrt(SQU(r_femfield[r][z]) +
+                                SQU(z_femfield[r][z]));
+      
+        /*********** need maximum to calculate norm ****/
+        /*********** for arrows length/color ***********/
+        max_norm = std::max( max_norm, f_femfield[r][z] );
+        
+        iiiprintf( ">> vector femfield projection output;"
+                   " r=%i/%i, z=%i/%i; r_femfield=%g, z_femfield=%g,"
+                   " f_femfield=%g, max_norm=%g\n",
+                   r, rmax, z, zmax, r_femfield[r][z], z_femfield[r][z],
+                   f_femfield[r][z], max_norm );
+        
+      }
+    }
+    
+    for (unsigned int r = 0; r <= rmax; ++r) {
+      for (unsigned int z = 0; z <= zmax; ++z) {
+        fprintf ( file, " %i %i %.5e %.5e %.5e \n",
+                  z, r,                                                 // x&y
+                  z_femfield[r][z]/max_norm, r_femfield[r][z]/max_norm, // dx&dy
+                  f_femfield[r][z]/max_norm );                          // color, e.g. strength
+      }
+    }   fclose ( file );
+  
+  }
+#endif
 }
 
 void out_vector_stdfield ( Field E_grid[], std::string dat_name ) {
 #if USE_FEM_SOLVER
   int mpi_rank=get_rank();
   if (mpi_rank==0) {
+
     FILE  *file = fopen(dat_name.c_str(), "w");
     if ( !file )
-    { printf("could not open %s\n",dat_name.c_str()); i
+    { printf("could not open %s\n",dat_name.c_str());
       exit(EXIT_FAILURE); }
     
     GridLayer& layer=global_grid.layers[ELECTRONS];
@@ -365,20 +437,25 @@ void out_vector_stdfield ( Field E_grid[], std::string dat_name ) {
         f_stdfield[r][z] = sqrt(SQU(r_stdfield[r][z]) +
                                 SQU(z_stdfield[r][z]));
       
-        /*********** need maximum to calculate norm ****/
         /*********** for arrows length/color ***********/
         max_norm = std::max( max_norm, f_stdfield[r][z] );
+
+        iiiprintf( ">> vector stdfield projection output;"
+                   " r=%i/%i, z=%i/%i; r_stdfield=%g, z_stdfield=%g,"
+                   " f_stdfield=%g, max_norm=%g\n",
+                   r, rmax, z, zmax, r_stdfield[r][z], z_stdfield[r][z],
+                   f_stdfield[r][z], max_norm );
         
       }
     }
     
     for (unsigned int r = 0; r <= rmax; ++r) {
       for (unsigned int z = 0; z <= zmax; ++z) {
-        fprintf ( file, " % .5e % .5e % .5e % .5e % .5e ",
+        fprintf ( file, " %i %i %.5e %.5e %.5e \n",
                   z, r,                                                 // x&y
                   z_stdfield[r][z]/max_norm, r_stdfield[r][z]/max_norm, // dx&dy
-                  f_stdfield[r][z] );                                   // color, e.g. strength
-      } fprintf ( file, "\n" );
+                  f_stdfield[r][z]/max_norm );                          // color, e.g. strength
+      }
     }   fclose ( file );
 
   }

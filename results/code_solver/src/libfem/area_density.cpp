@@ -58,7 +58,6 @@
 	//
 	// store area weighted charge in cell as diagnostic property
 
-
 void top_left ( double prtr, double prtz,
 		unsigned int rcenter, unsigned int zcenter,
 		double Q, unsigned int n_aver ){
@@ -297,8 +296,8 @@ void area_density(){
 	unsigned int rO, zO, n_aver;
                rO = zO = n_aver = 0;
 
-	for (auto& layer: global_grid.layers){			//LAYERS, EXCEPT NEUTRALS
-		if ( layer.name=="neutrals" ){ } else {		//ONLY CHARGED PARTICLES
+	for (auto& layer: global_grid.layers){
+		if ( layer.name=="neutrals" ){ } else {
 			
       // charge defintion for layer species
              if ( layer.name=="electrons" ) { qu =-1.0;

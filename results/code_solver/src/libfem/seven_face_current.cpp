@@ -58,6 +58,7 @@ void seven_face_current ( unsigned int rO, unsigned int zO, // old cell indices
 													double Dr, double Dz,							// delta r/z
 													double rP0, double zP0 ) {        // relative pos in cell
 #if USE_FEM_SOLVER
+
 	double	Dz1, Dr1,            // FIRST STEP 
 					rP1, zP1,            // after first step
 					Dz2, Dr2;            // SECOND STEP
@@ -65,7 +66,8 @@ void seven_face_current ( unsigned int rO, unsigned int zO, // old cell indices
 	// if really is seven face move
 	if ( ( (rP0 + Dr > 0.5) || (rP0 + Dr < -.5) ) &&
 			 ( (zP0 + Dz > 0.5) || (zP0 + Dz < -.5) ) ) {
-		waprintf(">> detected move over 2 inner cell boundaries; discarding seven face move for ten face ...\n");
+		waprintf(">> detected move over 2 inner cell boundaries;"
+             " discarding seven face move for ten face ...\n");
     ten_face_current ( rO, zO, qu, Dr, Dz, rP0, zP0 );
 		return;
 	}
@@ -109,5 +111,6 @@ void seven_face_current ( unsigned int rO, unsigned int zO, // old cell indices
 					            Dr2, Dz2,	                          // delta r/z
 					            qu, 			                          // charge
                       rP1, zP1 );                         // particle pos
+
 #endif
 }

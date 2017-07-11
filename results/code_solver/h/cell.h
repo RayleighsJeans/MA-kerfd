@@ -1,11 +1,12 @@
 #pragma once
 
-#include "pic.h"
-#include "var_diag.h"
 #include <stdlib.h>
 #include <vector>
 #include <array>
 #include <iostream>
+
+#include "pic.h"
+#include "var_diag.h"
 
 // TODO this might be better in the wiki
 // This approach is used to keep the particles 
@@ -206,7 +207,34 @@ struct Diagnostic{
       }
 #endif
  }
+};
 
+// ernumeration of cell faces
+//
+//(r+1,z)                (r+1,z+1)
+//topleft                 topright  
+//  **************************
+//  *           1            *   
+//  *                        * 
+//  *                        * 
+//  *                        * 
+//  * 0                    2 *
+//  *                        *
+//  *                        *
+//  *                        *
+//  *           3            *
+//  **************************
+//bottomleft             bottomright
+// (r,z)                    (r,z+1)
+//
+
+struct BoundarySegment{
+#if USE_FEM_SOLVER
+  // boundary conditions
+  std::vector<std::string> type = {"", "", "", "" };
+  std::vector<double> pot = { -1, -1, -1, -1 };
+  std::vector<double> efield = { -1, -1, -1, -1 };
+#endif
 };
 
 struct fem_diag{
@@ -228,10 +256,12 @@ struct fem_diag{
   double oldfield_bottom;
   double oldfield_right;
   double oldfield_left;
+  // epsilon vector of cell
+  std::vector<int> epsilon = { 1, 1, 1, 1 }; 
 #endif
 
   void clear_fem (){
-  #if USE_FEM_SOLVER
+#if USE_FEM_SOLVER
     // area charge
     area_weighted_charge = 0.0;
     // current
@@ -244,7 +274,7 @@ struct fem_diag{
     efield_bottom = 0.0;
     efield_left = 0.0;
     efield_right = 0.0;
-  #endif
+#endif
   }
   
   void clear_oldfield(){
@@ -257,6 +287,8 @@ struct fem_diag{
   #endif
   }
 
+  BoundarySegment boundary;
+
 };
 
 //Struct which contains boundary properties of the eight Neighbourcells
@@ -264,7 +296,9 @@ struct NeighbourCellProps {
   //direction of bounds is starting from the upper neighbour and then counter clockwise
   std::vector<int> bounds;  
   //if bound is either REFLECTON or REEMISSION ior SEE save normal vectors 
-  std::array<std::array<double,2>,8> normals = {{{{0,0}},{{0,0}},{{0,0}},{{0,0}},{{0,0}},{{0,0}},{{0,0}},{{0,0}}}};
+  std::array<std::array<double,2>,8> 
+      normals = {{{{0,0}},{{0,0}},{{0,0}},{{0,0}},
+                  {{0,0}},{{0,0}},{{0,0}},{{0,0}}}};
   // 1---0---7
   // |	     |
   // 2       6
@@ -360,7 +394,6 @@ struct Cell {
   // needed for book keeping
   size_t end_particles;
   bool push_mode;
-
 
   fem_diag fem;
   
