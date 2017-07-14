@@ -1,7 +1,4 @@
 % ************************************************************************** %
-% ************************************************************************** %
-
-% ************************************************************************** %
 % Copyright (C)  2016  Philipp Hacker.																			 %
 % Permission is granted to copy, distribute and/or modify this document			 %
 % under the terms of the GNU Free Documentation License, Version 1.3				 %
@@ -24,36 +21,42 @@
 % Vel (vel@latextemplates.com)
 
 % This template is based on a template by:
-% Steve Gunn (http://users.ecs.soton.ac.uk/srg/softwaretools/document/templates/)
+% Steve Gunn (http://users.ecs.soton.ac.uk/srg/
+%						  softwaretools/document/templates/)
 % Sunil Patel (http://www.sunilpatel.co.uk/thesis-template/)
 
 % ************************************************************************** %
 % ************************************************************************** %
 
-% TODO: START OF TEX
+% START OF TEXi
 \documentclass[
-	10pt, % The default document font size, options: 10pt, 11pt, 12pt
-	twoside, % Two side (alternating margins) for binding by default, uncomment to switch to one side
-	chapterinoneline,% Have the chapter title next to the number in one single line
-	onehalfspacing, % Single line spacing, alternatives: onehalfspacing or doublespacing
-	nolistspacing, % If the document is onehalfspacing or doublespacing, uncomment this to set spacing in lists to single
-	%liststotoc, % Uncomment to add the list of figures/tables/etc to the table of contents
-	%toctotoc, % Uncomment to add the main table of contents to the table of contents
+	10pt,
+	twoside,
+	chapterinoneline,
+	onehalfspacing, % alternatives: onehalfspacing or doublespacing
+	nolistspacing, % If the document is onehalfspacing or doublespacing,
+								 % uncomment this to set spacing in lists to single
+	%liststotoc, % Uncomment to add the list of figures/tables/etc to toc
+	%toctotoc, % Uncomment to add the main table of contents to the toc
 	parskip, % Uncomment to add space between paragraphs
 	headsepline, % Uncomment to get a line under the header
 	english,
 ]{MastersDoctoralThesis} % The class file specifying the document structure
 
+% ************************************************************************** %
+% CORE USEPACKAGE HERE
 \usepackage{lmodern}
-% TODO: Schriftart
-
 \usepackage[utf8]{inputenc} % Required for inputting international characters
 \usepackage[T1]{fontenc} % Output font encoding for international characters
-\usepackage[autostyle=true]{csquotes} % Required to generate language-dependent quotes in the bibliography
-\usepackage[backend=bibtex,style=authoryear,natbib=true]{biblatex} % Use the bibtex backend with the authoryear citation style (which resembles APA)
+\usepackage[autostyle=true]{csquotes}
+% Required to generate language-dependent quotes in the bibliography
+\usepackage[backend=bibtex,style=authoryear,natbib=true]{biblatex}
+% Use the bibtex backend with the authoryear citation style
 \addbibresource{master_thesis.bib} % The filename of the bibliography
+% ************************************************************************** %
 
-% TODO: MARGIN
+% ************************************************************************** %
+% MARGIN
 \geometry{%
 	% showframe, % show how the type block is set on the page
 	paper=a4paper, % Change to letterpaper for US letter
@@ -62,27 +65,46 @@
 	bindingoffset=1.5cm, % Binding offset
 	top=1.5cm, % Top margin
 	bottom=1.5cm } % Bottom margin
+% ************************************************************************** %
 
-% TODO: THESIS INFORMATION
+% ************************************************************************** %
+% THESIS INFORMATION
 \date{\today} 
-\thesistitle{Kinetic\ effects\ in\ RF\ discharges} % Your thesis title, this is used in the title and abstract, print it elsewhere with \ttitle
-\supervisor{Prof.\ Dr.\ Ralf\ Schneider} % Your supervisor's name, this is used in the title page, print it elsewhere with \supname
-\examiner{Prof.\ Dr.\ Jürgen\ Meichsner} % Your examiner's name, this is not currently used anywhere in the template, print it elsewhere with \examname
-\degree{Master\ of\ Science\ -\ Physics} % Your degree name, this is used in the title page and abstract, print it elsewhere with \degreename
-\author{Philipp\ Hacker} % Your name, this is used in the title page and abstract, print it elsewhere with \authorname
-\addresses{Karl-Liebknecht-Ring\ 13,\ 17491\ Greifswald} % Your address, this is not currently used anywhere in the template, print it elsewhere with \addressname
-\subject{Physics} % Your subject area, this is not currently used anywhere in the template, print it elsewhere with \subjectname
-\keywords{plasma,\ discharge,\ kinetic,\ effect,\ physics,\ master} % Keywords for your thesis, this is not currently used anywhere in the template, print it elsewhere with \keywordnames
-\university{\href{https://www.uni-greifswald.de/en/}{Ernst-Moritz-Arndt\ University\ of\ Greifswald}} % Your university's name and URL, this is used in the title page and abstract, print it elsewhere with \univname
-\department{\href{https://physik.uni-greifswald.de/en/}{Institute\ of\ Physics}}% Your department's name and URL, this is used in the title page and abstract, print it elsewhere with \deptname
-\group{\href{https://physik.uni-greifswald.de/ag-schneider/}{Computational\ Sciences}} % Your research group's name and URL, this is used in the title page, print it elsewhere with \groupname
-\faculty{\href{https://mnf.uni-greifswald.de/en/faculty/}{Faculty\ of\ Mathematics\ and\ Natural\ Sciences}} % Your faculty's name and URL, this is used in the title page and abstract, print it elsewhere with \facname
+\thesistitle{Kinetic\ effects\ in\ RF\ discharges}
+% Your thesis title, this is used in the title and abstract
+\supervisor{Prof.\ Dr.\ Ralf\ Schneider}
+% Your supervisor's name, this is used in the title page
+\examiner{Prof.\ Dr.\ Jürgen\ Meichsner}
+% Your examiner's name, this is not currently used anywhere in the template
+\degree{Master\ of\ Science\ -\ Physics}
+% Your degree name, this is used in the title page and abstract
+\author{Philipp\ Hacker}
+% Your name, this is used in the title page and abstract
+\addresses{Karl-Liebknecht-Ring\ 13,\ 17491\ Greifswald}
+% Your address, this is not currently used anywhere in the template
+\subject{Physics}
+% Your subject area, this is not currently used anywhere in the template
+\keywords{plasma,\ discharge,\ kinetic,\ effect,\ physics,\ master}
+\university{\href{https://www.uni-greifswald.de/en/}%
+					 {Ernst-Moritz-Arndt\ University\ of\ Greifswald}}
+% Your university's name and URL, this is used in the title page and abstract
+\department{\href{https://physik.uni-greifswald.de/en/}%
+					 {Institute\ of\ Physics}}
+% Your department's name and URL, this is used in the title page and abstract
+\group{\href{https://physik.uni-greifswald.de/ag-schneider/}%
+			{Computational\ Sciences}}
+% Your research group's name and URL, this is used in the title page
+\faculty{\href{https://mnf.uni-greifswald.de/en/faculty/}%
+				{Faculty\ of\ Mathematics\ and\ Natural\ Sciences}}
+% Your faculty's name and URL, this is used in the title page and abstract
+% ************************************************************************** %
 
 \hypersetup{pdftitle=\ttitle} % Set the PDF's title to your title
 \hypersetup{pdfauthor=\authorname} % Set the PDF's author to your name
 \hypersetup{pdfkeywords=\keywordnames} % Set the PDF's keywords to your keywords
 
-% TODO: PACKAGES
+% ************************************************************************** %
+% PACKAGES
 \usepackage{amsmath,mathtools}
 \usepackage{amssymb}
 \usepackage{units}
@@ -97,9 +119,8 @@
 \usepackage{sectsty}
 \usepackage{nomencl}
 \usepackage{svg}
+% ************************************************************************** %
 
-% Used to hide "Chapter 1" 
-% before chapter title on page
 \usepackage{titlesec}
 \titleformat{\chapter}[display]
 	{\normalfont\huge\bfseries}{}{0pt}{\Huge}
@@ -131,14 +152,19 @@
 
 \setlength{\parindent}{0pt}
 \setlength{\nomlabelwidth}{.20\hsize}
+\setcounter{chapter}{-1}
 
-% TODO: DOCUMENT START
+% DOCUMENT START
 \begin{document}
 
-\frontmatter % Use roman page numbering style (i, ii, iii, iv...) for the pre-content pages
-\pagestyle{plain} % Default to the plain heading style until the thesis style is called for the body content
+	\frontmatter
+  % Use roman page numbering style (i, ii, iii, iv...)
+	% for the pre-content pages
+	\pagestyle{plain}
+  % Default to the plain heading style until the thesis style
+	% is called for the body content
 
-% TODO: TITLEPAGE
+% TITLEPAGE
 \begin{titlepage}
 	\begin{center}
 		{\scshape\LARGE \univname\par}\vspace{1.5cm} % University name
@@ -176,47 +202,43 @@
 \end{titlepage}
 
 % ************************************************************************** %
-% TODO: INSERT ABSTRACT
-	% \begin{abstract}
-	%
-	%	%	\addchaptertocentry{\abstractname} % Add the abstract to the table of contents
-	%	%	The Thesis Abstract is written here (and usually kept to just this page). The page is kept centered vertically so can expand into the blank space above the title too\ldots
-	%
-	% \end{abstract}
-% ************************************************************************** %
-
-% ************************************************************************** %
-% TODO: ACKNOWLEDGMENTS
+% ACKNOWLEDGMENTS
 	% \begin{acknowledgements}
 	%
-	%	%	\addchaptertocentry{\acknowledgementname} % Add the acknowledgements to the table of contents
-	%	%	The acknowledgments and the people to thank go here, don't forget to include your project advisor\ldots
+	%	%	\addchaptertocentry{\acknowledgementname}
+	%	%	The acknowledgments and the people to thank go here, don't forget to
+	% % include your project advisor\ldots
 	%
 	% \end{acknowledgements}
 % ************************************************************************** %
 
 % ************************************************************************** %
-% TODO: INSERT MOTIVATIONAL QUOTE
-	% \vspace{0.33\textheight}
-	% 
-	% \noindent\enquote{%
-	% 	Without encroaching upon grounds appertaining to the theologian and the
-	% 	philosopher, the domain of natural sciences is surely broad enough to
-	% 	satisfy the wildest ambition of its devotees. $\left[\dots\right]$
-	% 	The work may be hard, and the discipline severe; but the interest never
-	% 	fails, and great is the privilege of achievement.
-	% }\bigbreak%
-	% 
-	% \begin{flushright}
-	% 	John William Strutt, 3rd Baron Rayleigh, 1884\\
-	% 	\small\emph{Address to the British Association in Montreal}
-	% \end{flushright}
+% INSERT MOTIVATIONAL QUOTE
+	\vspace*{0.33\textheight}
+	% \rule{\textwidth}{0.1pt}
+	
+	\noindent\enquote{%
+		Without encroaching upon grounds appertaining to the theologian and the
+		philosopher, the domain of natural sciences is surely broad enough to
+		satisfy the wildest ambition of its devotees. $\left[\dots\right]$
+		The work may be hard, and the discipline severe; but the interest never
+		fails, and great is the privilege of achievement.
+	}\bigbreak%
+	
+	\begin{flushright}
+		--- John William Strutt, 3rd Baron Rayleigh, 1884\\
+		\small\emph{in: Address to the British Association in Montreal}
+	\end{flushright}
+	
+	% \vspace*{0.15\textheight}
+	% \rule{\textwidth}{0.1pt}
 % ************************************************************************** %
 
 % ************************************************************************** %
-% TODO: DECLARATION OF AUTHORSHIP
+% DECLARATION OF AUTHORSHIP
 
 	\chapter*{Declaration of Authorship}
+
 		I hereby certify that this thesis has been composed by me and is based on 
 		my own work, unless stated otherwise.	No other person’s work has been used
 		without due acknowledgement in this thesis.
@@ -231,15 +253,16 @@
 
 % ************************************************************************** %
 
+
 % ************************************************************************** %
-% TODO: TOCTOCTOC FOR EVERYTHING
+%  TOCTOCTOC FOR EVERYTHING
 	\tableofcontents % Prints the main table of contents
 	% \listoffigures % Prints the list of figures
 	% \listoftables % Prints the list of tables
 % ************************************************************************** %
 
 % ************************************************************************** %
-% TODO: INSERT ABBREVIATIONS
+% INSERT ABBREVIATIONS
 	% \begin{abbreviations}{ll}
 	% 
 	% 	% \textbf{abbrevation} & \textbf{A}bb \textbf{R}evat \textbf{I}on\\
@@ -249,7 +272,7 @@
 % ************************************************************************** %
 
 % ************************************************************************** %
-% TODO: CONSTANTS AND SYMBOLS LIST
+% CONSTANTS AND SYMBOLS LIST
 	% \begin{constants}{lr@{${}={}$}l}
 	% % Constant Name & $Symbol$ & $Constant Value$ with units\\
 	% 
@@ -259,16 +282,29 @@
 % ************************************************************************** %
 
 % ************************************************************************** %
-% TODO: THESIS BEGINS HERE
-	\mainmatter% Begin numeric (1,2,3...) page numbering
-	\pagestyle{thesis} % Return the page headers back to the "thesis" style
-	% Include the chapters of the thesis as separate files
-	% Uncomment the lines as you write the chapters
-	\include{content/chapter1}
-	\include{content/chapter2}
-	\include{content/chapter3}
-	\include{content/chapter4}
-	\include{content/chapter5}
+% THESIS BEGINS HERE
+% ************************************************************************** %
+
+% ************************************************************************** %
+\mainmatter% Begin numeric (1,2,3...) page numbering
+\pagestyle{thesis} % Return the page headers back to the "thesis" style
+
+% ************************************************************************** %
+% INSERT ABSTRACT
+  
+	\chapter{Abstract}
+
+    The Thesis Abstract is written here and usually kept to just this page.
+    The page is kept centered vertically so it can expand into the blank space above 
+    the title too.
+  
+% ************************************************************************** %
+
+\include{content/chapter_basic}
+\include{content/chapter_1d}
+\include{content/chapter_ccrf}
+\include{content/chapter_fem}
+\include{content/chapter_end}
 % ************************************************************************** %
 	
 % ************************************************************************** %
