@@ -1,0 +1,85 @@
+\chapter{Physical properties of low temperature RF plasma}
+
+  In this first chapter I will provide the necessary physical background 
+  for this work about the numerical simulation of low temperature 
+  capacitively coupled radio frequency plasma. Here both the mathematical 
+  basics and method for the simulation, as well as the most important aspects
+  about the plasma properties will be explained.
+
+  \section{Plasma physics}
+
+    \subsection{Capacitively coupled radio frequency plasma}
+
+      The experiment where after the conducted simulation is modelled after resembles a capacitively coupled radio frequency, low temperature plasma at low pressures of oxygen. \\
+      Here, I will refer to a plasma as an globally quasi-neutral gas, consisting of freely moving charges --- e.g.\@ electrons, anions and kations --- and neutral gas particles. The ratio between charged and neutral species defines the \emph{degree of ionization}, which in this case is very low. The term of global neutrality emphasizes the purpose for different lenght scales inside the gas itself. Here, the associated condition $ n\ix{e} \,\, = \,\, n\ix{i}$ only is valid for areas larger than the so called \emph{Debye-sphere}. Inside this ball with a radius of $\lambda\ix{D}$, the \emph{Debye length}, the afore-mentioned neutrality is not satisfied. A selection of the most important and basic physical properties and attributes have been compiled in~\ref{tabe:physicalquantities}. \\
+      The creation of a plasma is accomplished by 2 parallel metal plates, the electrodes, where on at least one an alternating current at radio frequency is applied --- this kind of experimental setup is among the most common, thus being used for basic but also in-depth studies of such discharges. Here, a rf signal at exactly $\unit[13,56]{MHz}$ with an amplitude between $100$--$\unit[1000]{V}$ will be used. This corresponds to a wavelength of $\unit[22,11]{m}$ for the external excitation. Within the scope of this work I will omit external magnetic fields. \\
+      That said, a multitude of electric setups are possible, such as coated or grounded electrodes. Therefore, different regimes of operation ensue. For example, differently driven or shaped metal plates heavily influence the charge creation process inside the plasma. In summary, the electrodes, neutral gas and electric layout resemble a dielectric hindered plate capacitor. This simplification can be used to access important physical properties, such as an additional voltage offset on one of the electrodes or charge currents at such. A basic scheme of an asymmetric rf discharge can be seen in~\ref{img:plasma scheme}. \\
+      In the case of different electrode sizes, as seen in the afore-mentioned scheme, the potential inside the spatially restricted area between wall --- this can be also a grounded metal wall aside the electrodes --- and discharge can change drastically. This additional direct current offset is called \emph{self-bias} (see~\ref{subsec:self bias}). A dielectric displacement current between plasma sheath and volume accomodates as a result of the different time scales of particle movement. Especially, self-bias and displacement current play a key role in the following investigations, as a capacitive coupling between electrodes and power supply is difficult to model into a numerical kinetic simulation.\\
+
+  \begin{table}[H]
+    \centering
+      \begin{tabular}{m{0.32\textwidth}|m{0.32\textwidth}|m{0.32\textwidth}}
+        %% HEAD
+        quantity & equation & relevance \\ 
+        %% TABLE
+        \hline \hline  Debye length &%
+          $\lambda\ix{D,j}^2=\frac{\varepsilon\ix{0}k\ix{B}T\ix{j}}{n\ix{j}e^2}$ \newline%
+          $\lambda\ix{D}^2=\left(\lambda\ix{D,e}^{-2}+\lambda\ix{D,i}^{-2}\right)^{-1}$ &%
+            distance around a charge, at which quasi-neutrality is satisfied,%
+            $\lambda\ix{D}$ is the combined screening length from individual species \\%
+        \hline plasma parameter &%
+          $N\ix{D} = n\frac{4}{3}\pi\lambda\ix{D}^{3}$ &%
+          number of particles inside Debye sphere, if $N\ix{D} \gg 1$ an ionized gas %
+          is considered a plasma (degree of ionization) \\%
+        \hline plasma frequency &%
+          $\omega\ix{p,j}^2=\frac{n\ix{j}e^2}{\varepsilon\ix{0}m\ix{j}}=%
+          \frac{v\ix{th,j}}{\lambda\ix{D,j}}=\frac{1}{\tau\ix{j}}$ &%
+          upper limit for interaction with fields/forces or external excitations%
+          inverse screening time \\% 
+        \hline coulomb logarithm &%
+          $\ln\left(\Lambda\right)$, \newline%
+          $\Lambda=\frac{b\ix{max}}{b\ix{min}}=\lambda\ix{D}\frac{4\pi\varepsilon\ix{0}\mu v\ix{th}^{2}}{e^{2}}$ &%
+          \\% 
+        \hline collision frequency &%
+          $\nu\ix{0,j}=\frac{e^{4}n\ix{j}\ln\left(\Lambda\right)}%
+          {8\sqrt{2m\ix{j}}\pi\varepsilon\ix{0}\left(k\ix{B}T\ix{j}\right)^{3/2}}$ &%
+          two body coulomb collision frequency inside species j\\%
+        \hline thermal velocity &%
+          $v\ix{th,j}^2=\frac{k\ix{B}T\ix{j}}{m\ix{j}}$ &%
+          mean velocity from kinetic theory of gases \\%
+        \hline particle distance \& \newline mean free path&%
+          $\overline{b}=\frac{\hbar}{m\ix{j}v\ix{th,j}}$ \newline \newline
+          $s\ix{mfp,j}=\frac{v\ix{th,j}}{\nu\ix{j,k}}$ &%
+           mean inter particle distance for species j \newline% 
+           free flight between subsequent collisions of species j and k %
+           with collision frequency $\nu\ix{j,k}$ \\%
+        \hline Debye-Hückel potential &%
+          $\Phi=\frac{Q}{4\pi\varepsilon|\vec{r}|}%
+          \euler^{-\frac{|\vec{r}|}{\lambda\ix{D}}}$ &%
+          test \\%
+        \hline
+      \end{tabular}
+    \caption{%
+      }
+    \label{tabe:physicalquantities}
+  \end{table}
+  
+    \subsection{Sheath physics and wall interaction}
+
+    \subsection{Self bias voltage}
+
+    \subsection{Dielectric displacement current}
+
+  \section{Negative ion physics}
+
+    \subsection{Anion creation and distribution}
+
+    \subsection{Dynamics and collisions}
+
+  \section{Particle-In-Cell simulations with Monte Carlo-Colissions}
+
+    \subsection{Principles}
+
+    \subsection{2d3v PIC}
+
+    \subsection{Monte Carlo-Collisions}

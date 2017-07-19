@@ -151,27 +151,32 @@
 %----------------------------------------------------------------------------------------
 %	REQUIRED PACKAGES
 %----------------------------------------------------------------------------------------
-
-\RequirePackage{babel} % Required for automatically changing names of document elements to languages besides english
-
-\RequirePackage{scrbase} % Required for handling language-dependent names of sections/document elements
-
-\RequirePackage{scrhack} % Loads fixes for various packages
-
-\RequirePackage{setspace} % Required for changing line spacing
-
-\RequirePackage{longtable} % Required for tables that span multiple pages (used in the symbols, abbreviations and physical constants pages)
-
-\RequirePackage{siunitx} % Required for \SI commands
-
-\RequirePackage{graphicx} % Required to include images
-\graphicspath{{Figures/}{./}} % Specifies where to look for included images
-
-\RequirePackage{booktabs} % Required for better table rules
-
-\RequirePackage{caption} % Required for customising the captions
+\RequirePackage{babel}
+% Required for automatically changing names of
+% document elements to languages besides english
+\RequirePackage{scrbase}
+% Required for handling language-dependent names
+% of sections/document elements
+\RequirePackage{scrhack}
+% Loads fixes for various packages
+\RequirePackage{setspace}
+% Required for changing line spacing
+\RequirePackage{longtable}
+% Required for tables that span multiple pages 
+% (used in the symbols, abbreviations and physical constants pages)
+\RequirePackage{booktabs}
+\RequirePackage{units}
+\RequirePackage{siunitx}
+% Required for \SI commands
+\RequirePackage{graphicx}
+% Required to include images
+\graphicspath{{Figures/}{./}}
+% Specifies where to look for included images
+\RequirePackage{booktabs}
+% Required for better table rules
+\RequirePackage{caption}
+% Required for customising the captions
 \captionsetup{justification=centerlast,font=small,labelfont=sc,margin=50pt}
-
 %----------------------------------------------------------------------------------------
 
 \newcommand{\checktoopen}{% New command to move content to the next page which prints to the next odd page if twosided mode is active  
@@ -344,9 +349,6 @@ KOMA-script documentation for details.}]{fancyhdr}
 \NewDocumentEnvironment{abbreviations}{ m }{%
 	\ifbool{nolistspace}{\begingroup\singlespacing}{}
 	\ifbool{listtoc}{\addchap{\abbrevname}}{\addchap*{\abbrevname}}
-	\begin{longtable}{#1}
-}{%
-\end{longtable}
 \addtocounter{table}{-1} % Don't count this table as one of the document tables
 \ifbool{nolistspace}{\endgroup}{}
 }
@@ -355,9 +357,9 @@ KOMA-script documentation for details.}]{fancyhdr}
 %	PHYSICAL CONSTANTS PAGE DESIGN
 %----------------------------------------------------------------------------------------
 
-\newcommand{\constantsname}{Physical Constants}
-\providecaptionname{english,british,american}{\constantsname}{Physical Constants}
-\providecaptionname{ngerman,german,austrian,naustrian}{\constantsname}{Physikalische Konstanten}
+\newcommand{\constantsname}{Physical Quantities}
+\providecaptionname{english,british,american}{\constantsname}{Physical Quantities}
+\providecaptionname{ngerman,german,austrian,naustrian}{\constantsname}{Physikalische Kenngrößen}
 
 \NewDocumentEnvironment{constants}{ m }{%
 	\ifbool{nolistspace}{\begingroup\singlespacing}{}

@@ -107,7 +107,6 @@
 % PACKAGES
 \usepackage{amsmath,mathtools}
 \usepackage{amssymb}
-\usepackage{units}
 \usepackage{upgreek}
 \usepackage{esint}
 \usepackage{graphicx}
@@ -138,8 +137,6 @@
 \newcommand{\fett}[1]{\textbf{#1}}
 \newcommand{\inexample}{\text{e.g.}}
 
-\renewcommand{\nomlabel}[1]{#1 \dotfill}
-
 % Used for signature line at 
 % declaration of authorship
 \newcommand{\sign}[1]{%
@@ -156,6 +153,21 @@
 % DOCUMENT START
 \begin{document}
 
+% ************************************************ %
+% RENEWCOMMANDS																		 % 
+\renewcommand{\equationautorefname}{equation}			 %
+\renewcommand{\figureautorefname}{figure}				   %
+\renewcommand{\tableautorefname}{table} 					 %
+\renewcommand{\sectionautorefname}{section}				 %
+\renewcommand{\subsectionautorefname}{section}		 %
+\renewcommand{\subsubsectionautorefname}{section}	 %
+\renewcommand{\figurename}{Fig.}									 %
+\renewcommand{\tablename}{Tab.}										 %
+\renewcommand{\figurename}{Figure}								 %
+\renewcommand{\tablename}{Table}									 %
+\renewcommand{\nomlabel}[1]{#1 \dotfill}					 %
+% ************************************************ %
+	
 	\frontmatter
   % Use roman page numbering style (i, ii, iii, iv...)
 	% for the pre-content pages
@@ -261,23 +273,8 @@
 % ************************************************************************** %
 
 % ************************************************************************** %
-% INSERT ABBREVIATIONS
-	% \begin{abbreviations}{ll}
-	% 
-	% 	% \textbf{abbrevation} & \textbf{A}bb \textbf{R}evat \textbf{I}on\\
-	% 	\textbf{u.U.} & \textbf{u}nter \textbf{U}mständen\\
-	% 
-	% \end{abbreviations}
-% ************************************************************************** %
-
-% ************************************************************************** %
-% CONSTANTS AND SYMBOLS LIST
-	% \begin{constants}{lr@{${}={}$}l}
-	% % Constant Name & $Symbol$ & $Constant Value$ with units\\
-	% 
-	% 	Speed of Light & $c_{0}$ & $\unit{2.99792458e8}{\frac{m}{s}}$\\
-	% 
-	% \end{constants}
+% PREFIX
+\include{content/chapter_prefix}
 % ************************************************************************** %
 
 % ************************************************************************** %
