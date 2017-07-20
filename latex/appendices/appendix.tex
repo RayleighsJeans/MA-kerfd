@@ -1,0 +1,59 @@
+\chapter{Appendix}
+
+% ************************************************************************** %
+% PHYSICAL PROPERTIES
+  \begin{longtable}{m{0.32\textwidth}m{0.32\textwidth}m{0.32\textwidth}}
+    \toprule
+    \bfseries quantity & \bfseries equation & \bfseries relevance \\%
+    \toprule \midrule \endhead%
+      Debye length &%
+        $\lambda\ix{D,j}^2=\frac{\varepsilon\ix{0}k\ix{B}T\ix{j}}{n\ix{j}e^2}$ \newline%
+        $\lambda\ix{D}^2={\left(\lambda\ix{D,e}^{-2}+\lambda\ix{D,i}^{-2}\right)}^{-1}$ &%
+          distance around a charge, at which quasi-neutrality is satisfied,%
+          $\lambda\ix{D}$ is the combined screening length from individual species \\ \midrule%
+      plasma parameter &%
+        $N\ix{D} = n\frac{4}{3}\pi\lambda\ix{D}^{3}$ &%
+        number of particles inside Debye sphere, if $N\ix{D} \gg 1$ an ionized gas %
+        is considered a plasma (degree of ionization) \\ \midrule%
+      plasma frequency &%
+        $\omega\ix{p,j}^2=\frac{n\ix{j}e^2}{\varepsilon\ix{0}m\ix{j}}=%
+        \frac{v\ix{th,j}}{\lambda\ix{D,j}}=\frac{1}{\tau\ix{j}}$ &%
+          upper limit for interaction with fields/forces or external excitations%
+          inverse screening time \\ \midrule%
+      thermal velocity &%
+        $v\ix{th,j}^2=\frac{k\ix{B}T\ix{j}}{m\ix{j}}$ &%
+          mean velocity from kinetic theory of gases \\ \midrule%
+      coulomb logarithm &%
+        $\ln\left(\Lambda\right)$ \newline \newline%
+        $\Lambda=\frac{b\max}{b\min}=\lambda\ix{D}\cdot%
+        \frac{4\pi\varepsilon\ix{0}\mu v\ix{th}^{2}}{e^{2}}$ &%
+          dimensionless scale for transport processes inside discharge \newline
+          fraction of probability for a cumulative $90^{\circ}$ scattering by many small %
+          pertubation collisions and a single right angle scattering \\ \midrule%
+      collision frequency &%
+        $\nu\ix{j}=\frac{e^{4}n\ix{j}\ln\left(\Lambda\right)}%
+        {8\sqrt{2m\ix{j}}\pi\varepsilon\ix{0}{\left(k\ix{B}T\ix{j}\right)}^{3/2}}$ &%
+          two body coulomb collision frequency inside species j \\ \midrule%
+      particle distance \& \newline mean free path&%
+        $\overline{b}=\frac{\hbar}{m\ix{j}v\ix{th,j}}$ \newline \newline
+        $s\ix{mfp,j}=\frac{v\ix{th,j}}{\nu\ix{j,k}}$ &%
+          mean inter particle distance for species j \newline% 
+          free flight between subsequent collisions of species j and k %
+          with collision frequency $\nu\ix{j,k}$ \\ \midrule%
+      speed of sound &%
+        $c\ix{S}^{2}=\frac{\gamma Zk\ix{B}T\ix{e}}{m\ix{i}}$ \newline \newline%
+        $\gamma=1+2/f=5/3$ &%
+        speed of longitudinal ion waves at electron pressure \newline%
+        adiabatic coefficient with f, the kinetic degree of freedom\\ \midrule%
+      Debye-Hückel potential &%
+        $\Phi=\frac{Q}{4\pi\varepsilon|\vec{r}|}%
+        \euler^{-\frac{|\vec{r}|}{\lambda\ix{D}}}$ &%
+        electrostatic potential of charge particle $Q$ at distance $|\vec{r}|$ \newline%
+        equal to coulomb interaction with additional shielding by charged particles \\%
+    \bottomrule
+    \caption{%
+      Selection of physical properties of a low temperature ccrf discharge. The index $j$ denotes the %
+      species, e.g.\@ electrons, ions. Used quantities can be found in the preface %
+      in~\autoref{tabe:physicalconstants}.}\label{tabe:physicalquantities}
+  \end{longtable}
+% ************************************************************************** %

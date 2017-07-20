@@ -1,32 +1,55 @@
 % ************************************************************************** %
 % INSERT ABBREVIATIONS
-  % \begin{abbreviations}{ll}
-  % 
-  % 	% \textbf{abbrevation} & \textbf{A}bb \textbf{R}evat \textbf{I}on\\
-  % 	\textbf{u.U.} & \textbf{u}nter \textbf{U}mständen\\
-  % 
-  % \end{abbreviations}
+	\begin{abbreviations}{ll}
+		\toprule
+		\bfseries abbreviation & \bfseries full expression \\%
+		\toprule \midrule \endhead%
+		e.g.                      & exempli gratia; \emph{for example} \\ \\%
+		etc.                      & et cetera; \emph{and so on} \\ \\%
+    ac                        & alternating current \\ \\%
+    dc                        & direct current \\ \\%
+    rf                        & radio frequency \\ \\%
+    ccrf                      & capacitively coupled radio frequency \\ \\%
+		
+		\midrule \bottomrule
+    \caption{%
+      List of abbreviations and their corresponding phrases. If specified, the translation %
+      or an equivalent expression is written.}\label{tabe:abbreviations}
+	\end{abbreviations}
 % ************************************************************************** %
 
 % ************************************************************************** %
 % CONSTANTS AND SYMBOLS LIST
-  \begin{constants}{lllll}
-  	\toprule
-    \bfseries Quantity & \bfseries Unit &
-    \bfseries Symbol & \bfseries Dimension & \bfseries Value \\%
-    \midrule \endhead%
-    Speed of Light & $\frac{m}{s}$ & $c\ix{0}$ & & $2,997\cdot\tenpo{8}$ \\ \\%
-    Vacuum permittivity & $\frac{F}{m}$ & $\varepsilon\ix{0}$ & $\unit{s^{4}A^{2}m^{-3}kg^{-1}}$ & $8,854\cdot\tenpo{-12}$ \\ \\%
-    Boltzmann constant & $\frac{eV}{K}$ & $k\ix{B}$ & $\unit{JK^{-1}}$ & $8,617\cdot\tenpo{-23}$ \\ \\%
-		particle density & $\unit{cm^{-3}}$ & $n\ix{j}$ & $\unit{m^{-3}}$ & \\ \\%
-		kinetic temperature & $\unit{eV}$ & $T\ix{j}$ & $\unit{K}$ & \\ \\%
-		elementary charge & $\unit{C}$ & $e$ & $\unit{As}$ & $1,902\cdot\tenpo{-19}$ \\ \\%
-		particle mass & $\unit{kg}$ & $m\ix{j}$ & & electron: $9,109\cdot\tenpo{-31}$ \\
-									&							&						&	& ion: $5,31\tenpo{-26}$ \\
-									&							&						&	& anion: $5,143\tenpo{-26}$ \\ \\%
+	\begin{constants}{lcccl}
+		\toprule
+		\bfseries Quantity & \bfseries Unit &
+		\bfseries Symbol & \bfseries Dimension & \bfseries Value \\%
+		\toprule \midrule \endhead%
+			Speed of Light          & $\frac{m}{s}$ & $c\ix{0}$ & & $2,997\cdot\tenpo{8}$ \\ \\%
+			Vacuum permittivity     & $\frac{F}{m}$ & $\varepsilon\ix{0}$ & $\unit{s^{4}A^{2}m^{-3}kg^{-1}}$ & $8,854\cdot\tenpo{-12}$ \\ \\%
+			Boltzmann constant      & $\frac{eV}{K}$ & $k\ix{B}$ & $\unit{JK^{-1}}$ & $8,617\cdot\tenpo{-23}$ \\ \\%
+			planck constant         & $\unit{eVs}$ & $\hbar$ & $\unit{m^{2}kg\,s^{-1}}$ & $\unit[4,1345\cdot\tenpo{-15}]{eVs}$ \\ 
+															& & & & $\unit[6,646\cdot\tenpo{-34}]{Js}$ \\ \\%
+			particle mass           & $\unit{kg}$ & $m\ix{j}$ & & electron: $9,109\cdot\tenpo{-31}$ \\
+															&	&	& & \hspace*{.65cm} ion: $5,310\cdot\tenpo{-26}$ \\
+															&	&	& & \hspace*{.3cm} anion: $5,143\cdot\tenpo{-26}$ \\ \\%
+			kinetic temperature     & $\unit{eV}$ & $T\ix{j}$ & $\unit{K}$ & $\unit[1]{eV}=\unit[1,902\cdot\tenpo{-19}]{K}$ \\ \\%
+			elementary charge       & $\unit{C}$ & $e$ & $\unit{As}$ & $1,902\cdot\tenpo{-19}$ \\ \\%
+			reduced mass            & & $\mu\ix{j,k}$ & & ${\left(1/m\ix{j}+1/m\ix{k}\right)}^{-1}$ \\ \\%
+			particle density        & $\unit{cm^{-3}}$ & $n\ix{j}$ & $\unit{m^{-3}}$ & \\ \\%
+			Debye length            & $\unit{cm}$ & $\lambda\ix{D,j}$ & $\unit{m}$ & \\ \\%
+			plasma frequency        & $\unit{Hz}$ & $\omega\ix{p,j}$ & $\unit{s^{-1}}$ & \\ \\%
+			thermal velocity        & $\unit{m\,s^{-1}}$ & $v\ix{th,j}$ & & \\ \\%
+			collisional frequency   & $\unit{Hz}$ & $\nu\ix{j}$ & $\unit{s^{-1}}$ & \\ \\%
+			particle distance       & $\unit{cm}$ & $\overline{b}$ & $\unit{m}$ & \\ \\%
+			mean free path          & $\unit{cm}$ & $s\ix{mfp,j}$ & $\unit{m}$ & \\ \\%
+			electrostatic potential & $\unit{V}$ & $\Phi$,$U$ & $\unit{kg\,m^{2}A^{-1}s^{-3}}$ & \\ \\%
 
-
- 		\bottomrule
-  \end{constants}
+		\midrule \bottomrule
+    \caption{%
+      Physical properties in their commonly --- or for this purpose most convinient %
+      --- units and corresponding SI units. If not specified, the values of each quantity %
+      refer to the afore-mentioned units.}\label{tabe:physicalconstants}
+	\end{constants}
 % ************************************************************************** %
 
