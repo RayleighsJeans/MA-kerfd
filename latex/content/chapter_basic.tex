@@ -23,15 +23,60 @@
 				The rf signal is denoted with $U(t)$.}\label{fig:circuitselfbias_1}
 			\end{wrapfigure}
 
-      In the case of different electrode sizes, as seen in the scheme, the potential inside the spatially restricted area between wall and discharge can change drastically. This plasma sheath forms also between grounded parts of discharge containment or probes and plasma volume. This additional direct current offset is called \emph{self-bias} (see~\autoref{subsec:selfbias}). A dielectric displacement current between plasma sheath and volume accomodates as a result of the different time scales of particle movement (see~\autoref{subsec:displacementcurrent}). Especially, self-bias and displacement current play a key role in the following investigations, as a capacitive coupling between electrodes and power supply is difficult to model into a numerical kinetic simulation.\\
+      In the case of different electrode sizes, as seen in the scheme, the potential inside the spatially restricted area between wall and discharge can change drastically. This plasma sheath forms also between grounded parts of discharge containment or probes and plasma volume. This additional direct current offset is called \emph{self-bias} (see~\autoref{subsec:selfbias}). A dielectric displacement current between plasma sheath and volume accomodates as a result of the different time scales of particle movement (see~\autoref{subsec:displacementcurrent}). Especially, self-bias and displacement current play a key role in the following investigations, as a capacitive coupling between electrodes and power supply is difficult to model in a numerical kinetic simulation.\\
 		In comparison to other low temperature, low pressure discharges  --- an example could be a dielectric hindered dc discharge at high voltages, with an electrode space gap of just a couple millimeters ---, radio frequency plasma are characterized by their unique transport process inside the sheath and heating mechanisms of charged species. A more in-depth discussion can be found in~\autoref{subsec:heating}.\\ 
 
 		\subsection{Sheath physics and wall interaction}\label{subsec:sheathphysics}
 
+			In the discharges bulk, neutral gas particles are exctited by electron collisions and radiating visible light. However, areas around, e.g.\@ floating metal surfaces, probes and grounded walls are darker than the bulk. This is due to the low electron density and kinetic energy in this \emph{plasma sheath}. Though areas with vanishing electron numbers can glow because of high collision efficiencies and/or frequencies.\\
+			Electrons, in general, are of a much higher mobility $\mu\ix{e}$ and thermal velocity $v\ix{th,e}$. Hence they impinge onto walls and surfaces more often than other species, leading to a --- in this case we consider an electronegative oxygen discharge, where the following can be assumed true --- negative charge and potential.
+
+			\subsubsection*{Child-Langmuir Law}
+
+				For an asymmetric ccrf discharge, DC \emph{self bias} and displacement current are important parts of the electric system. Hence, the \emph{Child-Langmuir Law} as a function of those properties can be written. The rf component of the excitation is neglected.\\
+				A greatly negative charged wall at $x=0$ shall be a barrier for electrons of thermal velocity, e.g.\@ $|\Phi(0)-\Phi(d)|\ll k\ix{B}T\ix{e}/e\,$. The thickness of the sheath shall be considered $d$. In an one-dimensional approach, the electron density $n\ix{e}(x)$ can be written with a \emph{Boltzmann} distribution function $f\ix{B}(\Phi)$ :
+
+				\begin{align}
+					n\ix{e}(x)=n\ix{e}(d)\cdot f\ix{B}(\Phi)=%
+					n\ix{e}(d)\cdot%
+					\exp{\left(\frac{e{\left(\Phi(x)-\Phi(d)\right)}}{k\ix{B}T\ix{e}}\right)}\quad .%
+					\label{equ:electrondens}
+				\end{align}
+
+				This means that the electron density decreases exponentially towards the negatively charged wall. It can be assumed that the sheath thickness $d\ll s\ix{mfp,i}$ the mean free path of the ions inside the plasma bulk. Hence, ions enter the sheath collisionless.\\
+				At the boundary between bulk and pre-sheath, the walls potential vanishes because of the plasmas shielding capabilities. Here, the ions are at $v\ix{i,0}$ speeds, therefore their density becomes:
+
+				\begin{align}
+					n\ix{i}(x)=n\ix{i}(d){\left(1-\frac{2e\Phi(x)}{m\ix{i}v\ix{i,0}^{2}}\right)}^{-1/2}%
+					\label{equ:iondens}
+				\end{align}
+
+				Futhermore, one can assume that the kinetic energy at this point is smaller than the potential energy for the acceleration inside the pre-sheath, e.g.\@ $m\ix{i}v\ix{i,0}^{2}\ll |e\Phi(x)|$. Using \emph{Poisson's } equation, and taking into account the ion-sheath interaction,~\autoref{equ:phibypoisson} gives an equation for $\Phi(x)$:
+
+				\begin{align}
+					\Delta\Phi\cong-\frac{en\ix{i}\left(-d\right)}{\varepsilon\ix{0}}\left(-\frac{2e\Phi\left(x\right)}{m\ix{I}v\ix{i,0}^2}\right)^{-\frac{1}{2}}%
+					\label{equ:phibypoisson}
+				\end{align}
+
+				Solving this, and using the unpertubated ion current $j\ix{i}=n\ix{i}(d)ev\ix{i,0}$, one yields the result by \emph{Langmuir}.
+
+				\begin{align}
+					\Phi\left(x\right)=\left(\left(\frac{3}{4}\left(x+d\right)\right)^4\left(\frac{j\ix{i}}{\varepsilon\ix{0}}\right)^2\frac{m\ix{i}}{2e}\right)^{\frac{1}{3}}%
+					\label{equ:langmuirpot}
+				\end{align}
+
+				Again, solving~\autoref{equ:langmuirpot} for the current $j\ix{i}$ yields the \emph{Child-Langmuir Law} (see~\autoref{equ:childlangmuirlaw}).\\
+				This equation defines the ion current as a function of the unpertubated plasma bulk. In other words, the sheath changes its thickness in dependency of those certain discharge parameters, always satisfying the ion current defined by the \emph{Child-Langmuir Law}.
+
+				\begin{align}
+					j\ix{i}=\frac{4}{9}\varepsilon\ix{0}\left(\frac{2e\left(\Phi\left(-d\right)-\Phi\left(0\right)\right)^3}{m\ix{i}d^2}\right)^{\frac{1}{2}}%
+					\label{equ:childlangmuirlaw}
+				\end{align}
+
 		\subsection{Bohm criteria}\label{subsec:bohmcriteria}
 
 			In~\autoref{subsec:sheathphysics} the behaviour of charge particle densities inside the plasma sheath has been discussed. In contrast to the discharge volume, those densities do not satisfy the quasi-neutrality condition in a distance of $d$ from the wall anymore. Though we know that the sheath is a spacially restricted area around electrostatic floating surfaces, a physical law concerning this circumstance has not been derived here. So the question ensues, why the area of electron depletion does not extend further into the discharge volume.\\
-		To answer this question, one has to take a look at substitutional system. This will be a, likewise mechanical, one-body extremal problem of a point mass. In this case only kinematic pontentials with inverted parabolic maxima are of interest. Therefore, in this unstable equilibrium a small pertubation culminates into a large force on the test body.\\
+		To answer this question, one has to take a look at a substitutional system. This will be a, likewise mechanical, one-body extremal problem of a point mass. In this case only kinematic pontentials with inverted parabolic maxima are of interest. Therefore, in this unstable equilibrium, a small pertubation culminates into a large force on the test body.\\
 		To see the quality of this example, one has to take a look at the second order differential equation of the afore-mentioned mechanical problem and the electrostatic \emph{Poisson's equation} (see~\autoref{equ:pseudo}).
 
   	\begin{align} 
@@ -47,11 +92,12 @@
 		\begin{align}
 			0>\left.\frac{\diff^{2}\Psi}{\diff\Phi^{2}}\right|_{\Phi=0}%
 			\overset{\text{\autoref{equ:pseudo}}}{\overset{\mid}{=}}%
-			=\frac{en\ix{e}\left(-d\right)}{\varepsilon\ix{0}}\left(\frac{e}{k\ix{b}T\ix{e}}-\frac{e}{m\ix{i}v\ix{i,0}^{2}}\right)%
 			\left.\frac{\diff}{\diff\Phi}\left(\frac{n\ix{e}\left(x\right)-n\ix{i}\left(x\right)}{\varepsilon\ix{0}}\right)\right|_{\Phi=0}&%
-			\label{eq:beding} \\%
+			\frac{en\ix{e}\left(-d\right)}{\varepsilon\ix{0}}\left(\frac{e}{k\ix{b}T\ix{e}}-\frac{e}{m\ix{i}v\ix{i,0}^{2}}\right)%
+			\label{equ:beding}\\%
 			\Rightarrow\quad%
-			v\ix{i,0}\ge v\ix{i,B}=\sqrt{\frac{k\ix{B}T\ix{e}}{m\ix{i}}}&\label{equ:inequality}
+			v\ix{i,0}\ge v\ix{i,B}=\sqrt{\frac{k\ix{B}T\ix{e}}{m\ix{i}}}&%
+			\label{equ:inequality}
 		\end{align}
 	
 		Analoguos you can define the so called \emph{Mach number} $M=v\ix{i,0}/v\ix{i,B}$, where $v\ix{i,B}$ denotes the \emph{Bohm velocity}.\\
@@ -62,9 +108,45 @@
 			=n\ix{e}\left(x\right)\,\,.\label{equ:quasineutral}
 		\end{align}
 
-		Still, $\Phi{\left(x\right)}$ is the potential inside the pre-sheath from~\autoref{subsec:sheathphysics} and $n\ix{i,0}$ the unpertubated density from the plasma \emph{bulk}. Though 
-		
+		Still, $\Phi{\left(x\right)}$ is the potential inside the pre-sheath from~\autoref{subsec:sheathphysics} and $n\ix{i,0}$ the unpertubated density from the plasma \emph{bulk}. A greater part of the ion transport process in this area is governed by collisions with neutral gas particles, hence the velocity distribution function with the collision frequency $\nu{n,i}$ has to be rewritten:
+
+		\begin{align}
+			\frac{\diff v\ix{i}}{\diff x}=\frac{\nu{n,i}v\ix{i}^{2}}{v\ix{B}^{2}-v\ix{i}^{2}}\quad .\label{equ:distribution}
+		\end{align}
+
+		From the singularity in~\autoref{equ:distribution} at $v\ix{i}=v\ix{B}$ and the knowledge of $\Phi(x)$ at the wall, one can calculate the sheath thickness $d$. Furthermore, ions with velocities smaller than the Bohm velocity are being accelerated inside the pre sheath. According to~\autoref{equ:inequality} velocities greater than $v\ix{B}$ are not allowed here. This is, together with~\autoref{equ:distribution} the reason why the ion velocity is exactly $v\ix{B}$ at the boundary of the plasma sheath and thus a positive space charge ensues.
+
+		\begin{align}
+			M=1%
+			\Leftrightarrow%
+			v\ix{i}(-d)=v\ix{B}\label{equ:bohmcriteria2}
+		\end{align}
+
+		Conclusively, at the sheath boundary~\autoref{equ:bohmcriteria2} is satisfied.\\
+		At $x=-d$, both negative and positive charge density decreased to $n\ix{i}=n\ix{e}\approx0,66n\ix{e,0}$ --- see~\autoref{fig:densities} ---, where the potential is approximately $-k\ix{B}T\ix{e}/2e$ because of the currents onto the wall.\\
+		In summerization, the plasma does not "see" its sheath, because the ion dynamic discussed before is spatially restricted. The sheath only develops where there is electron depletion or an externally applied, negative potential.
+
 		\subsection{Self bias voltage}\label{subsec:selfbias}
+
+			An important step towards the electric characterization of such ccrf discharges is the development of a replacement current, see~\autoref{img:replacementcirquit}. Thus, one can define a specific impedance for a rf discharge of excitation frequency $\omega$. The valeu of $\varepsilon\ix{p}$ resembles the permeability of the working gas between the driven and/or grounded electrode. In addition, this volume has the capacity $C\ix{p}$ --- the capacity of a cubicle with a cross section $A$, thickness $b$ and electron-neutral collision frequency $\nu\ix{e,n}$ calculates like~\autoref{equ:capacityandepsilon}.
+
+			\begin{align}
+				\varepsilon\ix{P}=1-&\frac{\omega\ix{P,e}^2}{\omega\left(\omega-\imag\nu\ix{e,n}\right)}\quad\quad%
+				C\ix{p}=\varepsilon\ix{p}C\ix{0}=%
+				\varepsilon\ix{p}\varepsilon\ix{0}\frac{A}{b}%
+				\label{equ:capacityandepsilon}\\
+				&Z\ix{P}=\left(\imag\omega C\ix{p}+ \frac{1}{\frac{1}{\omega\ix{P,e}^2C\ix{0}}\left(\nu\ix{e,n}+\imag\omega\right)}\right)^{-1}
+				\label{equ:bulkimpedanz}
+			\end{align}
+		
+			The~\autoref{equ:bulkimpedanz} represents the full impedance, consisting of the inverse sum of real and imagninary resitance, as well as the capacity of the neutral gas volume. Here, $\imag\omega/(\omega\ix{p,e}^{2}C\ix{0})$ characterizes the reaction of the electron movement to an external excitation of a frequency $\omega$. The real part $\nu\ix{e,n}/(\omega\ix{p,e}^{2}C\ix{0}$ denotes the charge current resistance by neutral particle collisions.\\
+			For high excitation frequencies --- a high frequency would be the mentioned $\unit[13,56]{MHz}$ --- the bulk impedance can be neglected. Both the anodes and cathodes sheath capacity take the dominant part. Therefore, the discharge potential and voltage can be written as:
+
+			\begin{align}
+				U\left(t\right)=U\ix{GS}+U\ix{rf}\sin\left(\omega t\right) \quad \quad \Phi\ix{P}\left(t\right)=\overline{\Phi\ix{P}}+\Phi\ix{rf}\sin\left(\omega t\right) \label{equ:selfbias_1}
+			\end{align}
+
+			
 
     \subsection{Dielectric displacement current}\label{subsec:displacementcurrent}
 
