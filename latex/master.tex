@@ -28,7 +28,7 @@
 % ************************************************************************** %
 % ************************************************************************** %
 
-% START OF TEXi
+% START OF TEX
 \documentclass[
 	10pt,
 	twoside,
@@ -61,7 +61,7 @@
 	% showframe, % show how the type block is set on the page
 	paper=a4paper, % Change to letterpaper for US letter
 	inner=2cm, % Inner margin
-	outer=3.3cm, % Outer margin
+	outer=3.0cm, % Outer margin
 	bindingoffset=1.5cm, % Binding offset
 	top=1.5cm, % Top margin
 	bottom=1.5cm } % Bottom margin
@@ -113,7 +113,6 @@
 \usepackage{ziffer}
 \usepackage{float}
 \usepackage{wrapfig}
-\usepackage{subcaption}
 \usepackage{csquotes}
 \usepackage{sectsty}
 \usepackage{nomencl}
@@ -202,7 +201,7 @@
 		\textit{in the research group of}\\[0.4cm]
 		% TODO: RESEARCH GROUP/DEPARTMENT
 		\groupname,\\\deptname\\[1cm]
-		\includesvg[width=0.55\textwidth]{figures/logo}\\[1cm]
+    \includegraphics[width=0.55\textwidth]{figures/logo}\\[1cm]
 		% \includegraphics[width=0.4\textwidth]{figures/logo.eps}\\[1cm]
 		% University/department logo - uncomment to place it
 		{\large \today} % Date
@@ -302,7 +301,7 @@
 % ************************************************************************** %
 	
 % ************************************************************************** %
-% TODO: APPENDICES
+% APPENDICES
 	\appendix % Cue to tell LaTeX that following "chapters" are Appendices
 	% Include the appendices of the thesis as separate files
 	% Uncomment the lines as you write the Appendices
@@ -310,9 +309,9 @@
 % ************************************************************************** %
 
 % ************************************************************************** %
-% TODO: BIBLIOGRAPHY
+% BIBLIOGRAPHY
 	\printbibliography[heading=bibintoc]
 % ************************************************************************** %
 
-% TODO: END OF DOCUMENT
+% END OF DOCUMENT
 \end{document}  
