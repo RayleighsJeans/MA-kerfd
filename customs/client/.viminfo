@@ -1,0 +1,2086 @@
+# Diese viminfo-Datei wurde von Vim 8.0 generiert.
+# Sie können sie verändern, wenn Sie vorsichtig vorgehen!
+
+# Viminfo version
+|1,4
+
+# Wert von 'encoding', als diese Datei geschrieben wurde
+*encoding=utf-8
+
+
+# hlsearch on (H) or off (h):
+~h
+# Letztes Suchmuster:
+~Msle0~/\<mu\>
+
+# Letztes ErsetzeSuchmuster:
+~MSle0& \\ref
+
+# Letzte ersetzte Zeichenkette:
+$\~\\ref
+
+# Befehlszeile Geschichte (neueste bis älteste):
+:q
+|2,0,1502083936,,"q"
+:w
+|2,0,1501857515,,"w"
+:we
+|2,0,1501856384,,"we"
+:tabe content/chapter_prefix.tex
+|2,0,1501855238,,"tabe content/chapter_prefix.tex"
+:tabe appendices/appendix.tex
+|2,0,1501854389,,"tabe appendices/appendix.tex"
+:tabe appendices/appendix
+|2,0,1501854385,,"tabe appendices/appendix"
+:wq
+|2,0,1501854381,,"wq"
+:tabe content/chapter_basic.tex
+|2,0,1501848404,,"tabe content/chapter_basic.tex"
+:set fileencoding=utf-8
+|2,0,1501842556,,"set fileencoding=utf-8"
+:tabe einleitung.tex
+|2,0,1501842332,,"tabe einleitung.tex"
+:encoding
+|2,0,1501842165,,"encoding"
+:write ++enc=utf-8
+|2,0,1501842157,,"write ++enc=utf-8"
+:file
+|2,0,1501841751,,"file"
+:%s/ \\ref/\~\\ref/gc
+|2,0,1501834547,,"%s/ \\\\ref/\\~\\\\ref/gc"
+:%s/ \\ref/~\\ref/gc
+|2,0,1501834539,,"%s/ \\\\ref/~\\\\ref/gc"
+:%s/\\ref/~\\ref/gc
+|2,0,1501834532,,"%s/\\\\ref/~\\\\ref/gc"
+:%s//\ref/~/\ref/gc
+|2,0,1501834526,,"%s//\\ref/~/\\ref/gc"
+:%s/\ref/~\ref/gc
+|2,0,1501834517,,"%s/\\ref/~\\ref/gc"
+:ew
+|2,0,1501834359,,"ew"
+:e
+|2,0,1501834905,,"e"
+:qw
+|2,0,1501834102,,"qw"
+:!zathura metrotex.pdf
+|2,0,1501832875,,"!zathura metrotex.pdf"
+:tabe ~/.vimrc
+|2,0,1501832822,,"tabe ~/.vimrc"
+:tabe ../../bachelor_arbeit-philipp_hacker/tex/content/chapter_basics.tex
+|2,0,1500637366,,"tabe ../../bachelor_arbeit-philipp_hacker/tex/content/chapter_basics.tex"
+:tabe master.tex
+|2,0,1500624217,,"tabe master.tex"
+:2
+|2,0,1500624205,,"2"
+:tabe MastersDoctoralThesis.cls
+|2,0,1500624175,,"tabe MastersDoctoralThesis.cls"
+:tabe content/chapter_prefix.
+|2,0,1500560422,,"tabe content/chapter_prefix."
+:tabe ~/brain/plotscripts/script_all.sh
+|2,0,1500634959,,"tabe ~/brain/plotscripts/script_all.sh"
+:tabe all_melzer2.bib
+|2,0,1500634289,,"tabe all_melzer2.bib"
+:tabe all_melzer.bib
+|2,0,1500634280,,"tabe all_melzer.bib"
+:tabe content/chapter_appendix.tex
+|2,0,1500634212,,"tabe content/chapter_appendix.tex"
+:tabe ../../bachelor_arbeit-philipp_hacker/tex/ba_main.tex
+|2,0,1500558670,,"tabe ../../bachelor_arbeit-philipp_hacker/tex/ba_main.tex"
+:tabe
+|2,0,1500554399,,"tabe"
+:'<,'>wq
+|2,0,1500553626,,"'<,'>wq"
+:tabe appendices/appendix1.tex
+|2,0,1500552994,,"tabe appendices/appendix1.tex"
+:w2
+|2,0,1500552363,,"w2"
+:tabe appendices/
+|2,0,1500552275,,"tabe appendices/"
+:tabe ../master.tex
+|2,0,1500552127,,"tabe ../master.tex"
+:tabe ../MastersDoctoralThesis.cls
+|2,0,1500551802,,"tabe ../MastersDoctoralThesis.cls"
+:Lw
+|2,0,1500551653,,"Lw"
+:tabe ../appendices/appendix1.tex
+|2,0,1500551620,,"tabe ../appendices/appendix1.tex"
+:d
+|2,0,1500549779,,"d"
+:%s/hline/midrule/gc
+|2,0,1500549355,,"%s/hline/midrule/gc"
+:2w
+|2,0,1500546899,,"2w"
+:tabe chapter_prefix.tex
+|2,0,1500546753,,"tabe chapter_prefix.tex"
+:s
+|2,0,1500466106,,"s"
+:%s/ref/autoref/gc
+|2,0,1500463436,,"%s/ref/autoref/gc"
+:%s/Debye-/Debye /gc
+|2,0,1500463425,,"%s/Debye-/Debye /gc"
+:%s/Debye-/Debye/gc
+|2,0,1500463404,,"%s/Debye-/Debye/gc"
+
+# Suchausdruck Geschichte (neueste bis älteste):
+? \<mu\>
+|2,1,1501857067,,"\\<mu\\>"
+?/Using 
+|2,1,1501854477,47,"Using "
+?/after
+|2,1,1501849248,47,"after"
+?/Maxwell-
+|2,1,1501844777,47,"Maxwell-"
+?/fileen
+|2,1,1501841766,47,"fileen"
+?/ähnlich
+|2,1,1501837257,47,"ähnlich"
+?  \\ref
+|2,1,1501834547,," \\\\ref"
+? \\ref
+|2,1,1501834532,,"\\\\ref"
+?/newline
+|2,1,1501834520,47,"newline"
+? \ref
+|2,1,1501834517,,"\\ref"
+?/bib
+|2,1,1501834165,47,"bib"
+? \<classpath\>
+|2,1,1501835000,,"\\<classpath\\>"
+? \<JAVACMD\>
+|2,1,1501834991,,"\\<JAVACMD\\>"
+?/bohm
+|2,1,1500637372,47,"bohm"
+?/figure
+|2,1,1500624177,47,"figure"
+? \<label\>
+|2,1,1500560282,,"\\<label\\>"
+?/abbre
+|2,1,1500551818,47,"abbre"
+?/abbreve
+|2,1,1500551814,47,"abbreve"
+?/hline
+|2,1,1500551809,47,"hline"
+? hline
+|2,1,1500549355,,"hline"
+?/constants
+|2,1,1500465764,47,"constants"
+?/booktabs
+|2,1,1500465656,47,"booktabs"
+?/usepackage
+|2,1,1500465484,47,"usepackage"
+?/uepacka
+|2,1,1500465480,47,"uepacka"
+?/usep
+|2,1,1500465474,47,"usep"
+?/constant
+|2,1,1500464215,47,"constant"
+? ref
+|2,1,1500463436,,"ref"
+? Debye-
+|2,1,1500463416,,"Debye-"
+? Debye-length
+|2,1,1500451630,,"Debye-length"
+?/D
+|2,1,1500451607,47,"D"
+?/hindered
+|2,1,1500374625,47,"hindered"
+?/dielectrical
+|2,1,1500374618,47,"dielectrical"
+?/chapter
+|2,1,1500365443,47,"chapter"
+?/Physikalische
+|2,1,1500033191,47,"Physikalische"
+?/Abstra
+|2,1,1500032617,47,"Abstra"
+?/abstrac
+|2,1,1500032259,47,"abstrac"
+? %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+|2,1,1500032252,,"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
+?/Monitor
+|2,1,1500030876,47,"Monitor"
+?/subs
+|2,1,1499945534,47,"subs"
+?/subsub
+|2,1,1499945527,47,"subsub"
+?/sign
+|2,1,1499948525,47,"sign"
+? \<USB\>
+|2,1,1499944048,,"\\<USB\\>"
+?/titlefor
+|2,1,1499859842,47,"titlefor"
+?/autodot
+|2,1,1499859633,47,"autodot"
+?/abstr
+|2,1,1499859468,47,"abstr"
+?/book
+|2,1,1499859310,47,"book"
+?/callbac
+|2,1,1499858561,47,"callbac"
+?/log
+|2,1,1499855069,47,"log"
+? \<latex\>
+|2,1,1499858355,,"\\<latex\\>"
+?/Invisibles
+|2,1,1499850187,47,"Invisibles"
+
+# Ausdruck Geschichte (neueste bis älteste):
+
+# Eingabe-Zeile Geschichte (neueste bis älteste):
+
+# Debug-Zeile Geschichte (neueste bis älteste):
+
+# Register:
+"0	LINE	0
+	  \begin{longtable}{m{0.32\textwidth}m{0.32\textwidth}m{0.32\textwidth}}
+|3,0,0,1,1,0,1501856793,"  \\begin{longtable}{m{0.32\\textwidth}m{0.32\\textwidth}m{0.32\\textwidth}}"
+"1	LINE	0
+	
+|3,0,1,1,1,0,1501854347,""
+"2	LINE	0
+	      
+|3,0,2,1,1,0,1501854347,"      "
+"3	LINE	0
+	      electric capacity        & $\unit{F}$ & $\unit{C}$ & $\unit{M^{-1}L^{-2}T^{4}I^{2}}$ & \\ \\%
+|3,0,3,1,1,0,1501853439,"      electric capacity        & $\\unit{F}$ & $\\unit{C}$ & $\\unit{M^{-1}L^{-2}T^{4}I^{2}}$ & \\\\ \\\\%"
+"4	LINE	0
+				particle density         & $\unit{cm^{-3}}$ & $n\ix{j}$ & $\unit{L^{-3}}$ & \\ \\%
+|3,0,4,1,1,0,1501853404,"			particle density         & $\\unit{cm^{-3}}$ & $n\\ix{j}$ & $\\unit{L^{-3}}$ & \\\\ \\\\%"
+"5	LINE	0
+				Boltzmann constant       & $\unit{eV/K}$ & $k\ix{B}$ & $\unit{M^{1}L^{2}T^{-2}K^{-1}}$ & $8,617\cdot\tenpo{-23}$ \\ \\%
+|3,0,5,1,1,0,1501853270,"			Boltzmann constant       & $\\unit{eV/K}$ & $k\\ix{B}$ & $\\unit{M^{1}L^{2}T^{-2}K^{-1}}$ & $8,617\\cdot\\tenpo{-23}$ \\\\ \\\\%"
+"6	LINE	0
+	      electric capacity        & $\unit{F}$ & $\unit{C}$ & $\unit{M^{-1}L^{-2}T^{4}I^{2}}$ & \\ \\%
+|3,0,6,1,1,0,1501853250,"      electric capacity        & $\\unit{F}$ & $\\unit{C}$ & $\\unit{M^{-1}L^{-2}T^{4}I^{2}}$ & \\\\ \\\\%"
+"7	LINE	0
+				plasma frequency         & $\unit{Hz}$ & $\omega\ix{p,j}$ & $\unit{T^{-1}}$ & \\ \\%
+				collisional frequency    & $\unit{Hz}$ & $\nu\ix{j}$ & $\unit{T^{-1}}$ & \\ \\%
+|3,0,7,1,2,0,1501853247,"			plasma frequency         & $\\unit{Hz}$ & $\\omega\\ix{p,j}$ & $\\unit{T^{-1}}$ & \\\\ \\\\%","			collisional frequency    & $\\unit{Hz}$ & $\\nu\\ix{j}$ & $\\unit{T^{-1}}$ & \\\\ \\\\%"
+"8	LINE	0
+	      mobility                 & $\unit{cm^{2}/Vs}$ & $\mu\ix{j}$ & $\unit{I^{1}T^{2}M^{-1}}$ & \\ \\%
+|3,0,8,1,1,0,1501853229,"      mobility                 & $\\unit{cm^{2}/Vs}$ & $\\mu\\ix{j}$ & $\\unit{I^{1}T^{2}M^{-1}}$ & \\\\ \\\\%"
+"9	LINE	0
+				Vacuum permittivity      & $\unit{F/m}$ & $\varepsilon\ix{0}$%
+	                                              & $\unit{M^{-1}L^{-3}T^{-4}A^{2}}$ & $8,854\cdot\tenpo{-12}$ \\ \\%
+|3,0,9,1,2,0,1501853220,"			Vacuum permittivity      & $\\unit{F/m}$ & $\\varepsilon\\ix{0}$%","                                              & $\\unit{M^{-1}L^{-3}T^{-4}A^{2}}$ & $8,854\\cdot\\tenpo{-12}$ \\\\ \\\\%"
+""-	CHAR	0
+	$
+|3,1,36,0,1,0,1501857319,"$"
+
+# Datei-Marken:
+'0  23  0  ~/.vimrc
+|4,48,23,0,1502083936,"~/.vimrc"
+'1  68  30  ~/Documents/MA-kerfd/latex/master.tex
+|4,49,68,30,1502083909,"~/Documents/MA-kerfd/latex/master.tex"
+'2  35  21  ~/Documents/Disserstation_Birgit/einleitung.tex
+|4,50,35,21,1501846288,"~/Documents/Disserstation_Birgit/einleitung.tex"
+'3  106  55  ~/Documents/bachelor_arbeit-philipp_hacker/tex/content/chapter_basics.tex
+|4,51,106,55,1501846160,"~/Documents/bachelor_arbeit-philipp_hacker/tex/content/chapter_basics.tex"
+'4  78  0  ~/Documents/tex_works-wirtschaft/publication/dissertation/metrotex.tex
+|4,52,78,0,1501844750,"~/Documents/tex_works-wirtschaft/publication/dissertation/metrotex.tex"
+'5  26  19  ~/Documents/tex_works-wirtschaft/publication/dissertation/metrotex.tex
+|4,53,26,19,1501842788,"~/Documents/tex_works-wirtschaft/publication/dissertation/metrotex.tex"
+'6  26  19  ~/Documents/tex_works-wirtschaft/publication/dissertation/metrotex.tex
+|4,54,26,19,1501842788,"~/Documents/tex_works-wirtschaft/publication/dissertation/metrotex.tex"
+'7  1  0  ~/Documents/Disserstation_Birgit/metrotex.tex
+|4,55,1,0,1501842167,"~/Documents/Disserstation_Birgit/metrotex.tex"
+'8  1  0  ~/Documents/Disserstation_Birgit/metrotex.tex
+|4,56,1,0,1501842167,"~/Documents/Disserstation_Birgit/metrotex.tex"
+'9  1  0  ~/Documents/Disserstation_Birgit/metrotex.tex
+|4,57,1,0,1501842148,"~/Documents/Disserstation_Birgit/metrotex.tex"
+
+# Geschichte (neueste zuerst):
+-'  23  0  ~/.vimrc
+|4,39,23,0,1502083936,"~/.vimrc"
+-'  1  0  ~/.vimrc
+|4,39,1,0,1502083930,"~/.vimrc"
+-'  68  30  ~/Documents/MA-kerfd/latex/master.tex
+|4,39,68,30,1502083909,"~/Documents/MA-kerfd/latex/master.tex"
+-'  68  30  ~/Documents/MA-kerfd/latex/master.tex
+|4,39,68,30,1502083909,"~/Documents/MA-kerfd/latex/master.tex"
+-'  58  0  ~/Documents/MA-kerfd/latex/master.tex
+|4,39,58,0,1501849206,"~/Documents/MA-kerfd/latex/master.tex"
+-'  58  0  ~/Documents/MA-kerfd/latex/master.tex
+|4,39,58,0,1501849206,"~/Documents/MA-kerfd/latex/master.tex"
+-'  73  13  ~/Documents/MA-kerfd/latex/master.tex
+|4,39,73,13,1501849192,"~/Documents/MA-kerfd/latex/master.tex"
+-'  73  13  ~/Documents/MA-kerfd/latex/master.tex
+|4,39,73,13,1501849192,"~/Documents/MA-kerfd/latex/master.tex"
+-'  53  1  ~/Documents/MA-kerfd/latex/master.tex
+|4,39,53,1,1501849176,"~/Documents/MA-kerfd/latex/master.tex"
+-'  59  18  ~/Documents/MA-kerfd/latex/master.tex
+|4,39,59,18,1501849176,"~/Documents/MA-kerfd/latex/master.tex"
+-'  53  1  ~/Documents/MA-kerfd/latex/master.tex
+|4,39,53,1,1501849176,"~/Documents/MA-kerfd/latex/master.tex"
+-'  59  18  ~/Documents/MA-kerfd/latex/master.tex
+|4,39,59,18,1501849176,"~/Documents/MA-kerfd/latex/master.tex"
+-'  35  21  ~/Documents/Disserstation_Birgit/einleitung.tex
+|4,39,35,21,1501846288,"~/Documents/Disserstation_Birgit/einleitung.tex"
+-'  35  21  ~/Documents/Disserstation_Birgit/einleitung.tex
+|4,39,35,21,1501846288,"~/Documents/Disserstation_Birgit/einleitung.tex"
+-'  106  55  ~/Documents/bachelor_arbeit-philipp_hacker/tex/content/chapter_basics.tex
+|4,39,106,55,1501846160,"~/Documents/bachelor_arbeit-philipp_hacker/tex/content/chapter_basics.tex"
+-'  106  55  ~/Documents/bachelor_arbeit-philipp_hacker/tex/content/chapter_basics.tex
+|4,39,106,55,1501846160,"~/Documents/bachelor_arbeit-philipp_hacker/tex/content/chapter_basics.tex"
+-'  1  0  ~/Documents/bachelor_arbeit-philipp_hacker/tex/content/chapter_basics.tex
+|4,39,1,0,1501844777,"~/Documents/bachelor_arbeit-philipp_hacker/tex/content/chapter_basics.tex"
+-'  1  0  ~/Documents/bachelor_arbeit-philipp_hacker/tex/content/chapter_basics.tex
+|4,39,1,0,1501844777,"~/Documents/bachelor_arbeit-philipp_hacker/tex/content/chapter_basics.tex"
+-'  78  0  ~/Documents/tex_works-wirtschaft/publication/dissertation/metrotex.tex
+|4,39,78,0,1501844750,"~/Documents/tex_works-wirtschaft/publication/dissertation/metrotex.tex"
+-'  78  0  ~/Documents/tex_works-wirtschaft/publication/dissertation/metrotex.tex
+|4,39,78,0,1501844750,"~/Documents/tex_works-wirtschaft/publication/dissertation/metrotex.tex"
+-'  78  0  ~/Documents/tex_works-wirtschaft/publication/dissertation/metrotex.tex
+|4,39,78,0,1501844750,"~/Documents/tex_works-wirtschaft/publication/dissertation/metrotex.tex"
+-'  78  0  ~/Documents/tex_works-wirtschaft/publication/dissertation/metrotex.tex
+|4,39,78,0,1501844750,"~/Documents/tex_works-wirtschaft/publication/dissertation/metrotex.tex"
+-'  1  0  ~/Documents/MA-kerfd/latex/master.tex
+|4,39,1,0,1501843348,"~/Documents/MA-kerfd/latex/master.tex"
+-'  1  0  ~/Documents/MA-kerfd/latex/master.tex
+|4,39,1,0,1501843348,"~/Documents/MA-kerfd/latex/master.tex"
+-'  1  0  ~/Documents/tex_works-wirtschaft/publication/dissertation/metrotex.tex
+|4,39,1,0,1501843031,"~/Documents/tex_works-wirtschaft/publication/dissertation/metrotex.tex"
+-'  1  0  ~/Documents/tex_works-wirtschaft/publication/dissertation/metrotex.tex
+|4,39,1,0,1501843031,"~/Documents/tex_works-wirtschaft/publication/dissertation/metrotex.tex"
+-'  1  0  ~/Documents/tex_works-wirtschaft/publication/dissertation/metrotex.tex
+|4,39,1,0,1501843031,"~/Documents/tex_works-wirtschaft/publication/dissertation/metrotex.tex"
+-'  1  0  ~/Documents/tex_works-wirtschaft/publication/dissertation/metrotex.tex
+|4,39,1,0,1501843031,"~/Documents/tex_works-wirtschaft/publication/dissertation/metrotex.tex"
+-'  13  271  ~/Documents/Disserstation_Birgit/einleitung.tex
+|4,39,13,271,1501842927,"~/Documents/Disserstation_Birgit/einleitung.tex"
+-'  13  271  ~/Documents/Disserstation_Birgit/einleitung.tex
+|4,39,13,271,1501842927,"~/Documents/Disserstation_Birgit/einleitung.tex"
+-'  26  19  ~/Documents/tex_works-wirtschaft/publication/dissertation/metrotex.tex
+|4,39,26,19,1501842788,"~/Documents/tex_works-wirtschaft/publication/dissertation/metrotex.tex"
+-'  26  19  ~/Documents/tex_works-wirtschaft/publication/dissertation/metrotex.tex
+|4,39,26,19,1501842788,"~/Documents/tex_works-wirtschaft/publication/dissertation/metrotex.tex"
+-'  26  19  ~/Documents/tex_works-wirtschaft/publication/dissertation/metrotex.tex
+|4,39,26,19,1501842788,"~/Documents/tex_works-wirtschaft/publication/dissertation/metrotex.tex"
+-'  26  19  ~/Documents/tex_works-wirtschaft/publication/dissertation/metrotex.tex
+|4,39,26,19,1501842788,"~/Documents/tex_works-wirtschaft/publication/dissertation/metrotex.tex"
+-'  26  19  ~/Documents/tex_works-wirtschaft/publication/dissertation/metrotex.tex
+|4,39,26,19,1501842788,"~/Documents/tex_works-wirtschaft/publication/dissertation/metrotex.tex"
+-'  26  19  ~/Documents/tex_works-wirtschaft/publication/dissertation/metrotex.tex
+|4,39,26,19,1501842788,"~/Documents/tex_works-wirtschaft/publication/dissertation/metrotex.tex"
+-'  26  19  ~/Documents/tex_works-wirtschaft/publication/dissertation/metrotex.tex
+|4,39,26,19,1501842788,"~/Documents/tex_works-wirtschaft/publication/dissertation/metrotex.tex"
+-'  26  19  ~/Documents/tex_works-wirtschaft/publication/dissertation/metrotex.tex
+|4,39,26,19,1501842788,"~/Documents/tex_works-wirtschaft/publication/dissertation/metrotex.tex"
+-'  26  19  ~/Documents/tex_works-wirtschaft/publication/dissertation/metrotex.tex
+|4,39,26,19,1501842788,"~/Documents/tex_works-wirtschaft/publication/dissertation/metrotex.tex"
+-'  26  19  ~/Documents/tex_works-wirtschaft/publication/dissertation/metrotex.tex
+|4,39,26,19,1501842788,"~/Documents/tex_works-wirtschaft/publication/dissertation/metrotex.tex"
+-'  42  0  ~/Documents/Disserstation_Birgit/metrotex.tex
+|4,39,42,0,1501842332,"~/Documents/Disserstation_Birgit/metrotex.tex"
+-'  42  0  ~/Documents/Disserstation_Birgit/metrotex.tex
+|4,39,42,0,1501842332,"~/Documents/Disserstation_Birgit/metrotex.tex"
+-'  96  0  ~/Documents/Disserstation_Birgit/metrotex.tex
+|4,39,96,0,1501842264,"~/Documents/Disserstation_Birgit/metrotex.tex"
+-'  96  0  ~/Documents/Disserstation_Birgit/metrotex.tex
+|4,39,96,0,1501842264,"~/Documents/Disserstation_Birgit/metrotex.tex"
+-'  1  0  ~/Documents/tex_works-wirtschaft/publication/dissertation/metrotex.tex
+|4,39,1,0,1501842211,"~/Documents/tex_works-wirtschaft/publication/dissertation/metrotex.tex"
+-'  1  0  ~/Documents/tex_works-wirtschaft/publication/dissertation/metrotex.tex
+|4,39,1,0,1501842211,"~/Documents/tex_works-wirtschaft/publication/dissertation/metrotex.tex"
+-'  1  0  ~/Documents/tex_works-wirtschaft/publication/dissertation/metrotex.tex
+|4,39,1,0,1501842211,"~/Documents/tex_works-wirtschaft/publication/dissertation/metrotex.tex"
+-'  1  0  ~/Documents/tex_works-wirtschaft/publication/dissertation/metrotex.tex
+|4,39,1,0,1501842211,"~/Documents/tex_works-wirtschaft/publication/dissertation/metrotex.tex"
+-'  1  0  ~/Documents/tex_works-wirtschaft/publication/dissertation/metrotex.tex
+|4,39,1,0,1501842211,"~/Documents/tex_works-wirtschaft/publication/dissertation/metrotex.tex"
+-'  1  0  ~/Documents/tex_works-wirtschaft/publication/dissertation/metrotex.tex
+|4,39,1,0,1501842211,"~/Documents/tex_works-wirtschaft/publication/dissertation/metrotex.tex"
+-'  1  0  ~/Documents/Disserstation_Birgit/metrotex.tex
+|4,39,1,0,1501842180,"~/Documents/Disserstation_Birgit/metrotex.tex"
+-'  1  0  ~/Documents/Disserstation_Birgit/metrotex.tex
+|4,39,1,0,1501842180,"~/Documents/Disserstation_Birgit/metrotex.tex"
+-'  1  0  ~/Documents/Disserstation_Birgit/metrotex.tex
+|4,39,1,0,1501842167,"~/Documents/Disserstation_Birgit/metrotex.tex"
+-'  1  0  ~/Documents/Disserstation_Birgit/metrotex.tex
+|4,39,1,0,1501842167,"~/Documents/Disserstation_Birgit/metrotex.tex"
+-'  1  0  ~/Documents/Disserstation_Birgit/metrotex.tex
+|4,39,1,0,1501842167,"~/Documents/Disserstation_Birgit/metrotex.tex"
+-'  1  0  ~/Documents/Disserstation_Birgit/metrotex.tex
+|4,39,1,0,1501842167,"~/Documents/Disserstation_Birgit/metrotex.tex"
+-'  1  0  ~/Documents/Disserstation_Birgit/metrotex.tex
+|4,39,1,0,1501842167,"~/Documents/Disserstation_Birgit/metrotex.tex"
+-'  1  0  ~/Documents/Disserstation_Birgit/metrotex.tex
+|4,39,1,0,1501842167,"~/Documents/Disserstation_Birgit/metrotex.tex"
+-'  1  0  ~/Documents/Disserstation_Birgit/metrotex.tex
+|4,39,1,0,1501842167,"~/Documents/Disserstation_Birgit/metrotex.tex"
+-'  1  0  ~/Documents/Disserstation_Birgit/metrotex.tex
+|4,39,1,0,1501842167,"~/Documents/Disserstation_Birgit/metrotex.tex"
+-'  1  0  ~/Documents/Disserstation_Birgit/metrotex.tex
+|4,39,1,0,1501842167,"~/Documents/Disserstation_Birgit/metrotex.tex"
+-'  1  0  ~/Documents/Disserstation_Birgit/metrotex.tex
+|4,39,1,0,1501842167,"~/Documents/Disserstation_Birgit/metrotex.tex"
+-'  1  0  ~/Documents/Disserstation_Birgit/metrotex.tex
+|4,39,1,0,1501842167,"~/Documents/Disserstation_Birgit/metrotex.tex"
+-'  1  0  ~/Documents/Disserstation_Birgit/metrotex.tex
+|4,39,1,0,1501842167,"~/Documents/Disserstation_Birgit/metrotex.tex"
+-'  1  0  ~/Documents/Disserstation_Birgit/metrotex.tex
+|4,39,1,0,1501842167,"~/Documents/Disserstation_Birgit/metrotex.tex"
+-'  1  0  ~/Documents/Disserstation_Birgit/metrotex.tex
+|4,39,1,0,1501842167,"~/Documents/Disserstation_Birgit/metrotex.tex"
+-'  1  0  ~/Documents/Disserstation_Birgit/metrotex.tex
+|4,39,1,0,1501842167,"~/Documents/Disserstation_Birgit/metrotex.tex"
+-'  1  0  ~/Documents/Disserstation_Birgit/metrotex.tex
+|4,39,1,0,1501842167,"~/Documents/Disserstation_Birgit/metrotex.tex"
+-'  1  0  ~/Documents/Disserstation_Birgit/metrotex.tex
+|4,39,1,0,1501842167,"~/Documents/Disserstation_Birgit/metrotex.tex"
+-'  1  0  ~/Documents/Disserstation_Birgit/metrotex.tex
+|4,39,1,0,1501842167,"~/Documents/Disserstation_Birgit/metrotex.tex"
+-'  1  0  ~/Documents/Disserstation_Birgit/metrotex.tex
+|4,39,1,0,1501842167,"~/Documents/Disserstation_Birgit/metrotex.tex"
+-'  1  0  ~/Documents/Disserstation_Birgit/metrotex.tex
+|4,39,1,0,1501842167,"~/Documents/Disserstation_Birgit/metrotex.tex"
+-'  1  0  ~/Documents/Disserstation_Birgit/metrotex.tex
+|4,39,1,0,1501842148,"~/Documents/Disserstation_Birgit/metrotex.tex"
+-'  1  0  ~/Documents/Disserstation_Birgit/metrotex.tex
+|4,39,1,0,1501842148,"~/Documents/Disserstation_Birgit/metrotex.tex"
+-'  1  0  ~/Documents/Disserstation_Birgit/metrotex.tex
+|4,39,1,0,1501842148,"~/Documents/Disserstation_Birgit/metrotex.tex"
+-'  1  0  ~/Documents/Disserstation_Birgit/metrotex.tex
+|4,39,1,0,1501842148,"~/Documents/Disserstation_Birgit/metrotex.tex"
+-'  1  0  ~/Documents/Disserstation_Birgit/metrotex.tex
+|4,39,1,0,1501842148,"~/Documents/Disserstation_Birgit/metrotex.tex"
+-'  1  0  ~/Documents/Disserstation_Birgit/metrotex.tex
+|4,39,1,0,1501842148,"~/Documents/Disserstation_Birgit/metrotex.tex"
+-'  1  0  ~/Documents/Disserstation_Birgit/metrotex.tex
+|4,39,1,0,1501842148,"~/Documents/Disserstation_Birgit/metrotex.tex"
+-'  1  0  ~/Documents/Disserstation_Birgit/metrotex.tex
+|4,39,1,0,1501842148,"~/Documents/Disserstation_Birgit/metrotex.tex"
+-'  1  0  ~/Documents/Disserstation_Birgit/metrotex.tex
+|4,39,1,0,1501842148,"~/Documents/Disserstation_Birgit/metrotex.tex"
+-'  1  0  ~/Documents/Disserstation_Birgit/metrotex.tex
+|4,39,1,0,1501842148,"~/Documents/Disserstation_Birgit/metrotex.tex"
+-'  1  0  ~/Documents/Disserstation_Birgit/metrotex.tex
+|4,39,1,0,1501842148,"~/Documents/Disserstation_Birgit/metrotex.tex"
+-'  1  0  ~/Documents/Disserstation_Birgit/metrotex.tex
+|4,39,1,0,1501842148,"~/Documents/Disserstation_Birgit/metrotex.tex"
+-'  1  0  ~/Documents/Disserstation_Birgit/metrotex.tex
+|4,39,1,0,1501842148,"~/Documents/Disserstation_Birgit/metrotex.tex"
+-'  1  0  ~/Documents/Disserstation_Birgit/metrotex.tex
+|4,39,1,0,1501842148,"~/Documents/Disserstation_Birgit/metrotex.tex"
+-'  1  0  ~/Documents/Disserstation_Birgit/metrotex.tex
+|4,39,1,0,1501842148,"~/Documents/Disserstation_Birgit/metrotex.tex"
+-'  1  0  ~/Documents/Disserstation_Birgit/metrotex.tex
+|4,39,1,0,1501842148,"~/Documents/Disserstation_Birgit/metrotex.tex"
+-'  1  0  ~/Documents/Disserstation_Birgit/metrotex.tex
+|4,39,1,0,1501842148,"~/Documents/Disserstation_Birgit/metrotex.tex"
+-'  1  0  ~/Documents/Disserstation_Birgit/metrotex.tex
+|4,39,1,0,1501842148,"~/Documents/Disserstation_Birgit/metrotex.tex"
+-'  1  0  ~/Documents/Disserstation_Birgit/metrotex.tex
+|4,39,1,0,1501842148,"~/Documents/Disserstation_Birgit/metrotex.tex"
+-'  1  0  ~/Documents/Disserstation_Birgit/metrotex.tex
+|4,39,1,0,1501842148,"~/Documents/Disserstation_Birgit/metrotex.tex"
+-'  88  0  ~/.vimrc
+|4,39,88,0,1501842117,"~/.vimrc"
+-'  88  0  ~/.vimrc
+|4,39,88,0,1501842117,"~/.vimrc"
+-'  88  0  ~/.vimrc
+|4,39,88,0,1501842117,"~/.vimrc"
+-'  88  0  ~/.vimrc
+|4,39,88,0,1501842117,"~/.vimrc"
+-'  88  0  ~/.vimrc
+|4,39,88,0,1501842117,"~/.vimrc"
+-'  88  0  ~/.vimrc
+|4,39,88,0,1501842117,"~/.vimrc"
+-'  88  0  ~/.vimrc
+|4,39,88,0,1501842117,"~/.vimrc"
+-'  88  0  ~/.vimrc
+|4,39,88,0,1501842117,"~/.vimrc"
+
+# Geschichte der Markierungen innerhalb von Dateien (neueste zuerst):
+
+> ~/.vimrc
+	*	1502083933	0
+	"	23	0
+	.	115	0
+	+	41	0
+	+	47	0
+	+	96	0
+	+	109	0
+	+	116	0
+	+	127	0
+	+	416	0
+	+	38	0
+	+	189	24
+	+	157	0
+	+	35	0
+	+	413	0
+	+	31	0
+	+	186	26
+	+	189	26
+	+	102	0
+	+	41	0
+	+	47	0
+	+	41	0
+	+	42	0
+	+	43	0
+	+	42	5
+	+	43	5
+	+	18	0
+	+	27	0
+	+	31	0
+	+	27	0
+	+	25	32
+	+	93	0
+	+	89	32
+	+	116	0
+	+	43	0
+	+	47	0
+	+	90	44
+	+	47	0
+	+	1	0
+	+	416	0
+	+	127	14
+	+	127	12
+	+	444	2
+	+	366	0
+	+	379	0
+	+	46	28
+	+	47	21
+	+	88	0
+	+	89	0
+	+	90	0
+	+	89	0
+	+	88	0
+	+	89	23
+	+	88	0
+	+	89	0
+	+	116	20
+	+	126	3
+	+	117	0
+	+	118	0
+	+	126	0
+	+	116	19
+	+	45	14
+	+	127	0
+	+	125	0
+	+	127	0
+	+	124	0
+	+	47	0
+	+	41	0
+	+	127	0
+	+	116	0
+	+	49	0
+	+	88	0
+	+	115	0
+	+	86	23
+	+	88	0
+	+	55	19
+	+	56	22
+	+	88	13
+	+	91	5
+	+	90	1
+	+	89	1
+	+	92	6
+	+	102	0
+	+	102	1
+	+	103	1
+	+	102	13
+	+	109	0
+	+	109	16
+	+	114	6
+	+	111	0
+	+	105	0
+	+	98	0
+	+	94	0
+	+	101	5
+	+	93	1
+	+	102	1
+	+	108	5
+	+	116	0
+	+	127	0
+	+	109	0
+	+	102	0
+	+	92	0
+	+	115	0
+
+> ~/Documents/MA-kerfd/latex/master.tex
+	*	1502083907	0
+	"	68	30
+	^	54	12
+	.	54	0
+	+	244	21
+	+	228	2
+	+	243	1
+	+	244	2
+	+	243	2
+	+	239	4
+	+	240	17
+	+	239	3
+	+	227	13
+	+	229	0
+	+	301	27
+	+	299	26
+	+	299	27
+	+	298	29
+	+	302	27
+	+	299	28
+	+	300	28
+	+	301	1
+	+	280	1
+	+	282	0
+	+	265	0
+	+	152	21
+	+	266	11
+	+	266	0
+	+	266	17
+	+	266	0
+	+	152	22
+	+	266	0
+	+	251	0
+	+	266	0
+	+	286	0
+	+	296	78
+	+	301	0
+	+	292	73
+	+	293	46
+	+	291	0
+	+	289	2
+	+	139	0
+	+	140	0
+	+	141	0
+	+	141	12
+	+	141	13
+	+	141	12
+	+	141	0
+	+	156	0
+	+	167	0
+	+	169	1
+	+	170	0
+	+	167	0
+	+	165	12
+	+	165	13
+	+	165	12
+	+	166	12
+	+	165	0
+	+	167	0
+	+	158	14
+	+	157	0
+	+	168	0
+	+	158	47
+	+	158	0
+	+	159	59
+	+	160	58
+	+	161	59
+	+	162	61
+	+	163	62
+	+	164	63
+	+	165	30
+	+	157	50
+	+	158	34
+	+	159	45
+	+	160	45
+	+	161	46
+	+	162	47
+	+	163	48
+	+	164	51
+	+	165	41
+	+	165	42
+	+	166	42
+	+	167	45
+	+	168	50
+	+	161	38
+	+	160	40
+	+	159	43
+	+	279	0
+	+	274	0
+	+	276	31
+	+	275	7
+	+	122	20
+	+	159	48
+	+	160	46
+	+	161	45
+	+	122	0
+	+	111	0
+	+	310	28
+	+	165	47
+	+	166	42
+	+	169	0
+	+	53	0
+	+	54	0
+
+> ~/Documents/MA-kerfd/latex/content/chapter_basic.tex
+	*	1502083907	0
+	"	113	14
+	^	114	45
+	.	114	44
+	+	35	170
+	+	35	211
+	+	35	68
+	+	35	220
+	+	37	308
+	+	43	22
+	+	37	2
+	+	38	0
+	+	45	102
+	+	38	117
+	+	40	125
+	+	41	104
+	+	43	13
+	+	40	19
+	+	40	74
+	+	41	55
+	+	41	72
+	+	38	73
+	+	39	22
+	+	41	28
+	+	42	42
+	+	45	102
+	+	66	2
+	+	45	259
+	+	47	15
+	+	56	2
+	+	47	0
+	+	48	83
+	+	51	374
+	+	48	63
+	+	49	53
+	+	51	132
+	+	50	122
+	+	52	23
+	+	53	20
+	+	54	64
+	+	45	243
+	+	41	36
+	+	51	71
+	+	50	98
+	+	54	59
+	+	49	38
+	+	41	43
+	+	50	0
+	+	45	257
+	+	56	1
+	+	57	80
+	+	54	23
+	+	57	138
+	+	58	112
+	+	58	343
+	+	65	0
+	+	60	1
+	+	61	0
+	+	61	94
+	+	62	44
+	+	65	182
+	+	65	57
+	+	65	183
+	+	42	82
+	+	114	91
+	+	159	62
+	+	170	65
+	+	171	12
+	+	175	230
+	+	175	0
+	+	175	307
+	+	177	5
+	+	178	5
+	+	179	5
+	+	178	5
+	+	179	7
+	+	182	5
+	+	183	5
+	+	175	416
+	+	177	6
+	+	175	418
+	+	176	473
+	+	177	0
+	+	179	15
+	+	179	119
+	+	180	17
+	+	183	154
+	+	183	252
+	+	37	344
+	+	57	92
+	+	64	86
+	+	72	135
+	+	128	41
+	+	139	129
+	+	139	0
+	+	157	22
+	+	159	22
+	+	176	379
+	+	165	100
+	+	36	39
+	+	57	115
+	+	107	30
+	+	111	364
+	+	114	44
+
+> ~/Documents/MA-kerfd/latex/content/chapter_prefix.tex
+	*	1502083906	0
+	"	30	71
+	^	30	70
+	.	30	69
+	+	33	95
+	+	36	66
+	+	36	81
+	+	37	56
+	+	38	61
+	+	43	70
+	+	52	67
+	+	52	0
+	+	39	74
+	+	52	55
+	+	39	49
+	+	51	49
+	+	45	67
+	+	45	70
+	+	46	69
+	+	46	66
+	+	33	45
+	+	43	117
+	+	46	72
+	+	46	61
+	+	53	0
+	+	33	0
+	+	46	90
+	+	46	65
+	+	46	72
+	+	47	71
+	+	51	80
+	+	45	75
+	+	46	71
+	+	46	73
+	+	33	69
+	+	28	68
+	+	53	40
+	+	52	54
+	+	53	59
+	+	52	69
+	+	53	54
+	+	46	85
+	+	43	74
+	+	43	77
+	+	37	0
+	+	34	0
+	+	56	49
+	+	56	45
+	+	56	14
+	+	56	29
+	+	56	97
+	+	56	60
+	+	56	89
+	+	56	92
+	+	56	0
+	+	56	6
+	+	56	24
+	+	56	0
+	+	55	0
+	+	56	0
+	+	55	11
+	+	62	9
+	+	55	34
+	+	56	0
+	+	56	42
+	+	56	0
+	+	55	22
+	+	56	0
+	+	56	104
+	+	61	0
+	+	36	0
+	+	40	0
+	+	46	0
+	+	28	0
+	+	29	0
+	+	33	0
+	+	49	0
+	+	46	0
+	+	32	0
+	+	46	0
+	+	59	0
+	+	56	0
+	+	55	0
+	+	33	0
+	+	38	0
+	+	36	0
+	+	31	0
+	+	60	0
+	+	61	6
+	+	58	81
+	+	45	0
+	+	48	61
+	+	55	0
+	+	57	0
+	+	54	93
+	+	44	54
+	+	55	34
+	+	56	52
+	+	57	47
+	+	58	47
+	+	54	57
+	+	44	86
+	+	61	0
+	+	30	69
+
+> ~/Documents/MA-kerfd/latex/appendices/appendix.tex
+	*	1502083905	0
+	"	24	21
+	^	13	87
+	.	13	87
+	+	66	67
+	+	62	15
+	+	82	18
+	+	73	0
+	+	77	8
+	+	82	19
+	+	82	135
+	+	82	40
+	+	86	43
+	+	88	23
+	+	57	52
+	+	58	25
+	+	9	19
+	+	59	0
+	+	87	0
+	+	77	52
+	+	77	97
+	+	79	18
+	+	86	51
+	+	79	93
+	+	80	8
+	+	79	84
+	+	80	79
+	+	86	43
+	+	73	53
+	+	77	52
+	+	80	74
+	+	77	0
+	+	77	65
+	+	80	51
+	+	79	85
+	+	80	25
+	+	77	14
+	+	82	61
+	+	5	0
+	+	6	0
+	+	5	2
+	+	6	21
+	+	82	13
+	+	6	21
+	+	82	37
+	+	82	8
+	+	82	0
+	+	6	22
+	+	7	0
+	+	6	2
+	+	5	2
+	+	83	37
+	+	84	18
+	+	82	20
+	+	78	20
+	+	76	21
+	+	77	10
+	+	68	20
+	+	69	8
+	+	71	20
+	+	70	9
+	+	69	9
+	+	61	21
+	+	62	9
+	+	63	26
+	+	64	21
+	+	62	62
+	+	69	49
+	+	50	53
+	+	51	21
+	+	52	57
+	+	54	19
+	+	53	10
+	+	54	20
+	+	52	54
+	+	45	21
+	+	46	9
+	+	47	83
+	+	48	0
+	+	40	19
+	+	39	9
+	+	38	8
+	+	39	61
+	+	38	9
+	+	37	8
+	+	36	21
+	+	37	9
+	+	31	21
+	+	32	53
+	+	33	8
+	+	37	36
+	+	24	21
+	+	25	9
+	+	27	18
+	+	26	9
+	+	19	52
+	+	20	20
+	+	11	21
+	+	12	9
+	+	12	90
+	+	12	81
+	+	14	20
+	+	13	87
+
+> ~/Documents/MA-kerfd/latex/appendices/appendix
+	*	1501854385	0
+	"	1	0
+
+> ~/Documents/Disserstation_Birgit/einleitung.tex
+	*	1501846287	0
+	"	35	21
+	^	13	944
+	.	13	942
+	+	10	0
+	+	4	0
+	+	2	0
+	+	4	0
+	+	12	0
+	+	11	0
+	+	11	911
+	+	13	1
+	+	14	1936
+	+	20	2
+	+	15	965
+	+	16	2
+	+	18	224
+	+	22	824
+	+	24	168
+	+	25	2
+	+	26	331
+	+	27	2
+	+	29	2
+	+	31	0
+	+	33	0
+	+	26	0
+	+	28	0
+	+	32	0
+	+	38	0
+	+	22	792
+	+	30	463
+	+	13	942
+
+> ~/Documents/Disserstation_Birgit/metrotex.tex
+	*	1501846286	0
+	"	102	0
+	^	155	1
+	.	104	0
+	+	101	1
+	+	143	1
+	+	144	1
+	+	148	1
+	+	149	0
+	+	150	0
+	+	149	1
+	+	150	0
+	+	151	1
+	+	203	0
+	+	142	1
+	+	146	0
+	+	147	0
+	+	153	0
+	+	65	50
+	+	67	34
+	+	69	40
+	+	71	11
+	+	18	12
+	+	89	19
+	+	97	14
+	+	127	11
+	+	34	21
+	+	18	12
+	+	104	0
+	+	105	0
+	+	106	0
+	+	109	0
+	+	110	0
+	+	156	0
+	+	109	0
+	+	104	0
+
+> ~/Documents/bachelor_arbeit-philipp_hacker/tex/content/chapter_basics.tex
+	*	1501846160	0
+	"	106	55
+	^	10	0
+	.	8	0
+	+	1	0
+	+	8	439
+	+	8	0
+
+> ~/Documents/tex_works-wirtschaft/publication/dissertation/metrotex.tex
+	*	1501843059	0
+	"	78	0
+
+> ~/Documents/tex_works-wirtschaft/publication/dissertation/mharvard.sty
+	*	1501843031	0
+	"	1	0
+
+> ~/Documents/Disserstation_Birgit/mharvard.sty
+	*	1501842180	0
+	"	1	0
+
+> ~/Downloads/papercut_linux_java/pc-client-linux.sh
+	*	1501835005	0
+	"	139	0
+
+> /var/log/cups/error_log
+	*	1501834920	0
+	"	3420	0
+
+> /var/log/cups/page_log
+	*	1501834817	0
+	"	1	0
+
+> ~/pc-client.properties
+	*	1501834743	0
+	"	1	0
+
+> ~/Documents/Disserstation_Birgit/literature.bib
+	*	1501834223	0
+	"	52	0
+
+> ~/Documents/MA-kerfd/latex/master
+	*	1501833564	0
+	"	1	0
+
+> ~/Documents/tex_works-wirtschaft/publication/dissertation/-MiniBufExplorer-
+	*	1501832822	0
+	"	1	0
+	.	2	0
+	+	2	0
+
+> ~/Downloads/papercut_linux_java/config.properties
+	*	1501831808	0
+	"	1	0
+
+> ~/.uc-cfa21d5f14d5bdcfea039b1f08311b8f.pha.compuspha.tmp
+	*	1501830430	0
+	"	1	0
+
+> ~/.esd_auth
+	*	1501829542	0
+	"	1	0
+
+> ~/Downloads/LGPL/LGPL.txt
+	*	1501826873	0
+	"	1	0
+
+> ~/Documents/MA-kerfd/.gitignore
+	*	1501826770	0
+	"	4	13
+	^	4	14
+	.	1	28
+	+	1	28
+
+> ~/Documents/bachelor_arbeit-philipp_hacker/tex/ba_main.tex
+	*	1500636320	0
+	"	35	10
+	^	35	11
+	.	31	11
+	+	109	0
+	+	106	28
+	+	108	29
+	+	109	1
+	+	110	1
+	+	112	0
+	+	110	27
+	+	117	28
+	+	118	0
+	+	107	0
+	+	104	26
+	+	105	0
+	+	104	0
+	+	95	0
+	+	104	17
+	+	106	10
+	+	108	10
+	+	110	10
+	+	117	10
+	+	102	0
+	+	101	0
+	+	100	0
+	+	98	0
+	+	104	31
+	+	106	32
+	+	108	35
+	+	110	33
+	+	117	34
+	+	12	0
+	+	117	0
+	+	112	29
+	+	47	23
+	+	32	0
+	+	35	66
+	+	36	31
+	+	112	35
+	+	36	12
+	+	31	11
+	+	113	0
+	+	114	0
+	+	113	0
+	+	112	3
+	+	31	23
+	+	36	0
+	+	31	23
+	+	114	2
+	+	113	2
+	+	112	1
+	+	31	11
+	+	35	0
+	+	37	26
+	+	33	20
+	+	31	23
+	+	35	2
+	+	37	0
+	+	35	26
+	+	31	11
+
+> ~/Documents/bachelor_arbeit-philipp_hacker/tex/all_melzer2.bib
+	*	1500635807	0
+	"	1383	8
+
+> ~/Documents/bachelor_arbeit-philipp_hacker/tex/deleted.files
+	*	1500635648	0
+	"	1	0
+
+> ~/Documents/bachelor_arbeit-philipp_hacker/tex/content/chapter_appendix.tex.aux
+	*	1500635626	0
+	"	1	0
+
+> ~/Documents/bachelor_arbeit-philipp_hacker/tex/content/chapter_appendix.tex
+	*	1500635622	0
+	"	1	1
+
+> ~/.clean-tex.sh
+	*	1500635601	0
+	"	9	77
+	^	9	78
+	.	9	77
+	+	5	13
+	+	6	19
+	+	5	25
+	+	6	31
+	+	5	37
+	+	6	43
+	+	5	49
+	+	6	55
+	+	5	61
+	+	6	66
+	+	5	72
+	+	6	72
+	+	5	78
+	+	6	78
+	+	5	88
+	+	6	13
+	+	10	102
+	+	10	0
+	+	10	122
+	+	10	0
+	+	10	84
+	+	9	66
+	+	10	13
+	+	10	12
+	+	10	4
+	+	10	5
+	+	10	13
+	+	10	17
+	+	10	16
+	+	10	13
+	+	10	4
+	+	10	13
+	+	10	16
+	+	10	17
+	+	10	13
+	+	10	14
+	+	10	0
+	+	9	90
+	+	6	110
+	+	5	106
+	+	8	24
+	+	10	25
+	+	10	0
+	+	10	29
+	+	10	28
+	+	10	25
+	+	10	8
+	+	9	78
+	+	10	0
+	+	9	91
+	+	10	19
+	+	10	115
+	+	5	97
+	+	6	95
+	+	9	77
+
+> ~/.bashrc
+	*	1500635089	0
+	"	11	36
+	^	11	37
+	.	11	36
+	+	22	0
+	+	18	6
+	+	17	0
+	+	18	24
+	+	13	23
+	+	14	30
+	+	16	0
+	+	10	14
+	+	14	32
+	+	22	1
+	+	11	36
+
+> ~/.clean.tex
+	*	1500635003	0
+	"	9	94
+	^	9	95
+	.	9	94
+	+	1	0
+	+	10	0
+	+	2	0
+	+	9	15
+	+	9	4
+	+	9	13
+	+	10	0
+	+	5	67
+	+	6	69
+	+	3	18
+	+	9	0
+	+	11	3
+	+	4	26
+	+	8	24
+	+	9	48
+	+	6	43
+	+	9	86
+	+	5	75
+	+	6	61
+	+	9	98
+	+	5	84
+	+	9	94
+
+> /mnt/brain/plotscripts/script_all.sh
+	*	1500634999	0
+	"	1	0
+
+> ~/Documents/bachelor_arbeit-philipp_hacker/tex/-MiniBufExplorer-
+	*	1500634964	0
+	"	1	0
+	.	2	0
+	+	2	0
+
+> ~/Documents/bachelor_arbeit-philipp_hacker/tex/devnull
+	*	1500634919	0
+	"	1	0
+
+> ~/Documents/bachelor_arbeit-philipp_hacker/tex/content/chapter_results.tex
+	*	1500634673	0
+	"	458	4
+	.	459	0
+	+	459	0
+
+> ~/Documents/bachelor_arbeit-philipp_hacker/tex/ba_main-blx.bib
+	*	1500634543	0
+	"	1	0
+
+> ~/Documents/bachelor_arbeit-philipp_hacker/tex/all_melzer.bib
+	*	1500634285	0
+	"	1705	0
+
+> ~/test.key
+	*	1500629180	0
+	"	1	15
+	^	1	16
+	.	1	15
+	+	1	15
+
+> ~/tor_ring.key
+	*	1500629060	0
+	"	115	0
+
+> ~/.torkeyring.key
+	*	1500628874	0
+	"	115	0
+	^	1	2
+	.	1	0
+	+	115	56
+	+	1	0
+
+> ~/Documents/MA-kerfd/latex/MastersDoctoralThesis.cls
+	*	1500624205	0
+	"	2	0
+	^	353	13
+	.	373	0
+	+	31	30
+	+	66	1
+	+	31	0
+	+	322	2
+	+	323	0
+	+	322	1
+	+	363	46
+	+	364	81
+	+	365	95
+	+	356	25
+	+	356	23
+	+	167	25
+	+	164	26
+	+	162	25
+	+	160	24
+	+	157	24
+	+	154	22
+	+	169	24
+	+	171	25
+	+	173	29
+	+	175	25
+	+	177	24
+	+	168	0
+	+	167	0
+	+	164	0
+	+	162	0
+	+	160	0
+	+	157	0
+	+	155	46
+	+	156	1
+	+	159	1
+	+	166	1
+	+	171	0
+	+	175	0
+	+	177	0
+	+	180	0
+	+	154	0
+	+	167	7
+	+	356	0
+	+	356	1
+	+	357	1
+	+	356	0
+	+	353	22
+	+	354	2
+	+	355	13
+	+	348	92
+	+	353	12
+	+	356	0
+	+	373	0
+
+> ~/Documents/MA-kerfd/latex/-MiniBufExplorer-
+	*	1500560423	0
+	"	1	0
+	.	2	0
+	+	2	0
+
+> ~/Documents/MA-kerfd/latex/content/chapter_prefix.
+	*	1500560422	0
+	"	1	0
+
+> ~/Documents/MA-kerfd/latex/am
+	*	1500553021	0
+	"	1	0
+
+> ~/Documents/MA-kerfd/latex/appendices/appendix1.tex
+	*	1500553003	0
+	"	3	0
+	^	3	0
+	.	2	0
+	+	4	2
+	+	1	8
+	+	6	0
+	+	1	7
+	+	4	18
+	+	2	0
+	+	4	2
+	+	2	0
+	+	5	1
+	+	4	20
+	+	53	0
+	+	43	6
+	+	2	0
+
+> ~/Documents/MA-kerfd/latex/content/-MiniBufExplorer-
+	*	1500547775	0
+	"	1	0
+	.	2	0
+	+	2	0
+
+> ~/Documents/MA-kerfd/latex/content/chapter_basic.
+	*	1500546742	0
+	"	1	0
+
+> ~/Documents/ag_praktikum_2016/tex/report.tex
+	*	1500463113	0
+	"	112	0
+
+> ~/Documents/bachelor_arbeit-philipp_hacker/tex/content/chapter_basics.
+	*	1500452236	0
+	"	1	0
+
+> ~/Documents/bachelor_arbeit-philipp_hacker/matlab_phyinst/eigenvectors_plot.m
+	*	1500368813	0
+	"	1	0
+
+> ~/Documents/bachelor_arbeit-philipp_hacker/matlab_phyinst/plasmaglw_anls.m
+	*	1500368803	0
+	"	133	4
+
+> ~/Documents/bachelor_arbeit-philipp_hacker/matlab_phyinst/fktn_auswertung.txt
+	*	1500368787	0
+	"	47	0
+
+> ~/Documents/bachelor_arbeit-philipp_hacker/stellatemplate.tex
+	*	1500368714	0
+	"	1	0
+
+> ~/Documents/bachelor_arbeit-philipp_hacker/ip
+	*	1500368697	0
+	"	1	0
+
+> ~/Documents/bachelor_arbeit-philipp_hacker/tex/chapter_prefix.tex
+	*	1500365674	0
+	"	1	0
+	.	1	0
+	+	1	0
+
+> ~/Documents/bachelor_arbeit-philipp_hacker/tex/chapter_appendix.tex
+	*	1500365641	0
+	"	1	1
+	.	1	0
+	+	1	0
+
+> ~/Documents/bachelor_arbeit-philipp_hacker/tex/chapter_results.tex
+	*	1500365588	0
+	"	1	0
+	.	1	0
+	+	1	0
+
+> ~/Documents/bachelor_arbeit-philipp_hacker/tex/chapter_procedure.tex
+	*	1500365551	0
+	"	1	0
+	.	1	0
+	+	1	0
+
+> ~/Documents/bachelor_arbeit-philipp_hacker/tex/chapter_basics.tex
+	*	1500365479	0
+	"	1	0
+	.	1	0
+	+	1	0
+
+> ~/Documents/MA-kerfd/latex/master.t
+	*	1500365379	0
+	"	1	0
+
+> ~/.conky/conky-bluish/conky.conf
+	*	1500364800	0
+	"	85	28
+	^	95	4
+	.	95	3
+	+	52	4
+	+	77	0
+	+	75	5
+	+	85	0
+	+	93	0
+	+	78	6
+	+	76	0
+	+	86	0
+	+	94	0
+	+	85	29
+	+	87	72
+	+	88	70
+	+	89	70
+	+	90	70
+	+	91	70
+	+	88	49
+	+	89	49
+	+	90	49
+	+	91	49
+	+	3	55
+	+	61	91
+	+	63	0
+	+	61	91
+	+	62	16
+	+	63	16
+	+	64	17
+	+	65	15
+	+	65	97
+	+	64	92
+	+	63	92
+	+	62	91
+	+	3	0
+	+	68	22
+	+	3	52
+	+	68	32
+	+	4	24
+	+	3	31
+	+	74	0
+	+	53	0
+	+	53	4
+	+	1	0
+	+	95	45
+	+	93	1
+	+	95	5
+	+	104	0
+	+	93	11
+	+	95	91
+	+	101	0
+	+	96	0
+	+	97	0
+	+	96	93
+	+	97	4
+	+	96	9
+	+	97	97
+	+	98	99
+	+	98	17
+	+	96	4
+	+	97	5
+	+	95	9
+	+	99	109
+	+	99	0
+	+	98	0
+	+	97	0
+	+	96	0
+	+	95	0
+	+	99	0
+	+	102	0
+	+	104	0
+	+	102	1
+	+	110	13
+	+	111	7
+	+	112	39
+	+	113	0
+	+	110	1
+	+	112	25
+	+	110	7
+	+	112	21
+	+	14	17
+	+	112	38
+	+	113	0
+	+	100	97
+	+	93	27
+	+	100	97
+	+	54	57
+	+	53	63
+	+	100	2
+	+	54	2
+	+	100	1
+	+	54	0
+	+	82	1
+	+	83	1
+	+	90	1
+	+	91	1
+	+	107	1
+	+	108	1
+	+	98	1
+	+	103	0
+	+	112	36
+	+	99	4
+	+	95	3
+
+> ~/Documents/MA-kerfd/latex/content/chapter_basic.aux
+	*	1500031288	0
+	"	1	0
+
+> ~/.config/awesome/rc.lua
+	*	1500031056	0
+	"	664	67
+	^	664	68
+	.	664	67
+	+	41	72
+	+	174	0
+	+	163	1
+	+	164	0
+	+	174	0
+	+	174	1
+	+	174	88
+	+	174	80
+	+	41	2
+	+	174	0
+	+	544	90
+	+	174	0
+	+	544	91
+	+	545	0
+	+	174	0
+	+	544	90
+	+	546	0
+	+	545	0
+	+	163	0
+	+	547	1
+	+	548	0
+	+	547	0
+	+	546	0
+	+	557	5
+	+	550	0
+	+	551	69
+	+	553	83
+	+	551	87
+	+	553	79
+	+	559	0
+	+	560	0
+	+	570	2
+	+	558	0
+	+	563	10
+	+	564	14
+	+	562	16
+	+	565	2
+	+	565	3
+	+	565	0
+	+	565	78
+	+	570	1
+	+	565	0
+	+	564	16
+	+	44	12
+	+	564	5
+	+	563	6
+	+	562	16
+	+	666	14
+	+	667	24
+	+	666	15
+	+	666	14
+	+	673	2
+	+	666	14
+	+	667	41
+	+	666	14
+	+	660	13
+	+	674	5
+	+	660	10
+	+	667	7
+	+	665	2
+	+	666	0
+	+	667	10
+	+	666	4
+	+	667	4
+	+	665	16
+	+	664	67
+
+> /etc/X11/xorg.conf
+	*	1500030886	0
+	"	36	15
+
+> ~/Documents/bachelor_arbeit-philipp_hacker/tex/ba_main.
+	*	1500029121	0
+	"	1	0
+
+> ~/Documents/MA-kerfd/latex/content/chapter_fem.tex
+	*	1500028908	0
+	"	1	16
+	^	1	17
+	.	1	16
+	+	1	1
+	+	2	0
+	+	1	16
+
+> ~/Documents/MA-kerfd/latex/content/chapter_fem.
+	*	1500028886	0
+	"	1	0
+
+> ~/Documents/MA-kerfd/latex/content/chapter_ccrf.tex
+	*	1500028525	0
+	"	7	4
+	^	7	10
+	.	7	10
+	+	7	10
+
+> ~/Documents/MA-kerfd/latex/content/chapter_oxy.tex
+	*	1500028188	0
+	"	5	3
+
+> ~/Documents/MA-kerfd/latex/content/chapter1.tex
+	*	1500023505	0
+	"	1	0
+	.	1	0
+	+	1	0
+	+	1	12
+	+	1	21
+	+	1	26
+	+	1	15
+	+	1	11
+	+	1	38
+	+	1	0
+	+	1	37
+	+	1	36
+	+	1	21
+	+	1	22
+	+	1	1
+	+	1	0
+	+	1	1
+	+	1	61
+	+	1	11
+	+	1	0
+	+	1	58
+	+	1	0
+	+	1	55
+	+	1	0
+	+	1	30
+	+	1	31
+	+	1	32
+	+	1	25
+	+	1	28
+	+	1	0
+	+	1	7
+	+	1	34
+	+	1	45
+	+	1	0
+	+	1	22
+	+	1	21
+	+	1	25
+	+	1	58
+	+	1	21
+	+	1	53
+	+	1	0
+	+	1	43
+	+	1	46
+	+	1	0
+	+	1	34
+	+	1	0
+	+	1	50
+	+	1	16
+	+	1	4
+	+	1	5
+	+	1	0
+
+> ~/Documents/MA-kerfd/latex/content/chapter2.tex
+	*	1500023505	0
+	"	7	38
+	^	7	37
+	.	7	36
+	+	1	71
+	+	1	29
+	+	1	0
+	+	1	32
+	+	1	0
+	+	1	9
+	+	1	28
+	+	1	2
+	+	1	0
+	+	1	34
+	+	3	24
+	+	1	40
+	+	3	34
+	+	5	24
+	+	3	26
+	+	5	44
+	+	3	17
+	+	7	36
+
+> ~/Documents/MA-kerfd/latex/content/chapter3.tex
+	*	1500023504	0
+	"	7	45
+	^	1	57
+	.	1	56
+	+	1	62
+	+	1	11
+	+	1	9
+	+	1	56
+
+> ~/Documents/MA-kerfd/latex/content/chapter4.tex
+	*	1500023503	0
+	"	7	48
+	^	1	28
+	.	1	0
+	+	1	0
+
+> ~/Documents/MA-kerfd/latex/content/chapter4.
+	*	1500023431	0
+	"	1	0
+
+> ~/Documents/MA-kerfd/latex/content/chapter5.tex
+	*	1499947922	0
+	"	1	0
+	.	1	0
+	+	1	0
+
+> ~/Documents/MA-kerfd/latex/content/chapter1.
+	*	1499945708	0
+	"	1	0
+
+> /mnt/local/games/NieR2/NieR_Rpck/Verify BIN files before installation.bat
+	*	1499936134	0
+	"	3	0
+
+> /mnt/local/games/NieR2/NieR_Rpck/Readme.txt
+	*	1499936126	0
+	"	11	0
+
+> ~/-MiniBufExplorer-
+	*	1499858373	0
+	"	1	11
+	.	2	0
+	+	2	0
+
+> ~/Downloads/password_rar.txt
+	*	1499857359	0
+	"	1	9
+	^	1	10
+	.	1	9
+	+	1	9
+
+> ~/Documents/MA-kerfd/latex/deleted.files
+	*	1499849237	0
+	"	4	0
+
+> ~/fonts.scale
+	*	1499848760	0
+	"	1	0
+
+> ~/fonts.dir
+	*	1499848757	0
+	"	1	0
+
+> ~/Documents/MA-kerfd/latex/master_thesis.bib
+	*	1499848235	0
+	"	5	0
+	^	5	0
+	.	4	56
+	+	12	0
+	+	19	0
+	+	1	1
+	+	4	55
+	+	1	0
+	+	2	0
+	+	4	56
+
+> /var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map
+	*	1499847920	0
+	"	129	0
+
+> ~/Documents/MA-kerfd/master.tex
+	*	1499846606	0
+	"	1	0
+
+> ~/.smbmount
+	*	1499846347	0
+	"	1	0
+
+> ~/.gnuplot
+	*	1499846321	0
+	"	9	38
+	^	9	39
+	.	9	38
+	+	23	0
+	+	24	2
+	+	37	18
+	+	1	15
+	+	21	18
+	+	1	40
+	+	3	16
+	+	1	15
+	+	9	38
+
+> ~/NERD_tree_1
+	*	1499846302	0
+	"	6	0
+	.	1	0
+	+	1	0
+
+> ~/Downloads/git/MA-kerfd/master.tex
+	*	1499846163	0
+	"	159	24
+	^	217	64
+	.	217	63
+	+	73	0
+	+	149	19
+	+	67	22
+	+	68	15
+	+	69	30
+	+	70	15
+	+	71	35
+	+	73	17
+	+	1	0
+	+	170	66
+	+	171	2
+	+	43	1
+	+	216	94
+	+	219	0
+	+	216	0
+	+	216	58
+	+	211	0
+	+	210	0
+	+	208	84
+	+	177	0
+	+	175	0
+	+	169	0
+	+	163	0
+	+	158	0
+	+	156	0
+	+	152	0
+	+	147	0
+	+	145	0
+	+	141	0
+	+	138	0
+	+	136	0
+	+	1	20
+	+	9	1
+	+	8	1
+	+	24	0
+	+	189	0
+	+	190	0
+	+	191	0
+	+	188	1
+	+	191	1
+	+	190	1
+	+	189	1
+	+	196	1
+	+	191	1
+	+	190	1
+	+	189	1
+	+	188	1
+	+	198	0
+	+	199	0
+	+	197	1
+	+	196	2
+	+	197	2
+	+	190	2
+	+	189	2
+	+	184	0
+	+	183	0
+	+	179	0
+	+	203	43
+	+	204	1
+	+	203	1
+	+	209	1
+	+	210	1
+	+	216	1
+	+	217	1
+	+	216	6
+	+	217	0
+	+	216	59
+	+	217	63
+
+> ~/Downloads/git/MA-kerfd/MastersDoctoralThesis.cls
+	*	1499778850	0
+	"	155	0
+	^	290	0
+	.	155	0
+	+	155	1
+	+	282	0
+	+	284	29
+	+	155	0
+
+> ~/Downloads/git/MA-kerfd/-MiniBufExplorer-
+	*	1499778792	0
+	"	1	0
+	.	2	0
+	+	2	0
+
+> ~/Downloads/git/MA-kerfd/master.t
+	*	1499778518	0
+	"	1	0
+
+> ~/Downloads/git/MA-kerfd/missfont.log
+	*	1499778174	0
+	"	3	58
+
+> ~/Downloads/git/MA-kerfd/master
+	*	1499775974	0
+	"	1	0
+
+> ~/.uc-882f78f4dc25c34bb0f8efb75f963e6e.pha.compuspha.tmp
+	*	1499770748	0
+	"	1	0
+
+> /mnt/brain/results/w2d_40754.FieldBoundTest/eps_matrix.dat
+	*	1499761659	0
+	"	1	0
+
+> /mnt/brain/results/w2d_39968.SymTest-Con12-LowP/gnuplot/script_all.sh
+	*	1498471428	0
+	"	1	0
+
+> /etc/pacman.conf
+	*	1498458366	0
+	"	41	0
+	^	34	0
+	.	94	0
+	+	93	0
+	+	94	0

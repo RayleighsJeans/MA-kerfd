@@ -1,0 +1,7 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_1='/mnt/brain/ph123693/Documents/2D/results/w2d_28202.injectTest/out'
+let g:netrw_dirhist_2='/mnt/brain/pic2d/wd/plots_rf/gnuplot'
+let g:netrw_dirhist_3='/mnt/brain/pic2d/src/libinjection'
+let g:netrw_dirhist_4='/mnt/brain/pic2d/src/libcollision'
+let g:netrw_dirhist_5='/mnt/brain/pic2d/src/libpush'
