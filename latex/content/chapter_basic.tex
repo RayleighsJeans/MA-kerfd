@@ -15,8 +15,7 @@
 			\includegraphics[width=0.38\textwidth]{figures/circuitselfbias_1.png}
 			\caption{%
 				Schematic of an asymmetric discharge with one grounded and one driven electrode.%
-				The rf signal is denoted with $U(t)$.}%
-				\label{fig:circuitselfbias_1}
+				The rf signal is denoted with $U(t)$.}\label{fig:circuitselfbias_1}
 		\end{wrapfigure}
 %
 		This simplification can be used to access important physical properties, such as an additional voltage offset on one of the electrodes or charge currents at such. A basic scheme of an asymmetric rf discharge can be seen in~\autoref{fig:circuitselfbias_1}. In the case of different electrode sizes, as seen in the scheme, the potential inside the spatially restricted area between wall and discharge can change drastically. This plasma sheath forms also between grounded parts of discharge containment or probes and plasma volume. This additional direct current offset is called \emph{self-bias} (see~\autoref{sec:selfbias}). A dielectric displacement current between plasma sheath and volume accomodates as a result of the different time scales of particle movement (see~\autoref{sec:displacementcurrent}). Especially, self-bias and displacement current play a key role in the following investigations, as a capacitive coupling between electrodes and power supply is difficult to model in a numerical kinetic simulation.\\
@@ -28,7 +27,7 @@
 			In the discharges bulk, neutral gas particles are exctited by electron collisions and radiating visible light. However, areas around, e.g.\@ floating metal surfaces, probes and grounded walls are darker than the bulk. This is due to the low electron density and kinetic energy in this \emph{plasma sheath}. Though areas with vanishing electron numbers can glow because of high collision efficiencies and/or frequencies.\\
 			Electrons, in general, are of a much higher mobility $\mu\ix{e}$ and thermal velocity $v\ix{th,e}$. Hence they impinge onto walls and surfaces more often than other species, leading to a --- in this case we consider an electronegative oxygen discharge, where the following can be assumed true --- negative charge and potential.
 %
-			\subsubsection{Child-Langmuir Law}
+			\subsubsection{Child-Langmuir Law}\label{sec:langmuirlaw}
 %
 				For an asymmetric ccrf discharge, dc \emph{self bias} and displacement current are important parts of the electric system. Hence, the \emph{Child-Langmuir Law} as a function of those properties can be written. The rf component of the excitation is neglected.\\
 				A greatly negative charged wall at $x=0$ shall be a barrier for electrons of thermal velocity, e.g.\@ $|\Phi(0)-\Phi(d)|\ll k\ix{B}T\ix{e}/e\,$. The thickness of the sheath shall be considered $d$. In an one-dimensional approach, the electron density $n\ix{e}(x)$ can be written with a \emph{Boltzmann} distribution function $f\ix{B}(\Phi)$:
@@ -70,11 +69,49 @@
 					\label{equ:childlangmuirlaw}
 				\end{align}
 %
-				\subsubsection{Surface Effects and Secondary Ion Emission}
+				\subsubsection{Surface Effects and Secondary Ion Emission}\label{sec:surfaceeffects}
 %
-				Text.
-%				
-		\subsection{Bohm Criteria}\label{sec:bohmcriteria}
+				Although plasma sheath physics are influenced by bulk properties, such as temperatures and densities, the space charge area itself is mainly characterized by processes of the wall. Hence an important aspect is the absorption and re-emission of ions and electrons.	Those species than have unique features, like e.g.\@ high velocities. Let's assume the associated metal wall behind the sheath ideally absorbs all impinging, charged particles, which recombinate immediately near the surface.\\
+
+				\paragraph{Secondary Electron Emission}
+
+				The discharges electrons are much faster and mobile than the other species, leading to the afore-mentioned negative charging and potential drop towards the wall. This accelerates the ion species up to \emph{Bohm velocity} --- see~\autoref{sec:bohmcriteria} for a more in-depth discussion of the \emph{Bohm criteria} and the ions sheath physics.\\
+				Continuity and charge conservation must be satisfied, hence the fluxes $J\ix{j}$ of the species $j$ must be equal at the sheath edge --- into and out of the sheath:
+%
+				\begin{align}
+					J\ix{e}=J\ix{i}%
+					\label{equ:sheathequi}
+				\end{align}
+%
+				The mentioned potential drop $\Delta\Phi$ from~\autoref{sec:langmuirlaw}, beside accelerating positive ions, reflects negative charges slower than $v\le \sqrt{2e\Delta\Phi/ m}\,$. Similar to~\autoref{equ:electrondens}, the electron current towards the wall can be written. Here the first moment of the electron velocity $\bra v\kett$ is used, calculated in~\autoref{equ:firstmoment} with the electron energy distribution function (EEDF) $f\ix{e}(v)$:
+%
+				\begin{align}
+					j\ix{e}=&-\frac{e}{4}n\ix{e}\bra v\kett\exp\left(-\frac{e\Delta\Phi}{k\ix{B}T\ix{e}}\right)%
+					\label{equ:electroncurrent}\\[0.0cm]
+					\bra v\kett=&\int_{\mathbb{R}}v\cdot f\ix{e}\left(v\right)\diff v%
+					\label{equ:firstmoment}
+				\end{align}
+%
+				Impinging ions are neutralized before impact by particles from the electron gas in the wall. Like before, any produced neutrals are reflected and exit the sheath collisionless --- the mean free path is larger than the sheath thickness. Hence ionization is a process almost exclusively happening in the bulk or the pre-sheath.\\
+				Assuming a fast electron impacts on the wall, there is a chance of colliding with and liberating a second electron from the target. Here, the \emph{secondary electron emission} coefficient is noted as $\gamma$: an impinging electron emits $\gamma$-many electrons from the metal. This \emph{SEE} reduces the $\Delta\Phi$ because of an addition charge current from the wall towards the sheath edge, therefore altering the continuity condition $j\ix{i}=j\ix{e}$. A new \emph{effective potential drop} $\Delta\Phi\ix{eff}$ can be written in~\autoref{equ:effectivepotentialdrop}. According to~\cite{} there is a critical value $\gamma\ix{c}$ from which on the wall potential is unstable, leading to shifting sheath edges --- the sheath edge oscillates with the rf signal anyway --- and strong currents from the wall.
+%
+				\begin{align}
+					\Delta\Phi\ix{eff}=-\frac{k\ix{B}T\ix{e}}{e}\cdot\ln\left(\left(1-\gamma\right)\sqrt{\frac{m\ix{i}}{2\pi m\ix{e}}}\,\right)%
+					\label{equ:effectivepotentialdrop}
+				\end{align}
+%
+				\paragraph{Secondary Ion Emission}	
+				Research~\cite{KuelligUMeichsne} prior to this thesis indicates that ions are produced near the surface of a metal electrode and heavily accelerated in the plasma sheath. In theory, secondary emission by surface ionization --- in analogy to the surface neutralization --- occurs with incident atoms of thermal energy. Hence one assumes a positively biased wall at high tempertures as the target. It's valence level is therefore broadened, giving an atom $A$ the chance the deposit an electron at the metal. After equilibriating thermally, a positive ion is emited by chance. This statistical process can be described by an thermodynamical equation (see~\autoref{equ:postiveion}) yielding the ionization coefficient of $A$. Here, the surface's temperature $T$ and average work function $\overline{\Phi}^{+}$ are needed. Additionally, the ionization energy $I(A)$ --- or impact energy ---, the particle number currents of both species $j$ and $j^{+}$, corresponding statistical weights $w$, $w^{+}$ and reflection coefficients at the intrinsic potential barrier $r$/$r^{r}$ are used.
+%
+				\begin{align}
+					A\leftrightharpoons A^{+}+&e^{-}%
+					\label{equ:positiveion}\\[0.0cm]
+					\alpha^{+}=\frac{j^{+}}{j}=\frac{(1-r^{+})\,w^{+}}{(1-r)\,w}\cdot&\exp\left(%
+						\frac{\overline{\Phi}^{+}+e\sqrt{eF}-I(A)}{k\ix{B}T}\right)%
+						\label{equ:statisticalequ}
+				\end{align}
+%
+				\subsection{Bohm Criteria}\label{sec:bohmcriteria}
 %
 			In~\autoref{sec:sheathphysics} the behaviour of charge particle densities inside the plasma sheath has been discussed. In contrast to the discharge volume, those densities do not satisfy the quasi-neutrality condition in a distance of $d$ from the wall anymore. Though we know that the sheath is a spacially restricted area around electrostatic floating surfaces, a physical law concerning this circumstance has not been derived here. So the question ensues, why the area of electron depletion does not extend further into the discharge volume.\\
 		To answer this question, one has to take a look at a substitutional system. This will be a, likewise mechanical, one-body extremal problem of a point mass. In this case only kinematic pontentials with inverted parabolic maxima are of interest. Therefore, in this unstable equilibrium, a small pertubation culminates into a large force on the test body.\\
@@ -92,8 +129,7 @@
 			\centering%
 			\includegraphics[width=0.6\textwidth]{figures/sheath_piel.png}%
 			\caption{%
-			One dimensional density profiles as a function of the distance to a floating wall. Note the exponential decrease of the electron density $n\ix{e}$ from the sheath border towards the presumably negatively charged wall. Densities allready reach approximately $0,66n\ix{e,0}$ inside the pre-sheath.}%
-			\label{fig:sheath_piel}
+			One dimensional density profiles as a function of the distance to a floating wall. Note the exponential decrease of the electron density $n\ix{e}$ from the sheath border towards the presumably negatively charged wall. Densities allready reach approximately $0,66n\ix{e,0}$ inside the pre-sheath.}\label{fig:sheath_piel}
 		\end{figure}
 
 %
@@ -104,7 +140,7 @@
 			\overset{\text{\autoref{equ:pseudo}}}{\overset{\mid}{=}}%
 			\left.\frac{\diff}{\diff\Phi}\left(\frac{n\ix{e}\left(x\right)-n\ix{i}\left(x\right)}{\varepsilon\ix{0}}\right)\right|_{\Phi=0}&%
 			\frac{en\ix{e}\left(-d\right)}{\varepsilon\ix{0}}\left(\frac{e}{k\ix{b}T\ix{e}}-\frac{e}{m\ix{i}v\ix{i,0}^{2}}\right)%
-			\label{equ:beding}\\[10pt]%
+			\label{equ:condition}\\[10pt]%
 			\Rightarrow\quad%
 			v\ix{i,0}\ge v\ix{i,B}=\sqrt{\frac{k\ix{B}T\ix{e}}{m\ix{i}}}&%
 			\label{equ:inequality}
@@ -211,14 +247,15 @@
 %     
      	In~\autoref{fig:imagandreal} voltage and current are shown for an exemplary ccrf discharge. One can examine there that the self bias never disappears for excitations $U\ix{rf}\neq0$, hence becoming an important part for capacitively coupled plasma.
 %
+			\newpage
+%
     \subsection{Dielectric Displacement Current}\label{sec:displacementcurrent}
 %
     	\begin{wrapfigure}{r}{0.47\textwidth}
     	  \centering%
     	  \includegraphics[width=0.45\textwidth]{figures/displacement_current_piel.png}%
     	  \caption{%
-    	    One dimensional density, potential and electric field for an asymmetric, harmonically driven discharge. Note the moving sheaths border.}%
-    	  \label{fig:displacementcurrent}
+    	    One dimensional density, potential and electric field for an asymmetric, harmonically driven discharge. Note the moving sheaths border.}\label{fig:displacementcurrent}
     	\end{wrapfigure}
 %
     	Due to their higher mobility and plasma frequency $\omega\ix{p,e}$, the electron distribution can follow an external excitation with a similarly high frequency much better than the heavier ions species. Because of that, one will assume those as nearly stationary, e.g.\@ $\omega\ix{p,i}\ll\omega\ix{p,e},\,\omega\ix{rf}\,$. Investigating the circumstances and consequences of this relation yields the displacement current $j\ix{d}$. \\

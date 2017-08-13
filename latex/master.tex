@@ -118,7 +118,10 @@
 \usepackage{csquotes}
 \usepackage{sectsty}
 \usepackage{nomencl}
-\usepackage{svg}
+
+% cant use svg so easily with subcaption
+% \expandafter\def\csname ver@subfig.sty\endcsname{}
+% \usepackage{svg}
 % ************************************************************************** %
 
 \usepackage{titlesec}
@@ -137,6 +140,8 @@
 \newcommand{\euler}{\mathnormal{e}}
 \newcommand{\fett}[1]{\textbf{#1}}
 \newcommand{\inexample}{\text{e.g.}}
+\newcommand{\bra}{\langle}
+\newcommand{\kett}{\rangle}
 
 % Used for signature line at 
 % declaration of authorship
@@ -210,8 +215,7 @@
 		\textit{in the research group of}\\[0.4cm]
 		% TODO: RESEARCH GROUP/DEPARTMENT
 		\groupname,\\\deptname\\[1cm]
-    \includegraphics[width=0.55\textwidth]{figures/logo}\\[1cm]
-		% \includegraphics[width=0.4\textwidth]{figures/logo.eps}\\[1cm]
+		\includegraphics[width=0.55\textwidth]{figures/logo.pdf}\\[1cm]
 		% University/department logo - uncomment to place it
 		{\large \today} % Date
 		\vfill
