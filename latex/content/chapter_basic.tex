@@ -35,7 +35,8 @@
 				\begin{align}
 					n\ix{e}(x)=n\ix{e}(d)\cdot f\ix{B}(\Phi)=%
 					n\ix{e}(d)\cdot%
-					\exp{\left(\frac{e{\left(\Phi(x)-\Phi(d)\right)}}{k\ix{B}T\ix{e}}\right)}\quad.%
+					\exp{\left(\frac{e{\left(\Phi(x)-%
+							\Phi(d)\right)}}{k\ix{B}T\ix{e}}\right)}\quad.%
 					\label{equ:electrondens}
 				\end{align}
 %
@@ -43,21 +44,26 @@
 				At the boundary between bulk and pre-sheath, the walls potential vanishes because of the plasmas shielding capabilities. Here, the ions are at $v\ix{i,0}$ speeds, therefore their density becomes:
 %
 				\begin{align}
-					n\ix{i}(x)=n\ix{i}(d){\left(1-\frac{2e\Phi(x)}{m\ix{i}v\ix{i,0}^{2}}\right)}^{-1/2}%
+					n\ix{i}(x)=n\ix{i}(d){\left(1-\frac{2e\Phi(x)%
+							}{m\ix{i}v\ix{i,0}^{2}}\right)}^{-1/2}%
 					\label{equ:iondens}
 				\end{align}
 %
 				Futhermore, one can assume that the kinetic energy at this point is smaller than the potential energy for the acceleration inside the pre-sheath, e.g.\@ $m\ix{i}v\ix{i,0}^{2}\ll |e\Phi(x)|$. Using \emph{Poisson's } equation, and taking into account the ion-sheath interaction,~\autoref{equ:phibypoisson} gives an equation for $\Phi(x)$:
 %
 				\begin{align}
-					\Delta\Phi\cong-\frac{en\ix{i}{\left(-d\right)}}{\varepsilon\ix{0}}{\left(-\frac{2e\Phi{\left(x\right)}}{m\ix{i}v\ix{i,0}^2}\right)}^{-\frac{1}{2}}%
+					\Delta\Phi\cong-\frac{en\ix{i}{\left(-d\right)}%
+							}{\varepsilon\ix{0}}{\left(-\frac{2e\Phi{%
+							\left(x\right)}}{m\ix{i}v\ix{i,0}^2}\right)}^{-\frac{1}{2}}%
 					\label{equ:phibypoisson}
 				\end{align}
 %
 				Solving this, and using the unpertubated ion current $j\ix{i}=n\ix{i}(d)ev\ix{i,0}$, one yields the result by \emph{Langmuir}.
 %
 				\begin{align}
-					\Phi{\left(x\right)}={\left({\left(\frac{3}{4}{\left(x+d\right)}\right)}^4{\left(\frac{j\ix{i}}{\varepsilon\ix{0}}\right)}^2\frac{m\ix{i}}{2e}\right)}^{\frac{1}{3}}%
+					\Phi{\left(x\right)}={\left({\left(\frac{3}{4}{\left(x+d%
+							\right)}\right)}^4{\left(\frac{j\ix{i}}{\varepsilon\ix{0}%
+							}\right)}^2\frac{m\ix{i}}{2e}\right)}^{\frac{1}{3}}%
 					\label{equ:langmuirpot}
 				\end{align}
 %
@@ -65,16 +71,17 @@
 				This equation defines the ion current as a function of the unpertubated plasma bulk. In other words, the sheath changes its thickness in dependency of those certain discharge parameters, always satisfying the ion current defined by the \emph{Child-Langmuir Law}.
 %
 				\begin{align}
-					j\ix{i}=\frac{4}{9}\varepsilon\ix{0}{\left(\frac{2e{\left(\Phi{\left(-d\right)}-\Phi{\left(0\right)}\right)}^3}{m\ix{i}d^2}\right)}^{\frac{1}{2}}%
+					j\ix{i}=\frac{4}{9}\varepsilon\ix{0}{\left(\frac{2e{%
+							\left(\Phi{\left(-d\right)}-\Phi{\left(0\right)}%
+							\right)}^3}{m\ix{i}d^2}\right)}^{\frac{1}{2}}%
 					\label{equ:childlangmuirlaw}
 				\end{align}
 %
 				\subsubsection{Surface Effects and Secondary Ion Emission}\label{sec:surfaceeffects}
 %
 				Although plasma sheath physics are influenced by bulk properties, such as temperatures and densities, the space charge area itself is mainly characterized by processes of the wall. Hence an important aspect is the absorption and re-emission of ions and electrons.	Those species than have unique features, like e.g.\@ high velocities. Let's assume the associated metal wall behind the sheath ideally absorbs all impinging, charged particles, which recombinate immediately near the surface.\\
-
+%
 				\paragraph{Secondary Electron Emission}
-
 				The discharges electrons are much faster and mobile than the other species, leading to the afore-mentioned negative charging and potential drop towards the wall. This accelerates the ion species up to \emph{Bohm velocity} --- see~\autoref{sec:bohmcriteria} for a more in-depth discussion of the \emph{Bohm criteria} and the ions sheath physics.\\
 				Continuity and charge conservation must be satisfied, hence the fluxes $J\ix{j}$ of the species $j$ must be equal at the sheath edge --- into and out of the sheath:
 %
@@ -96,20 +103,47 @@
 				Assuming a fast electron impacts on the wall, there is a chance of colliding with and liberating a second electron from the target. Here, the \emph{secondary electron emission} coefficient is noted as $\gamma$: an impinging electron emits $\gamma$-many electrons from the metal. This \emph{SEE} reduces the $\Delta\Phi$ because of an addition charge current from the wall towards the sheath edge, therefore altering the continuity condition $j\ix{i}=j\ix{e}$. A new \emph{effective potential drop} $\Delta\Phi\ix{eff}$ can be written in~\autoref{equ:effectivepotentialdrop}. According to~\cite{} there is a critical value $\gamma\ix{c}$ from which on the wall potential is unstable, leading to shifting sheath edges --- the sheath edge oscillates with the rf signal anyway --- and strong currents from the wall.
 %
 				\begin{align}
-					\Delta\Phi\ix{eff}=-\frac{k\ix{B}T\ix{e}}{e}\cdot\ln\left(\left(1-\gamma\right)\sqrt{\frac{m\ix{i}}{2\pi m\ix{e}}}\,\right)%
+					\Delta\Phi\ix{eff}=-\frac{k\ix{B}T\ix{e}}{e}\cdot\ln\left(\left(1-%
+							\gamma\right)\sqrt{\frac{m\ix{i}}{2\pi m\ix{e}}}\,\right)%
 					\label{equ:effectivepotentialdrop}
 				\end{align}
 %
 				\paragraph{Secondary Ion Emission}	
-				Research~\cite{KuelligUMeichsne} prior to this thesis indicates that ions are produced near the surface of a metal electrode and heavily accelerated in the plasma sheath. In theory, secondary emission by surface ionization --- in analogy to the surface neutralization --- occurs with incident atoms of thermal energy. Hence one assumes a positively biased wall at high tempertures as the target. It's valence level is therefore broadened, giving an atom $A$ the chance the deposit an electron at the metal. After equilibriating thermally, a positive ion is emited by chance. This statistical process can be described by an thermodynamical equation (see~\autoref{equ:postiveion}) yielding the ionization coefficient of $A$. Here, the surface's temperature $T$ and average work function $\overline{\Phi}^{+}$ are needed. Additionally, the ionization energy $I(A)$ --- or impact energy ---, the particle number currents of both species $j$ and $j^{+}$, corresponding statistical weights $w$, $w^{+}$ and reflection coefficients at the intrinsic potential barrier $r$/$r^{r}$ are used.
+				Research~\cite{Kuellig&Meichsner} prior to this thesis indicates that ions are produced near the surface of a metal electrode and heavily accelerated in the plasma sheath. In theory, secondary emission by surface ionization --- in analogy to the surface neutralization --- occurs with incident atoms of thermal energy. Hence one assumes a positively biased wall at high tempertures as the target. It's valence level is therefore broadened, giving an atom $A$ the chance the deposit an electron at the metal. After equilibriating thermally, a positive ion is emited by chance. This statistical process can be described by an thermodynamical equation (see~\autoref{equ:postiveion}) yielding the ionization coefficient of $A$. In~\autoref{equ:sahalangmuir} a modified approach for the \emph{Saha-Langmuir equation} on the degree of ionization in gases can be found. Here, the surface's temperature $T$ and average work function $\overline{\Phi}_{+}$ are needed. Additionally, the ionization energy $I(A)$ --- or impact energy ---, the particle number currents of both species $j$ and $j^{+}$, corresponding statistical weights $w$, $w^{+}$ and reflection coefficients at the intrinsic potential barrier $r$/$r^{r}$ are used.
 %
 				\begin{align}
-					A\leftrightharpoons A^{+}+&e^{-}%
+					A\leftrightharpoons A^{+}+&\,e^{-}%
 					\label{equ:positiveion}\\[0.0cm]
-					\alpha^{+}=\frac{j^{+}}{j}=\frac{(1-r^{+})\,w^{+}}{(1-r)\,w}\cdot&\exp\left(%
-						\frac{\overline{\Phi}^{+}+e\sqrt{eF}-I(A)}{k\ix{B}T}\right)%
-						\label{equ:statisticalequ}
+					\alpha^{+}(A^{+})=\frac{j^{+}}{j}=\frac{(1-r^{+})\,w^{+}}{(1-r)\,w}\cdot&\exp\left(%
+					\frac{\overline{\Phi}_{+}+e\sqrt{eV\ix{ext}}-I(A)}{k\ix{B}T}\right)%
+					\label{equ:sahalangmuirpos}
 				\end{align}
+%
+				At high temperatures of, e.g.\@ $\unit[1000]{K}$ and externally applied potentials $V\ix{ext}<\unit[1]{kV}$, the reflection associated \emph{Schottky term} $e\sqrt{eV\ix{ext}}$ and the corresponding coefficients $r$/$r^{+}$ can be neglected --- it appears to be just half of the thermal energy at room temperature. Though a theoretical approach is possible, there have'nt been accurate studies of such coefficients for temperatures around $\unit[300]{K}$.\\
+				In addition to SIE of positive ions, a case for negative ions can be easily derived with small changes to~\autoref{equ:sahalangmuirpos}: a negatively biased electrode is assumed and the average work function yields a different sign. The electron affinity of the incident particle $B$ is noted as $A(B)$.
+%
+				\begin{align}
+					B+\,&e^{-}\leftrightharpoons B^{-}%
+					\label{equ:positiveion}\\[0.2cm]
+					\alpha^{-}(B^{-})=\frac{(1-r^{-})%
+						\,w^{-}}{(1-r)\,w}\cdot&\exp\left(%
+						\frac{-\overline{\Phi}_{-}+e\sqrt{eV\ix{ext}}+A(B)}{k\ix{B}T}\right)%
+					\label{equ:sahalangmuirneg}
+				\end{align}
+%
+				Applying the former assumptions to both equations of positive and negative ions, inserting a homgeneous work function $\Phi=\overline{\Phi}_{-}=\overline{\Phi}\ix{+}$ for the used substrate yields the originally derived \emph{Saha-Langmuir equations}.
+%				
+				\begin{align}
+					\alpha^{+}(A^{+})=\frac{w^{+}}{w}\,\exp\left(\frac{%
+						\Phi-I(A)}{k\ix{B}T}\right)%
+						\quad\quad%
+					\alpha^{-}(B^{-})=\frac{w^{-}}{w}\,\exp\left(\frac{%
+						-\Phi+A(B)}{k\ix{B}T}\right)%
+						\label{equ:sahalangmuirshort}
+				\end{align}
+%
+				Though only considering atomic particle beams onto the wall until this point, forms similar to~\autoref{equ:sahalangmuirshort} can be derived for molecular surface interactions. In case of the earlier discussed ccrf discharges, arguments like high temperatures can not be applied, hence the need for measured reflection coefficients.\\
+				Works of, e.g.\@~\cite{Ustaze97} and~\cite{Los90} investigated ion beam scattering, electron loss and transport for metal walls, especially $\text{MgO}(100)$ surfaces. There Ustaze et al.\ studied incident oxygen gas particles --- ions and neutrals ---  on magnesium oxyde surfaces. Impinging atoms become a negatively charged ion, picking up an electron from the wall. This interaction, though requiring a minimum ionization or liberation energy for the electron, is resonant at low energies $<\unit[1]{eV}\,$.
 %
 				\subsection{Bohm Criteria}\label{sec:bohmcriteria}
 %
@@ -119,10 +153,11 @@
 %
   	\begin{align} 
   	  m\frac{\diff^{2}\vec{r}}{\diff t^{2}}=-\frac{\diff V}{\diff\vec{r}}%
-			\quad\Leftrightarrow\quad%
-			\Delta_{\vec{r}}\Phi=-\frac{\diff\Psi}{\diff\Phi}=f{\left(\Phi\right)}%
-			\hspace{-0.33cm}\overset{\text{Poisson's}}{\overset{\mid}{=}}\hspace{-0.33cm}%
-			\frac{\rho}{\varepsilon\ix{0}}\label{equ:pseudo}
+					\quad\Leftrightarrow\quad%
+					\Delta_{\vec{r}}\Phi=-\frac{\diff\Psi}{\diff\Phi}=f{\left(\Phi\right)}%
+					\hspace{-0.33cm}\overset{\text{Poisson's}}{\overset{\mid}{=}}\hspace{-0.33cm}%
+					\frac{\rho}{\varepsilon\ix{0}}%
+			\label{equ:pseudo}
   	\end{align}
 %
 		\begin{figure}[!t]
@@ -131,15 +166,16 @@
 			\caption{%
 			One dimensional density profiles as a function of the distance to a floating wall. Note the exponential decrease of the electron density $n\ix{e}$ from the sheath border towards the presumably negatively charged wall. Densities allready reach approximately $0,66n\ix{e,0}$ inside the pre-sheath.}\label{fig:sheath_piel}
 		\end{figure}
-
 %
 		For an instability, the force on the test body must increase with the distance from the equilibrium, hence the~\autoref{equ:inequality} is used to calculate the exact velocity at which an ion is entering the sheath. This results in the first \emph{Bohm criteria}.
 %
 		\begin{align}
 			0>\left.\frac{\diff^{2}\Psi}{\diff\Phi^{2}}\right|_{\Phi=0}%
 			\overset{\text{\autoref{equ:pseudo}}}{\overset{\mid}{=}}%
-			\left.\frac{\diff}{\diff\Phi}\left(\frac{n\ix{e}\left(x\right)-n\ix{i}\left(x\right)}{\varepsilon\ix{0}}\right)\right|_{\Phi=0}&%
-			\frac{en\ix{e}\left(-d\right)}{\varepsilon\ix{0}}\left(\frac{e}{k\ix{b}T\ix{e}}-\frac{e}{m\ix{i}v\ix{i,0}^{2}}\right)%
+					\left.\frac{\diff}{\diff\Phi}\left(\frac{n\ix{e}\left(x\right)-n\ix{i}%
+					\left(x\right)}{\varepsilon\ix{0}}\right)\right|_{\Phi=0}&%
+					\frac{en\ix{e}\left(-d\right)}{\varepsilon\ix{0}}\left(\frac{e}%
+					{k\ix{b}T\ix{e}}-\frac{e}{m\ix{i}v\ix{i,0}^{2}}\right)%
 			\label{equ:condition}\\[10pt]%
 			\Rightarrow\quad%
 			v\ix{i,0}\ge v\ix{i,B}=\sqrt{\frac{k\ix{B}T\ix{e}}{m\ix{i}}}&%
@@ -151,7 +187,8 @@
 %
 		\begin{align}
 			n\ix{i}\left(x\right)=n\ix{i,0}\exp\left(\frac{e\Phi\left(x\right)}{k\ix{B}T\ix{e}}\right)%
-			=n\ix{e}\left(x\right)\,\,.\label{equ:quasineutral}
+			=n\ix{e}\left(x\right)\,\,.%
+			\label{equ:quasineutral}
 		\end{align}
 %
 		Still, $\Phi{\left(x\right)}$ is the potential inside the pre-sheath from~\autoref{sec:sheathphysics} and $n\ix{i,0}$ the unpertubated density from the plasma \emph{bulk}. A greater part of the ion transport process in this area is governed by collisions with neutral gas particles, hence the velocity distribution function with the collision frequency $\nu\ix{n,i}$ has to be rewritten:
@@ -166,7 +203,8 @@
 		\begin{align}
 			M\ge1%
 			\Leftrightarrow%
-			v\ix{i}(-d)\ge v\ix{B}\label{equ:bohmcriteria2}
+			v\ix{i}(-d)\ge v\ix{B}%
+			\label{equ:bohmcriteria2}
 		\end{align}
 %
 		Conclusively, at the sheath boundary~\autoref{equ:bohmcriteria2} is satisfied.\\
@@ -182,21 +220,24 @@
 				C\ix{p}=\varepsilon\ix{p}C\ix{0}=%
 				\varepsilon\ix{p}\varepsilon\ix{0}\frac{A}{b}%
 				\label{equ:capacityandepsilon}\\[10pt]
-				&Z\ix{p}={\left(\imag\omega C\ix{p}+ \frac{1}{\frac{1}{\omega\ix{p,e}^2C\ix{0}}{\left(\nu\ix{e,n}+\imag\omega\right)}}\right)}^{-1}
+				&Z\ix{p}={\left(\imag\omega C\ix{p}+ \frac{1}{\frac{1}{\omega\ix{p,e}^2C\ix{0}}%
+						{\left(\nu\ix{e,n}+\imag\omega\right)}}\right)}^{-1}%
 				\label{equ:bulkimpedanz}
 			\end{align}
 %		
 			\begin{figure}[!b]
-				\centering%
-				\begin{subfigure}[b]{0.49\textwidth}%
+				\centering
+				\begin{subfigure}[b]{0.49\textwidth}
 					\centering%
-					\includegraphics[width=0.4\textwidth]{figures/circuit_selfbias_piel.png}%
-					\caption{Replacement Circuit}\label{fig:circuitselfbias_1}%
+					\includegraphics[width=0.4\textwidth]{figures/circuit_selfbias_piel.png}
+					\caption{Replacement Circuit}%
+					\label{fig:circuitselfbias_1}
 				\end{subfigure}
-				\begin{subfigure}[b]{0.49\textwidth}%
+				\begin{subfigure}[b]{0.49\textwidth}
 					\centering%
-					\includegraphics[width=0.8\textwidth]{figures/selfbiasvoltage.png}%
-					\caption{Voltage and Potential}\label{fig:circuitselfbias_2}%
+					\includegraphics[width=0.8\textwidth]{figures/selfbiasvoltage.png}
+					\caption{Voltage and Potential}%
+					\label{fig:circuitselfbias_2}
 				\end{subfigure}
 					\caption{%
 					Figure for an asymmetrically driven ccrf discharge.\\%
@@ -237,7 +278,7 @@
       \end{align}
 %     
       If the excitation frequency $\omega$ is small compared to other time scales, e.g\@ electron and ion plasma frequencies, the electron current from the sheath $j\ix{L}$ becomes bigger than the displacement current $j\ix{dc}$. Hence the electron current onto the driven electrode decreases by a maxwellian factor --- this is a function of the thereon apllied voltage --- compared to the corresponding ion current.\\
-      Conclusively, the electrodes sheath impedance is bigger than those of the floating walls. Together with~\autoref{equ:selfbias_1} and~\autoref{equ:inequality} the plasma potential $\Phi\ix{p}$ approximately vanishes, requiring only the currents onto the driven electrode to equal out. For small values of $\omega$~\autoref{equ:selfbias_3} yields the \emph{self bias voltage} {(~\cite{Piel10})}. Here, $\mathbf{J}\ix{0}$ denotes the zeroth order \emph{Bessel function}.
+      Conclusively, the electrodes sheath impedance is bigger than those of the floating walls. Together with~\autoref{equ:selfbias_1} and~\autoref{equ:inequality} the plasma potential $\Phi\ix{p}$ approximately vanishes, requiring only the currents onto the driven electrode to equal out. For small values of $\omega$~\autoref{equ:selfbias_3} yields the \emph{self bias voltage} (~\cite{Piel10}). Here, $\mathbf{J}\ix{0}$ denotes the zeroth order \emph{Bessel function}.
 %      
       \begin{align}
         U\ix{sb}=\frac{k\ix{B}T\ix{e}}{e}\ln%
@@ -255,7 +296,8 @@
     	  \centering%
     	  \includegraphics[width=0.45\textwidth]{figures/displacement_current_piel.png}%
     	  \caption{%
-    	    One dimensional density, potential and electric field for an asymmetric, harmonically driven discharge. Note the moving sheaths border.}\label{fig:displacementcurrent}
+    	    One dimensional density, potential and electric field for an asymmetric, harmonically driven discharge. Note the moving sheaths border.}%
+					\label{fig:displacementcurrent}
     	\end{wrapfigure}
 %
     	Due to their higher mobility and plasma frequency $\omega\ix{p,e}$, the electron distribution can follow an external excitation with a similarly high frequency much better than the heavier ions species. Because of that, one will assume those as nearly stationary, e.g.\@ $\omega\ix{p,i}\ll\omega\ix{p,e},\,\omega\ix{rf}\,$. Investigating the circumstances and consequences of this relation yields the displacement current $j\ix{d}$. \\

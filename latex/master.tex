@@ -53,7 +53,7 @@
 %\usepackage[backend=bibtex,style=authoryear,natbib=true]{biblatex}
 \usepackage[backend=bibtex,natbib=true]{biblatex}
 % Use the bibtex backend with the authoryear citation style
-\addbibresource{master_thesis.bib} % The filename of the bibliography
+\addbibresource{master.bib} % The filename of the bibliography
 % ************************************************************************** %
 
 % ************************************************************************** %
@@ -111,13 +111,16 @@
 \usepackage{upgreek}
 \usepackage{esint}
 \usepackage{ziffer}
+\usepackage{csquotes}
+\usepackage{sectsty}
+\usepackage{nomencl}
+
+%% FIGURE PACKAGES
 \usepackage{float}
 \usepackage{graphicx}
 \usepackage{subcaption}
 \usepackage{wrapfig}
-\usepackage{csquotes}
-\usepackage{sectsty}
-\usepackage{nomencl}
+\usepackage{epsfig}
 
 % cant use svg so easily with subcaption
 % \expandafter\def\csname ver@subfig.sty\endcsname{}
@@ -161,7 +164,7 @@
 
 % DOCUMENT START
 \begin{document}
-
+%
 % ************************************************ %
 % RENEWCOMMANDS																		 % 
 \renewcommand{\equationautorefname}{equation}			 %
@@ -178,14 +181,14 @@
 \setlength{\abovedisplayshortskip}{9pt}            %   
 \setlength{\belowdisplayshortskip}{9pt}            %
 % ************************************************ %
-	
+%	
 	\frontmatter
   % Use roman page numbering style (i, ii, iii, iv...)
 	% for the pre-content pages
 	\pagestyle{plain}
   % Default to the plain heading style until the thesis style
 	% is called for the body content
-
+%
 % TITLEPAGE
 \begin{titlepage}
 	\begin{center}
@@ -215,13 +218,21 @@
 		\textit{in the research group of}\\[0.4cm]
 		% TODO: RESEARCH GROUP/DEPARTMENT
 		\groupname,\\\deptname\\[1cm]
-		\includegraphics[width=0.55\textwidth]{figures/logo.pdf}\\[1cm]
+		%
 		% University/department logo - uncomment to place it
+		% use for pdf files
+		% \includegraphics[width=0.50\textwidth]{figures/logos/logo_color.pdf}\\[1.0cm]
+		% \includegraphics[width=0.55\textwidth]{figures/logos/logo.pdf}\\[1.0cm]
+		%
+		% use for eps files
+		\hspace*{0.75cm}
+		\epsfig{width=0.45\textwidth,file=figures/logos/logo.eps}\\[1.0cm]
+		%
 		{\large \today} % Date
 		\vfill
 	\end{center}
 \end{titlepage}
-
+%
 % ************************************************************************** %
 % ACKNOWLEDGMENTS
 	% \begin{acknowledgements}
@@ -232,12 +243,12 @@
 	%
 	% \end{acknowledgements}
 % ************************************************************************** %
-
+%
 % ************************************************************************** %
 % INSERT MOTIVATIONAL QUOTE
 	\vspace*{0.33\textheight}
 	% \rule{\textwidth}{0.1pt}
-	
+	%	
 	\noindent\enquote{%
 		Without encroaching upon grounds appertaining to the theologian and the
 		philosopher, the domain of natural sciences is surely broad enough to
@@ -245,74 +256,74 @@
 		The work may be hard, and the discipline severe; but the interest never
 		fails, and great is the privilege of achievement.
 	}\bigbreak%
-	
+	%
 	\begin{flushright}
 		--- John William Strutt, 3rd Baron Rayleigh, 1884\\
 		\small\emph{in: Address to the British Association in Montreal}
 	\end{flushright}
-	
+	%
 	% \vspace*{0.15\textheight}
 	% \rule{\textwidth}{0.1pt}
 % ************************************************************************** %
-
+%
 % ************************************************************************** %
 % DECLARATION OF AUTHORSHIP
-
+	%
 	\chapter*{Declaration of Authorship}
-
+		%
 		I hereby certify that this thesis has been composed by me and is based on 
 		my own work, unless stated otherwise.	No other person’s work has been used
 		without due acknowledgement in this thesis.
 		All references and verbatim extracts have been quoted, and iall sources of
 		information, including graphs and data sets, have been specifically
 		acknowledged.\\[2.0cm]
-
-	\begin{flushright}
-		\sign{Signature of author}\\
-		Greifswald; \today
-	\end{flushright}
-
+		%
+		\begin{flushright}
+			\sign{Signature of author}\\
+			Greifswald; \today
+		\end{flushright}
+		%
 % ************************************************************************** %
-
-
+%
+%
 % ************************************************************************** %
 %  TOCTOCTOC FOR EVERYTHING
 	\tableofcontents % Prints the main table of contents
 	% \listoffigures % Prints the list of figures
 	% \listoftables % Prints the list of tables
 % ************************************************************************** %
-
+%
 % ************************************************************************** %
 % PREFIX
 \include{content/chapter_prefix}
 % ************************************************************************** %
-
+%
 % ************************************************************************** %
 % THESIS BEGINS HERE
 % ************************************************************************** %
-
+%
 % ************************************************************************** %
 \mainmatter% Begin numeric (1,2,3...) page numbering
 \pagestyle{thesis} % Return the page headers back to the "thesis" style
-
+%
 % ************************************************************************** %
 % INSERT ABSTRACT
-  
+ 	% 
 	\chapter{Abstract}
-
+		%
     The Thesis Abstract is written here and usually kept to just this page.
     The page is kept centered vertically so it can expand into the blank space above 
     the title too.
-  
+  	%
 % ************************************************************************** %
-
+%
 \include{content/chapter_basic}
 \include{content/chapter_1d}
 \include{content/chapter_ccrf}
-% \include{content/chapter_fem}
 \include{content/chapter_end}
+% \include{content/chapter_fem}
 % ************************************************************************** %
-	
+%	
 % ************************************************************************** %
 % APPENDICES
 	\appendix % Cue to tell LaTeX that following "chapters" are Appendices
@@ -320,14 +331,14 @@
 	% Uncomment the lines as you write the Appendices
 	\include{appendices/appendix}
 % ************************************************************************** %
-
+%
 % ************************************************************************** %
 % BIBLIOGRAPHY
 	\printbibliography[heading=bibintoc]
 % ************************************************************************** %
-
+%
 % END OF DOCUMENT
 \end{document}  
-
+%
 % test bibliography for completion
 \bibliography{master_thesis.bib}

@@ -1,0 +1,903 @@
+//**********************************************************/
+//* 
+//* THE PREAMBLE, DEFINITIONS
+//* 
+//**********************************************************/
+
+@STRING{ SUBM = "{\em Submitted to }"}
+@STRING{ accp = "{\em accepted for publication in }"}
+@STRING{ AA = "Astronom.\ Astrophys."}
+@STRING{ AJ = "Ap.\ J."}
+@STRING{ AO = "Applied Optics"}
+@STRING{ AIP = "AIP Conf. Proc."}
+@STRING{ APL = "Appl.\ Phys.\ Lett."}
+@STRING{ AJP = "Am.\ J.\ Phys."}
+@STRING{ BPP = "Beitr.\ Plasmaphysik"}
+@STRING{ CP = "Contemp.\ Phys."}
+@STRING{ CPL = "Chem.\ Phys.\ Lett."}
+@STRING{ CTP = "Contrib.\ Plasma Phys."}
+@STRING{ CJP = "Can. \ J. \ Phys."}
+@STRING{ EPL = "EPL"}
+@STRING{ GER = "G. E. Rev."}
+@STRING{ GRL = "Geophys.\ Res.\ Lett."}
+@STRING{ JGR = "J.~Geophys.\ Res."}
+@STRING{ IEEE = "IEEE Trans.\ Plasma Sci."}
+@STRING{ IC = "Icarus"}
+@STRING{ JAP = "J.~Appl.\ Phys."}
+@STRING{ JCIS = "J. Colloid\ Interface\ Sci."}
+@STRING{ JCP = "J.~Chem.\ Phys."}
+@STRING{ JCPRD = "J.~Chem.\ Phys.\ Ref.\ Data"}
+@STRING{ JECS = "J.~Electrochem.\ Soc."}
+@STRING{ JETPl = "JETP Lett."}
+@STRING{ JETP = "JETP"}
+@STRING{ JGR = "J.~Geophys.\ Res."}
+@STRING{ JJAP = "Jpn.\ J.~Appl.\ Phys."}
+@STRING{ JOSAB = "J.~Opt.\ Soc.\ Am.\ B"}
+@STRING{ JPA = "J.~Phys.~A"}
+@STRING{ JPB = "J.~Phys.~B: At. Mol. Opt. Phys."}
+@STRING{ JPC = "J.~Phys.~C"}
+@STRING{ JPCM = "J.~Phys.: Condens. Matter"}
+@STRING{ JPCh = "J.~Phys.~Chem."}
+@STRING{ JPD = "J.~Phys.~D:\ Appl.\ Phys."}
+@STRING{ JPE = "J.~Phys.~E"}
+@STRING{ JPP = "J.~Plasma Phys."}
+@STRING{ JPSJ = "J.~Phys.\ Soc.\ Jpn"}
+@STRING{ JP3F = "J.~Phys.\ III \ France"}
+@STRING{ JP4F = "J.~Phys.\ IV \ France"}
+@STRING{ JQSRT = "J.~Quant.\ Spectrosc.\ Radiat.\ Transfer"}
+@STRING{ JVSA = "J.~Vac.\ Sci.\ Technol.~A"}
+@STRING{ JVSB = "J.~Vac.\ Sci.\ Technol.~B"}
+@STRING{ MST = "Meas.\ Sci.\ Technol."}
+@STRING{ NAT = "Nature"}
+@STRING{ NJP = "New J.\ Phys."}
+@STRING{ PB = "Phys. Bl."}
+@STRING{ PAC = "Pure and Appl.\ Chem."}
+@STRING{ OPTSP = "Opt.\ Spectrosc."}
+@STRING{ OL = "Opt.\ Lett."}
+@STRING{ PLA = "Phys.\ Lett.~A"}
+@STRING{ PF = "Phys.\ Fluids"}
+@STRING{ PFB = "Phys.\ Fluids~B"}
+@STRING{ PP = "Plasma Phys."}
+@STRING{ PRp = "Physics Reports"}
+@STRING{ PoP = "Phys.\ Plasmas"}
+@STRING{ PM = "Phil.\ Mag."}
+@STRING{ PCPP = "Plasma~Chem.\ Plasma~Process."}
+@STRING{ Phy = "Physica"}
+@STRING{ PhyA = "Physica A"}
+@STRING{ PhyE = "Physica E"}
+@STRING{ PR = "Phys.\ Rev."}
+@STRING{ PRA = "Phys.\ Rev.~A"}
+@STRING{ PRB = "Phys.\ Rev.~B"}
+@STRING{ PRE = "Phys.\ Rev.~E"}
+@STRING{ PRL = "Phys.\ Rev.\ Lett."}
+@STRING{ PS = "Plasma Sources\ Sci.\ Technol."}
+@STRING{ PSST = "Plasma Sources\ Sci.\ Technol."}
+@STRING{ PhSc = "Physica\ Scripta"}
+@STRING{ PPCF = "Plasma\ Phys.\ Control.\ Fusion"}
+@STRING{ PPR = "Plasma Phys. Rep."}
+@STRING{ PPS = "Proc.\ Phys.\ Soc."}
+@STRING{ PSS = "Planet.\ Space\ Sci."}
+@STRING{ PT = "Physics Today"}
+@STRING{ PW = "Physics World"}
+@STRING{ PZTF = "Pisma Zhour.\ Tech.\ Fis."}
+@STRING{ PZ = "Phys.\ Z."}
+@STRING{ RCA = "RCA Rev."}
+@STRING{ RG = "Rev.\ Geophys."}
+@STRING{ RMP = "Rev.\ Mod.\ Phys."}
+@STRING{ RSI = "Rev.\ Sci.\ Instrum."}
+@STRING{ RPA = "Revue Phys.\ Appl."}
+@STRING{ RPP = "Rep.\ Prog.\ Phys."}
+@STRING{ Sci = "Science"}
+@STRING{ ScAm = "Scientific American"}
+@STRING{ SJP = "Sov.\ J.~Plasma Phys."}
+@STRING{ SPTP = "Sov.\ Phys.\ JETP"}
+@STRING{ SPTECHP = "Sov.\ Phys.\ Tech.\ Phys."}
+@STRING{ SPU = "Sov.\ Phys.\ Usp."}
+@STRING{ TFS = "Trans.~Faraday~Soc."}
+@STRING{ ZAP = "Z.\ angew.\ Phys."}
+@STRING{ ZP = "Z.\ Phys."}
+@STRING{ ZPB = "Z.\ Phys.~B"}
+@STRING{ ZPD = "Z.\ Phys.~D"}
+@STRING{ ZNF = "Z.\ Naturforschung"}
+@STRING{ ZTP = "Zh. Tekh. Fiz."}
+
+//**********************************************************/
+//* 
+//* PAULS BIB
+//* 
+//**********************************************************/
+
+@article{pic1,
+	 			author  = "D. {Tskhakaya} and K. {Matyash} and R. {Schneider} and F. {Taccogna}",
+	 			year	  = "2007",
+ 				title   = "The Particle-In-Cell Method",
+ 				journal = "Contrib. Plasma Phys.",
+ 				volume  = "47",
+ 				number  = "8-9",
+				pages   = "563--594",
+    		title = "Instabilities in ion thrusters by plasma-wall interactions",
+    		journal = "Diplom Thesis"
+}
+
+@article{micro_discharge,
+    		author ="T. I. {Farouk}",
+    		year = "2009",
+    		title = "Modeling and Simulations of DC and RF Atmospheric Pressure Non-thermal Micro Plasma Discharges: Analysis and Applications",
+    		journal = "Doctor Thesis"
+}
+
+@article{rf_oxygen_modelling,
+ 				author    = "F.X. {Bronold} and K. {Matyash} and D. {Tskhakaya} and R. {Schneider} and H. {Fehske}",
+ 				year	   = "2007",
+ 				title     = "Radio-frequency discharges in oxygen: I. Particle-based modelling",
+ 				journal = "J. Phys. D: Appl. Phys.",
+ 				volume  = "40",
+ 				pages   = "6583--6592",
+ }
+
+@article{scaling,
+ 				author = "Helga {Timko}",
+ 				year   = "2010",
+ 				title  = "Scaling in 2D PIC",
+ 				journal = "Helsinki Institute of Physics",
+}
+
+
+@article{stability,
+    		author = "B. {Bruhn} and A. {Richter} and B. {May}",
+    		year    = "2008",
+    		title   = "On the stability of a dc-driven oxygen discharge in cylindrical geometry",
+    		journal = "Physics of Plasmas",
+    		volume = "15",
+}
+
+@article{instability,
+    		author = "J. {Meichsner} and K. {Dittmann} and C. {Kullig}",
+    		year    = "2012",
+    		title   = "Electron and Negative Ion Analysis in Oxygen Capacitively Coupled Radio Frequency Plasma",
+    		journal = "Contrib. Plasma Phys.",
+    		volume = "52",
+    		number = "7",
+    		pages = "49-58",
+}
+
+@article{etching,
+    		author = "U. {Cvelbar} and M. {Mozetic} and M. {Klansjek-Gunde}",
+    		year    = "2005",
+    		title   = "Selective oxygen plasma etchin of coatings",
+    		journal = "Plasma Science, IEEE",
+    		volume = "3",
+    		number = "2",
+    		pages = "236-237",
+}
+
+@article{profile,
+    		author = "C. {Kullig}. and J. {Meichsner} and K. {Dittmann} ",
+    		year    = "2012",
+    		title   = "Detachment-induced electron production in the early afterglow of pulsed cc-rf oxygen plasmas",
+    		journal = "Physics of Plasmas",
+    		volume = "19",
+    		pages = "73-100",
+}
+
+@article{sputter,
+    		author = "M. {Zeuner} and H. {Neumann} and J. {Zalman} and H. {Biedermann} ",
+    		year    = "1998",
+    		title   = "Sputter process diagnostics by negative ions",
+    		journal = "Journal of Applied Physics",
+    		volume = "83",
+    		number = "10",
+    		pages = "5083-5086",
+}
+
+@article{superlu,
+    		author = "S. Li {Xiayoe} and J.R. {Gilbert} and J.W. {Demmel} ",
+    		year    = "1999",
+    		title   = "SuperLU Users' Guide",
+}
+
+@article{boris,
+    		author = "J.P. {Boris}",
+    		year    = "1970",
+    		title   = "Relativistic plasma simulation-optimization of a hybrid code",
+    		journal = "Proceedings of the 4th Conference on Numerical Simulation of Plasmas",
+    		pages = "3-67",
+}
+
+@article{ompi,
+    		author = "V.V. {Dimakopoulos} and E. {Leontiadis} and G. {Tzoumas}",
+    		year    = "2003",
+    		title   = "A portable C compiler for OmpenMP V.2.0",
+    		journal = "Proc. EWOMP 2003, 5th European Workshop on OpemMP",
+    		pages = "5-11",
+}
+
+@article{Ustaze97,
+    		author = "S. {Ustaze} and R. {Verucchi} and S. {Lacombe} and L. {Guillemot} and V.A. {Esaulov}",
+    		year    = "1997",
+    		title   = "Electron Capture and Loss processes in the Interaction of Hydrogen, Oxygen and Fluorine Atoms and Negative Ions with a MgO(100) Surface",
+    		journal = "Physical Review Letters",
+    		volume = "79",
+    		number = "18",
+    		pages = "3526-3529",
+}
+
+@article{sheath-heating,
+    		author = "G. {Gozadinos} and D. {Vender} and M.M. {Turner} and M.A. {Liberman}",
+    		year    = "2001",
+    		title   = "Collisionless electron heating by capacitive radio-frequency plasma sheaths",
+    		journal = "Plasma Sources Sci. Technol.",
+    		volume = "10",
+    		number = "2",
+}
+
+@article{Los90,
+    		author = "J. {Los} and J.J.C. {Geerlings}",
+    		year    = "1990",
+    		title   = "Charge exchange in atom-surface collisions",
+    		journal = "Physic Reports",
+    		volume = "190",
+    		number = "3",
+    		pages = "133-190",
+}
+
+//**********************************************************/
+//* 
+//* THE LETTER G
+//* 
+//**********************************************************/
+
+@book{Godyak,
+        author={Valery A. Godyak},
+        title={Soviet radio frequency discharge research},
+        publisher={Delphic Associates},
+        year={1986},
+        address={Falls Church}
+}
+
+@article{Godyak75,
+        author={V. A. Godyak and A. A. Kuzovnikov},
+        title={Rectifying properties of rf discharges},
+        journal= SJP,
+        volume={1},
+        year={1975},
+        pages={276--280}
+}
+
+@article{Godyak76a,
+        author={V. A. Godyak},
+        title={Steady- state low- pressure rf discharge},
+        journal= SJP,
+        volume={2},
+        year={1976},
+        pages={78--84}
+}
+
+@article{Godyak76b,
+        author={V. A. Godyak and O. A. Popov and A. Kh. Ganna},
+        title={Effektive electron collision frequency in rf discharges},
+        journal= SJP,
+        volume={2},
+        year={1976},
+        pages={560--561}
+}
+
+@article{Godyak77,
+        author={V. A. Godyak and O. A. Popov},
+        title={Probe diagnostics of an rf plasma},
+        journal= SPTECHP,
+        volume={22},
+        year={1977},
+        pages={461--464}
+}
+
+@article{Godyak79,
+        author={V. A. Godyak and S. N. Oks},
+        title={Electron energy distribution in a low- pressure rf discharge},
+        journal= SPTECHP,
+        volume={24},
+        year={1979},
+        pages={1255--1256}
+}
+
+@article{Godyak80,
+        author={V. A. Godyak and Z. Kh. Ganna},
+        title={Collisional rf discharge},
+        journal= SJP,
+        volume={6},
+        year={1980},
+        pages={372--376}
+}
+
+@article{Godyak86,
+        author={V. A. Godyak and A. S. Kanneh},
+        title={Ion Bombardment Secondary Electron Maintenance of Steady {RF} Discharge},
+        journal= IEEE,
+        volume={PS-14},
+        year={1986},
+        pages={112--123}
+}
+
+@article{Godyak88,
+        author={V. Godyak and R. Lagushenko and J. Maya},
+        title={Spatial evolution of the electron-energy distribution in the vicinity of
+                a discharge-tube constriction},
+        journal= PRA,
+        volume={38},
+        year={1988},
+        pages={2044--2055}
+}
+
+@article{Godyak90a,
+        author={V. A. Godyak and R. B. Piejak and B. M. Alexandrovich},
+        title={An experimental system for symmetric capacitive rf discharge studies},
+        journal= RSI,
+        volume={61},
+        year={1990},
+        pages={2401--2406}
+}
+
+@article{Godyak90b,
+        author={V. A. Godyak and R. B. Piejak},
+        title={{\em In situ} simultaneous radio frequency discharge power measurements},
+        journal= JVSA,
+        volume={8},
+        year={1990},
+        pages={3833--3837}
+}
+
+@incollection{Godyak90book,
+        author={V. A. Godyak},
+        crossref={Aetall}
+}
+
+@article{Godyak90c,
+        author={V. A. Godyak and R. B. Piejak},
+        title={Probe measurements of the space potential in a radio frequency discharge},
+        journal= JAP,
+        volume={68},
+        year={1990},
+        pages={3157--3162}
+}
+
+@article{Godyak90d,
+        author={Valery A. Godyak and Natalia Sternberg},
+        title={Dynamic model of the electrode sheaths in symmetrical driven rf discharges},
+        journal= PRA,
+        volume={42},
+        year={1990},
+        pages={2299--2312}
+}
+
+@article{Godyak90e,
+        author={V. A. Godyak and R. B. Piejak},
+        title={Abnormally low electron energy and heating-mode transition in a low-pressure
+                argon rf discharge at 13.56\,MHz},
+        journal= PRL,
+        volume={65},
+        year={1990},
+        pages={996--999}
+}
+
+@article{Godyak90f,
+        author={Valery A. Godyak and Natalia Sternberg},
+        title={Smooth Plasma-Sheath Transition in a Hydrodynamic Model},
+        journal= IEEE,
+        volume={PS-18},
+        year={1990},
+        pages={159--168}
+}
+
+@article{Godyak91a,
+        author={V. A. Godyak and R. B. Piejak and B. M. Alexandrovich},
+        title={Ion flux and ion power losses at the electrode sheaths in a symmetrical
+                rf discharge},
+        journal= JAP,
+        volume={69},
+        year={1991},
+        pages={3455--3460}
+}
+
+@article{Godyak92a,
+        author={V. A. Godyak and R. B. Piejak and B. M. Alexandrovich},
+        title={Evolution of the Electron-Energy-Distribution Function during rf Discharge
+                Transition to the High-Voltage Mode},
+        journal= PRL,
+        volume={68},
+        year={1992},
+        pages={40--43}
+}
+
+@article{Godyak92b,
+        author={V. A. Godyak and R. B. Piejak and B. M. Alexandrovich},
+        title={Measurements of Electron-Energy-Distribution in low-pressure rf Discharges},
+        journal= PS,
+        volume={1},
+        year={1992},
+        pages={36--58}
+}
+
+@article{Godyak93,
+        author={V. A. Godyak and R. B. Piejak and B. M. Alexandrovich},
+        title={Probe Diagnostics of Non -- Maxwellian Plasmas},
+        journal= JAP,
+        volume={73},
+        year={1993},
+        pages={3657--3663}
+}
+
+//**********************************************************/
+//* 
+//* THE LETTER K
+//* 
+//**********************************************************/
+
+@article{Kay85,
+    author={K. Köhler, J.W. Coburn, D.E. Horne, E. Kay},
+    journal={J. Appl. Phys.},
+    volume={57, 59},
+    year={1985}
+}
+
+//**********************************************************/
+//* 
+//* THE LETTER L
+//* 
+//**********************************************************/
+
+@article{Langmuir23,
+        author={Irving Langmuir},
+        journal= GER,
+        volume={26},
+        year={1923},
+        pages={731}
+}
+
+@article{Langmuir26,
+        author={H.~M. Mott-Smith and Irving Langmuir},
+        title={The Theory of Collectors in Gaseous Discharges},
+        journal= PR,
+        volume={28},
+        year={1926},
+        pages={727--763}
+}
+
+@article{Langmuir29a,
+        author={Irving Langmuir},
+        title={The Interaction of Electron and Positive Ion Space Charges in Cathode Sheaths},
+        journal= PR,
+        volume={33},
+        year={1929},
+        pages={954--989}
+}
+
+@article{Langmuir29b,
+        author={Lewi Tonks and Irving Langmuir},
+        title={A General Theory of the Plasma of an Arc},
+        journal= PR,
+        volume={34},
+        year={1929},
+        pages={876--922}
+}
+
+@article{Lewerentz10,
+        author={Lars Lewerentz and Ralf Schneider and Andre Melzer and Konstantyn Matyash },
+        title={Phase-resolved optical emission of dusty rf discharges: II. Modeling},
+        journal= {companion paper: submitted to PRE},
+        volume={},
+        year={2010},
+        pages={}
+}
+
+//**********************************************************/
+//* 
+//* THE LETTER M
+//* 
+//**********************************************************/
+
+@article{Matyash06,
+        author={K. Matyash and R. Schneider},
+        journal= JPP,
+        volume={72},
+        year={2006},
+        pages={809}
+}
+
+@article{Matyash07,
+        author={K. Matyash and R. Schneider and F. Taccogna and A. Hattayama and S. Longo
+                and M. Capitelli and D. Tskhakaya and F.X. Bronold},
+        title={Particle in Cell Simulation of Low Temperature Laboratory Plasmas},
+        journal= CTP,
+        volume={47},
+        year={2007},
+        pages={595-634}
+}
+
+@article{Matyash07a,
+        author={K. Matyash and R. Schneider and F. Taccogna and D. Tskhakaya},
+        title={Finite size effects of dust charging in the magnetized edge plasma},
+        journal={J. Nucl. Mater.},
+        volume={363-365},
+        year={2007},
+        pages={458-461}
+}
+
+@article{Matyash10,
+        author={K. Matyash and R. Schneider and V. R. Ikkurthi and L. Lewerentz and A. Melzer},
+        title={P$^3$M simulations of dusty plasmas},
+        journal=PPCF,
+        volume={52},
+        year={2010},
+        pages={124016}
+}
+
+@article{Melzer00a,
+        author={A. Melzer and V.A. Schweigert and A. Piel},
+        title={Measurement of the Wakefield Attraction for Dust Plasma Molecules},
+        journal= PhSc,
+        volume={61},
+        year={2000},
+        pages={494}
+}
+
+@article{Melzer00b,
+        author={A. Melzer and Shota Nunomura and Dmitry Samsonov and J. Goree},
+        title={Laser-excited Mach cones in a dusty plasma crystal},
+        journal= PRE,
+        volume={62},
+        year={2000},
+        pages={4162--4176}
+}
+
+@article{Melzer00c,
+        author={A. Melzer},
+        title={Laser-experiments on Particle Interactions in Strongly Coupled Dusty Plasma
+                Crystals},
+        journal= PhSc,
+        volume={T89},
+        year={2001},
+        pages={33}
+}
+
+@article{Melzer00d,
+        author={A. Melzer},
+        title={Laser Manipulation of Particles in Dusty Plasmas},
+        journal= PS,
+        volume={10},
+        year={2001},
+        pages={303}
+}
+
+@inproceedings{Melzer00e,
+        author={A. Melzer},
+        title={Laser-Manipulation of Microspheres in Dusty (Complex) Plasmas: Laboratory
+                studies and their Application to the International Microgravity Plasma
+                Facility IMPF},
+        pages={769},
+        crossref={Sorrento00}
+}
+
+@article{Melzer01,
+        author={A. Melzer and M. Klindworth and A. Piel},
+        title={Normal Modes of 2D finite Coulomb clusters in Complex Plasmas},
+        journal= PRL,
+        volume={87},
+        year={2001},
+        pages={115002}
+}
+
+@article{Melzer03,
+        author={A. Melzer},
+        title={Mode Spectra of Thermally Excited 2D Dust Coulomb Clusters},
+        journal= PRE,
+        volume={67},
+        year={2003},
+        pages={016411}
+}
+
+@article{Melzer04,
+        author={A. Melzer},
+        title={Dynamical Properties of Small and Large 2D Coulomb Clusters in Complex Plasmas},
+        journal= IEEE,
+        volume={32},
+        year={2004},
+        pages={594}
+}
+
+@incollection{Melzer05,
+        author={A. Melzer},
+        title={Collective Effects in Dusty Plasmas},
+        booktitle={Plasma Physics, Lecture Notes Phys. 670},
+        publisher={Springer},
+        year={2005},
+        address={Berlin Heidelberg},
+        editor={A. Dinklage and T. Klinger and G. Marx and L. Schweikhard},
+        pages={297--329}
+}
+
+@article{Melzer06,
+        author={A. Melzer},
+        title={Zigzag Transition of Finite Dust Clusters},
+        journal= PRE,
+        volume={73},
+        year={2006},
+        pages={056404}
+}
+
+@incollection{Melzer07,
+        author={A. Melzer and John Goree},
+        title={Fundamentals of Complex Plasmas},
+        booktitle={Low Temperature Plasma Physics. Fundamentals, Technologies, and Techniques
+                (2nd Edition)},
+        publisher={Wiley-VCH Verlag GmbH},
+        year={2008},
+        address={Weinheim},
+        editor={R. Hippler and H. Kersten and M. Schmidt and K. H. Schoenbach},
+        pages={129--173}
+}
+
+@article{Melzer08,
+        author={Andre Melzer and Sebastian K{\"a}ding and Dietmar Block and Alexander Piel},
+        title={Energy landscape in 3D finite dust clusters derived from shell transitions},
+        journal= JPCM,
+        volume={20},
+        year={2008},
+        pages={404204}
+}
+
+@article{Melzer10,
+        author={Andre Melzer and B. Buttensch{\"o}n and T. Miksch and M. Passvogel and D. Block and O. Arp and A. Piel},
+        title={Finite dust clusters in dusty plasmas},
+        journal= PPCF,
+        volume={52},
+        year={2010},
+        pages={124028}
+}
+
+
+@article{Melzer11,
+        author={Andre Melzer and S. H{\"u}bner and L. Lewerentz and K. Matyash and R. Schneider and V. R. Ikkurthi},
+        title={Phase-resolved optical emission of dusty rf discharges: Experiment and simulation},
+        journal= PRE,
+        volume={83},
+        year={2011},
+        pages={036411}
+}
+
+@article{Melzer12,
+  author={Andre Melzer},
+  title={Introduction to Colloidal (Dusty) Plasmas, Lecture Notes},
+  edition={2},
+  year={2012},
+  pages={7,30,36,37,50,132}
+}
+
+@article{Melzer94,
+        author={Andr{\'e} Melzer and Thomas Trottenberg and Alexander Piel},
+        title={Experimental Determination of the charge on dust particles forming Coulomb
+                lattices},
+        journal= PLA,
+        volume={191},
+        year={1994},
+        pages={301--308}
+}
+
+@article{Melzer95a,
+        author={A. Melzer and A. Homann and A. Piel},
+        title={Experimental Investigation of the melting transition of the Plasma crystal},
+        journal= PRE,
+        volume={53},
+        year={1996},
+        pages={2757}
+}
+
+@inproceedings{Melzer95b,
+        author={A. Melzer and A. Homann and A. Piel},
+        title={The melting transition of the Plasma crystal},
+        pages={135--138},
+        crossref={ICPSCP}
+}
+
+@article{Melzer95c,
+        author={A. Melzer and V. A. Schweigert and I. V. Schweigert and A. Homann and S.
+                Peters and A. Piel},
+        title={Structure and Stability of the Plasma Crystal},
+        journal= PRE,
+        volume={54},
+        year={1996},
+        pages={46--49}
+}
+
+@article{Melzer95d,
+        author={A. Melzer and R. Flohr and A. Piel},
+        title={Comparison of probe measurements and emission spectroscopy in a rf discharge},
+        journal= PS,
+        volume={4},
+        year={1995},
+        pages={424--431}
+}
+
+@article{Melzer96a,
+        author={A. Melzer and A. Homann and S. Peters and A. Piel and V. A. Schweigert and
+                I. V Schweigert},
+        title={Estimation of Shielding Length for the Phase Transition of the plasma crystal}
+}
+
+@article{Melzer96b,
+        author={A. Homann and Andr{\'e} Melzer and A. Piel},
+        title={Plasmakristall und Plasmafalle},
+        journal= PB,
+        volume={52},
+        year={1996},
+        pages={1227-1231}
+}
+
+@article{Melzer99a,
+        author={A. Melzer and V.A. Schweigert and A. Piel},
+        title={Transition from attractive to repulsive forces in dust molecules in a plasma
+                sheath},
+        journal= PRL,
+        volume={83},
+        year={1999},
+        pages={3194}
+}
+
+@article{Melzer99b,
+        author={A. Melzer and V.A. Schweigert and A. Piel},
+        title={Experimental evidence for attractive and repulsive forces in dust molecules},
+        pages={115},
+        crossref={Hakone99}
+}
+
+@inproceedings{Melzer99c,
+        author={A. Melzer and A. Piel},
+        title={Experiments on Particle-Particle Interactions in Dusty Plasma Crystals},
+        pages={383},
+        crossref={NNPP3}
+}
+
+@inproceedings{MelzerBoulder,
+        author={A. Melzer and A. Homann and A. Piel and V. A. Schweigert and I. V. Schweigert},
+        title={Laser-excited dust lattice waves and the nonequilibrium phase transition},
+        pages={199},
+        crossref={Boulder98}
+}
+
+@inproceedings{MelzerBoulderB,
+        author={A. Melzer and A. Homann and A. Piel and V. A. Schweigert and I. V. Schweigert},
+        title={Very low frequency void instability in silane discharges},
+        pages={168},
+        crossref={Boulder98}
+}
+
+@phdthesis{MelzerDipl,
+        author={Andr{\'e} Melzer},
+        title={Sondenmessungen und Emissionsspektroskopie an einer Hochfrequenz--Parallelplattenentladung
+                in Helium},
+        school={Universit{\"a}t Kiel},
+        year={1993},
+        type={Diplomarbeit}
+}
+
+@phdthesis{MelzerDr,
+        author={Andr{\'e} Melzer},
+        title={Der Plasmakristall: Phasen{\"u}bergang und Stabilit{\"a}t},
+        school={Christian--Albrechts--Universit{\"a}t Kiel},
+        year={1997},
+        type={Dissertation}
+}
+
+@book{MelzerDrB,
+        author={Andr{\'e} Melzer},
+        title={Der Plasmakristall: Phasen{\"u}bergang und Stabilit{\"a}t},
+        publisher={Harri Deutsch Verlag GmbH},
+        year={1997},
+        volume={74},
+        address={Frankfurt/ Main},
+        series={Reihe Physik}
+}
+
+@inproceedings{MelzerGoa,
+        author={A. Melzer and A. Homann and S. Peters and A. Piel},
+        title={Experimental Investigations on the melting transition of the plasma crystal},
+        pages={429},
+        crossref={Goa96}
+}
+
+//**********************************************************/
+//* 
+//* THE LETTER P
+//* 
+//**********************************************************/
+
+@article{Piel01,
+        author={A. Piel and A. Melzer},
+        title={Dusty plasmas- the state of understanding from an experimentalist's view},
+        journal={Adv. Space Res.},
+        volume={29},
+        year={2001},
+        pages={1255-1264}
+}
+
+@article{Piel02,
+        author={A. Piel and A. Melzer},
+        title={Dynamical processes in complex plasmas},
+        journal= PPCF,
+        volume={44},
+        year={2002},
+        pages={R1--R26}
+}
+
+@article{Piel03,
+        author={A. Piel and A. Homann and M. Klindworth and A. Melzer and C. Zafiu and V.
+                Nosenko and J. Goree},
+        title={Waves and Oscillations in Plasma Crystals},
+        journal= JPB,
+        volume={36},
+        year={2003},
+        pages={533}
+}
+
+@article{Piel06,
+        author={A. Piel and M. Klindworth and O. Arp and A. Melzer and M. Wolter},
+        title={Obliquely Propagating Dust-Density Plasma Waves in the Presence of an Ion
+                Beam},
+        journal= PRL,
+        volume={97},
+        year={2006},
+        pages={205009}
+}
+
+@article{Piel08,
+        author={A. Piel and O. Arp and M. Klindworth and A. Melzer},
+        title={Obliquely Propagating Dust Density Waves},
+        journal= PRE,
+        volume={77},
+        year={2008},
+        pages={026407}
+}
+
+@article{Piel08a,
+        author={A Piel and O Arp and D Block and I Pilch and T Trottenberg and S K{\"a}ding
+                and Andre Melzer and H Baumgartner and C Henning and Michael Bonitz},
+        title={Complex plasmas: forces and dynamical behaviour},
+        journal= PPCF,
+        volume={50},
+        year={2008},
+        pages={124003}
+}
+
+@article{Piel09,
+        author={A. Piel},
+        title={Plasma Crystals- Structure and Dynamics},
+        journal= {Plasma Fusion Res.},
+        volume={4},
+        year={2009},
+        pages={13}
+}
+
+@article{Piel10,
+  author={A. Piel},
+  title={Plasma Physics - An Introduction to Laboratory, Space and Fusion Plasmas},
+  publisher= {Springer},
+  year={2010},
+  pages={pp. 170 ff., 338 ff.}
+}
+
+@article{Piel94,
+        author={Alexander Piel},
+        title={Plasma Crystals show new order},
+        journal= PW,
+        year={1994},
+        pages={23--24},
+        month={October}
+}
+
+@article{Piel98,
+        author={A. Piel and A. Homann and A. Melzer},
+        title={Laser-excited waves in a plasma crystal},
+        journal= PPCF,
+        volume={41},
+        year={1999},
+        pages={A453--A461}
+}
