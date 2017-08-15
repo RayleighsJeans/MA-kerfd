@@ -107,7 +107,8 @@
 
 % ************************************************************************** %
 % PACKAGES
-\usepackage{amsmath,mathtools}
+\usepackage{amsmath}
+\usepackage{mathtools}
 \usepackage{amssymb}
 \usepackage{upgreek}
 \usepackage{esint}
@@ -296,7 +297,7 @@
 %
 % ************************************************************************** %
 % PREFIX
-\include{content/chapter_prefix}
+	\include{content/chapter_start_prefix}
 % ************************************************************************** %
 %
 % ************************************************************************** %
@@ -318,11 +319,24 @@
   	%
 % ************************************************************************** %
 %
-\include{content/chapter_basic}
-\include{content/chapter_1d}
-\include{content/chapter_ccrf}
-\include{content/chapter_end}
-% \include{content/chapter_fem}
+%
+% BASICS
+%
+	\include{content/chapter_basics_ccrf}
+	\include{content/chapter_basics_negion}
+	\include{content/chapter_basics_pic}
+%
+% RESULTS
+%
+	\include{content/chapter_results_oned}
+	\include{content/chapter_results_twod}
+%
+% END
+%
+	\include{content/chapter_end_conclusion}
+	%\include{content/chapter_end_fem}
+%
+%
 % ************************************************************************** %
 %	
 % ************************************************************************** %
