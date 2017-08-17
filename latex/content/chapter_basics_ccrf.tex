@@ -22,7 +22,7 @@
 		A strong mathematical analysis of general plasma properties would not be suitable for this kind of work, although certain aspects will be discussed later, such as in~\autoref{sec:selfbias} and~\autoref{sec:displacementcurrent}.
 		In comparison to other low temperature, low pressure discharges  --- an example could be a dielectric hindered dc discharge at high voltages, with an electrode space gap of just a couple millimeters ---, radio frequency plasma are characterized by their unique transport process inside the sheath and heating mechanisms of charged species. A more in-depth discussion can be found in~\autoref{sec:heating}.\\ 
 %
-		\subsection{Sheath Physics and Wall Interaction}\label{sec:sheathphysics}
+		\subsection{Plasma-Wall Interaction}\label{sec:sheathphysics}
 %
 			In the discharges bulk, neutral gas particles are exctited by electron collisions and radiating visible light. However, areas around, e.g.\@ floating metal surfaces, probes and grounded walls are darker than the bulk. This is due to the low electron density and kinetic energy in this \emph{plasma sheath}. Though areas with vanishing electron numbers can glow because of high collision efficiencies and/or frequencies.\\
 			Electrons, in general, are of a much higher mobility $\mu\ix{e}$ and thermal velocity $v\ix{th,e}$. Hence they impinge onto walls and surfaces more often than other species, leading to a --- in this case we consider an electronegative oxygen discharge, where the following can be assumed true --- negative charge and potential.
@@ -326,4 +326,32 @@
     	\end{align}
 %
 		\subsection{Heating Mechanisms}\label{sec:heating}
+%
+		Low-pressure capacitive rf plasma can be stabilzed mainly by collisionless heating in the sinusoidal rf modulated discharge sheaths, like it was proposed earlier in~\autoref{sec:langmuirlaw} and the following. Most theoretical models assume a `hard wall' approximation (HWA), where the electron are cosidered to collid elastically with the oscillating sheath edge. Heating power is then averaged by reverse and forward energy fluxes into and out of the sheath respectively. Thus giving an easy access to heating mechanisms of the proposed discharges, this model is very sensitive to \emph{ab initio} information about EEDF, sheath transit times and particle losses.~\cite{Gozadinos01b}.\\
+		The heating mechanism in such low pressure plasma is of particular importance, because collisions are rare and sheath processes are key to the sustainabilty of the discharge (see e.g\@~\autoref{sec:bohmcriteria}). The afore-mentioned HWA uses the '\emph{Fermi acceleration}' argument, which implies that the particles are heated or cooled due to the sheaths sinusoidal oscillation and a corresponding de-/accelration. This process, though relying on enough randomization in phase-space inside the bulk, sufficiently creates a net heating of the plasma~\cite{Gozadinos01b,Goedde88}. This is referred to as \emph{stochastical heating}.\\
+		Here one will consider the sheaths electric field as constant, $E=U\ix{sb}/s\ix{0}$, the bulks expansion $l$  and the sheaths thickness being modulated cosinusoidal. The equation of motion for an electron in the sheath is written below.
+%
+		\begin{align}
+			d(t)&\approx s\ix{0}\left(1+\frac{U\ix{rf}}{U\ix{sb}}\cos\left(\omega t\right)\right)%
+			\label{equ:sheaththickness}\\[0.0cm]
+			&m\ix{e}\frac{\diff^{2}x}{\diff t^{2}}=-\frac{eU\ix{sb}}{s\ix{0}}%
+			\label{equ:heatingmotion}
+		\end{align}
+%
+		The latter equation is introduced as dimensionless with the corresponding parameters: $\alpha=m\ix{e}\omega^{2}s\ix{0}^{2}/eU\ix{sb}$, $\beta=U\ix{rf}/U\ix{sb}$ and $\epsilon=s\ix{0}/l\,$. Integrating yields the velocity of an electron as it moves through the sheath $\mu(\tau)$.\\
+		The transit time $\tau$ is considered for one pass through the sheath of the particle. It can be used to calculate the change in velocity experienced by the electron on each bounce between this oscillating and a fixed wall --- this would be the lowest order \emph{fermi acceleration}. Let there be two distinct points in motion, where the particle enters (index $n$) and re-enters (index $n+1$) the sheath. This gives, using $\varphi\ix{n}$ the phase of the sheath, for the transit time and, finally, the velocity~\cite{Goedde88}
+%
+		\begin{align}
+			\tau\ix{n}\approx\frac{2\alpha(\mu\ix{n}-\beta%
+				\cos\varphi\ix{n})}{1+\alpha\beta\cos\varphi\ix{n}}\,,%
+			\quad\quad%
+			\mu\ix{n+1}=-\mu+\frac{2(\mu\ix{n}-\beta\sin\varphi\ix{n})}{1+\alpha\beta\cos\varphi\ix{n}}%
+			\label{equ:transitandvelocityheating}
+		\end{align}
+%
+
+%
+%		
+		There are different approaches on the heating in low-pressure, low-temperature rf plasma. 
+
 %
