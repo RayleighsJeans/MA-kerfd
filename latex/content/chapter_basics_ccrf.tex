@@ -313,10 +313,10 @@
     	  E\ix{0}=-en\ix{0,i}d/\varepsilon\ix{0}
     	\end{align}
 %
-			establishes. If the wall potential now decreases due to electron bombardement or external manipulation, the sheaths border moves further inside into the discharges volume with the veloctiy $v=\diff s\ix{1}/\diff t$. Thus, the sheath expansion and hence charge movement creates an additional \emph{displacement current} $j\ix{d}$, which is compensated with $j\ix{d,e}$ the electron current from this border displacement. Hence charge conservation and continuity is satisfied~\cite{Godyak90a}.
+			establishes. If the wall potential now decreases due to electron bombardement or external manipulation, the sheaths border moves further inside into the discharges volume with the veloctiy $u\ix{s}=\diff s\ix{1}/\diff t$. Thus, the sheath expansion and hence charge movement creates an additional \emph{displacement current} $j\ix{d}$, which is compensated with $j\ix{d,e}$ the electron current from this border displacement. Hence charge conservation and continuity is satisfied~\cite{Godyak90a}.
 %
     	\begin{align}
-    	  j\ix{d}=-en\ix{0,i}v=-j\ix{d,e}
+				j\ix{d}=-en\ix{0,i}u\ix{s}=-j\ix{d,e}
     	\end{align}
 %
 			Electrons that are puished out of this positive space-charge area then contribute to the plasma bulk density, and conclusively, to the quasi neutrality $n\ix{e}=n\ix{0,i}\,$. But in case of a harmonically driven discharge, the sheath in front of the opposing electrode is shrinking with $\diff s\ix{1}=-\diff s\ix{2}\,$. Hence, the bulks spatial expansion and position are oscillating sinusoidal, or: the sheaths thickness oscillates harmoncally around a mean value, e.g\@ $s\ix{0}$. The associated voltage drop across the discharge~\cite{Piel10} between the sheath potentials $U\ix{1/2}$ would be
@@ -327,7 +327,7 @@
 %
 		\subsection{Heating Mechanisms}\label{sec:heating}
 %
-		Low-pressure capacitive rf plasma can be stabilzed mainly by collisionless heating in the sinusoidal rf modulated discharge sheaths, like it was proposed earlier in~\autoref{sec:langmuirlaw} and the following. Most theoretical models assume a `hard wall' approximation (HWA), where the electron are cosidered to collid elastically with the oscillating sheath edge. Heating power is then averaged by reverse and forward energy fluxes into and out of the sheath respectively. Thus giving an easy access to heating mechanisms of the proposed discharges, this model is very sensitive to \emph{ab initio} information about EEDF, sheath transit times and particle losses.~\cite{Gozadinos01b}.\\
+		Low-pressure capacitive rf plasma can be stabilzed mainly by collisionless heating in the sinusoidal rf modulated discharge sheaths, like it was proposed earlier in~\autoref{sec:langmuirlaw} and the following. Most theoretical models assume a `hard wall' approximation (HWA), where the electrons are cosidered to collide elastically with the oscillating sheath edge. Heating power is then averaged by reverse and forward energy fluxes into and out of the sheath respectively. This gives an easy access to heating mechanisms of the proposed discharges.\\
 		The heating mechanism in such low pressure plasma is of particular importance, because collisions are rare and sheath processes are key to the sustainabilty of the discharge (see e.g\@~\autoref{sec:bohmcriteria}). The afore-mentioned HWA uses the '\emph{Fermi acceleration}' argument, which implies that the particles are heated or cooled due to the sheaths sinusoidal oscillation and a corresponding de-/accelration. This process, though relying on enough randomization in phase-space inside the bulk, sufficiently creates a net heating of the plasma~\cite{Gozadinos01b,Goedde88}. This is referred to as \emph{stochastical heating}.\\
 		Here one will consider the sheaths electric field as constant, $E=U\ix{sb}/s\ix{0}$, the bulks expansion $l$  and the sheaths thickness being modulated cosinusoidal. The equation of motion for an electron in the sheath is written below.
 %
@@ -349,9 +349,32 @@
 			\label{equ:transitandvelocityheating}
 		\end{align}
 %
-
+		In \emph{Hamiltonian mappings}, those two variables are not canonically conjugate, hence insufficient for checking conservational properties. We know that energy and time are such quantities, thus $E\sim\mu^{2}$ and $\varphi\sim\omega t$ are calculated. Finally, the change in velocity in one pass through the sheath, written again with commonly used variables, becomes now the impulse approximation of the \emph{Fermi acceleration}.
 %
-%		
-		There are different approaches on the heating in low-pressure, low-temperature rf plasma. 
-
+		\begin{align}
+			\Delta v=v\ix{n+1}-v\ix{n}=-2\,\omega\,%
+			s\ix{0}\frac{U\ix{rf}}{U\ix{sb}}\,\sin\varphi\ix{n}%
+			\label{equ:deltavheating}
+		\end{align}
+%	
+		A question to answer is what parameter defines the degree of randomization required for an ample stochastical heating in the plasma sheath. Therefore, $K$ is defined as a function of phase-space chaos by eletron energy and the alike. Additionally, a simple condition for stochastical motion is derived at the same time.
 %
+		\begin{align}
+			K=\alpha\,\beta\,\frac{U\ix{sb}}{\epsilon E}\,,%
+			\quad\quad%
+			E\,<\,m\ix{e}\,\omega^{2}s\ix{0}\,l\,\frac{U\ix{rf}}{U\ix{sb}}%
+			\label{equ:randomization}
+		\end{align}
+%
+		As is well known~\cite{Goedde88}, chaotic motion occurs in this mapping for $K>1$. It decreases with increasing energy, so the system is less stochastic at higher energies. This is due to the shrinking phase shift across the discharge volume with higher energies. Hence phase corellations between successive collisions in and with the plasma sheath reduce stochasticity.\\
+		Last, but not least, one calculates the instantaneous power dissipated into the plasma due to this heating mechanism. Here, using the sheath speed from above $u\ix{s}$, the electron drift velocity $u\ix{e}$ and the maxwellian electron velocity distribution funtion $f\ix{v}(v\ix{e},t)$, Liebermann~\cite{Liebermann88} finds
+%
+		\begin{align}
+			P\ix{stoc}(t)=-2m\ix{e}\int_{u\ix{s}}^{\inf}\,u\ix{s}%
+			{\left(v\ix{e}-u\ix{s}\right)}^{2}\,f\ix{v}(v\ix{e},t)\diff v=%
+			2\,n\ix{e,0}u\ix{e}k\ix{B}T\ix{e}\sin(\omega t)%
+			\label{equ:powerdepositheat}
+		\end{align}
+%
+		Clearly, this results yields not net heating if averaged over one rf cycle. That is, if the current used would be conserved in a manner the HWA is predicting it, or the electron drift velocity does not satisfy the maxwellian distribution function. Hence, there have to be deviations from the proposed theory of stochastical heating. This would be e.g.\@ ab initio information about the EEDF, unconsidered transit time effects of the sheath electric field and neglected particle losses and current conservation.\\
+		Therefore more theoretical approaches on the heating in low-pressure, low-temperature rf plasma. For example, Surendra et al~\cite{Surendra} put forth the idea that the compression and decompression of the electron density volume between opposing plasma sheaths generates heat inside the bulk is responsible for the observed heating.
