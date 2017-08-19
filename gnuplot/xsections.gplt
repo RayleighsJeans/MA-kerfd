@@ -1,0 +1,39 @@
+print ">> xsections plot"
+set termoption dash;
+set terminal pngcairo size 1920,1080 enhanced font 'PT Serif, 21'
+set border linewidth 2.0; set tics nomirror out scale 0.85;
+set grid; set xlabel "energy / eV"; set ylabel "cross section / cm^{2}";
+set key outside top center horizontal;
+
+set output 'xsections.png'
+
+set logscale xy
+set format y "10^{%T}"
+set format x "10^{%T}"
+set xrange [1e-2:1e2]
+set yrange [1e-19:1e-11]
+
+p           'xscts/O2_dat.dat' w l ls 1 \
+							title 'diss. attach. O_{2}', \
+					 	'xscts/O2_e_el.dat' w l ls 2 \
+							title 'e^{-} - O_{2} elast.', \
+						'xscts/O2_i.dat' w l ls 3 \
+							title 'O_{2}^{+} ioniz.', \
+						'xscts/O2_n_detach.dat' w l ls 4\
+							title 'O_{2} neutr. detach.', \
+						'xscts/O2_Op_Om_ntrlzFr.dat' w l ls 5 \
+							title 'O_{2}^{+} - O^{-} neutr.', \
+						'xscts/O2p_O2_el.dat' w l ls 6 \
+							title 'O_{2}^{+} - O_{2} elast.', \
+						'xscts/O_dissrec.dat' w l ls 7 \
+							title 'O_{2}^{+} diss. recomb.', \
+						'xscts/O_edet.dat' w l ls 8 \
+							title 'O_{2} - e^{-} impact detach.', \
+						'xscts/Omin_O2_el.dat' w l ls 9 \
+							title 'O^{-} - O_{2} elast.'
+					 	## 'xscts/O2_ex1D_brung.dat' w l ls 6 \
+						##		title 'O_{2}(1D) ex.', \
+					 	## 'xscts/O2_ex1D.dat' w l ls 7 \
+						## 	  title 'O_{2}(1D) ex.', \
+						## 'xscts/O2_ex1S.dat' w l ls 11 \
+						## 	 title 'O_{2}(1S) ex.', \
