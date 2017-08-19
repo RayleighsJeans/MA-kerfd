@@ -4,6 +4,19 @@ close all; clear all;
 
 f_RF = 13.65e6;
 source variables.tmp;
+source octave.vectors;
+
+%% PREPRINT
+%% 2D
+% Ncell1=6.0; dt_ion=5.0;Te02d=5.0;ne02d=5.0e9;
+% pressure=10.0;nn_pc=60.0;atom_mass=32.0;dt=0.2;dr=0.5;
+% sizez2d=426.0;nr=384.0;fac1d2d=1.0;collfac2d=5.0e5;
+% dt_ntrl=30.0;Ti_over_Te2d=0.008;
+% onedstuff=1.0;
+%% 1D
+% collfac1d=38000;ne01d=5.0e9;
+% Te01d=5.0; nz1d=426.0;
+% fac1d2d=1.0;
 
 % PARTICLE NORM AND COLLFAC
 particle_i = Ncell1/2;
@@ -18,9 +31,7 @@ particlenorm = particle_a/nr;
 dt_nion=dt_ion;
 
 L_db02d = 7.43e2 * sqrt(Te02d / ne02d);
-L_db01d = 7.43e2 * sqrt(Te01d / ne01d);
 Omega_pe02d = 5.64e4 * sqrt(ne02d);
-Omega_pe01d = 5.64e4 * sqrt(ne01d);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% CALCULATIONS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -47,9 +58,6 @@ dr_0 = L_db02d*dr;
 % cell width
 dt_0 = dt/Omega_pe02d;
 % time step length
-dr1d_0 = L_db01d*dr;
-% cell width 1D
-explength1d = nz1d*dr1d_0;
 explength = sizez2d*dr_0;
 % experiment length in cm
 expdiameter = nr*dr_0;
@@ -57,12 +65,9 @@ expdiameter = nr*dr_0;
 
 n_RF2d = 1 / (f_RF * 0.2 / (Omega_pe02d));
 % number of cycles for RF period 2D
-n_RF1d = 1 / (f_RF * 0.2 / (Omega_pe01d));
 
 %% AXIAL PROFILE APPROX %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-ndens1d = 1.25*collfac1d*ne01d;
 ndens2d = 1.25*collfac2d*ne02d*fac1d2d;
-suggestedfac = ndens2d/ndens1d;
 
 %% REST %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % electron velocity in dimensionless units
@@ -88,8 +93,6 @@ dr_0test2 = dr*debye_L2;
 % cell width test in cm
 Ndb = ne02d * 4/3*pi*L_db02d*L_db02d*L_db02d;
 % number of particles in debye sphere
-Ndb2 = ne02d * L_db01d;
-% false number of particles in debye cell
 
 %% SPEED OF SOUND FOR SPECIES ++ 1D DVT's %%%%%%%%%%%%%
 %% SI SPEEDS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -107,35 +110,48 @@ cs_nion = dt_nion*cs_e;
 %% FILES AND DATA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% VELOCITIES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% 1D
+
 if (onedstuff == 1) 
-  if (velzdiag == 1)
-	  printf('>> radial velocities 1D\n');
-	  for timecode=[timevec1d, time1d];
-		  test=timecode+0;
-		  if (test >= mintime1d) %mintime1d
-			  if (test <= maxtime1d) %maxtime1d 
-			  	printf('...%d',test);
-		      file=strcat(onedfolder,'uex',num2str(timecode,'%08d'),'.dat'); uex=load(file);
-		      file=strcat(onedfolder,'uey',num2str(timecode,'%08d'),'.dat'); uey=load(file);
-		      file=strcat(onedfolder,'uO2px',num2str(timecode,'%08d'),'.dat'); uO2px=load(file);
-		      file=strcat(onedfolder,'uO2py',num2str(timecode,'%08d'),'.dat'); uO2py=load(file);
-		      file=strcat(onedfolder,'uOmx',num2str(timecode,'%08d'),'.dat'); uOmx=load(file);
-		      file=strcat(onedfolder,'uOmy',num2str(timecode,'%08d'),'.dat'); uOmy=load(file);
-	
-		      uer=uO2pr=uOmr=zeros(length(uex(:,1)),2);
-		      uer(:,1)=uex(:,1); uer(:,2)=0.5*sqrt(uey(:,2).^2+uex(:,2).^2);
-		      file=strcat('transpose/uer',num2str(timecode,'%08d'),'.dat'); save("-text",file,"uer");
-		      uO2pr(:,1)=uO2px(:,1); uO2pr(:,2)=0.5*sqrt(uO2py(:,2).^2+uO2px(:,2).^2);
-		      file=strcat('transpose/uO2pr',num2str(timecode,'%08d'),'.dat'); save("-text",file,"uO2pr");
-		      uOmr(:,1)=uOmx(:,1); uOmr(:,2)=0.5*sqrt(uOmy(:,2).^2+uOmx(:,2).^2);
-		      file=strcat('transpose/uOmr',num2str(timecode,'%08d'),'.dat'); save("-text",file,"uOmr");
-			  end
-		  end
-	  end
-	  printf('\n');
-  end
+ 
+   L_db01d = 7.43e2 * sqrt(Te01d / ne01d);
+   dr1d_0 = L_db01d*dr;
+   ndens1d = 1.25*collfac1d*ne01d;
+   Omega_pe01d = 5.64e4 * sqrt(ne01d);
+   n_RF1d = 1 / (f_RF * 0.2 / (Omega_pe01d));
+   % cell width 1D
+   explength1d = nz1d*dr1d_0;
+   suggestedfac = ndens2d/ndens1d;
+   Ndb2 = ne02d * L_db01d;
+   % false number of particles in debye cell
+ 
+   if (velzdiag == 1)
+ 	  printf('>> radial velocities 1D\n');
+ 	  for timecode=[timevec1d, time1d];
+ 		  test=timecode+0;
+ 		  if (test >= mintime1d) %mintime1d
+ 			  if (test <= maxtime1d) %maxtime1d 
+ 			  	printf('...%d',test);
+ 		      file=strcat(onedfolder,'uex',num2str(timecode,'%08d'),'.dat'); uex=load(file);
+ 		      file=strcat(onedfolder,'uey',num2str(timecode,'%08d'),'.dat'); uey=load(file);
+ 		      file=strcat(onedfolder,'uO2px',num2str(timecode,'%08d'),'.dat'); uO2px=load(file);
+ 		      file=strcat(onedfolder,'uO2py',num2str(timecode,'%08d'),'.dat'); uO2py=load(file);
+ 		      file=strcat(onedfolder,'uOmx',num2str(timecode,'%08d'),'.dat'); uOmx=load(file);
+ 		      file=strcat(onedfolder,'uOmy',num2str(timecode,'%08d'),'.dat'); uOmy=load(file);
+ 	
+ 		      uer=uO2pr=uOmr=zeros(length(uex(:,1)),2);
+ 		      uer(:,1)=uex(:,1); uer(:,2)=0.5*sqrt(uey(:,2).^2+uex(:,2).^2);
+ 		      file=strcat('transpose/uer',num2str(timecode,'%08d'),'.dat'); save("-text",file,"uer");
+ 		      uO2pr(:,1)=uO2px(:,1); uO2pr(:,2)=0.5*sqrt(uO2py(:,2).^2+uO2px(:,2).^2);
+ 		      file=strcat('transpose/uO2pr',num2str(timecode,'%08d'),'.dat'); save("-text",file,"uO2pr");
+ 		      uOmr(:,1)=uOmx(:,1); uOmr(:,2)=0.5*sqrt(uOmy(:,2).^2+uOmx(:,2).^2);
+ 		      file=strcat('transpose/uOmr',num2str(timecode,'%08d'),'.dat'); save("-text",file,"uOmr");
+ 			  end
+ 		  end
+ 	  end
+ 	  printf('\n');
+   end
 end
 %% SAVING %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-clear timevec1d timevec2d file uer uOmr uO2pr uex uOmx uO2px uOmy uey uO2py;
+ clear timevec1d timevec2d file uer uOmr uO2pr uex uOmx uO2px uOmy uey uO2py;
 save -text 'data.dat' *
 end 

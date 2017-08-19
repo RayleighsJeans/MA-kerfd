@@ -1,5 +1,10 @@
 #!/bin/bash
-#source variables.tmp
+source variables.tmp
+source bash.vectors
+
+names2d=( 'phi' 'e_dens_' 'i_dens_' 'ni_dens_' 'n_dens_');
+namev2d=( 'e_vel' 'i_vel' 'ni_vel' 'n_vel' );
+velsuf2d=( 'r_' 'z_' 't_' );
 
 ##############################################################################
 ## TRANSPOSING ###############################################################

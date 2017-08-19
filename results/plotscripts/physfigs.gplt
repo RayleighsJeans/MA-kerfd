@@ -275,6 +275,49 @@ if (femsolver == 1) {
   set title 'difference in electric field '.time2d; 
   plot '../out/diff_fields_'.time2d.'.dat' matrix with image;
   unset multiplot;
-}
+  reset;
 
-reset;
+  print ">> FEM ARROWS 2D RELAX <<<<<<<<<<<<<<<<<<<<";
+  set terminal pngcairo enhanced size 2048,1024 font 'PT Serif,21';
+  set grid; unset key; set border linewidth 1.0; set tics nomirror out scale 0.5;
+  set xlabel 'z (cell)'; set ylabel 'r (cell)';
+  set xrange [0.0-(sizez2d/10):sizez2d+(sizez2d/10)]; set yrange [0.0-(nr/10):nr+(nr/10)];
+  load 'jet.pal';
+  
+  set xlabel 'z/cells'; set ylabel 'r/cells'
+  set output 'figs/vector_fem_'.twodrunid.'_relax.png'
+  
+  set multiplot layout 1,2;
+  set title 'fem electric field relax';
+  plot '../out/vector_femfield_relax.dat' every 7::0 \
+       u ($1):($2):($3*scale_arrow):($4*scale_arrow):($5) with vectors \
+       head filled lw 2.0 lc palette;
+  set title 'standard electric field relax';
+  plot '../out/vector_stdfield_relax.dat' every 7::0 \
+       u ($1):($2):($3*10):($4*10):($5) with vectors \
+       head filled lw 2.0 lc palette;
+  unset multiplot;
+  reset;
+
+  print ">> FEM ARROWS 2D <<<<<<<<<<<<<<<<<<<<<<<<<<";
+  set terminal pngcairo enhanced size 2048,1024 font 'PT Serif,21';
+  set grid; unset key; set border linewidth 1.0; set tics nomirror out scale 0.5;
+  set xlabel 'z (cell)'; set ylabel 'r (cell)';
+  set xrange [0.0-(sizez2d/10):sizez2d+(sizez2d/10)]; set yrange [0.0-(nr/10):nr+(nr/10)];
+  load 'jet.pal';
+  
+  set xlabel 'z/cells'; set ylabel 'r/cells'
+  set output 'figs/vector_fem_'.twodrunid.'_'.time2d.'.png'
+  
+  set multiplot layout 1,2;
+  set title 'fem electric field '.time2d;
+  plot '../out/vector_femfield_'.time2d.'.dat' every 7::0 \
+       u ($1):($2):($3*scale_arrow):($4*scale_arrow):($5) with vectors \
+       head filled lw 2.0 lc palette;
+  set title 'standard electric field '.time2d;
+  plot '../out/vector_stdfield_'.time2d.'.dat' every 7::0 \
+       u ($1):($2):($3*scale_arrow):($4*scale_arrow):($5) with vectors \
+       head filled lw 2.0 lc palette;
+  unset multiplot;
+  reset;
+}
