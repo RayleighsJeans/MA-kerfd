@@ -107,7 +107,7 @@
 
 % ************************************************************************** %
 % PACKAGES
-\usepackage{amsmath}
+\usepackage{physics}
 \usepackage{mathtools}
 \usepackage{amssymb}
 \usepackage{upgreek}
@@ -124,6 +124,7 @@
 \usepackage{wrapfig}
 \usepackage{epsfig}
 
+%\usepackage{amsmath}
 % cant use svg so easily with subcaption
 % \expandafter\def\csname ver@subfig.sty\endcsname{}
 % \usepackage{svg}
@@ -140,13 +141,14 @@
 \newcommand{\ix}[1]{_\text{#1}}
 \newcommand{\imag}{\mathbf{i}}
 \newcommand{\tilt}[1]{\textit{#1}}
-\newcommand{\grad}[1]{\textit{grad}\left(#1\right)}
 \newcommand{\divergenz}[1]{\textit{div}\left(#1\right)}
 \newcommand{\euler}{\mathnormal{e}}
 \newcommand{\fett}[1]{\textbf{#1}}
 \newcommand{\inexample}{\text{e.g.}}
-\newcommand{\bra}{\langle}
 \newcommand{\kett}{\rangle}
+
+\renewcommand{\bra}{\langle}
+\renewcommand{\grad}[1]{\textit{grad}\left(#1\right)}
 
 % Used for signature line at 
 % declaration of authorship
@@ -287,7 +289,6 @@
 		%
 % ************************************************************************** %
 %
-%
 % ************************************************************************** %
 %  TOCTOCTOC FOR EVERYTHING
 	\tableofcontents % Prints the main table of contents
@@ -297,17 +298,10 @@
 %
 % ************************************************************************** %
 % PREFIX
-	\include{content/chapter_start_prefix}
-% ************************************************************************** %
-%
-% ************************************************************************** %
-% THESIS BEGINS HERE
-% ************************************************************************** %
-%
+	\include{content/0_start_prefix}
 % ************************************************************************** %
 \mainmatter% Begin numeric (1,2,3...) page numbering
 \pagestyle{thesis} % Return the page headers back to the "thesis" style
-%
 % ************************************************************************** %
 % INSERT ABSTRACT
  	% 
@@ -318,25 +312,18 @@
     the title too.
   	%
 % ************************************************************************** %
-%
-%
 % BASICS
-%
-	\include{content/chapter_basics_ccrf}
-	\include{content/chapter_basics_negion}
-	\include{content/chapter_basics_pic}
-%
+	\include{content/1_basics_sheath}
+	\include{content/2_basics_bohm}
+	\include{content/3_basics_heating}
+	\include{content/4_basics_negion}
+	\include{content/5_basics_pic}
 % RESULTS
-%
-	\include{content/chapter_results_oned}
-	\include{content/chapter_results_twod}
-%
+	\include{content/6_results_oned}
+	\include{content/7_results_twod}
 % END
-%
-	\include{content/chapter_end_conclusion}
-	%\include{content/chapter_end_fem}
-%
-%
+	\include{content/8_end_conclusion}
+	%\include{content/9_end_fem}
 % ************************************************************************** %
 %	
 % ************************************************************************** %
@@ -351,9 +338,7 @@
 % BIBLIOGRAPHY
 	\printbibliography[heading=bibintoc]
 % ************************************************************************** %
-%
 % END OF DOCUMENT
 \end{document}  
-%
 % test bibliography for completion
 \bibliography{master_thesis.bib}
