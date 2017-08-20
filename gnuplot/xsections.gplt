@@ -1,6 +1,5 @@
 print ">> xsections plot"
-set termoption dash;
-set terminal png size 1920,1080 enhanced font 'PT Serif, 21'
+set terminal pngcairo size 1920,1080 enhanced font 'PT Serif, 21'
 set border linewidth 2.0; set tics nomirror out scale 0.85;
 set grid; set xlabel "energy / eV"; set ylabel "cross section / cm^{2}";
 set key outside top center horizontal;
@@ -13,27 +12,31 @@ set format x "10^{%T}"
 set xrange [1e-2:1e2]
 set yrange [1e-19:1e-11]
 
-p           'xscts/O2_dat.dat' w l ls 1 \
-							title 'diss. attach. O_{2}', \
-					 	'xscts/O2_e_el.dat' w l ls 2 \
-							title 'e^{-} - O_{2} elast.', \
-						'xscts/O2_i.dat' w l ls 3 \
-							title 'O_{2}^{+} ioniz.', \
-						'xscts/O2_n_detach.dat' w l ls 4\
-							title 'O_{2} neutr. detach.', \
-						'xscts/O2_Op_Om_ntrlzFr.dat' w l ls 5 \
-							title 'O_{2}^{+} - O^{-} neutr.', \
-						'xscts/O2p_O2_el.dat' w l ls 6 \
-							title 'O_{2}^{+} - O_{2} elast.', \
-						'xscts/O_dissrec.dat' w l ls 7 \
-							title 'O_{2}^{+} diss. recomb.', \
-						'xscts/O_edet.dat' w l ls 8 \
-							title 'O_{2} - e^{-} impact detach.', \
-						'xscts/Omin_O2_el.dat' w l ls 9 \
-							title 'O^{-} - O_{2} elast.', \
-					 	'xscts/O2_ex1D_brung.dat' w l ls 10 \
-						 	title 'O_{2}(1D) ex.', \
-					 	'xscts/O2_ex1D.dat' w l ls 11 \
-							  title 'O_{2}(1D) ex.', \
-						'xscts/O2_ex1S.dat' w l ls 12 \
-							 title 'O_{2}(1S) ex.'
+## colors cycle so: black, red, blue, green, cyan, orange (1-6)
+## linetypes cycle so: solid, dashed, dotted, dash-dotted, dash-dot-dotted
+## linewidth is 2.75
+
+set label "e^{-} elast. (1)"  		at 1.1e-2 ,5.5e-17  textcolor ls  1;
+set label "O^{-} el. (2)" 		 		at 2.2e0  ,2.0e-19  textcolor ls 20;
+set label "O_{2}^{+} elast. (3)"  at 1.15e-2,6.0e-15 	textcolor ls  3;
+set label "(1D) ex. (6)"  				at 6.0e-1 ,1.0e-18  textcolor ls  4;
+set label "(7)"  									at 1.4e0  ,1.9e-19  textcolor ls  5;
+set label "diss. recomb. (8)"  		at 5.0e0  ,4e-17  	textcolor ls  6;
+set label "neutralization (9)"    at 9.0e-1 ,1e-13    textcolor ls  7;
+set label "diss. attach. (10)"  	at 1.0e-1 ,2.0e-14 	textcolor ls  8;
+set label "direct detach. (11)"   at 3.0e-1 ,6.0e-17  textcolor ls 21;
+set label "ioniz. (12)"  					at 4.01e1 ,1.0e-16  textcolor ls 10;
+set label "impact detach. (13)"  	at 4.0e-1 ,1.0e-17 	textcolor ls 11;
+
+p 'xscts/O2_e_el.dat' w l 					ls 1 		title 'e^{-} elast. (1)', \
+ 	'xscts/Omin_O2_el.dat' w l 				ls 20		title 'O^{-} elast. (2)', \
+ 	'xscts/O2p_O2_el.dat' w l 				ls 3 		title 'O_{2}^{+} elast. (3)', \
+  'xscts/O2_ex1D.dat' w l 					ls 4 		title 'O_{2}(1D) ex. (6)', \
+ 	'xscts/O2_ex1S.dat' w l 					ls 5 		title 'O_{2}(1S) ex. (7)', \
+ 	'xscts/O_dissrec.dat' w l 				ls 6	 	title 'diss. recomb. (8)', \
+ 	'xscts/O2_Op_Om_ntrlzFr.dat' w l 	ls 7		title 'neutral. (9)', \
+  'xscts/O2_dat.dat' w l 						ls 8		title 'diss. attach. (10)', \
+ 	'xscts/O2_n_detach.dat' w l 			ls 21		title 'direct detach. (11)', \
+ 	'xscts/O2_i.dat' w l 							ls 10 	title 'O_{2}^{+} ioniz. (12)', \
+ 	'xscts/O_edet.dat' w l 						ls 11		title 'O^{-} impact detach. (13)'
+##'xscts/O2_ex1D_brung.dat' w l 		ls 12		title 'O_{2}(1D) ex.', \

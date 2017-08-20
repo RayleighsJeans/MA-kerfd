@@ -1,23 +1,44 @@
 %
 	\section{Oxygen Reaction Set}\label{sec:negionphysics}
 %
-		In comparison to most inert working gases in ccrf discharges, oxygen has an overwhelming number of reaction sets for collisions of elastic, inelastic and reactive character. Additionally, the negative ion species has to be taken into account when discussing collisional processes. For example, an in-depth benchmarking of both simulated and experimentally measured cross section data is given by Gudmundsson et al.\@ in~\cite{Gudmundsson13}. There, 33 collisions and reactions have been revisited, allready reducing the investigation to the most important processes in ccrf plasma. In this thesis the selection of possible reactions will be based on~\cite{Bronold07b} and slightly modified. The final collection of cross sections can be found in~\autoref{tab:cross_sections} and observed in~\autoref{fig:cross_sections_mine}.\\
+		In comparison to most inert working gases in ccrf discharges, oxygen has an overwhelming number of reaction sets for collisions of elastic, inelastic and reactive character. Additionally, the negative ion species has to be taken into account when discussing collisional processes. For example, an in-depth benchmarking of both simulated and experimentally measured cross section data is given by Gudmundsson et al.\@ in~\cite{Gudmundsson13}. There, 33 collisions and reactions have been revisited, already reducing the investigation to the most important processes in ccrf plasma. In this thesis the selection of possible reactions will be based on~\cite{Bronold07b} and slightly modified. The final collection of cross sections can be found in~\autoref{tab:cross_sections} and observed in~\autoref{fig:cross_sections_mine}.\\
 		As already seen in~\autoref{sec:heating}, collisions strongly influence the particle distribution functions and density profiles. Furthermore, a good understanding of the plasma chemistry is key to, e.g.\@ applications in surface physics supported by gas discharges. Of high importance for plasma-assisted material process is the generation of negative ions.\\
 %
-		\begin{longtable}{lcr}
+		\begin{longtable}{lll}
 			\toprule%
 				\bfseries Nr. & \bfseries Reaction & \bfseries Type \\%
 			\toprule\midrule\endhead%
-						& \bfseries Elastic scattering 								& \bfseries Energy loss 	\\ \midrule%
-						(1) & e$^{-}+$O$\ix{2}				\rightarrow	$O$\ix{2}+$e$^{-}$ & 					\\%
-						(2) & O$^{-}+$O$\ix{2}				\rightarrow	$O$\ix{2}+$O$^{-}$ & 					\\%
-						(3) & O$\ix{2}^{-}+$O$\ix{2}	\rightarrow	$O$\ix{2}+$O$\ix{2}^{-}$ & 		\\%
-						& \bfseries Electron energy loss scattering 	& \bfseries Energy loss 	\\ \midrule%
-						(4) & O$\ix{2}^{-}$+O$\ix{2}	\rightarrow	$O$\ix{2}$+O$\ix{2}^{-}$ & 		\\%
+						& \bfseries Elastic scattering 							& \bfseries Energy loss 	\\% 
+						$(1)$  & $e^{-}+O\ix{2}			 	\rightarrow	O\ix{2}+e^{-}$ &						\\%
+						$(2)$  & $O^{-}+O\ix{2}			 	\rightarrow	O\ix{2}+O^{-}$ & 						\\%
+						$(3)$  & $O\ix{2}^{-}+O\ix{2} \rightarrow	O\ix{2}+O\ix{2}^{-}$ & 			\\ \midrule%
+						& \bfseries Electron energy loss scattering & \bfseries Energy loss 	\\%
+						$(4)$  & $e^{-}+O\ix{2}			 	\rightarrow	O\ix{2}^{\nu}+e^{-}$ & %
+										Vibrational excitation	($\nu=1,\dots,4$)											\\%
+						$(5)$  & $e^{-}+O\ix{2}			 	\rightarrow	O\ix{2}(Ryd)+e^{-}$ & %
+										Rydberg excitation																						\\%
+						$(6)$  & $e^{-}+O\ix{2}			 	\rightarrow	O(1D)+O(3P)+e^{-}$ & %
+										Dissociative excitation at $\unit[8,6]{eV}$										\\%
+						$(7)$  & $e^{-}+O\ix{2}		 	 	\rightarrow	O\ix{2}%
+																					 (a^{1}\Delta\ix{g},b^{1}\Sigma\ix{g})$ & %
+										Meta-stable excitaion																					\\ \midrule%
+						& \bfseries Electron and ion reaction & \bfseries Creation and loss 	\\%
+						$(8)$  & $e^{-}+O\ix{2}^{+}	 	\rightarrow	2\,O$ & %
+										Dissociative recombination 																		\\%
+						$(9)$  & $O^{-}+O\ix{2}^{+}	 	\rightarrow	O\ix{2}+O$ & %
+										Neutralization						 																		\\%
+						$(10)$ & $e^{-}+O\ix{2}	 		 	\rightarrow	O+O^{-}$ & %
+										Dissociative attachment		 																		\\%
+						$(11)$ & $O^{-}+O\ix{2}			 	\rightarrow	O+O\ix{2}+e$ & %
+										Direct detachment 																						\\%
+						$(12)$ & $e^{-}+O\ix{2}		 		\rightarrow	2e^{-}+O\ix{2}^{+}$ & %
+										Impact ionization 																						\\%
+						$(13)$ & $e^{-}+O^{-}			 		\rightarrow	O+2e^{-}$ & %
+										Impact detachment																							\\%
 			\midrule\bottomrule%
 			\caption{%
-				}%
-			\label{tab:cross_sections}	
+				Most important colilision and reactions in ccrf plasma with the largest cross sections.%
+				Empirical and simulated data, which have been included in this simulation are shown in~\autoref{fig:cross_sections}.}\label{tab:cross_sections}	
 		\end{longtable}	
 %	
 		\subsection{Anion Production}\label{sec:anionproduction}
