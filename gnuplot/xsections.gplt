@@ -1,32 +1,36 @@
 print ">> xsections plot"
-set terminal pngcairo size 1920,1080 enhanced font 'PT Serif, 21'
-set border linewidth 2.0; set tics nomirror out scale 0.85;
-set grid; set xlabel "energy / eV"; set ylabel "cross section / cm^{2}";
-set key outside top center horizontal;
+set terminal pngcairo size 1440,960 enhanced font 'PT Serif, 21'
+set border linewidth 2.5;
+set tics nomirror out scale 0.85;
+set grid;
+set xlabel "energy / eV";
+set ylabel "cross section / cm^{2}";
 
 set output 'xsections.png'
 
-set logscale xy
-set format y "10^{%T}"
-set format x "10^{%T}"
-set xrange [1e-2:1e2]
-set yrange [1e-19:1e-11]
+set logscale xy;
+set format y "10^{%T}";
+set format x "10^{%T}";
+set xrange [1e-2:1e2];
+set yrange [1e-19:1e-11];
 
-## colors cycle so: black, red, blue, green, cyan, orange (1-6)
+## colors cycle so: black, red, green, blue, cyan, orange (1-6)
 ## linetypes cycle so: solid, dashed, dotted, dash-dotted, dash-dot-dotted
 ## linewidth is 2.75
 
+unset key;
+# set key outside top center horizontal;
 set label "e^{-} elast. (1)"  		at 1.1e-2 ,5.5e-17  textcolor ls  1;
 set label "O^{-} el. (2)" 		 		at 2.2e0  ,2.0e-19  textcolor ls 20;
 set label "O_{2}^{+} elast. (3)"  at 1.15e-2,6.0e-15 	textcolor ls  3;
-set label "(1D) ex. (6)"  				at 6.0e-1 ,1.0e-18  textcolor ls  4;
+set label "(1D) ex. (6)"  				at 5.5e-1 ,1.0e-18  textcolor ls  4;
 set label "(7)"  									at 1.4e0  ,1.9e-19  textcolor ls  5;
-set label "diss. recomb. (8)"  		at 5.0e0  ,4e-17  	textcolor ls  6;
+set label "diss. recomb. (8)"  		at 4.5e0  ,6e-17  	textcolor ls  6;
 set label "neutralization (9)"    at 9.0e-1 ,1e-13    textcolor ls  7;
 set label "diss. attach. (10)"  	at 1.0e-1 ,2.0e-14 	textcolor ls  8;
 set label "direct detach. (11)"   at 3.0e-1 ,6.0e-17  textcolor ls 21;
-set label "ioniz. (12)"  					at 4.01e1 ,1.0e-16  textcolor ls 10;
-set label "impact detach. (13)"  	at 4.0e-1 ,1.0e-17 	textcolor ls 11;
+set label "ioniz. (12)"  					at 3.01e1 ,7.0e-17  textcolor ls 10;
+set label "impact detach. (13)"  	at 3.0e-1 ,1.0e-17 	textcolor ls 11;
 
 p 'xscts/O2_e_el.dat' w l 					ls 1 		title 'e^{-} elast. (1)', \
  	'xscts/Omin_O2_el.dat' w l 				ls 20		title 'O^{-} elast. (2)', \
@@ -39,4 +43,4 @@ p 'xscts/O2_e_el.dat' w l 					ls 1 		title 'e^{-} elast. (1)', \
  	'xscts/O2_n_detach.dat' w l 			ls 21		title 'direct detach. (11)', \
  	'xscts/O2_i.dat' w l 							ls 10 	title 'O_{2}^{+} ioniz. (12)', \
  	'xscts/O_edet.dat' w l 						ls 11		title 'O^{-} impact detach. (13)'
-##'xscts/O2_ex1D_brung.dat' w l 		ls 12		title 'O_{2}(1D) ex.', \
+# 'xscts/O2_ex1D_brung.dat' w l 		ls 12		title 'O_{2}(1D) ex.', \
