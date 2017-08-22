@@ -1,6 +1,9 @@
 %
 	\section{Particle-in-Cell Simulations with Monte Carlo-Colissions}\label{sec:picsimulationmcc}
 %
-	Particle-In-Cell simulations with Monte-Carlo-Collisions (PIC-MCC) represent a powerfull tool for fully kinetic, high-dimensional plasma studies, with inclusion of complicated reaction/collision routines, as well as field solving methods. Hence they are used in all branches of plasma physics, ranging from simple labratory discharges to electro-propulsion ion-thrusters and interplanetary atrsophysical system. 
+	Particle-In-Cell simulations with Monte-Carlo-Collisions (PIC-MCC) represent a powerfull tool for fully kinetic, high-dimensional plasma studies, with inclusion of complicated reaction/collision routines, as well as field solving methods. Hence they are used in all branches of plasma physics, ranging from simple labratory discharges to electro-propulsion ion-thrusters and interplanetary astrophysical system. This kind of computer code simulates the motion of up to $\tenpo{10}$ individual particles, though this limit is only due to the available fast cache memory on the system side, in a continous 1d3v-/2d3v phase-space. Macro-quantities like forces, fields and densities are stored and calculated on a strict mesh scheme with fixed intervals. The computational cost sums up to $N\log(N)$ per timestep --- with $N$ the total particle number --- because the self-consistent electrostatic macro-fields are calculated globally by the \emph{Poisson's equation}, and no particle-particle interactions are considered.\\
+	In the following section the motivation and basic scheme of a PIC-MCC simulation will be highlighted. Accordingly, the collion routines will layed out, as well as the transition from a 1d3v to 2d3v model.
 %	
 		\subsection{Principles}\label{sec:picbasics}
+%
+			
