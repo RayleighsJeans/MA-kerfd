@@ -222,17 +222,17 @@
 		\textit{in the research group of}\\[0.4cm]
 		% TODO: RESEARCH GROUP/DEPARTMENT
 		\groupname,\\\deptname\\[1cm]
-		%
+%
 		% University/department logo - uncomment to place it
 		% use for pdf files
 		% \includegraphics[width=0.50\textwidth]{figures/logos/logo_color.pdf}\\[1.0cm]
 		% \includegraphics[width=0.55\textwidth]{figures/logos/logo.pdf}\\[1.0cm]
-		%
+%
 		% use for eps files
 		\hspace*{0.75cm}
 		\epsfig{width=0.45\textwidth,file=figures/logos/logo.eps}\\[1.0cm]
-		%
-		{\large \today} % Date
+%
+		{\large \today}
 		\vfill
 	\end{center}
 \end{titlepage}
@@ -240,11 +240,11 @@
 % ************************************************************************** %
 % ACKNOWLEDGMENTS
 	 \begin{acknowledgements}
-	
+%	
 		\addchaptertocentry{\acknowledgementname}
 		The acknowledgments and the people to thank go here, don't forget to
 	 	include your project advisor\ldots
-	
+%	
 	 \end{acknowledgements}
 % ************************************************************************** %
 %
@@ -252,7 +252,7 @@
 % INSERT MOTIVATIONAL QUOTE
 	\vspace*{0.33\textheight}
 	% \rule{\textwidth}{0.1pt}
-	%	
+%	
 	\noindent\enquote{%
 		Without encroaching upon grounds appertaining to the theologian and the
 		philosopher, the domain of natural sciences is surely broad enough to
@@ -260,12 +260,12 @@
 		The work may be hard, and the discipline severe; but the interest never
 		fails, and great is the privilege of achievement.
 	}\bigbreak%
-	%
+%
 	\begin{flushright}
 		--- John William Strutt, 3rd Baron Rayleigh, 1884\\
 		\small\emph{in: Address to the British Association in Montreal}
 	\end{flushright}
-	%
+%
 	% \vspace*{0.15\textheight}
 	% \rule{\textwidth}{0.1pt}
 % ************************************************************************** %
@@ -274,19 +274,19 @@
 % DECLARATION OF AUTHORSHIP
 	%
 	\chapter*{Declaration of Authorship}
-		%
+%
 		I hereby certify that this thesis has been composed by me and is based on 
 		my own work, unless stated otherwise.	No other person’s work has been used
 		without due acknowledgement in this thesis.
 		All references and verbatim extracts have been quoted, and iall sources of
 		information, including graphs and data sets, have been specifically
 		acknowledged.\\[2.0cm]
-		%
+%
 		\begin{flushright}
 			\sign{Signature of author}\\
 			Greifswald; \today
 		\end{flushright}
-		%
+%
 % ************************************************************************** %
 %
 % ************************************************************************** %
@@ -298,32 +298,39 @@
 %
 % ************************************************************************** %
 % PREFIX
-	\include{content/0_start_prefix}
+	\input{content/00_start_prefix}
 % ************************************************************************** %
-\mainmatter% Begin numeric (1,2,3...) page numbering
-\pagestyle{thesis} % Return the page headers back to the "thesis" style
+	\mainmatter% 
+	\pagestyle{thesis}
 % ************************************************************************** %
 % INSERT ABSTRACT
- 	% 
+% 
 	\chapter{Abstract}
-		%
-    The Thesis Abstract is written here and usually kept to just this page.
+%
+		The Thesis Abstract is written here and usually kept to just this page.
     The page is kept centered vertically so it can expand into the blank space above 
     the title too.
-  	%
+%
 % ************************************************************************** %
 % BASICS
-	\include{content/1_basics_sheath}
-	\include{content/2_basics_bohm}
-	\include{content/3_basics_heating}
-	\include{content/4_basics_negion}
-	\include{content/5_basics_pic}
+	\input{content/01_basics_ccrfplasma}
+	\input{content/02_basics_wallinteraction}
+	\input{content/03_basics_bohmcriteria}
+	\input{content/04_basics_selfbias}
+	\input{content/05_basics_dispcurr}
+	\input{content/06_basics_heating}
+	\input{content/07_basics_plasmachemistry}
+	\input{content/08_basics_collreact}
+	\input{content/09_basics_anions}
+	\input{content/10_basics_picprinciple}
+	\input{content/11_basics_2d3vpic}
+	\input{content/12_basics_mcccoll}
 % RESULTS
-	\include{content/6_results_oned}
-	\include{content/7_results_twod}
+	\input{content/13_results_oned}
+	\input{content/14_results_twod}
 % END
-	\include{content/8_end_conclusion}
-	%\include{content/9_end_fem}
+	\input{content/15_end_conclusion}
+	%\include{content/16_end_fem}
 % ************************************************************************** %
 %	
 % ************************************************************************** %
@@ -331,7 +338,7 @@
 	\appendix % Cue to tell LaTeX that following "chapters" are Appendices
 	% Include the appendices of the thesis as separate files
 	% Uncomment the lines as you write the Appendices
-	\include{appendices/appendix}
+	\input{appendices/appendix}
 % ************************************************************************** %
 %
 % ************************************************************************** %

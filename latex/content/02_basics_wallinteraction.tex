@@ -1,28 +1,4 @@
-%
-\chapter{Physical Properties of Low Temperature RF Plasma}\label{sec:chapter_ccrfbasics}
-%
-	In this first chapter I will provide the necessary physical background for this work about the numerical simulation of low temperature capacitively coupled radio frequency plasma. Here both the mathematical basics and method for the simulation, as well as the most important aspects about the plasma properties will be explained.
-%
-	\section{Plasma Physics}\label{sec:plasmaphysics}
-%
-  	\subsection{Capacitively Coupled Radio Frequency Plasma}\label{sec:ccrf}
-%
-		The experiment where after the conducted simulations is modelled after revolves around a capacitively coupled radio frequency, low temperature plasma at low pressures of oxygen. Here, I will refer to a plasma as an globally quasi-neutral gas, consisting of freely moving charges --- e.g.\@ electrons, positively and negatively ions --- and neutral gas particles. The ratio between charged and neutral species defines the \emph{degree of ionization}, which in this case is very low. The term of global neutrality emphasizes the purpose for different length scales inside the gas itself. Hence, the associated condition of neutrality by equal densities $n\ix{e}\,=\,n\ix{i}$ only is valid for areas larger than the so called \emph{Debye sphere}. Inside this ball with a radius of $\lambda\ix{D}$ the \emph{Debye length}, the afore-mentioned neutrality is not satisfied.\\
-		The creation of a plasma is accomplished by 2 parallel metal plates, the electrodes, where on at least one an ac signal at radio frequency is applied --- this kind of experimental setup is among the most common, thus being used for basic but also in-depth studies of the afore-mentioned discharges. Here, a rf signal at exactly $\unit[13,56]{MHz}$ with an amplitude between $100$--$\unit[1000]{V}$ will be used. This equals to a wavelength of $\unit[22,11]{m}$ for the electric field wave, which is orders of magnitude higher than the eventually simulated experiment. The use of external magnetic fields is not within the scope of this work --- correspondingly, the experiment I will refer to, also did not include any kinds of magnetic confinement or manipulation. \\
-		That said, a multitude of electric setups are possible, such as coated or grounded electrodes. Therefore, different regimes of operation ensue. For example, differently driven or shaped metal plates heavily influence the charge creation process inside the plasma. In summary, the electrodes, neutral gas and electric layout resemble a dielectric hindered plate capacitor.
-%
-		\begin{wrapfigure}{r}{0.42\textwidth}
-			\centering
-			\includegraphics[width=0.38\textwidth]{figures/circuitselfbias_1.png}
-			\caption{%
-				Schematic of an asymmetric discharge with one grounded and one driven electrode.%
-			The rf signal is denoted with $U(t)$.~\cite{Piel10}}\label{fig:circuitselfbias_1}
-		\end{wrapfigure}
-%
-		This simplification can be used to access important physical properties, such as an additional voltage offset on one of the electrodes or charge currents at such. A basic scheme of an asymmetric rf discharge can be seen in~\autoref{fig:circuitselfbias_1}. In the case of different electrode sizes, as seen in the scheme, the potential inside the spatially restricted area between wall and discharge can change drastically. This plasma sheath forms also between grounded parts of discharge containment or probes and plasma volume. This additional direct current offset is called \emph{self-bias} (see~\autoref{sec:selfbias}). A dielectric displacement current between plasma sheath and volume accommodates as a result of the different time scales of particle movement (see~\autoref{sec:displacementcurrent}). Especially, self-bias and displacement current play a key role in the following investigations, as a capacitive coupling between electrodes and power supply is difficult to model in a numerical kinetic simulation.\\
-		A strong mathematical analysis of general plasma properties would not be suitable for this kind of work, although certain aspects will be discussed later, such as in~\autoref{sec:selfbias} and~\autoref{sec:displacementcurrent}.
-		In comparison to other low temperature, low pressure discharges  --- an example could be a dielectric hindered dc discharge at high voltages, with an electrode space gap of just a couple millimeters ---, radio frequency plasma are characterized by their unique transport process inside the sheath and heating mechanisms of charged species. A more in-depth discussion can be found in~\autoref{sec:heating}.\\ 
-%
+%		
 		\subsection{Plasma-Wall Interaction}\label{sec:sheathphysics}
 %
 			In the discharges bulk, neutral gas particles are excited by electron collisions and radiating visible light. However, areas around, e.g.\@ floating metal surfaces, probes and grounded walls are darker than the bulk. This is due to the low electron density and kinetic energy in this \emph{plasma sheath}. Though areas with vanishing electron numbers can glow because of high collision efficiencies and/or frequencies.\\
@@ -101,7 +77,7 @@
 				\end{align}
 %
 				Impinging ions are neutralized before impact by particles from the electron gas in the wall. Like before, any produced neutrals are reflected and exit the sheath collisionless --- the mean free path is larger than the sheath thickness. Hence ionization is a process almost exclusively happening in the bulk or the pre-sheath.\\
-				Assuming a fast electron impacts on the wall, there is a chance of colliding with and liberating a second electron from the target. Here, the \emph{secondary electron emission} coefficient is noted as $\gamma$: an impinging electron emits $\gamma$-many electrons from the metal. This \emph{SEE} reduces the $\Delta\Phi$ because of an addition charge current from the wall towards the sheath edge, therefore altering the continuity condition $j\ix{i}=j\ix{e}$. A new \emph{effective potential drop} $\Delta\Phi\ix{eff}$ can be written in~\autoref{equ:effectivepotentialdrop}. According to~\cite{} there is a critical value $\gamma\ix{c}$ from which on the wall potential is unstable, leading to shifting sheath edges --- the sheath edge oscillates with the rf signal anyway --- and strong currents from the wall.
+				Assuming a fast electron impacts on the wall, there is a chance of colliding with and liberating a second electron from the target. Here, the \emph{secondary electron emission} coefficient is noted as $\gamma$: an impinging electron emits $\gamma$-many electrons from the metal. This \emph{SEE} reduces the $\Delta\Phi$ because of an addition charge current from the wall towards the sheath edge, therefore altering the continuity condition $j\ix{i}=j\ix{e}$. A new \emph{effective potential drop} $\Delta\Phi\ix{eff}$ can be written in~\autoref{equ:effectivepotentialdrop}. According to~\cite{Duras11} there is a critical value $\gamma\ix{c}$ from which on the wall potential is unstable, leading to shifting sheath edges --- the sheath edge oscillates with the rf signal anyway --- and strong currents from the wall.
 %
 				\begin{align}
 					\Delta\Phi\ix{eff}=-\frac{k\ix{B}T\ix{e}}{e}\cdot\ln\left(\left(1-%

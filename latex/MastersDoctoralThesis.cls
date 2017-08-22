@@ -174,11 +174,12 @@
 % Specifies where to look for included images
 \RequirePackage{caption}
 % Required for customising the captions
-\captionsetup{justification=centerlast,font=small,labelfont=sc,margin=50pt}
+\DeclareCaptionFont{tenpt}{\fontsize{10pt}{12pt}\selectfont #1}
+\captionsetup{justification=centerlast,font=tenpt,labelfont=sc,margin=35pt}
 %----------------------------------------------------------------------------------------
 
 \newcommand{\checktoopen}{% New command to move content to the next page which prints to the next odd page if twosided mode is active  
-\if@openright\cleardoublepage\else\clearpage\fi
+\if@openright\cleardoublepage\else\clearpage\fi%
 \ifdef{\phantomsection}{\phantomsection}{}% The \phantomsection command is necessary for hyperref to jump to the correct page
 }
 
