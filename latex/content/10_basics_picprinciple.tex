@@ -2,8 +2,57 @@
 	\section{Particle-in-Cell Simulations with Monte Carlo-Colissions}\label{sec:picsimulationmcc}
 %
 	Particle-In-Cell simulations with Monte-Carlo-Collisions (PIC-MCC) represent a powerfull tool for fully kinetic, high-dimensional plasma studies, with inclusion of complicated reaction/collision routines, as well as field solving methods. Hence they are used in all branches of plasma physics, ranging from simple labratory discharges to electro-propulsion ion-thrusters and interplanetary astrophysical system. This kind of computer code simulates the motion of up to $\tenpo{10}$ individual particles, though this limit is only due to the available fast cache memory on the system side, in a continous 1d3v-/2d3v phase-space. Macro-quantities like forces, fields and densities are stored and calculated on a strict mesh scheme with fixed intervals. The computational cost sums up to $N\log(N)$ per timestep --- with $N$ the total particle number --- because the self-consistent electrostatic macro-fields are calculated globally by the \emph{Poisson's equation}, and no particle-particle interactions are considered.\\
-	In the following section the motivation and basic scheme of a PIC-MCC simulation will be highlighted. Accordingly, the collion routines will layed out, as well as the transition from a 1d3v to 2d3v model.
+	In the following section the motivation and basic scheme of a PIC-MCC simulation will be highlighted. Accordingly, the collion routines will be layed out, as well as the transition from a 1d3v to 2d3v model.	As it was mentioned in~\autoref{sec:chapter_ccrfbasics}, the focus of this thesis is on unmagnetized plasma. The magnetic field generated from the moving charged particles is small enough that the force of $q\ix{j}(\vec{v}\ix{j}\times \vec{B})$ is negligible in comparison to $q\ix{j}\vec{E}$. 
 %	
 		\subsection{Principles}\label{sec:picbasics}
 %
-			
+		In general, the spatio-temporal evolution of the velocity distribution function $f\ix{j}(\vec{v},\vec{r},t)$ is given by the \emph{Boltzmann equation}:
+%
+			\begin{align}
+				\frac{\partial f\ix{j}}{\partial t}+\vec{v}\cdot\nabla_{\vec{r}}\,f\ix{j}%
+					+\frac{q\ix{j}}{m\ix{j}}\vec{E}\cdot\nabla_{\vec{v}}\,f\ix{j}%
+					=\left(\frac{\partial f\ix{j}}{\partial t}\right)\ix{Coll}\,.%
+				\label{equ:boltzmannequation}
+			\end{align}
+%
+			In this equation, the product of $q\ix{j}\vec{E}/m\ix{j}$ denotes the electrostatic force onto the particle of species $j$. The velocity and space gradient are calculated like $\nabla_{\vec{r}}\,f\ix{j}=\partial f\ix{j}/\partial x\cdot\vec{e}\ix{x}+\dots$ and so on. The right hand side of $(\partial f\ix{j}/\partial t)\ix{Coll}$ is the sum of all collisional effects on $f\ix{j}(\vec{v},\vec{r},t)$. An approach would be an integral form, in which all probabilities of a two-body interactions with different incident and outgoing velocities are summed up in a \emph{Faltung integral} with $f\ix{j}(\vec{v},\vec{r},t)$.\\
+			The approach via the distribution function yields the advantage of an easy access to the afore-mentioned macro-quantities, the zeroth and first moment are noted below in~\autoref{equ:zeorthandfirstmoment}. Using the moments, one can write down $f\ix{j}(\vec{v},\vec{r},t)$ at a thermodynamical equilibrium of $T\ix{j,0}$ as the \emph{Maxwell-Boltzmann-distribution-function} in~\autoref{equ:maxwellboltzmannfunction}.
+%
+			\begin{align}
+				n\ix{j}(\vec{r},t)=q\ix{j}\int_{-\infty}^{\infty}%
+					f\ix{j}(\vec{v},\vec{r},t)\diff\vec{v}\,,%
+					\quad\quad%
+					\langle v\ix{j}(\vec{r},t)\rangle=\frac{1}{n\ix{j}(\vec{r},t)}%
+					\int_{-\infty}^{\infty}\vec{v}f\ix{j}(\vec{v},\vec{r},t)\diff\vec{v}%
+				\label{equ:zeorthandfirstmoment}\\[0.3cm]
+				f\ix{j}(\vec{v},\vec{r},t)=\frac{n\ix{j}(\vec{r},t)}{q\ix{j}}\,\hat{f}\ix{j}(\vec{v},\vec{r},t)%
+					=\frac{n\ix{j}(\vec{r},t)}{q\ix{j}}\,{\left(\frac{m\ix{j}}{2\pi k\ix{B}T\ix{j,0}}\right)}^{3/2}%
+					\,\exp\left(-\frac{|\vec{v}\ix{j}|^{2}}{v\ix{j,th}^{2}}\right)%
+				\label{equ:maxwellboltzmannfunction}
+			\end{align}
+%
+			In a  maxwellian distributed plasma at an equilibrium, one could use a fluid dynamic approach, where the equations of motion for a single particle are multiplied with the number density function. This would reduce the computational cost drastically, as one would no longer have to track each particle individually, and sufficiently describe the discharge by charaterization of macro-quantities. This is the case, if mean-free-paths are small and collisions rather likely, hence the afore-mentioned distribution function correct. In a low-temperature, low-pressure ccrf discharge mean-free-paths are large and collisions happen infrequently, which is why one resides to use a Particle-in-Cell simulation method for such plasma.\\
+			Satisfying the above requirements, the $n$-th equation of motion in the $N$-particle system becomes:
+%
+			\begin{align}
+				\frac{\diff \vec{x}\ix{n}}{\diff t}=\vec{v}\ix{n}\,,%
+					\quad\quad\quad%
+					\frac{\diff \vec{v}\ix{n}}{\diff t}=\frac{1}{m\ix{n}}%
+					\vec{F}\ix{n,L}(\vec{x}\ix{n},\vec{E},t)%
+					=\frac{q\ix{n}}{m\ix{n}}\vec{E}(\vec{x}\ix{n},t)%
+				\label{equ:equationofmontionpic}
+			\end{align}
+%
+			where $F\ix{n,L}$ is the \emph{electrostatic Lorentz force}.\\
+			First, the global charge density is calculted by interpolating the point charges $q\ix{n}$ of each particle onto the afore-mentioned fixed mesh grid (~\autoref{equ:interpolation}). Next, the Poisson's equation is solved globally on that grid (~\autoref{equ:poissonpotential}), using the interpolated density. At last, the Maxwell's~\autoref{equ:efieldmaxwell} yields the electric field.
+%
+			\begin{align}
+				\rho(\vec{r},t)&=\rho(\vec{x}\ix{1},\vec{x}\ix{2},\dots,\vec{x}\ix{N},t)%
+					\label{equ:interpolation}\\[0.0cm]
+				\Rightarrow%
+				\Delta\Phi(\vec{r},t)&=-\frac{\rho(\vec{r},t)}{\varepsilon\ix{0}}%
+					\label{equ:poissonpotential}\\[0.0cm]%
+				\Rightarrow%
+				\vec{E}(\vec{r},t)&=-\nabla\Phi(\vec{r},t)%
+					\label{equ:efieldmaxwell}
+			\end{align}
