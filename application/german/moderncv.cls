@@ -5,23 +5,19 @@
 % conditions of the LaTeX Project Public License version 1.3c,
 % available at http://www.latex-project.org/lppl/.
 
-
 %-------------------------------------------------------------------------------
 %                identification
 %-------------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{moderncv}[2010/05/24 v0.8 modern curriculum vitae document class]
 
-
 %-------------------------------------------------------------------------------
 %                debugging
 %-------------------------------------------------------------------------------
 \newif\if@DEBUG\@DEBUGfalse
 
-
 %-------------------------------------------------------------------------------
 %                class options
-%
 % (need to be done before the external package loading, for example because
 % we need \paperwidth, \paperheight and \@ptsize to be defined before loading
 % geometry and fancyhdr)
@@ -78,7 +74,6 @@
 % process given options
 \ProcessOptions\relax
 \input{size1\@ptsize.clo}
-
 
 %-------------------------------------------------------------------------------
 %                required packages
@@ -373,13 +368,13 @@
 % usage: \cventry{years}{degree/job title}{institution/employer}{localization}{optionnal: grade/...}{optional: comment/job description}
 \newcommand*{\cventry}[6]{%
   \cvline{#1}{%
-    {\bfseries#2}%
-    \ifthenelse{\equal{#3}{}}{}{, {\slshape#3}}%
-    \ifthenelse{\equal{#4}{}}{}{, #4}%
-    \ifthenelse{\equal{#5}{}}{}{, #5}%
-    .%
+    {\bfseries#2\newline}%
+    \ifthenelse{\equal{#3}{}}{}{{\slshape#3}}%
+    \ifthenelse{\equal{#4}{}}{}{, #4\newline}%
+    \ifthenelse{\equal{#5}{}}{}{#5}%
+    %
     \ifx&#6&%
-      \else{\newline{}\begin{minipage}[t]{\linewidth}\small#6\end{minipage}}\fi%
+      \else{~\begin{minipage}[t]{\linewidth}\small#6\end{minipage}}\fi%
   }}%
 
 % usage (inside 'language' cvsection environment): \cvlanguage{name}{level}{comment}
