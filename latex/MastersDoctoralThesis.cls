@@ -33,9 +33,9 @@
 \RequirePackage{etoolbox}
 \RequirePackage{xparse}
 \newbool{nolistspace}
-\newbool{chapteroneline}
 \newbool{listtoc}
 \newbool{toctoc}
+\newbool{chapteroneline}
 \newbool{parskip}
 \newbool{hyperrefsupport}
 \booltrue{hyperrefsupport}
@@ -44,8 +44,8 @@
 \DeclareOption{nohyperref}{\boolfalse{hyperrefsupport}}
 \DeclareOption{nolistspacing}{\booltrue{nolistspace}}
 \DeclareOption{liststotoc}{\booltrue{listtoc}}
-\DeclareOption{chapterinoneline}{\booltrue{chapteroneline}}
 \DeclareOption{toctotoc}{\booltrue{toctoc}}
+\DeclareOption{chapterinoneline}{\booltrue{chapteroneline}}
 \DeclareOption{parskip}{\booltrue{parskip}}
 \DeclareOption{headsepline}{\booltrue{headsepline}}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{\baseclass}}
@@ -170,7 +170,7 @@
 % Required for \SI commands
 \RequirePackage{graphicx}
 % Required to include images
-\graphicspath{{Figures/}{./}}
+\graphicspath{{figures/}{./}}
 % Specifies where to look for included images
 \RequirePackage{caption}
 % Required for customising the captions

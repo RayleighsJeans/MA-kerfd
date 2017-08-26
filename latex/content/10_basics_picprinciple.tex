@@ -31,7 +31,7 @@
 				\label{equ:maxwellboltzmannfunction}
 			\end{align}
 %
-			In a  maxwellian distributed plasma at an equilibrium, one could use a fluid dynamic approach, where the equations of motion for a single particle are multiplied with the number density function. This would reduce the computational cost drastically, as one would no longer have to track each particle individually, and sufficiently describe the discharge by charaterization of macro-quantities. This is the case, if mean-free-paths are small and collisions rather likely, hence the afore-mentioned distribution function correct. In a low-temperature, low-pressure ccrf discharge mean-free-paths are large and collisions happen infrequently, which is why one resides to use a Particle-in-Cell simulation method for such plasma.\\
+			In a  maxwellian distributed plasma at an equilibrium, one could use a fluid dynamic approach, where the equations of motion for a single particle are multiplied with the number density function. This would reduce the computational cost drastically, as one would no longer have to track each particle individually, and sufficiently describe the discharge by charaterization of macro-quantities. This is true, if mean-free-paths are small and collisions rather likely, hence the afore-mentioned distribution function correct. In a low-temperature, low-pressure ccrf discharge mean-free-paths are large and collisions happen infrequently, which is why a Particle-in-Cell simulation method is used.\\
 			Satisfying the above requirements, the $n$-th equation of motion in the $N$-particle system becomes:
 %
 			\begin{align}
@@ -44,7 +44,7 @@
 			\end{align}
 %
 			where $F\ix{n,L}$ is the \emph{electrostatic Lorentz force}.\\
-			First, the global charge density is calculted by interpolating the point charges $q\ix{n}$ of each particle onto the afore-mentioned fixed mesh grid (~\autoref{equ:interpolation}). Next, the Poisson's equation is solved globally on that grid (~\autoref{equ:poissonpotential}), using the interpolated density. At last, the Maxwell's~\autoref{equ:efieldmaxwell} yields the electric field.
+			First, the global charge density is calculted by interpolating the point charges $q\ix{n}$ of each particle onto the afore-mentioned fixed mesh grid (~\autoref{equ:interpolation}~). Next, the Poisson's equation is solved globally on that grid (~\autoref{equ:poissonpotential}~), using the interpolated density. At last, the Maxwell'is~\autoref{equ:efieldmaxwell} yields the electric field.
 %
 			\begin{align}
 				\rho(\vec{r},t)&=\rho(\vec{x}\ix{1},\vec{x}\ix{2},\dots,\vec{x}\ix{N},t)%
@@ -52,7 +52,54 @@
 				\Rightarrow%
 				\Delta\Phi(\vec{r},t)&=-\frac{\rho(\vec{r},t)}{\varepsilon\ix{0}}%
 					\label{equ:poissonpotential}\\[0.0cm]%
-				\Rightarrow%
+					\Rightarrow\hspace*{7pt}%
 				\vec{E}(\vec{r},t)&=-\nabla\Phi(\vec{r},t)%
 					\label{equ:efieldmaxwell}
 			\end{align}
+%
+			The number of $N$ is of orders of magnitude higher than what the best supercomputers can handle. Hence it is assumed that one simulated particle at $\vec{x}\ix{n}$ and veloctiy $\vec{v}\ix{n}$ represents many physical particles. This \emph{superparticle factor} is usually between $\tenpo{3}$--$\tenpo{4}$, depending on the size and initial density in the simulated domain. Those superparticles follow the same dynamic and kinetic behaviour like their physical counterparts, assuming that all other relevant parameters are scaled accordingly.\\
+			Like the domain composition and field mesh grid, the time is divided into discrete time steps, which yields the simulation time $t\rightarrow t\ix{k}=t\ix{0}+k\, \Delta t$ (and correspondingly all other physical properties). Here, a \emph{leap frog} method is used to calculate the velocities, in contrast to other time-dependent attributes, which still satisfies the needs of accuracy, short computational times and stability. With each calculation step, the error scales with $\sim\Delta t^{2}$ and fulfills the requirement for numerical stability $\Delta t^{\alpha>1}$. The explicit leap frog solution is calculated with old quantities of the previous timestep, thus it is simpler and faster. The single drawback on this method would be the requirement of a smaller timestep, e.g\@ $\Delta t/2$.\\
+			The most significant part of the simulation code is the \emph{particle mover} or \emph{particle pusher}, in which the equation of motions are discretised and the new positions and velocities calculated. For each particleof index $n$ and species $j$ the following equations have to solved at a given time step $k$, or $k+/-\frac{1}{2}$ respectively:
+%
+			\begin{align}
+				\vec{u}\ix{n,+}=\vec{v}\ix{n,k-1/2}+h\cdot\vec{E}\ix{k}\,,%
+					\quad\quad%
+					h=\frac{q\ix{j}}{2\,m\ix{j}}%
+					\nonumber
+				\end{align}\vspace*{-0.8cm}\begin{align}
+				\boxed{%
+					\vec{x}\ix{n,k+1}=\vec{x}\ix{n,k}+\Delta t\vec{v}\ix{n,k+1/2}%
+						\quad\text{~and~}\quad%
+						\vec{v}\ix{n,k-1/2}=\vec{u}\ix{n,+}+h\cdot\vec{E}\ix{k}%
+						\label{equ:leapfrogscheme}%
+				}
+			\end{align}
+%
+			The field, potential and density only have to be calculated once per time step. Though this requires less effort, the calculation of $\vec{E}$, $\Phi$ and $\rho$ need to be done by one processing core. The equation~\autoref{equ:interpolation} and following are solved globally. For example, the Poisson's equation for a two-dimensional, with $\Delta r$ equally grided mesh at ($r^{(1)}\ix{l}$,$r^{(2)}\ix{m}$) in a discrete form becomes the \emph{five point star equation}:
+%
+		\begin{align}
+			4\Phi\ix{l,m}-\Phi\ix{l-1,m}-\Phi\ix{l+1,m}-\Phi\ix{l,m-1}-%
+				\Phi\ix{l,m+1}=\Delta r^{2}\cdot\frac{\rho\ix{l,m}}{\varepsilon\ix{0}}%
+				\label{equ:fivepointstar}ei
+		\end{align}
+%
+		While the updated field, potential and density are calculated, all but one processing core remain idle and wait for the result to be distributed and used in the particle pusher in~\autoref{equ:leapfrogscheme}.\\
+		The universal stability criteria for a kinetic plasma simulation using a PIC method with a twodimensional, spatial mesh size $\Delta r$ and time step $\Delta t$ are given by
+%
+		\begin{align}
+			\boxed{%
+				\Delta t \le \SI{0.2}\cdot\omega\ix{p,e}%
+					\quad\text{~and~}\quad%
+					\Delta r \le \SI{0.5}\cdot\lambda\ix{D}%
+					\label{eq:stabilitycriteria}%
+				}
+			\end{align}
+%
+			To summarize this section, a basic simulation code cycle for one time step of a PIC-MCC method is shown in~\autoref{fig:picscheme}. A more versatile and in-depth approach on PIC or Cloud-In-Cell (CIC) simulations can be found in~\cite{Tskhakaya}.
+%
+			\begin{figure}[!t]
+				\centering
+				\includegraphics[width=0.8\textwidth]{figures/picscheme.pdf}
+				\caption{%
+				PIC simulation scheme~\cite{Matthias15}. The code starts with the initilisation of all particle species with their corresponding velocities and a first mapping process, followed by the solution of the Maxwell's equation~\autoref{equ:efieldmaxwell}. Afterwards the main loop with push, collisions, mapping and so on begins.}\label{fig:picscheme}
+			\end{figure}
