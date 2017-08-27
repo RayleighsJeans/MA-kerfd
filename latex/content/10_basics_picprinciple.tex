@@ -80,18 +80,18 @@
 		\begin{align}
 			4\Phi\ix{l,m}-\Phi\ix{l-1,m}-\Phi\ix{l+1,m}-\Phi\ix{l,m-1}-%
 				\Phi\ix{l,m+1}=\Delta r^{2}\cdot\frac{\rho\ix{l,m}}{\varepsilon\ix{0}}%
-				\label{equ:fivepointstar}ei
+				\label{equ:fivepointstar}
 		\end{align}
 %
 		While the updated field, potential and density are calculated, all but one processing core remain idle and wait for the result to be distributed and used in the particle pusher in~\autoref{equ:leapfrogscheme}.\\
-		The universal stability criteria for a kinetic plasma simulation using a PIC method with a twodimensional, spatial mesh size $\Delta r$ and time step $\Delta t$ are given by
+		The universal stability criteria for a kinetic plasma simulation using a PIC method with a twodimensional, spatial mesh size $\Delta r$ and time step $\Delta t$ are given by~\autoref{equ:stabilitycriteria}. The spatial and temporal step width should sufficiently resolve the smallest and fastest processes in the simulated model. Hence the physical scales of electron plasma frequency $\omega\ix{p,e}$ and Debye length $\lambda\ix{D}$ are chosen. For example, an electron never flies beyond one Debye cell during a single step of time. Also the interpolation of the macro-quantities yields an error the size of micro-fluctuations between single particles, thus is negligible.
 %
 		\begin{align}
 			\boxed{%
-				\Delta t \le \SI{0.2}\cdot\omega\ix{p,e}%
+				\Delta t\ix{0} \le \SI{0.2}\cdot\omega\ix{p,e}%
 					\quad\text{~and~}\quad%
-					\Delta r \le \SI{0.5}\cdot\lambda\ix{D}%
-					\label{eq:stabilitycriteria}%
+					\Delta r\ix{0} \le \SI{0.5}\cdot\lambda\ix{D}%
+					\label{equ:stabilitycriteria}%
 				}
 			\end{align}
 %

@@ -33,7 +33,7 @@
 			\label{equ:sheaththickness}
 		\end{align}
 %
-		The~\autoref{equ:heatingmotion} is introduced as dimensionless with the corresponding parameters: $\alpha=m\ix{e}\omega^{2}s\ix{0}^{2}/(eU\ix{sb})$, $\beta=U\ix{rf}/U\ix{sb}$ and $\epsilon=s\ix{0}/l\,$. Integrating yields the velocity $\mu(\tau)$ of an electron as it moves through the sheath. The transit time $\tau$ is considered for one pass through the sheath of the particle. It can be used to calculate the change in velocity experienced by the electron on each bounce between this oscillating and a fixed wall --- this would be the lowest order \emph{fermi acceleration}. Assuming there are two distinct points in motion, where the particle enters (index $n$) and re-enters (index $n+1$) the sheath, this gives, using $\varphi\ix{n}$ the phase of the sheath, for the transit time and velocity~\cite{Goedde88}
+		The~\autoref{equ:heatingmotion} is introduced to be dimensionless with the substitution of the corresponding parameters: $\alpha=m\ix{e}\omega^{2}s\ix{0}^{2}/(eU\ix{sb})$, $\beta=U\ix{rf}/U\ix{sb}$ and $\epsilon=s\ix{0}/l\,$. Integration yields the velocity $\mu(\tau)$ of an electron as it moves through the sheath. The transit time $\tau$ is considered for one pass through the sheath of the particle. It can be used to calculate the change in velocity experienced by the electron on each bounce between this oscillating and a fixed wall --- this would be the lowest order \emph{fermi acceleration}. Assuming there are two distinct points in motion, where the particle enters (index $n$) and re-enters (index $n+1$) the sheath, this gives, using $\varphi\ix{n}$ the phase of the sheath, for the transit time and velocity~\cite{Goedde88}
 %
 		\begin{align}
 			\tau\ix{n}\approx\frac{2\alpha(\mu\ix{n}-\beta%
@@ -49,7 +49,7 @@
 			\centering
 			\includegraphics[width=0.7\textwidth]{figures/heatingcomparison.pdf}
 			\caption{%
-			Electron heating rate for a ccrf discharge of parallel plates at $\unit[6,7]{Pa}$ with an electrode gap of $\unit[4,5]{cm}$ at $\unit[222]{V}$. Other corresponding plasma parameters are noted in~\autoref{tab:comparisonheating}.~\cite{Gudmundsson13}}\label{fig:heatingcomparison}
+			Electron heating rate for a ccrf discharge of parallel plates at $\SI{6.7}{\pascal}$ with an electrode gap of $\SI{4.5}{\centi\metre}$ at $\unit[222]{V}$. Other corresponding plasma parameters are noted in~\autoref{tab:comparisonheating}.~\cite{Gudmundsson13}}\label{fig:heatingcomparison}
 		\end{figure}
 %		
 		\begin{figure}[t!]
@@ -60,16 +60,11 @@
 					& $n\ix{i-,0}$/$\unit{m^{-3}}$ & $n\ix{i+,0}$/$\unit{m^{-3}}$ %
 					&	$T\ix{e,0}$/$\unit{eV}$ \\%
 		    \toprule\midrule\endhead%
-				1 & 101,30 & $2,43\cdot\tenpo{14}$ & $1,17\cdot\tenpo{16}$ %
-				& $1,20\cdot\tenpo{16}$ & 2,83 \\ \midrule%
-				2 & 101,25 & $2,29\cdot\tenpo{14}$ & $1,21\cdot\tenpo{16}$ %
-				& $1,23\cdot\tenpo{16}$ & 2,98 \\ \midrule%
-				3 & 101,75 & $2,18\cdot\tenpo{14}$ & $1,19\cdot\tenpo{16}$ %
-				& $1,20\cdot\tenpo{16}$ & 2,98 \\ \midrule%
-				4 & 103,11 & $1,55\cdot\tenpo{14}$ & $1,75\cdot\tenpo{16}$ %
-				& $1,78\cdot\tenpo{16}$ & 3,59 \\ \midrule%
-				5 & 102,55 & $1,65\cdot\tenpo{14}$ & $1,70\cdot\tenpo{16}$ %
-				& $1,71\cdot\tenpo{16}$ & 3,43 \\ \midrule%
+				1 & 101.30 & \SI{2.43e14} & \SI{1.17e16} & \SI{1.20e16} & 2.83 \\ \midrule%
+				2 & 101.25 & \SI{2.29e14} & \SI{1.21e16} & \SI{1.23e16} & 2.98 \\ \midrule%
+				3 & 101.75 & \SI{2.18e14} & \SI{1.19e16} & \SI{1.20e16} & 2.98 \\ \midrule%
+				4 & 103.11 & \SI{1.55e14} & \SI{1.75e16} & \SI{1.78e16} & 3.59 \\ \midrule%
+				5 & 102.55 & \SI{1.65e14} & \SI{1.70e16} & \SI{1.71e16} & 3.43 \\ \midrule%
     	\bottomrule%
 			\caption{%
 				Selected plasma parameters for the used cases in~\autoref{fig:heatingcomparison} at the center of the discharge.~\cite{Gudmundsson13}}\label{tab:comparisonheating}
@@ -102,5 +97,5 @@
 		\end{align}
 %
 		Clearly, this results yields not net heating if averaged over one rf cycle. That is, if the current used would be conserved in a manner the HWA is predicting it, or the electron drift velocity does not satisfy the maxwellian distribution function. Hence, there have to be deviations from the proposed theory of stochastical heating. This would be e.g.\@ ab initio information about the EEDF, unconsidered transit time effects of the sheath electric field and neglected particle losses and current conservation.\\
-		Therefore more theoretical approaches on the heating in low-pressure, low-temperature rf plasma. For example, Surendra et al~\cite{Surendra93} put forth the idea that the compression and decompression of the electron density volume between opposing plasma sheaths generates heat inside the bulk is responsible for the observed heating.\\
+		There are more theoretical approaches on the heating in low-pressure, low-temperature rf plasma. For example, Surendra et al~\cite{Surendra93} put forth the idea that the compression and decompression of the electron density volume between opposing plasma sheaths generates heat inside the bulk is responsible for the observed heating.\\
 		The electron heating profile is shown in~\autoref{fig:heatingcomparison}. The electron heating peaks near the sheath edges are due to the stochastic heating while the main plateau in the bulk is a result of the dominantly strong ohmic heating with slow electrons and neutral gas friction.
