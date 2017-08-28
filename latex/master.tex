@@ -238,39 +238,6 @@
 \end{titlepage}
 %
 % ************************************************************************** %
-% ACKNOWLEDGMENTS
-	 \begin{acknowledgements}
-%	
-		\addchaptertocentry{\acknowledgementname}
-		The acknowledgments and the people to thank go here, don't forget to
-	 	include your project advisor\ldots
-%	
-	 \end{acknowledgements}
-% ************************************************************************** %
-%
-% ************************************************************************** %
-% INSERT MOTIVATIONAL QUOTE
-	\vspace*{0.33\textheight}
-	% \rule{\textwidth}{0.1pt}
-%	
-	\noindent\enquote{%
-		Without encroaching upon grounds appertaining to the theologian and the
-		philosopher, the domain of natural sciences is surely broad enough to
-		satisfy the wildest ambition of its devotees. $\left[\dots\right]$
-		The work may be hard, and the discipline severe; but the interest never
-		fails, and great is the privilege of achievement.
-	}\bigbreak%
-%
-	\begin{flushright}
-		--- John William Strutt, 3rd Baron Rayleigh, 1884\\
-		\small\emph{in: Address to the British Association in Montreal}
-	\end{flushright}
-%
-	% \vspace*{0.15\textheight}
-	% \rule{\textwidth}{0.1pt}
-% ************************************************************************** %
-%
-% ************************************************************************** %
 % DECLARATION OF AUTHORSHIP
 	%
 	\chapter*{Declaration of Authorship}
@@ -298,40 +265,36 @@
 %
 % ************************************************************************** %
 % PREFIX
-	\input{content/00_start_prefix}
+	\input{content/start_prefix}
 % ************************************************************************** %
 	\mainmatter% 
 	\pagestyle{thesis}
 % ************************************************************************** %
 % INSERT ABSTRACT
 % 
-	\chapter*{Abstract}%
-		\addchaptertocentry{Abstract}
-%
-		The Thesis Abstract is written here and usually kept to just this page.
-    The page is kept centered vertically so it can expand into the blank space above 
-    the title too.
+	\input{content/00_motivation}
 %
 % ************************************************************************** %
 % BASICS
 	\input{content/01_basics_ccrfplasma}
-	\input{content/02_basics_wallinteraction}
+	\input{content/02_basics_langmuir}
 	\input{content/03_basics_bohmcriteria}
-	\input{content/04_basics_selfbias}
-	\input{content/05_basics_dispcurr}
-	\input{content/06_basics_heating}
-	\input{content/07_basics_plasmachemistry}
-	\input{content/08_basics_collreact}
-	\input{content/09_basics_anions}
-	\input{content/10_basics_picprinciple}
-	\input{content/11_basics_2d3vpic}
-	\input{content/12_basics_mcccoll}
+	\input{content/04_basics_siesee}
+	\input{content/05_basics_selfbias}
+	\input{content/06_basics_dispcurr}
+	\input{content/07_basics_heating}
+	\input{content/08_basics_plasmachemistry}
+	\input{content/09_basics_collreact}
+	\input{content/10_basics_anions}
+	\input{content/11_basics_picprinciple}
+	\input{content/12_basics_2d3vpic}
+	\input{content/13_basics_mcccoll}
 % RESULTS
-	\input{content/13_results_oned}
-	\input{content/14_results_twod}
+	\input{content/14_results_oned}
+	\input{content/15_results_twod}
 % END
-	\input{content/15_end_conclusion}
-	%\include{content/16_end_fem}
+	\input{content/16_end_conclusion}
+	%\input{content/17_end_fem}
 % ************************************************************************** %
 %	
 % ************************************************************************** %
@@ -345,6 +308,35 @@
 % ************************************************************************** %
 % BIBLIOGRAPHY
 	\printbibliography[heading=bibintoc]
+% ************************************************************************** %
+%
+% ************************************************************************** %
+% ACKNOWLEDGMENTS
+	\pagestyle{plain}
+	\begin{acknowledgements}
+	% \addchaptertocentry{\acknowledgementname}
+		The acknowledgments and the people to thank go here, don't forget to
+	 	include your project advisor\ldots
+	 \end{acknowledgements}
+% ************************************************************************** %
+%
+% ************************************************************************** %
+% INSERT MOTIVATIONAL QUOTE
+%	\vspace*{0.33\textheight}
+%	\rule{\textwidth}{0.1pt}
+%	\noindent\enquote{%
+%		Without encroaching upon grounds appertaining to the theologian and the
+%		philosopher, the domain of natural sciences is surely broad enough to
+%		satisfy the wildest ambition of its devotees. $\left[\dots\right]$
+%		The work may be hard, and the discipline severe; but the interest never
+%		fails, and great is the privilege of achievement.
+%	}\bigbreak%
+%	\begin{flushright}
+%		--- John William Strutt, 3rd Baron Rayleigh, 1884\\
+%		\small\emph{in: Address to the British Association in Montreal}
+%	\end{flushright}
+% \vspace*{0.15\textheight}
+% \rule{\textwidth}{0.1pt}
 % ************************************************************************** %
 % END OF DOCUMENT
 \end{document}  

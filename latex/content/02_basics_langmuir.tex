@@ -1,0 +1,41 @@
+%		
+		\subsection{Plasma-Wall Interaction}\label{sec:sheathphysics}
+%
+			In the bulk of the discharge, neutral gas particles are excited by electron collisions and radiating visible light. However, in rf discharges at low pressures and temperatures the areas around, e.g.\@ floating metal surfaces, probes and grounded walls are darker than the bulk. This is due to the low electron density and kinetic energy in this \emph{plasma sheath}.\\
+			Electrons are of a much higher mobility $\mu\ix{e}$ and thermal velocity $v\ix{th,e}$. Also they are of a  much smaller mass, which is why they are at least $\sqrt{m\ix{i}/m\ix{e}}$-times faster than the other species. Hence they impinge onto walls more often, leading to the accumulation of a negative charge and potential around a wall. In the following section the interaction of plasma disharge and walls will be highlighted, emphasizing the difference in dynamics between electron and ion species.
+%
+			\subsubsection{Child-Langmuir Law}\label{sec:langmuirlaw}
+%			
+			The \emph{Child-Langmuir Law} yields an expression for the relation between potential and current on a wall in a space-charge limited plasma region, e.g\@ the sheath. It characterizes transport processes between a floating wall and the plasma bulk. Therefore it is important to understand, for example the oscillation of the sheath boundary in rf plasmas or secondary emission processes at walls.\\
+			Let us first assume a negativly charged wall at $x=0$, which develops a barrier for electrons of thermal velocity, e.g.\@ $|\Phi(0)-\Phi(d)|\ll k\ix{B}T\ix{e}/e\,$. The thickness of the sheath here is $d$ and the sheath-boundary therefore at $x=-d$ (see~\autoref{fig:sheath_piel}). In an one-dimensional approach~\cite{Piel10}, the electron density $n\ix{e}(x)$ can be written with a \emph{Boltzmann} distribution function $f\ix{B}(\Phi)\sim\exp(e\Delta\Phi/k\ix{B}T\ix{e})$.	This means that the electron density decreases exponentially towards the negatively charged wall. It can be assumed that the sheath thickness $d\ll s\ix{mfp,i}$ the mean free path of the ions inside the plasma bulk. Hence the ions enter the pre-sheath collisionless at a speed $v\ix{i,0}$. The ion and electron densities are therefore:
+%
+				\begin{align}
+					n\ix{i}(x)=n\ix{i}(d){\left(1-\frac{2e\Phi(x)}%
+						{m\ix{i}v\ix{i,0}^{2}}\right)}^{-1/2}\,,%
+						\quad\quad%
+						n\ix{e}=n\ix{e}(d)\exp\left(%
+						\frac{e(\Phi(x)-\Phi(d))}{k\ix{B}T\ix{e}}\right)%
+						\label{equ:ionandelectrondens}
+				\end{align}
+%
+			At the boundary between bulk and pre-sheath, the walls potential vanishes because of the plasmas shielding capabilities. Futhermore, one can assume that the kinetic energy of the ions at this point is smaller than the potential energy for the acceleration inside the pre-sheath, e.g.\@ $m\ix{i}v\ix{i,0}^{2}\ll |e\Phi(x)|$. Using \emph{Poisson's}~\autoref{equ:phibypoisson} gives an expression for the potential $\Phi(x)$:
+%
+				\begin{align}
+					\Delta\Phi\cong-\frac{en\ix{i}{\left(-d\right)}%
+							}{\varepsilon\ix{0}}{\left(-\frac{2e\Phi{%
+							\left(x\right)}}{m\ix{i}v\ix{i,0}^2}\right)}^{-\frac{1}{2}}%
+					\label{equ:phibypoisson}
+				\end{align}
+%
+				Solving this, and using the unperturbed ion current $j\ix{i}=n\ix{i}(d)ev\ix{i,0}$, one yields the result by \emph{Langmuir} in~\autoref{equ:langmuirpot}. Solving this for $j\ix{i}$ yields the \emph{Child-Langmuir Law} (see~\autoref{equ:childlangmuirlaw}). This equation defines the ion current as a function of the unperturbed plasma bulk. In other words, the sheath changes its thickness in dependency of those certain discharge parameters, always satisfying the ion current defined by the \emph{Child-Langmuir Law}.
+%
+				\begin{align}
+					\Phi{\left(x\right)}=&{\left({\left(\frac{3}{4}{\left(x+d%
+							\right)}\right)}^4{\left(\frac{j\ix{i}}{\varepsilon\ix{0}%
+							}\right)}^2\frac{m\ix{i}}{2e}\right)}^{\frac{1}{3}}%
+							\label{equ:langmuirpot}\\[0.2cm]
+					j\ix{i}=\frac{4}{9}&\varepsilon\ix{0}{\left(\frac{2e{%
+							\left(\Phi{\left(-d\right)}-\Phi{\left(0\right)}%
+							\right)}^3}{m\ix{i}d^2}\right)}^{\frac{1}{2}}%
+					\label{equ:childlangmuirlaw}
+				\end{align}
