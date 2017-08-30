@@ -1,19 +1,10 @@
 %
-			\subsubsection{Surface Effects}\label{sec:surfaceeffects}
+			\subsection{Surface Effects}\label{sec:surfaceeffects}
+%			
+			Although the sheath physics are influenced by plasma properties in front of the wall, such as temperatures and densities, they are also sensitive to wall processes. One important aspect is the absorption and re-emission of ions and electrons.
 %				
 			\paragraph{Secondary Electron Emission}
-%
-			Although the sheath physics is influenced by plasma properties in front of the wall, such as temperatures and densities, it is also sensitive to wall processes. One important aspect is the absorption and re-emission of ions and electrons. Let us first assume that the associated metal wall behind the sheath ideally absorbs all impinging charged particles, which recombine immediately. This is the simplest model, because it only considers recombination. Impinging ions are neutralized by electrons immidiately in front of the wall. The resulting ions are reflected and eventually ionized again in the bulk. Because of the large mean free paths of the neutrals and ions, e.g.\@ $s\ix{mfp}>d$, this entry and exit process can be considered collisionless.\\
-			Like it was highlighted above, the electrons are much faster and more mobile than the other species, leading to a negative charging and potential drop towards the wall. This accelerates the ion species up to \emph{Bohm velocity}.	Continuity and charge conservation must be satisfied, hence the charge current densities $j\ix{e}=j\ix{i}$ must be equal at the sheath edge. The potential drop $\Delta\Phi$ reflects negative charges slower than $v\le \sqrt{2e\Delta\Phi/ m}\,$. Similar to~\autoref{equ:ionandelectrondens}, the electron current towards the wall can be written. Here the first moment of the electron velocity $\bra v\kett$ is used, calculated in~\autoref{equ:firstmoment} with the electron energy distribution function (EEDF) $f\ix{e}(v)$.
-%
-				\begin{align}
-					\bra v\kett=\int_{\mathbb{R}}v\cdot f\ix{e}\left(v\right)\diff v\,%
-					\quad\Rightarrow\quad%
-					j\ix{e}=-\frac{e}{4}n\ix{e}\bra v\kett\exp\left(-\frac{e\Delta\Phi}{k\ix{B}T\ix{e}}\right)%
-					\label{equ:firstmoment}
-				\end{align}
-%
-				Impinging ions are neutralized by the free electron gas in the metal when tehy approach the surface of the solid. If a fast electron impacts on the wall, there is a chance for it to collide with electrons of the solid and to release a secondary electron from the surface. The \emph{secondary electron emission} coefficient is defined as $\gamma$: one impinging electron emits $\gamma$ electrons from the metal. This \emph{SEE} reduces the $\Delta\Phi$ of the sheath potential because it creates an additional electron current from the wall towards the sheath edge, therefore altering the continuity condition $j\ix{i}=j\ix{e}$. A new \emph{effective potential drop} $\Delta\Phi\ix{eff}$ can be derived in~\autoref{equ:effectivepotentialdrop}. There is a critical value $\gamma\ix{c}$ where the wall potential gets unstable.
+			If fast electrons impact on a wall, there is a chance for them to collide with electrons of the solid and to release secondary electrons from the surface. The \emph{secondary electron emission} coefficient is defined as $\gamma$: one impinging electron emits $\gamma$ electrons from the metal. This \emph{SEE} reduces the $\Delta\Phi$ of the sheath potential because it creates an additional electron current from the wall towards the sheath edge, therefore altering the continuity condition $j\ix{i}=j\ix{e}$. A new \emph{effective potential drop} $\Delta\Phi\ix{eff}$ can be derived in~\autoref{equ:effectivepotentialdrop}. There is a critical value $\gamma\ix{c}$ where the wall potential gets unstable~\cite{Duras11}.
 %
 				\begin{align}
 					\Delta\Phi\ix{eff}=-\frac{k\ix{B}T\ix{e}}{e}\cdot\ln\left(\left(1-%
@@ -22,8 +13,7 @@
 				\end{align}
 %
 				\paragraph{Secondary Ion Emission}	
-				Experimental results from~\cite{Kullig12} indicate that ions are produced near the surface of a metal electrode and heavily accelerated in the plasma sheath. In theory, secondary emission by surface ionization --- in analogy to the surface neutralization --- occurs with incident atoms of thermal energy. Hence one assumes a positively biased wall at high temperatures as the target. Its valence level is therefore broadened, giving an atom $A$ the chance to deposit an electron at the metal. After equilibrating thermally, a positive ion is emited by chance. This statistical process can be described by a thermodynamic equation (see~\autoref{equ:sahalangmuirpos}) yielding the ionization coefficient of $A$. In~\autoref{equ:sahalangmuirpos} a modified approach for the \emph{Saha-Langmuir equation} on the degree of ionization in gases can be found. Here, the surface temperature $T$ and average work function $\overline{\Phi}_{+}$ are important quantities. \newpage
-				Additionally, the ionization energy $I(A)$ --- or impact energy ---, the particle fluxes of both species $j$ and $j^{+}$, corresponding statistical weights $w$, $w^{+}$ and reflection coefficients at the intrinsic potential barrier $r$/$r^{r}$ are used.
+				Experimental results from~\cite{Kullig12} indicate that ions are produced near the surface of a metal electrode and heavily accelerated in the plasma sheath. In theory, secondary emission by surface ionisation --- in analogy to the surface neutralisation --- occurs with incident atoms of thermal energy. Hence one assumes a positively biased wall at high temperatures as the target. Its valence level is therefore broadened, giving an atom $A$ the chance to deposit an electron at the metal. After reaching thermal equilibrium, a positive ion can be emitted by chance. This statistical process can be described by a thermodynamic equation (see~\autoref{equ:sahalangmuirpos}) yielding the ionisation coefficient of $A$. In~\autoref{equ:sahalangmuirpos} a modified approach for the \emph{Saha-Langmuir equation} on the degree of ionisation in gases can be found. Here, the surface temperature $T$ and average work function $\overline{\Phi}_{+}$ are important quantities.	Additionally, the ionization energy $I(A)$ --- or impact energy ---, the particle fluxes of both species $j$ and $j^{+}$, corresponding statistical weights $w$, $w^{+}$ and reflection coefficients at the intrinsic potential barrier $r$/$r^{r}$ are used.
 %
 				\begin{align}
 					A\leftrightharpoons A^{+}+&\,e^{-}%
@@ -33,7 +23,7 @@
 					\label{equ:sahalangmuirpos}
 				\end{align}
 %
-				The Schottky term $e\sqrt{eV\ix{ext}}$ describes the reduction of the work function of electrons in a metal solid due to a large external electric field. At high temperatures of, e.g.\@ $\unit[1000]{K}$ and applied voltages $V\ix{ext}<\unit[1]{kV}$, this term and the corresponding internal reflection coefficients $r$/$r^{+}$ can be neglected --- it appears to be just half of the thermal energy at room temperature. However, theoretical studies for such coefficients are missing.\\
+				The \emph{Schottky term} $e\sqrt{eV\ix{ext}}$ describes the reduction of the work function of electrons in a metal solid due to a large external electric field. At high temperatures of, e.g.\@ $\unit[1000]{K}$ and applied voltages $V\ix{ext}<\unit[1]{kV}$, this term and the corresponding internal reflection coefficients $r$/$r^{+}$ can be neglected --- it appears to be just half of the thermal energy at room temperature. However, theoretical studies for such coefficients are missing.\\
 				In addition to SIE of positive ions, the model can be easily applied for negative ions with small changes to~\autoref{equ:sahalangmuirpos}: a negatively biased electrode is assumed and the average work function yields a different sign. The electron affinity of the incident particle $B$ is $A(B)$.
 %
 				\begin{align}
@@ -57,7 +47,7 @@
 				\end{align}
 %
 				Though only considering atomic particles onto the wall, forms similar to~\autoref{equ:sahalangmuirshort} can also be derived for molecular surface interactions~\cite{Kawano83}. For conditions and materials of ccrf discharges no calculated reflection coefficients.\\
-				Works of, e.g.\@~\cite{Ustaze97} and~\cite{Los90} investigated ion beam scattering, electron loss and transport in plasma sheath environments for metal walls, especially $\text{MgO}(100)$ surfaces. There Ustaze et al.\ studied incident oxygen gas particles --- ions and neutrals ---  on magnesium oxyde surfaces. Impinging atoms became negatively charged ions, picking up electrons from the $\text{MgO}$ of the wall. This interaction, though requiring a minimum ionization and liberation energy for the electron, is most effective at low energies $<\unit[1]{eV}\,$. This is due to a maximum of residence time at the target for an incoming atom. Hence it can be considered a non-resonant charge transfer process at the anion site. Further details can be found in~\cite{Kawano83}.\\
+				Works of, e.g.\@~\cite{Ustaze97} and~\cite{Los90} investigated ion beam scattering, electron loss and transport in plasma sheath environments for metal walls, especially $\text{MgO}(100)$ surfaces. There Ustaze et al.~\cite{Ustaze97} studied incident oxygen gas particles --- ions and neutrals ---  on magnesium oxyde surfaces. Impinging atoms became negatively charged ions, picking up electrons from the $\text{MgO}$ of the wall. This interaction, though requiring a minimum ionization and liberation energy for the electron, is most effective at low energies $<\unit[1]{eV}\,$. This is due to a maximum of residence time at the target for an incoming atom. Hence it can be considered a non-resonant charge transfer process at the anion site. Further details can be found in~\cite{Kawano83}.\\
 				Ions hitting onto the wall will result in an anion current in opposing direction:
 %
 				\begin{align}

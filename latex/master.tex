@@ -7,23 +7,21 @@
 % The lincense itself can be found at <https://www.gnu.org/licenses>.        % 
 % ************************************************************************** %
 
-%LICENSE:
-%CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
-
+% LICENSE:
+% CC BY-NC-SA 3.0
+% (http://creativecommons.org/licenses/by-nc-sa/3.0/)
 % Masters Thesis 
 % LaTeX Template
 % Version 2.3 (25/3/16)
-
 % This template has been downloaded from:
 % http://www.LaTeXTemplates.com
-
 % Version 2.x major modifications by:
 % Vel (vel@latextemplates.com)
-
 % This template is based on a template by:
-% Steve Gunn (http://users.ecs.soton.ac.uk/srg/
-%						  softwaretools/document/templates/)
-% Sunil Patel (http://www.sunilpatel.co.uk/thesis-template/)
+% Steve Gunn
+% (http://users.ecs.soton.ac.uk/srg/softwaretools/document/templates/)
+% Sunil Patel
+% (http://www.sunilpatel.co.uk/thesis-template/)
 
 % ************************************************************************** %
 % ************************************************************************** %
@@ -50,7 +48,7 @@
 \usepackage[T1]{fontenc} % Output font encoding for international characters
 \usepackage[autostyle=true]{csquotes}
 % Required to generate language-dependent quotes in the bibliography
-%\usepackage[backend=bibtex,style=authoryear,natbib=true]{biblatex}
+%\usepackage{biblatex}
 \usepackage[backend=bibtex,natbib=true]{biblatex}
 % Use the bibtex backend with the authoryear citation style
 \addbibresource{bibcontents/preamble.bib} % The filename of the bibliography
@@ -281,20 +279,19 @@
 	\input{content/03_basics_bohmcriteria}
 	\input{content/04_basics_siesee}
 	\input{content/05_basics_selfbias}
-	\input{content/06_basics_dispcurr}
+	%\input{content/06_basics_dispcurr}
 	\input{content/07_basics_heating}
+	\input{content/11_basics_picprinciple}
+	\input{content/12_basics_2d3vpic}
 	\input{content/08_basics_plasmachemistry}
 	\input{content/09_basics_collreact}
 	\input{content/10_basics_anions}
-	\input{content/11_basics_picprinciple}
-	\input{content/12_basics_2d3vpic}
-	\input{content/13_basics_mcccoll}
 % RESULTS
-	\input{content/14_results_oned}
-	\input{content/15_results_twod}
+	\input{content/13_results_oned}
+	\input{content/14_results_twod}
 % END
-	\input{content/16_end_conclusion}
-	%\input{content/17_end_fem}
+	\input{content/15_end_conclusion}
+	%\input{content/16_end_fem}
 % ************************************************************************** %
 %	
 % ************************************************************************** %
@@ -339,6 +336,4 @@
 % \rule{\textwidth}{0.1pt}
 % ************************************************************************** %
 % END OF DOCUMENT
-\end{document}  
-% test bibliography for completion
-\bibliography{master_thesis.bib}
+\end{document}

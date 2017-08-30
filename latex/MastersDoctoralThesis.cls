@@ -174,6 +174,7 @@
 % Specifies where to look for included images
 \RequirePackage{caption}
 % Required for customising the captions
+\RequirePackage{cleveref}
 \DeclareCaptionFont{tenpt}{\fontsize{10pt}{12pt}\selectfont #1}
 \captionsetup{justification=centerlast,font=tenpt,labelfont=sc,margin=35pt}
 %----------------------------------------------------------------------------------------
