@@ -1,10 +1,10 @@
 %
-    \newpage
 	\section[Particle-in-Cell Simulations with Monte Carlo-Collisions]%
 	        {Particle-in-Cell Simulations with \\Monte-Carlo-Collisions}\label{sec:picsimulationmcc}
 %
-	Particle-In-Cell simulations with Monte-Carlo-Collisions (PIC-MCC) represent a powerful tool for fully kinetic plasma studies, with inclusion of complicated reaction/collision routines, as well as field solving methods. Hence they are used in all branches of plasma physics, ranging from simple labaratory discharges to electric propulsion devices and interplanetary astrophysical system. This kind of computer code simulates the motion of pseudo-particles in a continuous 1d3v-/2d3v phase-space. Macro-quantities like forces, fields and densities are stored and calculated on a mesh with constant intervals. The computational cost sums up to $N\log(N)$ per timestep --- with $N$ the total particle number --- because the self-consistent electrostatic macro-fields are calculated by solving \emph{Poisson's equation}, and no particle-particle interactions are considered.\\
-	In the following section the motivation and basic scheme of a PIC-MCC simulation will be highlighted. Accordingly, the collision routines will be layed out, as well as the transition from a 1d3v to a 2d3v model. As it was mentioned in~\autoref{sec:chapter_ccrfbasics}, I will focus on the electrostatic case with $\vec{B}=0$, as the magnetic field generated from the moving charged particles is small enough that the force of $q\ix{j}(\vec{v}\ix{j}\times \vec{B})$ is negligible in comparison to $q\ix{j}\vec{E}$. 
+	Particle-In-Cell simulations with Monte-Carlo-Collisions (PIC-MCC) represent a powerful tool for fully kinetic plasma studies, with inclusion of complex reaction/collision routines, as well as field solving methods. Hence they are used in all branches of plasma physics, ranging from simple laboratory discharges to electric propulsion devices and interplanetary astrophysical systems. 
+	PIC simulates the motion of pseudo-particles in a continuous phase-space. Macro-quantities like forces, fields and densities are stored and calculated on a mesh. The number of calculations needed per step to solve the equation of motion for each of the $N$ particles sums up to $N\log(N)$. This is due to the self-consistent electrostatic macro-fields, which are calculated by solving \emph{Poisson's equation}. For example, inter-particle interactions, in which the electric field of each charge has to be considered for the calculation of the force on a particle, are neglected. The total number of calculations for this approach would be $N^{2}$.\\
+	In the following section the motivation and basic scheme of a PIC-MCC simulation will be highlighted. Accordingly, the collision routines will be layed out, as well as the transition from a 1d3v to a 2d3v model. As it was mentioned in~\autoref{sec:chapter_ccrfbasics}, I will focus on the electrostatic case with $\vec{B}=0$, as the magnetic field generated from the moving charged particles is small enough that the Lorentz force is dominated by the electric field $q\ix{j}\vec{E}$.
 %	
 		\subsection{Principles}\label{sec:picbasics}
 %
@@ -17,7 +17,7 @@
 				\label{equ:boltzmannequation}
 			\end{align}
 %
-			In this equation, the product of $q\ix{j}\vec{E}/m\ix{j}$ denotes the electrostatic force onto the particle of species $j$. The velocity and space gradient are calculated like $\nabla_{\vec{r}}\,f\ix{j}=\partial f\ix{j}/\partial x\cdot\vec{e}\ix{x}+\dots$ and so on. The right hand side of $(\partial f\ix{j}/\partial t)\ix{Coll}$ is the sum of all collision effects on $f\ix{j}(\vec{v},\vec{r},t)$. An approach would be an integral form, in which all probabilities of a two-body interactions with different incident and outgoing velocities are summed up in a convolution integral with $f\ix{j}(\vec{v},\vec{r},t)$.\\
+			In this equation, the product of $q\ix{j}\vec{E}/m\ix{j}$ denotes the electrostatic force onto the particle of species $j$. The velocity and space gradient are calculated like $\nabla_{\vec{r}}\,f\ix{j}=\partial f\ix{j}/\partial x\cdot\vec{e}\ix{x}+\dots$ and so on. The right hand side of $(\partial f\ix{j}/\partial t)\ix{Coll}$ is the sum of all collision effects on $f\ix{j}(\vec{v},\vec{r},t)$. One approach would be an integral form, in which all probabilities of a two-body interactions with different incident and outgoing velocities are summed up in a convolution integral with $f\ix{j}(\vec{v},\vec{r},t)$.\\
 			The approach via the distribution function yields the advantage of an easy access to the afore-mentioned macro-quantities, the zeroth and first moment are noted below in~\autoref{equ:zeorthandfirstmoment}. Using the moments, one can write down $f\ix{j}(\vec{v},\vec{r},t)$ at a thermodynamic equilibrium of $T\ix{j,0}$ as the \emph{Maxwell-Boltzmann-distribution-function} in~\autoref{equ:maxwellboltzmannfunction}.
 %
 			\begin{align}
@@ -61,7 +61,7 @@
 %
 			The number of $N$ is of orders of magnitude higher than what the best supercomputers can handle. Hence it is assumed that one simulated particle at $\vec{x}\ix{n}$ and veloctiy $\vec{v}\ix{n}$ represents many physical particles. This \emph{superparticle factor} is usually between $\tenpo{3}$--$\tenpo{4}$, depending on the size and initial density in the simulated domain. Those superparticles follow the same dynamic and kinetic behaviour like their physical counterparts, assuming that all other relevant parameters are scaled accordingly.\\
 			Furthermore, the time is also divided into discrete partitions, which yields the simulation time for a constant stept width $\Delta t$: $t\rightarrow t\ix{k}=t\ix{0}+k\, \Delta t$ (and correspondingly all other physical properties). Here, a \emph{leap frog} scheme (`Boris pusher') is used to calculate the velocities, in contrast to other time-dependent attributes, which still has a sufficient accuracy, stability and short computational time. With each calculation step, the error scales with $\sim\Delta t^{2}$ and fulfills the requirement for numerical stability $\Delta t^{\alpha>1}$. The explicit leap frog solution is calculated with old quantities of the previous timestep, thus it is simpler and faster. The single drawback on this method would be the requirement of a smaller timestep, e.g\@ $\Delta t/2$.\\
-			The most significant part of the simulation code is the \emph{particle mover} or \emph{particle pusher}, in which the new positions and velocities calculated. For each particle of index $n$ and species $j$ the following equations have to be solved at a given time step $k$, or $k+/-\frac{1}{2}$ respectively:
+            To move the particle of index $n$ and species $j$ the following equations of motions have to be solved at a given time step $k$, or $k+/-\frac{1}{2}$ respectively:
 %
 			\begin{align}
 				\vec{u}\ix{n,+}=\vec{v}\ix{n,k-1/2}+h\cdot\vec{E}\ix{k}\,,%
@@ -72,12 +72,12 @@
 				\boxed{%
 					\vec{x}\ix{n,k+1}=\vec{x}\ix{n,k}+\Delta t\vec{v}\ix{n,k+1/2}%
 						\quad\text{~and~}\quad%
-						\vec{v}\ix{n,k-1/2}=\vec{u}\ix{n,+}+h\cdot\vec{E}\ix{k}%
+						\vec{v}\ix{n,k-1/2}=\vec{u}\ix{n,+}+h\cdot\vec{E}\ix{k}\, ,%
 						\label{equ:leapfrogscheme}%
 				}
 			\end{align}
-%
-			The field, potential and density only have to be calculated once per time step. Though this requires less effort, the calculation of $\vec{E}$, $\Phi$ and $\rho$ need to be done in this case by one processing core. The equation~\autoref{equ:interpolation} and following are solved globally. A simple approach to obtain the solution of Poisson's equation is the \emph{finite-difference method}. For a two-dimensional, with $\Delta r$ equally partitioned mesh at ($r^{(1)}\ix{l}$,$r^{(2)}\ix{m}$) one yields the \emph{five point stencil}:
+%			
+            A simple approach to obtain the solution of Poisson's equation is the \emph{finite-difference method}. For a two-dimensional, with $\Delta r$ equally partitioned mesh at ($r^{(1)}\ix{l}$,$r^{(2)}\ix{m}$) one yields the \emph{five point stencil}:
 %
 		\begin{align}
 			4\Phi\ix{l,m}-\Phi\ix{l-1,m}-\Phi\ix{l+1,m}-\Phi\ix{l,m-1}-%
@@ -85,8 +85,7 @@
 				\label{equ:fivepointstar}
 		\end{align}
 %
-		While the potential is calculated using~\autoref{equ:fivepointstar}, all but one processing core remain idle and wait for the result to be distributed and used in the particle pusher in~\autoref{equ:leapfrogscheme}.\\
-		The universal stability criteria for a kinetic plasma simulation using a PIC method with mesh size $\Delta r$ and time step $\Delta t$ are given by~\autoref{equ:stabilitycriteria}. The spatial and temporal step width should sufficiently resolve the smallest and fastest processes in the simulated model. Hence the physical scales of electron plasma frequency $\omega\ix{p,e}$ and electron Debye length $\lambda\ix{D,e}$ are chosen. The parameters are chosen so that an electron never flies beyond one cell during a single step of time. Also, the interpolation of the macro-quantities yields an error the size of micro-fluctuations between single particles, thus is negligible.
+		The universal stability criteria for a kinetic plasma simulation using a PIC method with mesh size $\Delta r$ and time step $\Delta t$ are given by~\autoref{equ:stabilitycriteria}. The spatial and temporal step width should sufficiently resolve the smallest and fastest processes in the simulated model. Hence the physical scales of electron plasma frequency $\omega\ix{p,e}$ and electron Debye length $\lambda\ix{D,e}$ are chosen. Also, the interpolation of the macro-quantities yields an error the size of micro-fluctuations between single particles, thus is negligible.
 %
 		\begin{align}
 			\boxed{%
@@ -103,5 +102,5 @@
 				\centering
 				\includegraphics[width=0.8\textwidth]{figures/picscheme.pdf}
 				\caption{%
-				PIC simulation scheme~\cite{Matthias15}. The code starts with the initilisation of all particle species with their corresponding velocities and a first mapping process, followed by the solution of the Maxwell's equation~\autoref{equ:efieldmaxwell}. Afterwards the main loop with push, collisions, mapping and so on begins.}\label{fig:picscheme}
+				PIC simulation scheme~\cite{Matthias15}.}\label{fig:picscheme}
 			\end{figure}

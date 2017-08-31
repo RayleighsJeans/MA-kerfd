@@ -7,11 +7,11 @@
 		\begin{align}
 			\overline{P}\ix{ohm}=\omega\ix{rf}\int_{0}^{T\ix{rf}}\,j\ix{tot}(t)\cdot E(t)\diff t%
 			\label{equ:meanpowerheat}\\[0.0cm]%
-			m\ix{e}\frac{\diff v\ix{e}}{\diff t}=-eE(t)-m\ix{e}\nu\ix{n,e}v\ix{e}%
-			\label{equ:heatingmotion}
+			%m\ix{e}\frac{\diff v\ix{e}}{\diff t}=-eE(t)-m\ix{e}\nu\ix{n,e}v\ix{e}%
+			%\label{equ:heatingmotion}
 		\end{align}
 %
-		The total charge current density $j\ix{tot}$ is the sum of dielectric displacement current $j\ix{d}=-en\ix{0,i}u\ix{s}$ and conduction current $en\ix{e,0}v\ix{e}\,$. Here $u\ix{s}=\diff s\ix{1}/\diff t$ is the sheath border velocity (see~\autoref{fig:displacementcurrent}~\cite{Piel10}~). Solving~\autoref{equ:heatingmotion} for the velocity, one obtains an imaginary and real part due to the bulks impedance, like it was discussed earlier in~\autoref{sec:selfbias}. Substitution of this result~\cite{Schulze09} gives
+		Here $j\ix{tot}$ is the total charge current density. The total mean power dissipated into the electron species through acceleration in a harmonically oscillating electric field and neutral gas friction becomes
 %
 		\begin{align}
 			\overline{P}\ix{ohm}=\frac{|E\ix{0}|^{2}\Re(\sigma\ix{p})}{2}=%
@@ -21,39 +21,12 @@
 			\label{equ:ohmicheating}
 		\end{align}
 %
-		This is, again, the total mean power dissipated into the electron species through acceleration in a harmonically oscillating electric field and neutral gas friction. The property $\sigma\ix{p}$ is the plasma conductivity, hence resulting in $j\ix{0}=\sigma\ix{p}E$. This demonstrates that power from an spatially uniform, harmonically oscillating electric field can only be transferred via collisions --- the power is zero, if collisions are zero. Elastic electron-neutral collisions transfer energy into a direction perpendicular to the field. This component is not lost during the reversal of $E(t)$. Therefore the electron species gains energy during the field oscillation. This mechanism is called \emph{ohmic heating} and takes place mainly in the plasma bulk.
+		The property $\sigma\ix{p}$ is the plasma conductivity, hence resulting in $j\ix{0}=\sigma\ix{p}E$. This demonstrates that power from an spatially uniform, harmonically oscillating electric field can only be transferred via collisions --- the power is zero, if collisions are zero. Elastic electron-neutral collisions transfer energy into a direction perpendicular to the field. This component is not lost during the reversal of $E(t)$. Therefore the electron species gains energy during the field oscillation. This mechanism is called \emph{ohmic heating} and takes place mainly in the plasma bulk.
 %
 		\paragraph{Stochastic Heating}
-		Low-pressure, capacitively coupled rf plasmas can be stabilised by collisionless heating in the sinusoidal modulated discharge sheaths, as proposed earlier in~\autoref{sec:langmuirlaw}. MoWe will assume a `hard wall' approximation (HWA), where the electrons are considered to collide elastically with the oscillating sheath edge. Heating power is then averaged by reverse and forward energy fluxes into and out of the sheath respectively. This gives an easy access to heating mechanisms of the proposed discharges.\\
+		Low-pressure, capacitively coupled rf plasmas can be stabilised by collisionless heating in the sinusoidal modulated discharge sheaths. We will assume a `hard wall' approximation (HWA), where the electrons are considered to collide elastically with the oscillating sheath edge. Heating power is then averaged by reverse and forward energy fluxes into and out of the sheath respectively. This gives an easy access to heating mechanisms of the proposed discharges.\\
 		The heating mechanism in such low pressure plasma is of particular importance, because collisions are rare and sheath processes are key to the sustainability of the discharge (see e.g\@~\autoref{sec:bohmcriteria}). This process, though relying on enough randomisation in phase-space inside the bulk, sufficiently creates a net heating of the plasma~\cite{Gozadinos01b,Goedde88}. This is referred to as \emph{stochastic heating}.\\
-		Consider the sheaths electric field as constant, $E=U\ix{sb}/s\ix{0}$, the bulks expansion to be $l$ and the sheaths thickness $d$ being modulated cosinusoidal. The equation of motion for an electron in the sheath is taken from above, cancelling out the part of ohmic neutral gas heating.
-%
-		\begin{align}
-			d(t)\approx s\ix{0}\left(1+\frac{U\ix{rf}}{U\ix{sb}}\cos\left(\omega t\right)\right)%
-			\label{equ:sheaththickness}
-		\end{align}
-%
-%	    The \autoref{equ:heatingmotion} is introduced to be dimensionless with the substitution of the corresponding parameters: $\alpha=m\ix{e}\omega^{2}s\ix{0}^{2}/(eU\ix{sb})$, $\beta=U\ix{rf}/U\ix{sb}$ and $\epsilon=s\ix{0}/l\,$. Integration yields the velocity $\mu(\tau)$ of an electron as it moves through the sheath. The transit time $\tau$ is considered for one pass through the sheath of the particle. It can be used to calculate the change in velocity experienced by the electron on each bounce between this oscillating and a fixed wall --- this would be the lowest order \emph{fermi acceleration}. Assuming there are two distinct moments and positions, where the particle enters (index $n$) and re-enters (index $n+1$) the sheath, this gives, using $\varphi\ix{n}$ the phase of the sheath, for the transit time and velocity~\cite{Goedde88}
-%		
-		\begin{figure}[t!]
-			\centering
-  		\begin{longtable}{lccccr}
-				\toprule%
-					Case & $\Phi\ix{0}$ & $n\ix{e,0}$/$\unit{m^{-3}}$ %
-					& $n\ix{i-,0}$/$\unit{m^{-3}}$ & $n\ix{i+,0}$/$\unit{m^{-3}}$ %
-					&	$T\ix{e,0}$/$\unit{eV}$ \\%
-		    \toprule\midrule\endhead%
-				1 & 101.30 & \SI{2.43e14} & \SI{1.17e16} & \SI{1.20e16} & 2.83 \\ \midrule%
-				2 & 101.25 & \SI{2.29e14} & \SI{1.21e16} & \SI{1.23e16} & 2.98 \\ \midrule%
-				3 & 101.75 & \SI{2.18e14} & \SI{1.19e16} & \SI{1.20e16} & 2.98 \\ \midrule%
-				4 & 103.11 & \SI{1.55e14} & \SI{1.75e16} & \SI{1.78e16} & 3.59 \\ \midrule%
-				5 & 102.55 & \SI{1.65e14} & \SI{1.70e16} & \SI{1.71e16} & 3.43 \\ \midrule%
-    	\bottomrule%
-			\caption{%
-				Selected plasma parameters for the used cases in~\autoref{fig:heatingcomparison} %
-				at the center of the discharge.~\cite{Gudmundsson13}}\label{tab:comparisonheating}
-			\end{longtable}
-		\end{figure}
+
 %		
 %		\begin{align}
 %			\tau\ix{n}\approx\frac{2\alpha(\mu\ix{n}-\beta%
@@ -65,31 +38,23 @@
 %
 %		In \emph{hamiltonian mappings}, those two variables are not canonically conjugate, hence insufficient for checking conserved quantities. One has to keep that in mind when evaluating the HWA approximation.
 %
-        The change in velocity in one pass through the sheath becomes the impulse approximation of the \emph{Fermi acceleration}m which is written as:
-%
-		\begin{figure}[b!]
+		\begin{figure}[!t]
 			\centering
-			\includegraphics[width=0.7\textwidth]{figures/heatingcomparison.pdf}
+			\includegraphics[width=0.8\textwidth]{figures/heatingcomparison.png}
 			\caption{%
-			Electron heating rate for a ccrf discharge of parallel plates at $\SI{6.7}{\pascal}$ with an electrode gap of $\SI{4.5}{\centi\metre}$ at $\unit[222]{V}$. Other corresponding plasma parameters are noted in~\autoref{tab:comparisonheating}.~\cite{Gudmundsson13}}\label{fig:heatingcomparison}
+			Electron heating rate for a ccrf discharge of parallel plates at $\SI{6.7}{\pascal}$ with an electrode gap of $\SI{4.5}{\centi\metre}$ at $\unit[222]{V}$.~\cite{Gudmundsson13}}
+			\label{fig:heatingcomparison}
 		\end{figure}
 %
 		\begin{align}
-			\Delta v=v\ix{n+1}-v\ix{n}=-2\,\omega\,%
-			s\ix{0}\frac{U\ix{rf}}{U\ix{sb}}\,\sin\varphi\ix{n}\,.%
-			\label{equ:deltavheating}
-		\end{align}
-%	
-		The parameter $K$ defines the degree of randomisation. It is derived in~\autoref{equ:randomization} as a measure of phase-space chaos by electron movement. Chaotic motion occurs in this mapping for $K>1$~\cite{Goedde88}. It decreases with increasing energy, so the system is less stochastic at higher energies. This is due to the shrinking phase shift across the discharge volume with higher energies. Hence phase correlations between successive collisions in and with the plasma sheath reduce stochasticity. Additionally, a simple condition for stochastic motion is derived:
-%
-		\begin{align}
 			K=\alpha\,\beta\,\frac{U\ix{sb}}{\epsilon E}\,,%
-			\quad\quad%
+			\quad\Leftrightarrow\quad%
 			E\,<\,m\ix{e}\,\omega^{2}s\ix{0}\,l\,\frac{U\ix{rf}}{U\ix{sb}}\,.%
 			\label{equ:randomization}
 		\end{align}
 %
-		One can calculate the instantaneous power dissipated into the plasma due to this heating mechanism. Here, using the sheath speed $u\ix{s}$ from above, the electron drift velocity $u\ix{e}$ and the maxwellian electron velocity distribution function $f\ix{v}(v\ix{e},t)$, Lieberman~\cite{Lieberman88} finds
+		The parameter $K$ defines the degree of randomisation. It is derived in~\autoref{equ:randomization} as a measure of phase-space chaos by electron movement. Chaotic motion occurs in this mapping for $K>1$~\cite{Goedde88}. It decreases with increasing energy, so the system is less stochastic at higher energies. This is due to the shrinking phase shift across the discharge volume with higher energies. Hence phase correlations between successive collisions in and with the plasma sheath reduce stochasticity.\\
+		One can calculate the instantaneous power dissipated into the plasma due to this heating mechanism. Here, using the sheath speed $u\ix{s}$ from above, the electron drift velocity $u\ix{e}$ and the Maxwell electron velocity distribution function $f\ix{v}(v\ix{e},t)$, Lieberman~\cite{Lieberman88} finds
 %
 		\begin{align}
 			P\ix{stoc}(t)=-2m\ix{e}\int_{u\ix{s}}^{\inf}\,u\ix{s}%
@@ -97,9 +62,45 @@
 			2\,n\ix{e,0}u\ix{e}k\ix{B}T\ix{e}\sin(\omega t)\,.%
 			\label{equ:powerdepositheat}
 		\end{align}
+%        
+%        The change in velocity in one pass through the sheath becomes the impulse approximation of the \emph{Fermi acceleration}m which is written as:
+%
+%		\begin{align}
+%			\Delta v=v\ix{n+1}-v\ix{n}=-2\,\omega\,%
+%			s\ix{0}\frac{U\ix{rf}}{U\ix{sb}}\,\sin\varphi\ix{n}\,.%
+%			\label{equ:deltavheating}
+%		\end{align}
+%	
 %
 %		The results on the right-hand-side yields not net heating if averaged over one rf cycle, if the current used would be conserved in a manner the HWA is predicting it, or the electron drift velocity does not satisfy the Maxwellian distribution function. Hence there have to be deviations from the proposed theory of stochastical heating. This would be e.g.\@ ab initio information about the EEDF, unconsidered transit time effects of the sheath electric field and neglected particle losses and current conservation.\\
 %		There are more theoretical approaches on the heating in low-pressure, low-temperature rf plasma. For example, Surendra et al~\cite{Surendra93} put forth the idea that the compression and decompression of the electron density volume between opposing plasma sheaths generates heat inside the bulk, which is responsible for the observed heating.\\
 %		The electron heating profile is shown in~\autoref{fig:heatingcomparison}, with peaks near the sheath edges due to stochastic heating while the main plateau in the bulk is a result of the dominantly strong ohmic heating with slow electrons and neutral gas friction.
 %		
-%		!!!IN WELCHEM REGIME SIND DEINE SIMULATIONEN? IST DIESE DETAILDISKUSSION DAHER WIRKLICH NÖTIG?!!!
+%		!!!IN WELCHEM REGIME SIND DEINE SIMULATIONEN? IST DIESE DETAILDISKUSSION DAHER WIRKLICH NÖTIG?!!!		Consider the sheaths electric field as constant, $E=U\ix{sb}/s\ix{0}$, the bulks expansion to be $l$ and the sheaths thickness $d$ being modulated cosinusoidal. The equation of motion for an electron in the sheath is taken from above, cancelling out the part of ohmic neutral gas heating.
+%
+%		\begin{align}
+%			d(t)\approx s\ix{0}\left(1+\frac{U\ix{rf}}{U\ix{sb}}\cos\left(\omega t\right)\right)%
+%			\label{equ:sheaththickness}
+%		\end{align}
+%
+%	    The \autoref{equ:heatingmotion} is introduced to be dimensionless with the substitution of the corresponding parameters: $\alpha=m\ix{e}\omega^{2}s\ix{0}^{2}/(eU\ix{sb})$, $\beta=U\ix{rf}/U\ix{sb}$ and $\epsilon=s\ix{0}/l\,$. Integration yields the velocity $\mu(\tau)$ of an electron as it moves through the sheath. The transit time $\tau$ is considered for one pass through the sheath of the particle. It can be used to calculate the change in velocity experienced by the electron on each bounce between this oscillating and a fixed wall --- this would be the lowest order \emph{fermi acceleration}. Assuming there are two distinct moments and positions, where the particle enters (index $n$) and re-enters (index $n+1$) the sheath, this gives, using $\varphi\ix{n}$ the phase of the sheath, for the transit time and velocity~\cite{Goedde88}
+%		
+%		\begin{figure}[t!]
+%			\centering
+%  		\begin{longtable}{lccccr}
+%				\toprule%
+%					Case & $\Phi\ix{0}$ & $n\ix{e,0}$/$\unit{m^{-3}}$ %
+%					& $n\ix{i-,0}$/$\unit{m^{-3}}$ & $n\ix{i+,0}$/$\unit{m^{-3}}$ %
+%					&	$T\ix{e,0}$/$\unit{eV}$ \\%
+%		    \toprule\midrule\endhead%
+%				1 & 101.30 & \SI{2.43e14} & \SI{1.17e16} & \SI{1.20e16} & 2.83 \\ \midrule%
+%				2 & 101.25 & \SI{2.29e14} & \SI{1.21e16} & \SI{1.23e16} & 2.98 \\ \midrule%
+%				3 & 101.75 & \SI{2.18e14} & \SI{1.19e16} & \SI{1.20e16} & 2.98 \\ \midrule%
+%				4 & 103.11 & \SI{1.55e14} & \SI{1.75e16} & \SI{1.78e16} & 3.59 \\ \midrule%
+%				5 & 102.55 & \SI{1.65e14} & \SI{1.70e16} & \SI{1.71e16} & 3.43 \\ \midrule%
+%    	\bottomrule%
+%			\caption{%
+%				Selected plasma parameters for the used cases in~\autoref{fig:heatingcomparison} %
+%				at the center of the discharge.~\cite{Gudmundsson13}}\label{tab:comparisonheating}
+%			\end{longtable}
+%		\end{figure}
