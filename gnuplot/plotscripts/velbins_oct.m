@@ -2,9 +2,6 @@ function velbins_oct;
 more off; warning off;
 close all; clear all;
 
-nidistzall=importdata('ni_distzall_527500000.dat');
-nidistrall=importdata('ni_distrall_527470000.dat');
-
 zlength = size(nidistzall)(1,1)/600; rheight = size(nidistrall)(1,1)/600;
 velbinsr = zeros(1,600); velbinsz = zeros(1,600);
 zbin_matrix = zeros(zlength,600); rbin_matrix = zeros(rheight,600);

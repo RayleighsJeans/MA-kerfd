@@ -1,0 +1,56 @@
+set terminal pngcairo enhanced font 'Serif,34' size 1512,1256
+set border linewidth 2.5
+set tics nomirror out scale 0.85
+set samples 100000
+set isosamples 100000
+
+## colors cycle so: black, red, green, blue, cyan, orange (1-6)
+## linetypes cycle so: solid, dashed, dotted, dash-dotted, dash-dot-dotted
+## linewidth is 2.75
+
+set xrange [0.0:522.0]
+set yrange [0.0:698.0]
+set xlabel 'z [{/Symbol l}_{Db}/2]'
+set ylabel 'r [{/Symbol l}_{Db}/2]'
+
+ne0=5.0e9
+
+print twodid
+print twodtime
+print ne0
+print ionfac
+print elfac
+print nionfac
+print potfac
+
+set grid
+set datafile missing '0.00000e+00'
+unset key
+
+set logscale cb
+set cblabel 'density [cm^{-3}]' offset 1,0
+set format cb '10^{%T}'
+set cbrange [1.0:1e10]
+
+set output 'figs/twod_eldens_'.twodid.'.png'
+plot '2D/'.twodid.'/e_dens_'.twodtime.'.dat' u ($1):($2):($3*ne0*elfac) matrix with image
+set output 
+
+set output 'figs/twod_idens_'.twodid.'.png'
+plot '2D/'.twodid.'/i_dens_'.twodtime.'.dat' u ($1):($2):($3*ne0*ionfac) matrix with image
+set output 
+
+set output 'figs/twod_nidens_'.twodid.'.png'
+plot '2D/'.twodid.'/ni_dens_'.twodtime.'.dat' u ($1):($2):($3*ne0*nionfac) matrix with image
+set output 
+
+unset logscale cb
+set cblabel 'potential [V]' offset 0,0
+set format cb '%g'
+set cbrange [*:*]
+
+set output 'figs/twod_phi_'.twodid.'.png'
+plot '2D/'.twodid.'/phi'.twodtime.'.dat' u ($1):($2):($3*potfac) matrix with image
+set output 
+
+quit

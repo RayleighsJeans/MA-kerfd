@@ -1,0 +1,290 @@
+set samples 100000;
+set isosamples 100000;
+
+onlysurf=0;
+makesmalledf=0;
+makespecial=0;
+
+## calculate steps and tics?!
+fac=length/Nx; #cm per cell
+xmax=length;
+xmin=0.0;
+debyefac=Nx/distnumber;
+nfac=length/distnumber;
+
+#print Nx; print distnumber; print length;
+#print debyefac; print nfac; print fac;
+#timevec="03721540 03721905 03722635"
+linestiles="1 2 3 4 5 6";
+
+set terminal pngcairo size 1280,960 enhanced font 'Serif, 24'
+set border linewidth 2.5;
+set tics nomirror out scale 0.85;
+
+## colors cycle so: black, red, green, blue, cyan, orange (1-6)
+## linetypes cycle so: solid, dashed, dotted, dash-dotted, dash-dot-dotted
+## linewidth is 2.75
+
+if (onlysurf==1) {
+	set grid;
+	unset key;
+	set logscale cb;
+	set format cb "10^{%T}";
+	set xlabel 'energy [eV]';
+	set ylabel 'z [{/Symbol l}_{Db}]';
+	set datafile missing '0.00000e+00'
+	set style data lines
+	set xtics ('-200' 0, '-150' 50, '-100' 100, '-50' 150,\
+							'0' 200, '50' 250, '100' 300, '150' 350, '200' 400 );
+	
+	## 3D plot
+	set output 'snix_surface_edf.png';
+	set cblabel 'counts' offset -9,0;
+	set cbrange [*:*];
+	set cbtics ('10^{1}' 1e1, '10^{2}' 1e2,'10^{3}' 1e3, '10^{4}' 1e4,\
+							'>10^{5}' 1e5)
+	set view 40,40,1,1;
+	#set view 50,330,1,1;
+	set zrange [0.0:1e5];
+	unset ztics;
+	set ticslevel 0;
+	set border 15;
+	set yrange [200.0:Nx];
+	set xrange [70.0:225];
+	set ytics offset 2,0;
+	set xlabel offset 1,0;
+	splot 'vfOmsx'.time.'.dat'u ($1):(($2)*debyefac):($3) matrix with pm3d;
+}
+
+if (onlysurf ==0) {
+
+	print '>> potential phases';
+	set output 'potential.png'
+	set grid;
+	unset key;
+	set xlabel "z [cm]";
+	set ylabel "Potential [V]" offset 1,0;
+	set xrange [xmin:xmax];
+		
+	if (makespecial==1) { 
+		titlevec="0  {/Symbol p} 2{/Symbol p}"
+		set label "{/Symbol f}=0, {/Symbol p}"	at 1.5,80 	textcolor ls word(linestiles,1);
+		set label "{/Symbol f}={/Symbol p}/2" 	at 4.0,-100 textcolor ls word(linestiles,2);
+		set label "{/Symbol f}=3{/Symbol p}/2 " at 0.5,300 	textcolor ls word(linestiles,3);
+		set label "{/Symbol F}_{av}"						at 2.5,250 	textcolor ls 7;
+	}
+	plot 'phi'.word(timevec,1).'.dat' using (($1)*nfac):((($2)*volt/10)) w l ls word(linestiles,1)
+			#'phi'.word(timevec,2).'.dat' using (($1)*nfac):((($2)*volt/10)) w l ls word(linestiles,2),\
+		  #'phi'.word(timevec,3).'.dat' using (($1)*nfac):((($2)*volt/10)) w l ls word(linestiles,3)
+				#'../44420/phi04300000.dat' using (($1)*nfac):((($2)*volt/10)) w l ls 7
+	
+	unset label;
+	print '>> densities';
+	set output 'densities.png'
+	set grid;
+	set key outside top center horizontal;
+	set xlabel "z [cm]";
+	set ylabel "density [cm^{-3}]" offset 1,0;
+	
+	plot [xmin:xmax]	  'ne'.time.'.dat' using (($1)*nfac):(ne0*(($2))) 			w l ls 1 title 'e^{-}'				,\
+										 'O2p'.time.'.dat' using (($1)*nfac):(ne0*(($2))) 			w l ls 2 title 'O_{2}^{+}'		,\
+	 							  	 'Oms'.time.'.dat' using (($1)*nfac):(ne0*(($2))) 			w l ls 3 title 'O^{-}_{(s)}'  ,\
+										  'Om'.time.'.dat' using (($1)*nfac):(ne0*(($2)+($3))) 	w l ls 4 title 'O^{-}'
+	#									'Omin'.time.'.dat' using (($1)*nfac):(ne0*(($2))) 			w l ls 5 title 'O_{-}^{(p)}'	,\
+									   #'Oms03700370.dat' using (($1)*nfac):(ne0*(($2))) 			w l ls 3 title 'O_{-}^{(s)}'	,\
+	
+	set output 'densities_Omin.png';
+	plot [xmin:xmax]	'Omin'.time.'.dat' using (($1)*nfac):(ne0*(($2))) w l ls 4 title 'O_{(b)}^{-}',\
+										 'Oms'.time.'.dat' using (($1)*nfac):(ne0*(($2))) w l ls 3 title 'O^{-}_{(s)}'
+	
+	print '>> temperatures';
+	set output 'temperatures.png'
+	set key outside top center horizontal;
+	set xlabel "z [cm]";
+	set ylabel "temperature [eV]" offset 1,0;
+	
+	set xrange [xmin:xmax];
+	plot 'Te'.time.'.dat' using (($1)*nfac):((te0/3)*(($2)**2+($3)**2+($4)**2)**(0.5)) w l ls 1 title 'T_{e}'		,\
+			 'Ti'.time.'.dat' using (($1)*nfac):((te0/3)*(($2)**2+($3)**2+($4)**2)**(0.5)) w l ls 2 title 'T_{i.+}'	,\
+			'Tim'.time.'.dat' using (($1)*nfac):((te0/3)*(($2)**2+($3)**2+($4)**2)**(0.5)) w l ls 3 title 'T_{i,-}'	
+	
+	print '>> r velocities';
+	set output 'rvelocities.png'
+	set grid; 
+	set key outside top center horizontal;
+	set xlabel "z [cm]";
+	set ylabel "velocity [ms^{-1}]" offset 1,0;
+	
+	unset xrange; unset yrange;
+	set xrange [xmin:xmax];
+	plot   'uer'.time.'.dat' using (($1)*nfac):((($2)**2+($3)**2)**(0.5)) w l ls 1 title 'u_{e,r}'			,\
+		   'uO2pr'.time.'.dat' using (($1)*nfac):((($2)**2+($3)**2)**(0.5)) w l ls 2 title 'u_{i,r}^{+}'	,\
+			  'uOmr'.time.'.dat' using (($1)*nfac):((($2)**2+($3)**2)**(0.5)) w l ls 3 title 'u_{i,r}^{-}'	
+	
+	unset xrange; unset yrange;
+	set xrange [xmin:xmax];
+	print '>> x velocities';
+	set output 'xvelocities.png';
+	plot   'uex'.time.'.dat' using (($1)*nfac):(($2)) w l ls 1 title 'u_{e,x}'		,\
+			 'uO2px'.time.'.dat' using (($1)*nfac):(($2)) w l ls 2 title 'u_{i,x}^{+}',\
+			  'uOmx'.time.'.dat' using (($1)*nfac):(($2)) w l ls 3 title 'u_{i,x}^{-}'
+	
+	set grid;
+	unset key;
+	set logscale cb;
+	set format cb "10^{%T}";
+	set cblabel "counts" offset 2,0;
+	set xlabel 'energy [eV]';
+	set ylabel 'z [{/Symbol l}_{Db}]';
+	set view 50,50,1,1;
+	
+	set xrange [0.0:400.0];
+	set yrange [0.0:Nx];
+	set datafile missing '0.00000e+00'
+	set style data lines
+	
+		print '>> electron energy distribution functions';
+		set xrange [0.0:400];
+		set xtics ('-200' 0, '-150' 50, '-100' 100, '-50' 150,\
+								'0' 200, '50' 250, '100' 300, '150' 350, '200' 400 );
+		set output 'ex_edf.png';
+		plot 'vfex'.time.'.dat' u ($1):(($2)*debyefac):($3) matrix with image;
+		
+		set output 'ey_edf.png';
+		plot 'vfey'.time.'.dat' u ($1):(($2)*debyefac):($3) matrix with image;
+		
+		set output 'ez_edf.png';
+		set xrange [200.0:400.0];
+		plot 'vfez'.time.'.dat' u ($1):(($2)*debyefac):($3) matrix with image;
+		
+		print '>> ion energy distribution function';
+		set output 'ix_edf.png';
+		set xrange [70.0:330.0];
+		plot 'vfO2px'.time.'.dat' u ($1):(($2)*debyefac):($3) matrix with image;
+		
+		set output 'iy_edf.png';
+		set xrange [170.0:230.0];
+		set xtics ('-30' 170, '-15' 185, '0' 200, '15' 215, '30' 230);
+		plot 'vfO2py'.time.'.dat' u ($1):(($2)*debyefac):($3) matrix with image;
+		
+		set output 'iz_edf.png';
+		set xrange [200.0:350.0];
+		plot 'vfO2pz'.time.'.dat' u ($1):(($2)*debyefac):($3) matrix with image;
+		
+		print '>> anion energy distribution function';
+		set output 'nix_edf.png';
+		set xtics ('-200' 0, '-150' 50, '-100' 100, '-50' 150,\
+								'0' 200, '50' 250, '100' 300, '150' 350, '200' 400 );
+		set xrange [100.0:300.0];
+		plot 'vfOmx'.time.'.dat' u ($1):(($2)*debyefac):($3) matrix with image;
+		
+		set output 'niy_edf.png';
+		set xrange [130.0:270.0];
+		set xtics ('-60' 140, '-30' 170, '0' 200, '30' 230, '60' 260);
+		plot 'vfOmy'.time.'.dat' u ($1):(($2)*debyefac):($3) matrix with image;
+		
+		set output 'niz_edf.png';
+		set xrange [200.0:300];
+		set xtics ('0' 200, '25' 225, '50' 250, '75' 275, '100' 300);
+		plot 'vfOmz'.time.'.dat' u ($1):(($2)*debyefac):($3) matrix with image;
+	
+		print '>> surface anion energy distribution function';
+		set output 'snix_edf.png';
+		set xtics ('-200' 0, '-150' 50, '-100' 100, '-50' 150,\
+								'0' 200, '50' 250, '100' 300, '150' 350, '200' 400 );
+		set xrange [70.0:330.0];
+		plot 'vfOmsx'.time.'.dat' u ($1):(($2)*debyefac):($3) matrix with image;
+	
+		## close up
+		print ">> surface negative ions close up"
+		set output 'snix_close_edf.png';
+		set xrange [70.0:250.0];
+		set xtics ('-200' 0, '-150' 50, '-100' 100, '-50' 150,\
+								'0' 200, '50' 250, '100' 300, '150' 350, '200' 400 );
+		set yrange [Nx*4/5:*];
+		plot 'vfOmsx'.time.'.dat' u ($1):(($2)*debyefac):($3) matrix with image;
+	
+		## phase resolved
+		print ">> surface negative ions phase resolved"
+		set xrange [150.0:240];
+		set xtics ('-50' 150, '-25' 175, '0' 200, '25' 225, '50' 250);
+		set yrange [Nx*9/10:Nx];
+		set cbrange [1.0:1e3];
+		set output 'snix_nullpi_edf.png'; set title '{/Symbol f}=0';
+		plot 'vfOmsx_time0000.dat' u ($1):(($2)*debyefac):($3) matrix with image;
+		set output 'snix_quarterpi_edf.png'; set title '{/Symbol f}={/Symbol p}/4';
+		plot 'vfOmsx_time0019.dat' u ($1):(($2)*debyefac):($3) matrix with image;
+		set output 'snix_halfpi_edf.png'; set title '{/Symbol f}={/Symbol p}/2';
+		plot 'vfOmsx_time0037.dat' u ($1):(($2)*debyefac):($3) matrix with image;
+		set output 'snix_3quaterpi_edf.png'; set title '{/Symbol f}=3{/Symbol p}/4';
+		plot 'vfOmsx_time0055.dat' u ($1):(($2)*debyefac):($3) matrix with image;
+		unset title;
+	
+		## reset 
+		unset ticslevel;
+		set cbrange [*:*];
+		set xlabel offset 0,0;
+		set ytics offset 0,0;
+		set cblabel 'counts' offset 2,0;
+		set xrange [170.0:230.0];
+		set yrange [0.0:Nx];
+		set xtics ('-30' 170, '-15' 185, '0' 200, '15' 215, '30' 230);
+		set output 'sniy_edf.png';
+		plot 'vfOmsy'.time.'.dat' u ($1):(($2)*debyefac):($3) matrix with image;
+		
+		set output 'sniz_edf.png';
+		set xtics ('-200' 0, '-150' 50, '-100' 100, '-50' 150,\
+								'0' 200, '50' 250, '100' 300, '150' 350, '200' 400 );
+		set cblabel 'counts' offset 1,0;
+		set xrange [200.0:330.0];
+		plot 'vfOmsz'.time.'.dat' u ($1):(($2)*debyefac):($3) matrix with image;
+		
+		set grid;
+		unset key;
+		set logscale cb;
+		set format cb "10^{%T}";
+		set xlabel 'energy [eV]';
+		set ylabel 'z [{/Symbol l}_{Db}]';
+		set datafile missing '0.00000e+00'
+		set ticslevel 0;
+		
+		## 3D plot
+		set output 'snix_surface_edf.png';
+		set cblabel 'counts' offset -9,0;
+		set cbrange [*:1e5];
+		set cbtics ('10^{1}' 1e1, '10^{2}' 1e2,'10^{3}' 1e3, '10^{4}' 1e4,\
+								'>10^{5}' 1e5)
+		set view 50,40,1,1;
+		#set view 50,330,1,1;
+		set cbrange [*:*];
+		set zrange [0.0:1e5];
+		unset ztics;
+		set border 15;
+		set yrange [200.0:Nx];
+		set xrange [60.0:225];
+		set ytics offset 2,0;
+		set xlabel offset 1,0;
+		splot 'vfOmsx'.time.'.dat'u ($1):(($2)*debyefac):($3) matrix with pm3d;
+}
+
+set terminal pngcairo size 756,1280 enhanced font 'Serif, 24'
+set border linewidth 2.5;
+set tics nomirror out scale 0.85;
+set output 'elastcoll.png'
+set grid;
+set key outside top center horizontal;
+set xlabel "z [cm]";
+set ylabel "elastic collision numbers";
+			
+plot  elasticOm'.time.'.dat' using (($1)*nfac):(($2)) w l ls 1 title 'O^{-}_{(b)}',\
+		 elasticOms'.time.'.dat' using (($1)*nfac):(($2)) w l ls 1 title 'O^{-}_{(s)}'
+
+#phaseresolved="0000 0001 0002 0003 0004 0005 0006 0007 0008 0009 0010 0011 0012 0013 0014 0015 0016 0017 0018 0019 0020 0021 0022 0023 0024 0025 0026 0027 0028 0029 0030 0031 0032 0033 0034 0035 0036 0037 0038 0039 0040 0041 0042 0043 0044 0045 0046 0047 0048 0049 0050 0051 0052 0053 0054 0055 0056 0057 0058 0059 0060 0061 0062 0063 0064 0065 0066 0067 0068 0069 0070 0071 0072 0073 0074 0075 0076 0077 0078 0079 0080 0081 0082 0083 0084 0085 0086 0087 0088 0089 0090 0091 0092 0093 0094 0095 0096 0097 0098 0099 0100 0101 0102 0103 0104 0105 0106 0107 0108 0109 0110 0111 0112 0113 0114 0115 0116 0117 0118 0119 0120 0121 0122 0123 0124 0125 0126 0127 0128 0129 0130 0131 0132 0133 0134 0135 0136 0137 0138 0139 0140 0141 0142 0143 0144 0145";
+#print '>> phaseresolved surface ions gif';
+#set terminal gif animate delay 10 enhanced size 1024,758
+#set xrange [150.0:240];
+#set yrange [Nx*5/6:*];
+#set output 'snix_prs_edf.gif';
+#do for [ i in phaseresolved ] {
+#	plot 'vfOmsx_time'.i.'.dat' u ($1):(($2)*debyefac):($3) matrix with image;
+#}

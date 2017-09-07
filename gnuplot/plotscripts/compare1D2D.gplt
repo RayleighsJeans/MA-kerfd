@@ -10,13 +10,13 @@ if (length2d > length1d) { set xrange [0.0:length2d]; } else { set xrange [0.0:l
 if (voltage1d == 0) {voltage1d = 1;}
 if (voltage2d == 0) {voltage2d = 1;}
 
-set output  'figs/compare1D-'.onedrunid.'.2D-'.twodrunid.'.png'
+set output  'figs/compare1D-'.onedrunid.'.2D-'.twodrunid.'.'.time2d.'.png'
 set multiplot layout 6,1
 
 set ylabel 'Potential/V'
 set xlabel 'z/cm'
 set title 'potential, 1Dtime '.nstep1d.', '.voltage1d.' V and 2Dstep '.nstep2d.', '.voltage2d.' V'
-p onedfolder.'phi'.time1d.'.dat' using ($0*0.5*L_db01d):($2*voltage1d) with lines ls 1 title '1D' ,\
+p onedfolder.'phi'.time1d.'.dat' using ($0*0.5*L_db01d):($2/(1.6/100)) with lines ls 1 title '1D' ,\
   'transpose/trans-phi'.time2d.'.dat' using ($0*dr_02d):(sum[col=1:lines] column(col)/(lines)) with lines ls 4 title '2D'
 
 set ylabel 'n/cm^{-3}'

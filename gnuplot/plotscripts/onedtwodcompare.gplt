@@ -1,0 +1,58 @@
+set terminal pngcairo enhanced font 'Serif,34' size 1512,1256
+set border linewidth 2.5
+set tics nomirror out scale 0.85
+set samples 100000
+set isosamples 100000
+
+## colors cycle so: black, red, green, blue, cyan, orange (1-6)
+## linetypes cycle so: solid, dashed, dotted, dash-dotted, dash-dot-dotted
+## linewidth is 2.75
+
+set xrange [0.0:6.7]
+set yrange [0.0:*]
+set xlabel 'z [cm]'
+set ylabel 'density [a.u.]'
+
+volt=400.0 
+length1d=5.0
+Nx=426.0
+distnumber=320.0
+ne01d=5.0e9
+te01d=5.0
+
+fac=length1d/Nx # yields debye length
+debyefac=Nx/distnumber # scaling to cell number
+nfac=length1d/distnumber # scaling to legnth
+
+xfac1=(6.7/5.0)*nfac
+
+print twodid
+print twodtime
+print xfac2
+print scale1d
+
+set grid;
+set key outside top center horizontal;
+
+set output 'figs/onedtwod_'.twodid.'_denscompare.png'
+plot '44420/ne06200000.dat' u ($1*xfac1):($2*scale1d*ne01d) w l ls 1 lw 3.0 title '1D: e^{-}',\
+		 'TRANS2D/'.twodid.'/trans-e_dens_'.twodtime.'.dat' u ($0*xfac2):(sum[col=1:50] column(col)*ne01d/50)\
+			 w l ls 7 title '2D: e^{-}',\
+		 '44420/O2p06200000.dat' u ($1*xfac1):($2*scale1d*ne01d) w l ls 2 lw 3.0 title 'O_{2}^{+}',\
+		 'TRANS2D/'.twodid.'/trans-i_dens_'.twodtime.'.dat' u ($0*xfac2):(sum[col=1:50] column(col)*ne01d/50)\
+			 w l ls 8 title 'O_{2}^{+}',\
+		 '44420/Omin06200000.dat' u ($1*xfac1):($2*scale1d*ne01d) w l ls 3 lw 3.0 title 'O^{-}',\
+		 'TRANS2D/'.twodid.'/trans-ni_dens_'.twodtime.'.dat' u ($0*xfac2):(sum[col=1:50] column(col)*ne01d/50)\
+			 w l ls 9 title 'O^{-}'
+set output 
+
+set output 'figs/onedtwod_'.twodid.'_phicompare.png'
+set ylabel 'potential [V]'
+set yrange [-10.0:310.0]
+
+plot '44420/phi06200000.dat' u ($1*xfac1):($2/(1.6/100.0)) w l ls 1 lw 3.0 title '1D',\
+		 'TRANS2D/'.twodid.'/trans-phi'.twodtime.'.dat'\
+			 u ($0*xfac2):(sum[col=1:50] column(col)*0.385/50) w l ls 7 title '2D
+set output 
+
+quit

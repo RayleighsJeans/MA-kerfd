@@ -7,6 +7,8 @@ copyonly=0; if [ "0" = "$copypnly" ]; then echo "## WILL ONLY COPY SHIT, THATS I
 copyanything=1; if [ "0" = "$copyanything" ]; then echo "## WILL NOT COPY ANYTHING"; fi
 copyh5s=1; if [ "0" = "$copyh5s" ]; then echo "## WILL NOT COPY *.H5's"; fi
 
+outputnumber=25;
+reduceoutput=1; if [ "1" = "$reduceoutput" ]; then echo "## WILL REDUCE OUTPUT TO ${outputnumber} lines"; fi
 makegifs=1; if [ "0" = "$makegifs" ]; then echo "## WILL NOT MAKE GIFS"; fi
 gnuplots=1; if [ "0" = "$gnuplots" ]; then echo "## WILL NOT MAKE GNUPLOTS"; fi
 onedstuff=1; if [ "0" = "$onedstuff" ]; then echo "## WILL NOT DO ANY ONED STUFF"; fi
@@ -14,14 +16,27 @@ onedstuff=1; if [ "0" = "$onedstuff" ]; then echo "## WILL NOT DO ANY ONED STUFF
 TWODRUNDIR=`exec pwd`
 tmp=$(pwd | grep -Po '(_=?)+[0-9]+(?=.)')
 TWODRUNID=${tmp##*[^0-9]}
-TWODJOBNAME=PaulLastASYM; ## $(grep -w "\#\# jobname\:" "../../slurms/slurm-${TWODRUNID}.out" | awk '{print($3)}')
+TWODJOBNAME=$(grep -w "\#\# jobname\:" "../../slurms/slurm-${TWODRUNID}.out" | awk '{print($3)}')
 
 if [ "$onedstuff" = "1" ]; then
   ## define which runs are to be compared
-  ONEDRUNID=42309;
-  ONEDRUNNAME=DoubleSpace;
+  ONEDRUNID=44387;
+  ONEDRUNNAME=DoubleSpaceHP;
   ONEDRUNDIR=../../w1d_$ONEDRUNID.$ONEDRUNNAME;
 fi
+
+##############################################################################
+## REMOVE SHIT AND STUFF #####################################################
+rm -rf data.dat Gnu.Vars octave.vectors variables.tmp bash.vectors transpose/ 2>/dev/null;
+
+##############################################################################
+## COPY STUFF ################################################################
+TWODBASEDIR=$TWODRUNDIR/../../../pic2d
+TMPIC2DIR=$TWODBASEDIR/../tmpic2
+TMPIC1DIR=$TWODBASEDIR/../tmpic1
+SOLVER2DDIR=$TWODBASEDIR/../solver2d
+if [ "$onedstuff" = "1" ]; then ONEDBASEDIR=$TWODBASEDIR/../pic1d; fi
+
 
 if [ "1" = "$copyanything" ]; then
    echo ">> copy slurms";
@@ -38,6 +53,13 @@ if [ "1" = "$copyanything" ]; then
       cp -fv ../save/particle_backup1.h5 $TWODRUNDIR/../../particles/w2d_${TWODRUNID}-${TWODJOBNAME}_particles1.h5 2>/dev/null;
       cp -fv ../geom* $TWODRUNDIR/../../geometries/geom_${TWODRUNID}-${TWODJOBNAME}.txt 2>/dev/null
       cp -fv ../input.dat $TWODRUNDIR/../../inputs/2D-${TWODRUNID}-${TWODJOBNAME}.dat 2>/dev/null
+      if [ "$onedstuff" = "1" ]; then
+        cp -fv ${ONEDRUNDIR}/input.txt ${TWODRUNDIR}/../../inputs/1D-${ONEDRUNID}-${ONEDRUNNAME}.txt 2>/dev/null;
+        cat ${ONEDRUNDIR}/subst.txt >> ${TWODRUNDIR}/../../inputs/1D-${ONEDRUNID}-${ONEDRUNNAME}.txt 2>/dev/null;
+        echo ">> copy 1D particle *.dat's";
+        cp -fv ${ONEDRUNDIR}/save/p0_0b.dat ${TWODRUNDIR}/../../particles/w1d_${ONEDRUNID}-${ONEDRUNNAME}_p0_0b.dat 2>/dev/null;
+        cp -fv ${ONEDRUNDIR}/save/p0_1b.dat ${TWODRUNDIR}/../../particles/w1d_${ONEDRUNID}-${ONEDRUNNAME}_p0_1b.dat 2>/dev/null;
+      fi
    fi
 fi
 
@@ -60,18 +82,17 @@ if [ "0" = "$copyonly" ]; then
   rm -rf transpose/* 2>/dev/null; # clear
   
   ##############################################################################
-  ## COPY STUFF ################################################################
-  TWODBASEDIR=$TWODRUNDIR/../../../pic2d
-  TMPIC2DIR=$TWODBASEDIR/../tmpic2
-  TMPIC1DIR=$TWODBASEDIR/../tmpic1
-  SOLVER2DDIR=$TWODBASEDIR/../solver2d
-  if [ "$onedstuff" = "1" ]; then ONEDBASEDIR=$TWODBASEDIR/../pic1d; fi
-  
-  
-  ##############################################################################
   ## shell input parameters ####################################################
   ## get 2D LAST NUMBER ########################################################
-  timevec2d=( $(ls ../out/e_dens_* | grep -Po '[0-9]+(?=.dat)') ); timesize2d=${#timevec2d[*]};
+  if [ "$reduceoutput" = "1" ]; then
+    echo ">> reduced timevec 2D";
+    timevec2d=( $(ls ../out/phi* | grep -Po '[0-9]+(?=.dat)' | sort -r | head -${outputnumber} | sort -n) );
+    echo ">> timevec2d: ${timevec2d[@]}";
+  else
+    timevec2d=( $(ls ../out/phi* | grep -Po '[0-9]+(?=.dat)') ); timesize2d=${#timevec2d[*]};
+    echo ">> timevec2d: ${timevec2d[@]}";
+  fi
+  timesize2d=${#timevec2d[*]};
      echo ">> get 2D step number"
      if ! [ "$1" -eq "$1" ] 2> /dev/null; then 
         LAST2D=${timevec2d[$timesize2d-1]}; FIRST2D=${timevec2d[0]}; time2d=$LAST2D;
@@ -83,7 +104,15 @@ if [ "0" = "$copyonly" ]; then
   ## get 1D NUMBER closest to 2D number ########################################
   if [ "$onedstuff" = "1" ]; then
     cd $ONEDRUNDIR
-    timevec1d=( $(ls out/ne* | grep -Po '[0-9]+(?=.dat)') ); timesize1d=${#timevec1d[*]};
+    if [ "$reduceoutput" = "1" ]; then
+      echo ">> reduced timevec 1D";
+      timevec1d=( $(ls out/phi* | grep -Po '[0-9]+(?=.dat)' | sort -r | head -${outputnumber} | sort -n) );
+      echo ">> timevec1d: ${timevec1d[@]}";
+    else
+      timevec1d=( $(ls out/ne* | grep -Po '[0-9]+(?=.dat)') );
+      echo ">> timevec1d: ${timevec1d[@]}";
+    fi
+    timesize1d=${#timevec1d[*]};
     echo ">> get 1D step number"
     if ! [ "$1" -eq "$1" ] 2> /dev/null; then # checking if $1 is a number or not
        LAST1D=${timevec1d[$timesize1d-1]}; FIRST1D=${timevec1d[0]}; time1d=$LAST1D;
@@ -210,7 +239,7 @@ if [ "0" = "$copyonly" ]; then
   GnuVars+="velzdiag='${velzdiag}'; "
   GnuVars+="femsolver='${femsolver}'; "
   GnuVars+="onedstuff='${onedstuff}'; "
-  GnuVars+="time2d='${time2d}'; " # gnuplot variable of time 
+  GnuVars+="time2d='${time2d}'; " 
   GnuVars+="nstep2d='${nstep2d}'; "
   GnuVars+="twodfolder='${TWODRUNDIR}/../out/'; "
   GnuVars+="twodrunid='${TWODRUNID}'; "
@@ -225,7 +254,7 @@ if [ "0" = "$copyonly" ]; then
   ## 1D ########################################################################
   if [ "$onedstuff" = "1" ]; then
     echo ">> 1D GnuVars"
-    GnuVars+="time1d='${time1d}'; " # gnuplot variable of time
+    GnuVars+="time1d='${time1d}'; "
     GnuVars+="nstep1d='${nstep1d}'; "
     GnuVars+="onedrunid='${ONEDRUNID}'; "
     GnuVars+="onedfolder='${ONEDRUNDIR}/out/'; "
@@ -257,7 +286,8 @@ if [ "0" = "$copyonly" ]; then
 
   ##############################################################################
   ## DUMPING GnuVars to file ###################################################
-  echo ">> dumping GnuVars to file"; echo "GnuVars=${GnuVars}; " >> Gnu.Vars;
+  echo ">> dumping GnuVars to file";
+      echo "GnuVars=${GnuVars};" >> Gnu.Vars;
   
   ##############################################################################
   ## ECHOING ###################################################################
@@ -382,10 +412,10 @@ if [ "0" = "$copyonly" ]; then
     echo "timesize1d=${timesize1d};"; GnuVarsVec+="timesize1d='${timesize1d}'; ";
     echo "timesize1d=${timesize1d};" >> variables.tmp; 
   fi
-
-  echo ">> dumping GnuVarsVec"; echo "GnuVarsVec=${GnuVarsVec}; " >> Gnu.Vars;
+  echo ">> dumping GnuVarsVec";
+      echo "GnuVarsVec=${GnuVarsVec};" >> Gnu.Vars;
   
-  ##############################################################################
+##############################################################################
   ## BASH VECTORS ##############################################################
   
   j="0";
@@ -413,9 +443,10 @@ if [ "0" = "$copyonly" ]; then
   . ./plots.sh 
   echo ">> done subscripting"
   
-  cp -fv data.dat figs/ 2>/dev/null;
-  cp -fv variables.tmp figs 2>/dev/null;
+  cp -f data.dat figs/. 2>/dev/null;
+  cp -f variables.tmp figs/. 2>/dev/null;
+  mkdir -p ../../images/${TWODRUNID} 2>/dev/null;
+  cp -rf figs/* ../../images/${TWODRUNID} 2>/dev/null;
 
 fi
-
 exit

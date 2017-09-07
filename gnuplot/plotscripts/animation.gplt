@@ -149,7 +149,7 @@ if (onedstuff == 1) {
   set grid; set border linewidth 1.0; set tics nomirror out scale 0.5;
   set key outside;
   sizez1d=nz1d*L_db01d/2;
-  set xrange [0.0:sizez1d]; set yrange [0.0:0.2*ne01d];
+  set xrange [0.0:sizez1d]; set yrange [0.0:1.0*ne01d];
   
   set xlabel 'z/cm'; set ylabel 'n/cm^{-3}';
   
