@@ -28,7 +28,7 @@
 
 % START OF TEX
 \documentclass[
-	10pt,
+	12pt,
 	twoside,
 	chapterinoneline,
 	onehalfspacing, % alternatives: onehalfspacing or doublespacing
@@ -70,7 +70,7 @@
 % ************************************************************************** %
 % THESIS INFORMATION
 \date{\today} 
-\thesistitle{Kinetic\ effects\ in\ RF\ discharges}
+\thesistitle{Kinetic\ Effects\ in\ RF\ Discharges}
 % Your thesis title, this is used in the title and abstract
 \supervisor{Prof.\ Dr.\ Ralf\ Schneider}
 % Your supervisor's name, this is used in the title page
@@ -194,12 +194,12 @@
 % TITLEPAGE
 \begin{titlepage}
 	\begin{center}
-		{\scshape\LARGE \univname\par}\vspace{1.5cm} % University name
+		{\scshape\LARGE \univname\par}\vspace{0.3cm} % University name
 		% TODO: THESIS TYPE
-		\textsc{\Large Master Thesis}\\[0.5cm]
+		\textsc{\Large Master Thesis}\\[0.3cm]
 		\HRule\\[0.4cm] % Horizontal line
 		{\huge \bfseries \ttitle\par}\vspace{0.4cm} % Thesis title
-		\HRule\\[1.5cm] % Horizontal line
+		\HRule\\[0.5cm] % Horizontal line
 		\begin{minipage}[htbp]{0.4\textwidth}
 			\begin{flushleft}\large
 				\emph{Author:}\\
@@ -207,10 +207,11 @@
 			\end{flushleft}
 		\end{minipage}
 		\hfill
-		\begin{minipage}[htbp]{0.4\textwidth}
+		\begin{minipage}[htbp]{0.5\textwidth}
 			\begin{flushright}\large
-				\emph{Supervisor:}\\
-				\supname% TODO: SUPERVISOR
+				\emph{Reviewer:}\\
+				\supname\\
+				\examname% TODO: SUPERVISOR
 			\end{flushright}
 		\end{minipage}\\[0.5cm]
 		% TODO: UNIVERSITY TEXT
@@ -219,7 +220,7 @@
 									 \degreename}\\[0.3cm]
 		\textit{in the research group of}\\[0.4cm]
 		% TODO: RESEARCH GROUP/DEPARTMENT
-		\groupname,\\\deptname\\[1cm]
+		\groupname,\\\deptname\\[0.8cm]
 %
 		% University/department logo - uncomment to place it
 		% use for pdf files
@@ -227,7 +228,7 @@
 		% \includegraphics[width=0.55\textwidth]{figures/logos/logo.pdf}\\[1.0cm]
 %
 		% use for eps files
-		\hspace*{0.75cm}
+		\hspace*{0.5cm}
 		\epsfig{width=0.45\textwidth,file=figures/logos/logo.eps}\\[1.0cm]
 %
 		{\large \today}
@@ -243,7 +244,7 @@
 		I hereby certify that this thesis has been composed by me and is based on 
 		my own work, unless stated otherwise.	No other person’s work has been used
 		without due acknowledgement in this thesis.
-		All references and verbatim extracts have been quoted, and iall sources of
+		All references and verbatim extracts have been quoted, and all sources of
 		information, including graphs and data sets, have been specifically
 		acknowledged.\\[2.0cm]
 %
@@ -257,13 +258,11 @@
 % ************************************************************************** %
 %  TOCTOCTOC FOR EVERYTHING
 	\tableofcontents % Prints the main table of contents
-	% \listoffigures % Prints the list of figures
-	% \listoftables % Prints the list of tables
 % ************************************************************************** %
 %
 % ************************************************************************** %
 % PREFIX
-	\input{content/start_prefix}
+	\input{appendices/start_prefix}
 % ************************************************************************** %
 	\mainmatter% 
 	\pagestyle{thesis}
@@ -276,22 +275,23 @@
 % BASICS
 	\input{content/01_basics_ccrfplasma}
 	\input{content/02_basics_langmuir}
-	\input{content/03_basics_bohmcriteria}
-	\input{content/04_basics_siesee}
 	\input{content/05_basics_selfbias}
 	\input{content/07_basics_heating}
 	\input{content/08_basics_picprinciple}
-	\input{content/09_basics_2d3vpic}
 	\input{content/10_basics_plasmachemistry}
 	\input{content/11_basics_collreact}
 	\input{content/12_basics_anions}
+	\input{content/04_basics_siesee}
 	\input{content/13_basics_experiment}
 % RESULTS
-	\input{content/13_results_oned}
-	\input{content/14_results_twod}
+	\input{content/14_results_oned}
+	\input{content/15_results_twod}
 % END
-	%\input{content/15_end_conclusion}
+	\input{content/16_end_conclusion}
+% DEAD	
+	%\input{content/09_basics_2d3vpic}
 	%\input{content/16_end_fem}
+	%\input{content/98_basics_bohmcriteria}
 	%\input{content/99_basics_dispcurr}
 % ************************************************************************** %
 %	
@@ -310,31 +310,39 @@
 %
 % ************************************************************************** %
 % ACKNOWLEDGMENTS
-	\pagestyle{plain}
-	\begin{acknowledgements}
-	% \addchaptertocentry{\acknowledgementname}
-		The acknowledgments and the people to thank go here, don't forget to
-	 	include your project advisor\ldots
-	 \end{acknowledgements}
+				\clearpage
+				\pagestyle{empty}
+				\begin{center}{%
+					\huge\textit{\acknowledgementname}\bigskip%
+				}\end{center}
+        My utmost and sincere gratitude goes to my thesis chair Prof. Dr. Ralf Schneider %
+        and his whole work group. Without their support and advice this would have not been possible. %
+        I also would like to say thank you for giving me the chance to work there, %
+        which taught me many important things as a physicist and scientist.\\
+        A special thanks goes to Stella Scholl, my partner and beloved better half, who supported %
+        me no matter the time of day or other circumstances. Without her I would have not made it.\\
+        Thank you also to my family, especially my parents and grandparents %
+        for always supporting me on my journey. They %
+        always backed me up emotionally, mentally and sometimes even professionally.\\
+        Last but not least I want to thank my fellow colleagues of the M.Sc. Physics %
+				study programe. We made it this far together and this means a lot to me.
+	 \clearpage
 % ************************************************************************** %
 %
 % ************************************************************************** %
 % INSERT MOTIVATIONAL QUOTE
-%	\vspace*{0.33\textheight}
-%	\rule{\textwidth}{0.1pt}
-%	\noindent\enquote{%
-%		Without encroaching upon grounds appertaining to the theologian and the
-%		philosopher, the domain of natural sciences is surely broad enough to
-%		satisfy the wildest ambition of its devotees. $\left[\dots\right]$
-%		The work may be hard, and the discipline severe; but the interest never
-%		fails, and great is the privilege of achievement.
-%	}\bigbreak%
-%	\begin{flushright}
-%		--- John William Strutt, 3rd Baron Rayleigh, 1884\\
-%		\small\emph{in: Address to the British Association in Montreal}
-%	\end{flushright}
-% \vspace*{0.15\textheight}
-% \rule{\textwidth}{0.1pt}
+  \pagestyle{empty}
+	\enquote{%
+		Without encroaching upon grounds appertaining to the theologian and the
+		philosopher, the domain of natural sciences is surely broad enough to
+		satisfy the wildest ambition of its devotees. $\left[\dots\right]$
+		The work may be hard, and the discipline severe; but the interest never
+		fails, and great is the privilege of achievement.}%
+	\bigbreak%
+	\begin{flushright}
+		--- John William Strutt, 3rd Baron Rayleigh, 1884\\
+		\small\emph{in: Address to the British Association in Montreal}
+	\end{flushright}
 % ************************************************************************** %
 % END OF DOCUMENT
 \end{document}

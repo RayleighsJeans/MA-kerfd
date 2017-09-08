@@ -402,8 +402,7 @@ KOMA-script documentation for details.}]{fancyhdr}
 \NewDocumentEnvironment{acknowledgements}{}{%
 \checktoopen
 \tttypeout{\acknowledgementname}
-\thispagestyle{plain}
-\begin{center}{\huge\textit{\acknowledgementname}\par}\end{center}
+\begin{center}{\huge\textit{\acknowledgementname}\bigskip}\end{center}
 }
 {
 \vfil\vfil\null
@@ -412,7 +411,7 @@ KOMA-script documentation for details.}]{fancyhdr}
 %----------------------------------------------------------------------------------------
 
 \ifbool{hyperrefsupport}{% If the nohyperref class option has not been specified
-\AfterPackage{biblatex}{ % Load the hyperref package after the biblatex package for compatibility 
+\AfterPackage{biblatex}{
 \RequirePackage{hyperref} % Required for customising links and the PDF
 \hypersetup{pdfpagemode={UseOutlines},
 bookmarksopen=true,

@@ -1,0 +1,308 @@
+set terminal pngcairo enhanced size 1256,1512 font 'Serif,32'
+set grid
+set border linewidth 2.25
+set tics nomirror out scale 0.5
+
+xyfac=0.012
+ne0=5.0e9
+
+set xrange [0.0:2.5]
+set yrange [0.0:4.5]
+# set key outside top horizontal center
+unset key
+set xlabel 'z [cm]'
+set ylabel 'r [cm]'
+set datafile missing '0.00000e+00'
+set cblabel 'density' offset 1,0
+
+## **************************************** ##
+## ELECTRONS ****************************** ##
+## **************************************** ##
+set output 'figs/sfb/e_dens.png'
+unset logscale cb
+set logscale cb
+set format cb '10^{%T}'
+# set format cb '%g'
+plot '2D_38620_SFB/e_dens_27440000.dat'\
+	u ($1*xyfac):($2*xyfac):($3*ne0*ne0) matrix with image
+set output
+
+set terminal pngcairo size 1512,1256
+set output 'figs/sfb/e_distz.png'
+unset logscale cb
+set logscale cb
+set pm3d map
+set format cb '10^{%T}'
+# set format cb '%g'
+set cbrange [0.1:*];
+set cblabel 'counts' offset 1,0
+set xrange [0.0:600.0]
+set xtics('-300' 0, '-200' 100, '-100' 200,\
+	'0' 300, '100' 400, '200' 500, '300' 600)
+set yrange [0.0:2.5]
+set xlabel 'energy [ev]'
+set ylabel 'z [cm]'
+plot '2D_38620_SFB/e_distzall_27110000.dat'\
+	u ($2):(xyfac*$1):($5) w image
+set output
+set xrange [0.0:2.5]
+set xtics 0.5
+set yrange [0.0:4.5]
+set xlabel 'z [cm]'
+set ylabel 'r [cm]'
+set cblabel 'density' offset 1,0
+set terminal pngcairo size 1256,1512
+
+## **************************************** ##
+## IONS *********************************** ##
+## **************************************** ##
+set output 'figs/sfb/i_dens.png'
+unset logscale cb
+set logscale cb
+set format cb '10^{%T}'
+# set format cb '%g'
+plot '2D_38620_SFB/i_dens_27350000.dat'\
+	u ($1*xyfac):($2*xyfac):($3*ne0) matrix with image
+set output
+
+set terminal pngcairo size 1512,1256
+set output 'figs/sfb/i_distz.png'
+unset logscale cb
+set logscale cb
+set pm3d map
+set format cb '10^{%T}'
+# set format cb '%g'
+set cbrange [0.1:*];
+set cblabel 'counts' offset 1,0
+set xrange [250.0:350.0]
+set xtics('-50' 250, '-25' 275,\
+		 '0' 300, '25' 325, '50' 350)
+set yrange [0.0:2.5]
+set xlabel 'energy [ev]'
+set ylabel 'z [cm]'
+plot '2D_38620_SFB/i_distzall_27350000.dat'\
+	u ($2):($1*xyfac):($5) w image
+set output
+set xrange [0.0:2.5]
+set xtics 0.5
+set yrange [0.0:4.5]
+set xlabel 'z [cm]'
+set ylabel 'r [cm]'
+set cblabel 'density' offset 1,0
+set terminal pngcairo size 1256,1512
+
+## **************************************** ##
+## NEGATIVE IONS ************************** ##
+## **************************************** ##
+set output 'figs/sfb/ni_dens.png'
+unset logscale cb
+set logscale cb
+
+set format cb '10^{%T}'
+# set format cb '%g'
+plot '2D_38620_SFB/ni_dens_27440000.dat'\
+	u ($1*xyfac):($2*xyfac):($3*ne0) matrix with image
+set output
+
+set output 'figs/sfb/ni_2_dens.png'
+unset logscale cb
+set logscale cb
+set format cb '10^{%T}'
+# set format cb '%g'
+plot '2D_38620_SFB/ni_dens_2_27380000.dat'\
+	u ($1*xyfac):($2*xyfac):($3*ne0) matrix with image
+set output
+
+set output 'figs/sfb/ni_3_dens.png'
+unset logscale cb
+set logscale cb
+set format cb '10^{%T}'
+# set format cb '%g'
+plot '2D_38620_SFB/ni_dens_3_27110000.dat'\
+	u ($1*xyfac):($2*xyfac):($3*ne0) matrix with image
+set output
+
+set output 'figs/sfb/ni_4_dens.png'
+unset logscale cb
+set logscale cb
+set format cb '10^{%T}'
+# set format cb '%g'
+plot '2D_38620_SFB/ni_dens_4_27260000.dat'\
+	u ($1*xyfac):($2*xyfac):($3*ne0) matrix with image
+set output
+
+set output 'figs/sfb/ni_5_dens.png'
+unset logscale cb
+set logscale cb
+set format cb '10^{%T}'
+# set format cb '%g'
+plot '2D_38620_SFB/ni_dens_5_27410000.dat'\
+	u ($1*xyfac):($2*xyfac):($3*ne0) matrix with image
+set output
+
+set terminal pngcairo size 1512,1256
+set output 'figs/sfb/ni_distz.png'
+unset logscale cb
+set logscale cb
+set pm3d map
+set format cb '10^{%T}'
+# set format cb '%g'
+set cbrange [0.1:*];
+set cblabel 'counts' offset 1,0
+set xrange [100.0:500.0]
+set xtics('-300' 0, '-200' 100, '-100' 200,\
+	'0' 300, '100' 400, '200' 500, '300' 600)
+set yrange [0.0:2.5]
+set xlabel 'energy [ev]'
+set ylabel 'z [cm]'
+plot '2D_38620_SFB/ni_distzall_527500000.dat'\
+	u ($2):($1*xyfac):($5) w image
+set output
+set xrange [0.0:2.5]
+set xtics 0.5
+set yrange [0.0:4.5]
+set xlabel 'z [cm]'
+set ylabel 'r [cm]'
+set cblabel 'density' offset 1,0
+set terminal pngcairo size 1256,1512
+
+set output 'figs/sfb/phi.png'
+unset logscale cb
+# set logscale cb
+# set format cb '10^{%T}'
+set cblabel 'potential [V]'
+set format cb '%g'
+plot '2D_38620_SFB/phi27500000.dat'\
+	u ($1*xyfac):($2*xyfac):($3) matrix with image
+set output
+
+set cblabel 'collision counts / {/Symbol D} t' offset 1,0
+
+## **************************************** ##
+## COLLISION FIGURES ********************** ##
+## **************************************** ##
+
+#set cbtics('10^{-5}' 1e-5, '10^{-4}' 1e-4, '10^{-3}' 1e-3,\
+#					'10^{-2}' 1e-2, '10^{-1}' 1e-1, '10^{0}' 1e0,\
+#					'10^{1}' 1e1, '10^{2}' 1e2, '10^{3}' 1e3, '10^{4}' 1e4,\
+#					'10^{5}' 1e5, '10^{6}' 1e6)
+
+set output 'figs/sfb/coll_el_det.png'
+unset logscale cb
+#set logscale cb
+set format cb '10^{%T}'
+set format cb '%g'
+plot '2D_38620_SFB/coll_el_det27440000.dat'\
+	u ($1*xyfac):($2*xyfac):($3) matrix with image
+set output
+
+set output 'figs/sfb/coll_coulomb.png'
+unset logscale cb
+#set logscale cb
+#set format cb '10^{%T}'
+set format cb '%g'
+plot '2D_38620_SFB/coll_coulomb27410000.dat'\
+	u ($1*xyfac):($2*xyfac):($3) matrix with image
+set output
+
+set output 'figs/sfb/coll_dirattach.png'
+unset logscale cb
+#set logscale cb
+#set format cb '10^{%T}'
+set format cb '%g'
+plot '2D_38620_SFB/coll_dat27020000.dat'\
+	u ($1*xyfac):($2*xyfac):($3) matrix with image
+set output
+
+set output 'figs/sfb/coll_el_det.png'
+unset logscale cb
+#set logscale cb
+#set format cb '10^{%T}'
+set format cb '%g'
+plot '2D_38620_SFB/coll_el_det27440000.dat'\
+	u ($1*xyfac):($2*xyfac):($3) matrix with image
+set output
+
+set output 'figs/sfb/coll_el_ntrl.png'
+unset logscale cb
+#set logscale cb
+#set format cb '10^{%T}'
+set format cb '%g'
+plot '2D_38620_SFB/coll_el_ntrl27500000.dat'\
+	u ($1*xyfac):($2*xyfac):($3) matrix with image
+set output
+
+
+set output 'figs/sfb/coll_ion_ntrl.png'
+unset logscale cb
+#set logscale cb
+#set format cb '10^{%T}'
+set format cb '%g'
+plot '2D_38620_SFB/coll_ion_ntrl27260000.dat'\
+	u ($1*xyfac):($2*xyfac):($3) matrix with image
+set output
+
+set output 'figs/sfb/coll_ioniz.png'
+unset logscale cb
+#set logscale cb
+#set format cb '10^{%T}'
+set format cb '%g'
+plot '2D_38620_SFB/coll_ioniz27410000.dat'\
+	u ($1*xyfac):($2*xyfac):($3) matrix with image
+set output
+
+set output 'figs/sfb/coll_mfp.png'
+unset logscale cb
+#set logscale cb
+#set format cb '10^{%T}'
+set format cb '%g'
+plot '2D_38620_SFB/coll_mfp27440000.dat'\
+	u ($1*xyfac):($2*xyfac):($3) matrix with image
+set output
+
+set output 'figs/sfb/coll_nion_ntrl.png'
+unset logscale cb
+#set logscale cb
+#set format cb '10^{%T}'
+set format cb '%g'
+plot '2D_38620_SFB/coll_nion_ntrl27410000.dat'\
+	u ($1*xyfac):($2*xyfac):($3) matrix with image
+set output
+
+set output 'figs/sfb/coll_ntrl_detach.png'
+unset logscale cb
+#set logscale cb
+#set format cb '10^{%T}'
+set format cb '%g'
+plot '2D_38620_SFB/coll_ntrl_detach27380000.dat'\
+	u ($1*xyfac):($2*xyfac):($3) matrix with image
+set output
+
+set output 'figs/sfb/coll_ntrlz.png'
+unset logscale cb
+#set logscale cb
+#set format cb '10^{%T}'
+set format cb '%g'
+plot '2D_38620_SFB/coll_ntrlz27380000.dat'\
+	u ($1*xyfac):($2*xyfac):($3) matrix with image
+set output
+
+set output 'figs/sfb/coll_recomb.png'
+unset logscale cb
+#set logscale cb
+#set format cb '10^{%T}'
+set format cb '%g'
+plot '2D_38620_SFB/coll_recomb27380000.dat'\
+	u ($1*xyfac):($2*xyfac):($3) matrix with image
+set output
+
+set output 'figs/sfb/coll_el_det.png'
+unset logscale cb
+#set logscale cb
+#set format cb '10^{%T}'
+set format cb '%g'
+plot '2D_38620_SFB/coll_el_det27440000.dat'\
+	u ($1*xyfac):($2*xyfac):($3) matrix with image
+set output
+
+quit

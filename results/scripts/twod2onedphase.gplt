@@ -1,0 +1,41 @@
+set terminal pngcairo enhanced size 1280,960 font 'Serif,24'
+set grid
+set border linewidth 2.25
+set tics nomirror out scale 0.5
+
+runid='45361'
+fac=1.28e-2
+ne0=5.0e9
+set xrange [0.0:6.65]
+set yrange [-400.0:750.0]
+
+set xlabel 'z [cm]'
+set ylabel 'potential [V]'
+
+## set label 1 '{/Symbol f}=0'                at 0.45,1.0e7 textcolor ls 1
+## set label 2 '{/Symbol f}={/Symbol p}/2'    at 0.35,2.0e7 textcolor ls 1
+## set label 3 '{/Symbol f}=3{/Symbol p}/2'   at 0.68,2.0e7 textcolor ls 1
+## set label 4 'e^{-}'                        at 0.55,2.5e7 textcolor ls 1
+## set label 5 'O_{2}^{+}'                    at 0.2 ,3.0e7 textcolor ls 2
+## set label 6 'O^{-}'                        at 0.75,2.0e6 textcolor ls 4
+
+#set style arrow 1 head filled size screen 0.03,15 ls 1
+#set arrow from 3,420 to 3,670 as 1
+#set label 7 '{/Symbol D}{/Symbol F}{/Symbol \273}700V' at 2.5,335 textcolor ls 1
+#set style arrow 2 head filled size screen 0.03,15 ls 1
+#set arrow from 3,250 to 3,0 as 2
+
+#
+!paste -d ' ' trans-phi00750184.dat trans-phi00750368.dat trans-phi00750552.dat trans-phi00750736.dat trans-phi00750920.dat trans-phi00751104.dat trans-phi00751288.dat trans-phi00751472.dat > joined.dat
+
+set key horizontal bottom center 
+set output '../figs/'.runid.'prs_pot.png'
+plot 'trans-phi00750184.dat' u ($0*fac):(sum[col=1:50] column(col)/(50.0)) w l ls 1 title '{/Symbol f}={/Symbol p}/4',\
+     'trans-phi00750368.dat' u ($0*fac):(sum[col=1:50] column(col)/(50.0)) w l ls 2 title '{/Symbol f}={/Symbol p}/2',\
+     'trans-phi00750920.dat' u ($0*fac):(sum[col=1:50] column(col)/(50.0)) w l ls 3 title '{/Symbol f}=5{/Symbol p}/4',\
+     'trans-phi00751104.dat' u ($0*fac):(sum[col=1:50] column(col)/(50.0)) w l ls 4 title '{/Symbol f}=3{/Symbol p}/2',\
+		 'joined.dat' u ($0*fac):(sum[col=1:400] column(col)/400.0) w l ls 7 title '{/Symbol F}_{av}'
+set output
+
+pause 0.5
+quit

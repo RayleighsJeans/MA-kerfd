@@ -1,0 +1,38 @@
+set terminal pngcairo enhanced size 960,756 font 'Serif,24'
+set grid; set key outside top;
+set border linewidth 2.25; set tics nomirror out scale 0.5;
+
+runid='44387'
+fac=0.0117*(426.0/320.0);
+ne0=5.0e9;
+set xrange [4.2:4.8];
+set yrange [*:4.0e7];
+unset key
+
+set xlabel 'z [cm]';
+set ylabel 'density [cm^{-3}]'
+#set logscale y;
+#set format y "10^{%T}"
+
+set label 1 '{/Symbol f}=0' at 4.5,1.5e7 textcolor ls 1
+set label 2 '{/Symbol f}={/Symbol p}/2' at 4.35,1.0e7 textcolor ls 1
+set label 3 '{/Symbol f}=3{/Symbol p}/2' at 4.65,1.25e7 textcolor ls 1
+
+set label 4 'e^{-}' at 4.4,2.5e7 textcolor ls 1
+set label 5 'O_{2}^{+}' at 4.7,3.5e7 textcolor ls 2
+set label 6 'O^{-}' at 4.22,1.0e7 textcolor ls 4
+
+set output '../figs/'.runid.'_1Dprs_dens.png'
+
+plot   'ne03721540.dat' u ($1*fac):($2*ne0) w l ls 1,\
+       'ne03721905.dat' u ($1*fac):($2*ne0) w l ls 7,\
+       'ne03722635.dat' u ($1*fac):($2*ne0) w l ls 13,\
+      'O2p03721540.dat' u ($1*fac):($2*ne0) w l ls 2,\
+      'O2p03721905.dat' u ($1*fac):($2*ne0) w l ls 8,\
+      'O2p03722635.dat' u ($1*fac):($2*ne0) w l ls 14,\
+     'Omin03721540.dat' u ($1*fac):($2*ne0) w l ls 4,\
+     'Omin03721905.dat' u ($1*fac):($2*ne0) w l ls 10,\
+     'Omin03722635.dat' u ($1*fac):($2*ne0) w l ls 16
+
+set output
+quit

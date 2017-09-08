@@ -1,0 +1,75 @@
+set terminal pngcairo enhanced size 1280,960 font 'Serif,27'
+set grid
+set border linewidth 2.25
+set tics nomirror out scale 0.5
+set key bottom right
+
+runid='45365'
+set ylabel 'density [cm^{-3}]'
+set xlabel 'z [cm]'
+
+fac=1.28e-2
+ne0=5.0e9
+
+set xrange [4.7:5.5]
+set yrange [0.0:4.0e8]
+
+set output '../figs/'.runid.'prs_dens.png'
+
+#set label 1 '{/Symbol f}={/Symbol p}/4'  at 1.0,1.0e1 textcolor ls 1
+#set label 2 '{/Symbol f}=5{/Symbol p}/4' at 1.0,1.0e1 textcolor ls 2
+#set label 3 '{/Symbol f}={/Symbol p}/2'  at 1.0,1.0e1 textcolor ls 4
+#set label 4 '{/Symbol f}=3{/Symbol p}/4' at 1.0,1.0e1 textcolor ls 3
+
+set label 1 'e^{-}' at 5.2,2.5e8 textcolor ls 1
+set label 2 'O_{2}^{+}' at 5.3,3.0e8 textcolor ls 2
+set label 3 'O^{-}' at 4.8,5.0e7 textcolor ls 4
+
+plot 'trans-e_dens_00900184.dat' u ($0*fac):(sum[col=1:50] column(col)*(ne0/(50.0)))\
+			w l ls 1 title '{/Symbol f}={/Symbol p}/4',\
+     'trans-e_dens_00900368.dat' u ($0*fac):(sum[col=1:50] column(col)*(ne0/(50.0)))\
+			w l ls 7 title '{/Symbol f}=5{/Symbol p}/4',\
+     'trans-e_dens_00900920.dat' u ($0*fac):(sum[col=1:50] column(col)*(ne0/(50.0)))\
+			w l ls 13 title '{/Symbol f}={/Symbol p}/2',\
+     'trans-e_dens_00901104.dat' u ($0*fac):(sum[col=1:50] column(col)*(ne0/(50.0)))\
+			w l ls 19 title '{/Symbol f}=3{/Symbol p}/4',\
+		 'trans-i_dens_00900184.dat' u ($0*fac):(sum[col=1:50] column(col)*(ne0/(50.0)))\
+		  w l ls 2 notitle,\
+		 'trans-i_dens_00900368.dat' u ($0*fac):(sum[col=1:50] column(col)*(ne0/(50.0)))\
+		  w l ls 8 notitle,\
+		 'trans-i_dens_00900920.dat' u ($0*fac):(sum[col=1:50] column(col)*(ne0/(50.0)))\
+		  w l ls 14 notitle,\
+		 'trans-i_dens_00901104.dat' u ($0*fac):(sum[col=1:50] column(col)*(ne0/(50.0)))\
+		  w l ls 20 notitle,\
+		 'trans-ni_dens_00900184.dat' u ($0*fac):(sum[col=1:50] column(col)*(ne0/(50.0)))\
+		  w l ls 4 notitle,\
+		 'trans-ni_dens_00900920.dat' u ($0*fac):(sum[col=1:50] column(col)*(ne0/(50.0)))\
+		  w l ls 16 notitle,\
+		 'trans-ni_dens_00901104.dat' u ($0*fac):(sum[col=1:50] column(col)*(ne0/(50.0)))\
+			w l ls 22 notitle ,\
+     'trans-ni_dens_00900368.dat' u ($0*fac):(sum[col=1:50] column(col)*(ne0/(50.0)))\
+		  w l ls 10 notitle
+set output
+
+unset label
+set key outside top center horizontal
+set output '../figs/'.runid.'_dens.png'
+set xrange [0.0:6.7]
+set yrange [0.0:*]
+
+## ELECTRONS
+!paste -d ' ' trans-e_dens_00900184.dat trans-e_dens_00900368.dat trans-e_dens_00900552.dat trans-e_dens_00900736.dat trans-e_dens_00900920.dat trans-e_dens_00901104.dat trans-e_dens_00901288.dat trans-e_dens_00901472.dat > el_joined.dat
+
+## IONS
+!paste -d ' ' trans-i_dens_00900184.dat trans-i_dens_00900368.dat trans-i_dens_00900552.dat trans-i_dens_00900736.dat trans-i_dens_00900920.dat trans-i_dens_00901104.dat trans-i_dens_00901288.dat trans-i_dens_00901472.dat > ion_joined.dat
+
+## NEG IONS
+!paste -d ' ' trans-ni_dens_00900184.dat trans-ni_dens_00900368.dat trans-ni_dens_00900552.dat trans-ni_dens_00900736.dat trans-ni_dens_00900920.dat trans-ni_dens_00901104.dat trans-ni_dens_00901288.dat trans-ni_dens_00901472.dat > nion_joined.dat
+
+
+plot 	'el_joined.dat' u ($0*fac):(sum[col=1:400] ne0*column(col)/400.0) w l ls 1 title 'e^{-}',\
+		 'ion_joined.dat' u ($0*fac):(sum[col=1:400] ne0*column(col)/400.0) w l ls 2 title 'O_{2}^{+}',\
+		'nion_joined.dat' u ($0*fac):(sum[col=1:400] ne0*column(col)/400.0) w l ls 4 title 'O^{-}'
+set output
+
+quit

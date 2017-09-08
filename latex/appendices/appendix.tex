@@ -1,9 +1,9 @@
 \chapter{Appendix}
-
+%
 % ************************************************************************** %
 % PHYSICAL PROPERTIES
+  \section{Physical Properties}
   \begin{longtable}{m{0.32\textwidth}m{0.32\textwidth}m{0.32\textwidth}}
-  %\begin{longtable}{ccc}
     \toprule
     \bfseries quantity & \bfseries equation & \bfseries relevance \\%
     \toprule\midrule\endhead%
@@ -35,7 +35,8 @@
       coulomb logarithm &%
         $\begin{aligned}
           &\ln\left(\Lambda\right) \\ \\
-          &\Lambda=\frac{b\max}{b\min}=\lambda\ix{D}\cdot%
+          &\Lambda=\frac{b\max}{b\min}= \\ \\
+          &\lambda\ix{D}\cdot%
           \frac{4\pi\varepsilon\ix{0}\mu v\ix{th}^{2}}{e^{2}} 
         \end{aligned}$ &%
           dimensionless scale for transport processes inside discharge \newline
@@ -54,9 +55,7 @@
         \end{aligned}$ &%
           mean inter particle distance for species j \newline% 
           free flight between subsequent collisions of species j and k %
-          with collision frequency $\nu\ix{j,k}$ \\%
-      \midrule\bottomrule%
-
+          with collision frequency $\nu\ix{j,k}$ \\ \midrule%
       speed of sound &%
         $\begin{aligned}
           c\ix{S}^{2}&=\frac{\gamma Zk\ix{B}T\ix{e}}{m\ix{i}} \\
@@ -77,18 +76,107 @@
           v\ix{d,j}=u\ix{j}=\frac{j\ix{j}}{n\ix{j}q}=\frac{m\sigma E}{\rho ef}
         \end{aligned}$ &%
         average velocity of a particle in a conductor with an electric field applied E, \newline%
-        where $N$ is the number of free electrons per atom\\ \midrule
+        where $N$ is the number of free electrons per atom \\%
       electric mobility &
         $\begin{aligned}
           \mu\ix{j}=\frac{v\ix{d}}{E}
         \end{aligned}$ &%
-        ability of charged particle of moving through an electric field %
-        --- with presence of a conductor \\%
-
+        ability of charged particle of moving through an electric field \\%
     \midrule\bottomrule%
-    \caption{%
+    \caption[Selection of physical properties of a low temperature ccrf discharge]{%
       Selection of physical properties of a low temperature ccrf discharge. The index $j$ denotes the %
       species, e.g.\@ electrons, ions. Used quantities can be found in the preface %
       in~\autoref{tabe:physicalconstants}.}\label{tabe:physicalquantities}
   \end{longtable}
 % ************************************************************************** %
+%   
+		\clearpage
+    \section[Energy Distributions from 2D PIC]%
+            {Simulated Energy Distribution\\
+            Functions from 2D PIC}\label{sec:appendix_results}
+%
+        \begin{center}
+            \begin{figure}[!h]
+                \centering
+                \begin{subfigure}{0.49\textwidth}
+									\includegraphics[height=0.3\textheight]%
+                        {figures/results/2D/44332/e_dens.png}
+                \end{subfigure}
+                \begin{subfigure}{0.49\textwidth}
+									\includegraphics[height=0.3\textheight]%
+                        {figures/results/2D/44426/e_dens.png}
+                \end{subfigure}
+                %\caption[2D electron and ion density]{%
+                %    Electron density from the two previously %
+								%		described asymmetric 2D simulations.}
+                %\label{fig:app_dens}
+            %\end{figure}
+						%\begin{figure}
+								%\centering
+                \begin{subfigure}{0.49\textwidth}
+									\includegraphics[height=0.3\textheight]%
+                        {figures/results/2D/44332/ni_dens.png}
+                \end{subfigure}
+                \begin{subfigure}{0.49\textwidth}
+									\includegraphics[height=0.3\textheight]%
+                        {figures/results/2D/44426/ni_dens.png}
+                \end{subfigure}
+								\newline
+                %\caption[2D electron and ion density]{%
+                %    Negative ion density from the two previously %
+								%		described asymmetric 2D simulations.}
+                %\label{fig:app_dens_ni}
+            %\end{figure}
+						%\begin{figure}[!b]
+                %\centering
+                \begin{subfigure}{0.49\textwidth}
+									\includegraphics[height=0.22\textheight]%
+                        {figures/results/2D/44332/e_distz.png}
+                \end{subfigure}
+                \begin{subfigure}{0.49\textwidth}
+									\includegraphics[height=0.22\textheight]%
+                        {figures/results/2D/44426/e_distz.png}
+                \end{subfigure}
+               	\caption[Electron and negative ion panel]{%
+									\fett{Top}: electron density, \fett{Mid}: negative ion density, %
+									\fett{Bottom}: axial compontent of electron EDF from a 2D simulation %
+										of the two asymmetrical discharges discussed before-hand.}
+                \label{fig:app_dens}
+            \end{figure}
+						\clearpage
+            \begin{figure}
+                \centering
+                \begin{subfigure}{0.49\textwidth}
+                    \includegraphics[width=1.0\textwidth]%
+                        {figures/results/2D/44332/i_distz.png}
+                \end{subfigure}
+                \begin{subfigure}{0.49\textwidth}
+                    \includegraphics[width=1.0\textwidth]%
+                        {figures/results/2D/44426/i_distz.png}
+                \end{subfigure}
+                \caption[Axial ion EDF from 2D]{%
+                    Axial compontent of ion EDF from a 2D simulation %
+										of the two asymmetrical discharges discussed before-hand.}
+                \label{fig:app_edf_i}
+            \end{figure}
+						\vfill
+            \begin{figure}
+                \centering
+                \begin{subfigure}{0.49\textwidth}
+                    \includegraphics[width=1.0\textwidth]%
+                        {figures/results/2D/44332/ni_distz.png}
+                \end{subfigure}
+                \begin{subfigure}{0.49\textwidth}
+                    \includegraphics[width=1.0\textwidth]%
+                        {figures/results/2D/44426/ni_distz.png}
+                \end{subfigure}
+                \caption[Axial negative ion EDF from 2D]{%
+                    Axial compontent of negative ion EDF from a 2D simulation %
+										of the two asymmetrical discharges discussed before-hand.}
+                \label{fig:app_edf_ni}
+            \end{figure}
+        \end{center}
+%
+		\clearpage
+    \listoffigures % Prints the list of figures
+	\listoftables % Prints the list of tables

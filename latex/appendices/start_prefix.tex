@@ -1,0 +1,83 @@
+% ************************************************************************** %
+% INSERT ABBREVIATIONS
+	\begin{abbreviations}{ll}
+		\toprule
+		\bfseries abbreviation & \bfseries full expression \\%
+		\toprule\midrule\endhead%
+		e.g.          & exempli gratia; \emph{for example} \\ \\%
+		etc.          & et cetera; \emph{and so on} \\ \\%
+        ac, AC        & alternating current \\ \\%
+        dc, DC        & direct current \\ \\%
+		rf, RF        & radio frequency \\ \\%
+        ccrf, CCRF    & capacitively coupled radio frequency \\ \\%
+		EDF           & \emph{german: Energieverteilungsfunktion}, energy distribution function \\ \\%
+        EEDF, EED     & electron energy distribution function \\ \\%
+        IEDF, IED     & ion energy distribution function \\ \\%
+		p., pp.		  & page, plural pages \\ \\%
+		ff.			  & folio; \emph{on the (next) page}, ablative of folium (\emph{page}) \\ \\%
+		SIE, SEE	  & secondary ion/electron emission \\ \\%
+		HWA			  & hard wall approximation \\ \\%
+		MS			  & mass spectrometer \\ \\%
+		PROES		  & phase resolved optical emission spectroscopy \\ \\%
+		MWI			  & microwave interferometer \\ \\%
+		AN			  & antenna \\ \\%
+		FC			  & flow controller \\ \\%
+		PIC			  & particle-in-cell \\ \\%
+		MCC			  & Monte-Carlo-Colissions \\ \\%
+		1d3v, 2d3v    & one/two spatial and three velocity dimensions \\ \\%
+		\midrule \bottomrule
+    \caption[List of abbreviations and their corresponding phrases]{%
+      List of abbreviations and their corresponding phrases. If specified, the translation %
+      or an equivalent expression is written.}\label{tabe:abbreviations}
+	\end{abbreviations}
+% ************************************************************************** %
+
+% ************************************************************************** %
+% CONSTANTS AND SYMBOLS LIST
+\begin{constants}{lcccl}
+	\toprule
+	\bfseries Quantity & \bfseries Unit &
+	\bfseries Symbol & \bfseries Dimension & \bfseries Value \\%
+	\toprule\midrule\endhead%
+	Speed of Light           & $\unit{m/s}$ & $c\ix{0}$ & $\unit{L^{1}T^{-1}}$ & %
+	                           $\SI{2,997}\cdot\tenpo{8}$ \\ \\%
+    thermal velocity         & $\unit{m/s}$ & $v\ix{th,j}$ & $\unit{L^{1}T^{-1}}$ & \\ \\%
+    drift velocity           & $\unit{m/s}$ & $v\ix{D,j}$, $u\ix{j}$ & $\unit{L^{1}T^{-1}}$ & \\ \\%
+    Boltzmann constant       & $\unit{eV/K}$ & $k\ix{B}$ & $\unit{M^{1}L^{2}T^{-2}K^{-1}}$ & %
+  							   $\SI{8,617}\cdot\tenpo{-23}$ \\ \\%
+    mobility                 & $\unit{cm^{2}/Vs}$ & $\mu\ix{j}$ & $\unit{I^{1}T^{2}M^{-1}}$ & \\ \\%
+	Planck constant          & $\unit{eVs}$ & $\hbar$ & $\unit{G^{-1/2}c^{6/2}\varepsilon\ix{0}^{1/2}}$%
+		                     & $\unit[\SI{4.1345}\cdot\tenpo{-15}]{eVs}$ \\ 
+					         & & & & $\unit[\SI{6,646}\cdot\tenpo{-34}]{Js}$ \\ \\%
+	kinetic temperature      & $\unit{eV}$ & $T\ix{j}$ & $\unit{M^{1}L^{2}T^{-2}}$%
+		 			         & $\unit[1]{eV}=\unit[\SI{1.902}\cdot\tenpo{-19}]{K}$ \\ \\%
+ 	elementary charge        & $\unit{C}$ & $e$ & $\unit{I^{1}T^{1}}$ & $\SI{1.902}\cdot\tenpo{-19}$\\ \\%
+    electric charge          & $\unit{C}$ & $Q$, $q$ & $\unit{I^{1}T^{1}}$ & \\ \\%
+	particle mass            & $\unit{kg}$ & $m\ix{j}$ & $\unit{M^{1}}$ & %
+ 										    electron: $\SI{9.109}\cdot\tenpo{-31}$ \\
+        					 & & & & \hspace*{.62cm}   ion: $\SI{5.310}\cdot\tenpo{-26}$ \\
+        					 & & & & \hspace*{.27cm} anion: $\SI{5.143}\cdot\tenpo{-26}$ \\ \\%
+	reduced mass             & $\unit{kg}$ & $\mu\ix{j,k}$ & $\unit{M^{1}}$ & \\ \\%
+    distance, location       & $\unit{cm}$ & $r$, z, x, $\vec{r}$ & $\unit{L^{1}}$ & \\ \\%
+	Debye length             & $\unit{cm}$ & $\lambda\ix{D,j}$ & $\unit{L^{1}}$ & \\ \\%
+	particle distance        & $\unit{cm}$ & $\overline{b}$ & $\unit{L^{1}}$ & \\ \\%
+	mean free path           & $\unit{cm}$ & $s\ix{mfp,j}$ & $\unit{L^{1}}$ & \\ \\%
+    particle density         & $\unit{cm^{-3}}$ & $n\ix{j}$ & $\unit{L^{-3}}$ & \\ \\%
+    Vacuum permittivity      & $\unit{F/m}$ & $\varepsilon\ix{0}$%
+					         & $\unit{M^{-1}L^{-3}T^{-4}A^{2}}$ & $\SI{8.854}\cdot\tenpo{-12}$ \\ \\%
+	electrostatic potential  & $\unit{V}$ & $\Phi$, $U$ & $\unit{M^{1}L^{2}I^{-1}T^{-3}}$ & \\ \\%
+    electric current         & $\unit{A}$ & $I$, $J$ & $\unit{I^{1}}$ & \\ \\%
+    electric current density & $\unit{A/cm^{2}}$ & $j\ix{j}$ & $\unit{I^{1}L^{-2}}$ & \\ \\%
+    electric charge density  & $\unit{C/cm^{3}}$ & $\rho$ & $\unit{I^{1}T^{1}L^{-3}}$ & \\ \\%
+    electric resistance      & $\unit{\Omega}$ & $R$ & $\unit{M^{1}L^{2}T^{-3}I^{-2}}$ & \\ \\%
+    electric capacity        & $\unit{F}$ & $C$ & $\unit{M^{-1}L^{-2}T^{4}I^{2}}$ & \\ \\%
+    time                     & $\unit{s}$ & $t$ & $\unit{T^{1}}$ & \\ \\%
+    plasma frequency         & $\unit{Hz}$ & $\omega\ix{p,j}$ & $\unit{T^{-1}}$ & \\ \\%
+    collision frequency      & $\unit{Hz}$ & $\nu\ix{j}$ & $\unit{T^{-1}}$ & \\ \\%
+	\midrule\bottomrule
+    \caption[Physical properties in their commonlyand SI units]{%
+      Physical properties in their commonly --- or for this purpose most convenient %
+      --- units and corresponding SI units. If not specified, the values of each quantity %
+      refer to the afore-mentioned units.}\label{tabe:physicalconstants}
+\end{constants}
+% ************************************************************************** %
