@@ -1,3 +1,4 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Copyright (C)  2015 Philipp Hacker
 % Permission is granted to copy, distribute and/or modify this document
 % under the terms of the GNU Free Documentation License, Version 1.3
@@ -5,33 +6,26 @@
 % with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
 % A copy of the license should come with this file and/or can be obtained at
 % http://www.gnu.org/licenses/fdl-1.3.html
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \documentclass{beamer}
-\usetheme{Dresden}
-\usecolortheme{beaver}
-\useinnertheme{rectangles}
-\useoutertheme{}
-\usepackage{units}
+\usetheme{UniGreifswald}
+
 \usepackage[ngerman]{babel}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
+
 \usepackage{mathtools}
 \usepackage{graphicx}
-
-\renewcommand{\thefigure}{Abb. \arabic{figure}}
 
 \newcommand{\diff}{\textnormal{d}}
 \newcommand{\tenpo}[1]{\cdot 10^{#1}}
 \newcommand{\ix}[1]{_\text{#1}}
 \newcommand{\imag}{\mathbf{i}}
-\newcommand{\grad}[1]{\textit{grad}\left(#1\right)}
-\newcommand{\divergenz}[1]{\textit{div}\left(#1\right)}
-\newcommand{\euler}{\mathnormal{e}}
 \newcommand{\fett}[1]{\textbf{#1}}
-\newcommand{\klammer}[1]{\left(#1\right)}
-\newcommand{\strich}{\,^\prime}
 \newcommand{\stichpunkt}[1]{\begin{itemize}\item #1\end{itemize}}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % BLOCKTEMPLATE
 % 
 % \onslide<->{
@@ -41,29 +35,153 @@
 % 		\end{block}
 % 	\end{frame}
 % }
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{Kinetic\ Effects\ in\ RF\ Discharges}
 
+% \subtitle{}
 
-\title{Kinetic Effects in RF Discharges}
-\author{Philipp Hacker}
+\author[P. Hacker]{Philipp\ Hacker}
+
 \date{\today}
-\institute{Institut\ für\ Physik\\Universität\ Greifswald}
+
+\institute[Uni Greifswald]% (optional)
+{%
+	Mathematisch-Naturwissenschaftliche\ Fakultät\\%
+	Institut\ für\ Physik\\%
+  	Ernst-Moritz-Arndt-Universität\ Greifswald%
+}
 
 \begin{document}
-%	
+%
+%
+%
+%
+% Title-Folie mit Betreuer/Gutachter:
 	\begin{frame}
-		\titlepage%
-		\centering
-		Betreuer:\ Prof.\ Dr.\ R.\ Schneider
+		\maketitle%
+		\centering%
+		{\small Betreuer:\ Prof.\ Dr.\ R.\ Schneider}\\%
+		{\small Gutachter:\ Prof.\ Dr.\ J.\ Meichsner}%
 	\end{frame}
 %	
-	\begin{frame}{Grundlagen der Beugungstheorie}{Geschichtlicher Hintergrund}
-		\onslide<1-3>{%
-			\stichpunkt{1 Test}%
-		} \onslide<2-3>{%
-			\stichpunkt{2 Test}%
-		} \onslide<3>{%
-			\stichpunkt{3 Test}%
-		}
-	\end{frame}
+% Folie mit Inhaltsverzeichnis:
+	\frame{\tableofcontents}
+%
+%
+%
+%
+% Motivations-Sektion:
+	\section{Motivation}
+%
+% Kapazitiv gekoppelte RF-Plasmen:
+		\begin{frame}{Kapazitive gekopplte RF-Plasmen}
+			\begin{block}
+				\onslide<1-3>{%
+					\stichpunkt{Test1}%
+				}
+				\onslide<2-3>{%
+					\stichpunkt{Test2}%
+				}
+				\onslide<3>{%
+					\stichpunkt{Test3}%
+				}
+			\end{block}
+		\end{frame}
+%
+% Randschichteffekte:
+		\begin{frame}{Randschichteffekte}
+			\onslide<1>{%
+				\stichpunkt{Test}%
+			}
+		\end{frame}
+%
+% Das Experiment:
+		\begin{frame}{Das Experiment}
+			\onslide<1>{%
+				\stichpunkt{Test}%
+			}
+		\end{frame}
+%
+% Oberflaechen- und Stossprozesse:
+		\begin{frame}{Oberflächen- und Stoßprozesse}
+			\onslide<1>{%
+				\stichpunkt{Test}%
+			}
+		\end{frame}
+%
+%
+%
+%
+% Numerische Grundlagen:
+	\section{Particle-in-Cell Simulation}
+%
+% Prinzipien:
+		\begin{frame}{Prinzip}
+			\onslide<1>{%
+				\stichpunkt{Test}%
+			}
+		\end{frame}
+%
+% Monte-Carlo-Collisions:
+		\begin{frame}{Monte-Carlo Stoßroutinen}
+			\onslide<1>{%
+				\stichpunkt{Test}%
+			}
+		\end{frame}
+%
+%
+%
+%
+% Vergleich mit 1D Simulationen:
+	\section{Vergleich von 1D und 2D}
+%
+% Ergebnisse von 1D:
+		\begin{frame}{Ergebnisse in 1D}
+			\onslide<1>{%
+				\stichpunkt{Test}%
+			}
+		\end{frame}
+%
+% Energieverteilungen:
+		\begin{frame}{Energieverteilungen}
+			\onslide<1>{%
+				\stichpunkt{Test}%
+			}
+		\end{frame}
+%
+% Vergleich mit 2D:
+		\begin{frame}{Vergleich mit 2D}
+			\onslide<1>{%
+				\stichpunkt{Test}%
+			}
+		\end{frame}
+%
+%
+%
+%
+% 2D Simulationen:
+	\section{2D Simulationen}
+%
+% Ergebnisse:
+		\begin{frame}{Ergebnisse}
+			\onslide<1>{%
+				\stichpunkt{Test}%
+			}
+		\end{frame}
+%
+% Energieverteilung negativer Ionen in 2D:
+		\begin{frame}{Negative Ionen EVF}
+			\onslide<1>{%
+				\stichpunkt{Test}%
+			}
+		\end{frame}
+%
+% Einfluss der Randbedingungen:
+		\begin{frame}{Einfluss der Ranbedingungen}
+			\onslide<1>{%
+				\stichpunkt{Test}%
+			}
+		\end{frame}
+%
 %
 \end{document}

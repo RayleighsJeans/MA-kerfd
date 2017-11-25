@@ -1,0 +1,147 @@
+% Dies ist eine Beispielpräsentation
+% Tino Soll, November 2016
+% 
+\documentclass{beamer}
+
+%%%%%%%%%%%%
+% PRÄAMBEL %
+%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Hier können Pakete mit \usepackage{...} eingebunden werden: %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Deutsches Sprachpaket (u.a. für deutsche Datumsschreibweisen)
+\usepackage[german]{babel}
+% Paket zum Einbinden von Grafiken
+\usepackage{graphicx}
+
+% Auswahl der Vorlage "UniGreifswald2"
+\usetheme{UniGreifswald2}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Definitionen eigener Befehle \newcommand{...}{...}:         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Annpassung der Fußzeile mit \renewcommand{\footlineinfo}{Eigener Text}:  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Beispiel:
+% \renewcommand{\footlineinfo}{\insertshortauthor (\insertshortinstitute) : \ \insertshorttitle}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Eckdaten der Präsentation: Titel, Autor, Institution, Vortragsort/Datum:               %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Die Angaben, die sich in den eckigen Klammern befinden sind jeweils Kurzformen des     %
+% Titels, Autors, etc. und optional. Diese werden in der Fußzeile auf jeder Folie        %
+% stehen, sofern \footlineinfo nicht modifiziert wurde.                                  %
+% Wenn keine Kurzform angegeben wird, wird die "normale" Form genutzt.                   %
+% Falls diese Aurgumente nicht gesetzt werden, sollten die eckigen Klammern              %
+% fortgelassen werden (also nicht leer sein).                                            %
+% Auf der Titelfolie werden stets die langen Formen aufgeführt.                          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Titel der Präsentation
+\title{Titel der Präsentation}
+%\title[Titel (Kurzform)]{Titel der Präsentation}
+
+% Untertitel der Präsentation (optinal)
+\subtitle{Untertitel}
+%
+% Autor/Vortragender
+\author{E. Vortragender}
+%\author[Vortragender (Kurzform)]{E.~Vortragender}
+%
+% Institution:
+% \institute{Universität Greifswald}
+\institute[Uni Greifswald] % (optional)
+{ 
+	Institut für , \\
+  	Ernst-Moritz-Arndt-Universität Greifswald
+}
+%
+% Anlass des Vortrages / Konferenzort / Datum
+\date[Konf./Dat.] % (optional)
+{Konferenz/Konferenzort/Datum}
+%\date{\today}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     BEGINN DES DOKUMENTS     %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+% Erstellen der Titelfolie:
+\begin{frame}
+\maketitle
+\end{frame}
+
+% Folie mit Inhaltsverzeichnis:
+\begin{frame}
+\frametitle{Übersicht}
+\tableofcontents
+\end{frame}
+
+\section{Sidebar}
+\subsection[Langer Titel]{Ein Titel, der sehr lang ist}
+\begin{frame}{\insertsection}{\insertsubsection}
+
+Das Design {\em UniGreifswald2} stellt eine seitliche Navigationsleiste zur Verfügung.
+Dort werden die Abschnittstitel (sections) sowie deren Unterpunkte (subsections) aufgeführt.
+
+\bigskip 
+Falls ein Abschnittstitel oder Unterabschnittstitel sehr lang ist, kann ein optionaler kürzerer Titel angegeben werden, 
+der in der Navigationsleiste angezeigt werden soll.
+
+Beispiel: \\[5pt]
+
+$\backslash$\texttt{subsection[Langer Titel]$\{$\texttt \\ \qquad Ein Titel, der sehr lang ist}\\ 
+$\}$
+
+ 
+\end{frame}
+
+
+\section{Aufzählungen}
+
+\begin{frame}{\insertsection}
+Hier zwei Beispiele, wie Aufzählungen in diesem Design umgesetzt wurden:
+
+\bigskip
+
+\hbox{
+\begin{minipage}{0.5\textwidth}
+\begin{enumerate}
+\item Eins
+\item Zwei
+\begin{enumerate}%[a)] 
+\item Drei
+\item Vier
+\begin{enumerate}
+\item Fünf
+\item Sechs
+\end{enumerate}
+\end{enumerate}
+\end{enumerate}
+\end{minipage}
+
+\begin{minipage}{0.5\textwidth}
+\begin{itemize}
+\item Eins
+\item Zwei
+\begin{itemize}
+\item Drei
+\item Vier\begin{itemize}
+\item Fünf
+\item Sechs
+\end{itemize}
+\end{itemize}
+\end{itemize}
+\end{minipage}
+}
+
+\end{frame}
+
+\end{document}
