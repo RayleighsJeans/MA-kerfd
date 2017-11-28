@@ -17,6 +17,8 @@
 
 \usepackage{mathtools}
 \usepackage{graphicx}
+\usepackage{units}
+\usepackage{siunitx}
 
 \newcommand{\diff}{\textnormal{d}}
 \newcommand{\tenpo}[1]{\cdot 10^{#1}}
@@ -75,22 +77,28 @@
 %
 % Kapazitiv gekoppelte RF-Plasmen:
 		\begin{frame}{Kapazitive gekopplte RF-Plasmen}
-			\begin{block}
-				\onslide<1->{%
-					\stichpunkt{Anwendung in Halbleiter- %
-					und Computerchip-Industrie}%
-				}
-				\onslide<2->{%
-					\stichpunkt{in elektronegativen %
-					CCRF-Entladungen treffen schnelle Ionen %
-					auf die Elektroden}%
-				}
-				\onslide<3->{%
-					\stichpunkt{Oberflächenprozesse an der %
-					Elektrode mit negativen Ionen}%
-				}
-
-			\end{block}
+			\begin{columns}
+				\column{0.45\textwidth}
+					\begin{block}
+						\onslide<1-5>{%
+							\stichpunkt{Anwendung in Halbleiter- %
+							und Computerchip-Industrie}%
+						}
+						\onslide<2-5>{%
+							\stichpunkt{in elektronegativen %
+							CCRF-Entladungen treffen schnelle Ionen %
+							auf die Elektroden}%
+						}
+						\onslide<3-5>{%
+							\stichpunkt{Oberflächenprozesse an der %
+							Elektrode mit negativen Ionen}%
+						}
+					\end{block}
+				\column{0.45\textwidth}
+					\onslide<4-5>{%
+						\includegraphics[width=\textwidth]{figures/niondist_material.png}	
+					}
+			\end{columns}
 		\end{frame}
 %
 % Randschichteffekte:
