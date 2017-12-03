@@ -26,9 +26,13 @@
 \usepackage{units}
 \usepackage{siunitx}
 \usepackage{caption}
+\usepackage{subcaption}
 \captionsetup{labelformat=empty,labelsep=none}
+\usepackage[normalem]{ulem}
+\newcommand{\redout}{\bgroup\markoverwith%
+	{\textcolor{red}{\rule[0.5ex]{2pt}{0.8pt}}}\ULon}
 
-\newcommand{\diff}{\textnormal{d}}
+\newcommand{\diff}{\text{d}}
 \newcommand{\tenpo}[1]{\cdot 10^{#1}}
 \newcommand{\ix}[1]{_\text{#1}}
 \newcommand{\imag}{\mathbf{i}}
@@ -208,15 +212,15 @@
 			\begin{columns}%
 				\begin{column}{0.48\textwidth}%
 					\begin{block}%
-						\onslide<1->{%
+						\onslide<1-3>{%
 							\stichpunkt{große Asymmetrie zwischen geerdeter~%
 													Kammer und CCRF-Elektrode}%
 						}%
-						\onslide<2->{%
+						\onslide<2-3>{%
 							\stichpunkt{niedrige Gasflüsse und -drücke~%
-							($\le$\SI{5}{sc\centi\meter},\SI{15}{\pascal})}%
+							($\le$\SI{5}{sc\centi\meter}, \SI{15}{\pascal})}%
 						}%
-						\onslide<3->{%
+						\onslide<3>{%
 							\stichpunkt{Elektrodenabstand~%
 													$\sim$\SI{5}{\centi\meter}}%
 						}%							
@@ -233,7 +237,58 @@
 			\end{columns}%
 		\end{frame}%
 %
-		\begin{frame}
+		\begin{frame}%
+			\begin{figure}%
+				\begin{subfigure}{0.47\textwidth}%
+					\includegraphics[width=\textwidth]%
+									{figures/niondist_material.png}%
+				\end{subfigure}%
+				\begin{subfigure}{0.47\textwidth}%
+					\includegraphics[width=\textwidth]%
+									{figures/neg_mg.png}%
+				\end{subfigure}%
+			\end{figure}%
+			\begin{block}
+				\onslide<2-3>{%
+					Struktur in EVF der negativen Ionen in Sauerstoff, Scheuer et. al \cite{Scheuer15}\\%
+					Hochenergetische Spitze in Abhängigkeit der Leistung\\%
+				}%
+				\onslide<3>{%
+					$\Rightarrow$ Anionen von der Elektrode?%
+				}%
+			\end{block}%
+		\end{frame}%
+%
+		\begin{frame}%
+			\begin{figure}%
+				\centering%
+				\includegraphics[height=0.3\textheight]%
+								{figures/saha_langmuir.pdf}%
+			\end{figure}%
+			\begin{block}
+				\onslide<2>{%
+					Saha-Langmuir Gleichung:\\%
+						Ionisation hängt ab von Austrittsarbeit, Ionisationsenergie, Oberflächentemperatur, %
+						Spannung und quantenmechanischen Koeffizienten des Materials%
+				}%
+			\end{block}%
+		\end{frame}%
+%
+		\begin{frame}%
+			\begin{figure}%
+				\centering%
+				\includegraphics[height=0.3\textheight]%
+				{figures/saha_langmuir.pdf}%
+			\end{figure}%
+			\begin{block}
+				\onslide<1>{%
+					Saha-Langmuir Gleichung:\\%
+					\redout{Ionisation hängt ab von Austrittsarbeit, Ionisationsenergie, Oberflächentemperatur, %
+						Spannung und quantenmechanischen Koeffizienten des Materials%
+					}%
+				}%
+			\end{block}%
+		\end{frame}%
 %
 %
 %
@@ -242,15 +297,57 @@
 	\section{Particle-in-Cell Methode}
 %
 % Particle-in-Cell Simulation:
-		\begin{frame}{Particle-in-Cell Methode}
-		\end{frame}
+		\begin{frame}{Particle-in-Cell Methode}%
+			\begin{columns}%
+				\begin{column}{0.45\textwidth}
+					\begin{block}
+						\onslide<2->{%
+%							\begin{align*}
+								$\left[1\right]:\,\,%
+								\Delta\Phi_{k}\left(r_{i,j},t\ix{k}\right)%
+								=-\frac{\rho_{k}%
+								\left(r_{i,j}, t_{k}\right)}{\varepsilon_{0}}$%
+								\linebreak\linebreak%
+%							\end{align*}
+						}%
+						\onslide<3->{%
+%							\begin{align*}%
+								$\left[2\right]:\,\,%
+								\vec{E}_{k}=-\vec{\nabla}\Phi_{k}$%
+								\linebreak\linebreak%
+%							\end{align*}%
+						}%
+						\onslide<4->{%
+%							\begin{align*}%
+								$\left[3\right]:\,\,%
+								\frac{\diff \vec{v}_{k,n}}{\diff t}=%
+								\frac{q_{n}}{m_{n}}\vec{E}_{k}%
+								\left(r_{n},t_{k}\right)$%
+								\linebreak\linebreak%
+%							\end{align*}%
+						}%
+						\onslide<5->{%
+%							\begin{align*}%
+								$\left[4\right]:\,\,%
+								\frac{\diff \vec{x}_{k,n}}{\diff t}=%
+								\vec{v}_{k,n}$%
+%							\end{align*}%
+						}%
+					\end{block}
+				\end{column}
+				\begin{column}{0.55\textwidth}%
+					\begin{figure}%
+						\centering%
+						\includegraphics[width=\textwidth]%
+						{figures/picscheme.pdf}
+					\end{figure}
+				\end{column}
+			\end{columns}
+			\end{frame}
 %
 % Monte-Carlo-Collisions:
-		\begin{frame}{Monte-Carlo Stoßroutinen}
-		\end{frame}
-%
-%
-%
+%		\begin{frame}{Monte-Carlo Stoßroutinen}
+%		\end{frame}
 %
 % Vergleich mit 1D Simulationen:
 	\section{1D Simulation}
