@@ -29,9 +29,9 @@
 \usepackage{subcaption}
 \captionsetup{labelformat=empty,labelsep=none}
 \usepackage[normalem]{ulem}
+
 \newcommand{\redout}{\bgroup\markoverwith%
 	{\textcolor{red}{\rule[0.5ex]{2pt}{0.8pt}}}\ULon}
-
 \newcommand{\diff}{\text{d}}
 \newcommand{\tenpo}[1]{\cdot 10^{#1}}
 \newcommand{\ix}[1]{_\text{#1}}
@@ -179,30 +179,13 @@
 % Oberflaechen- und Stossprozesse:
 		\begin{frame}{Oberflächen- und Stoßprozesse}%
 			\begin{figure}%
-				\includegraphics[width=0.8\textwidth]%
-								{figures/xsections.png}%
-				\caption{{\scriptsize%
-						(ausgewählte Stoßquerschnitte in Sauerstoff)%
-						}}%
+				\centering%
+				\includegraphics[height=0.7\textheight]%
+								{figures/xsections_selection.pdf}%
+				\caption{(ausgewählte Stoßquerschnitte in Sauerstoff)}%
 			\end{figure}%
-		\end{frame}
+		\end{frame}%
 %
-		\begin{frame}{Oberflächen- und Stoßprozesse}%
-			\begin{columns}
-				\begin{column}{0.48\textwidth}
-					\begin{figure}
-						\includegraphics[width=\textwidth]%
-										{figures/xsections.png}%
-					\end{figure}
-				\end{column}
-				\begin{column}{0.48\textwidth}
-					\begin{figure}
-						\includegraphics[width=\textwidth]%
-										{figures/tabel_crosssections.png}%
-					\end{figure}
-				\end{column}
-			\end{columns}
-		\end{frame}
 		\logoinbg%
 %
 % Das Experiment:
@@ -250,8 +233,8 @@
 			\end{figure}%
 			\begin{block}
 				\onslide<2-3>{%
-					Struktur in EVF der negativen Ionen in Sauerstoff, Scheuer et. al \cite{Scheuer15}\\%
-					Hochenergetische Spitze in Abhängigkeit der Leistung\\%
+					Struktur in EVF der negativen Ionen in Sauerstoff, Scheuer et.~al\ \cite{Scheuer15}\\%
+					Hochenergetische Spitze in Abhängigkeit der Leistung und Material\\%
 				}%
 				\onslide<3>{%
 					$\Rightarrow$ Anionen von der Elektrode?%
@@ -268,8 +251,8 @@
 			\begin{block}
 				\onslide<2>{%
 					Saha-Langmuir Gleichung:\\%
-						Ionisation hängt ab von Austrittsarbeit, Ionisationsenergie, Oberflächentemperatur, %
-						Spannung und quantenmechanischen Koeffizienten des Materials%
+						Ionisation hängt von Austrittsarbeit, Ionisationsenergie, Oberflächentemperatur, %
+						Spannung und quantenmechanischen Koeffizienten des Materials ab%
 				}%
 			\end{block}%
 		\end{frame}%
@@ -283,8 +266,8 @@
 			\begin{block}
 				\onslide<1>{%
 					Saha-Langmuir Gleichung:\\%
-					\redout{Ionisation hängt ab von Austrittsarbeit, Ionisationsenergie, Oberflächentemperatur, %
-						Spannung und quantenmechanischen Koeffizienten des Materials%
+					\redout{Ionisation hängt von Austrittsarbeit, Ionisationsenergie, Oberflächentemperatur, %
+						Spannung und quantenmechanischen Koeffizienten des Materials ab%
 					}%
 				}%
 			\end{block}%
@@ -345,34 +328,165 @@
 			\end{columns}
 			\end{frame}
 %
-% Monte-Carlo-Collisions:
-%		\begin{frame}{Monte-Carlo Stoßroutinen}
-%		\end{frame}
-%
-% Vergleich mit 1D Simulationen:
+% Vergleich mit 1D Simulationen:  
 	\section{1D Simulation}
 %
 % Ergebnisse von 1D:
-		\begin{frame}{1D Simulation}
-		\end{frame}
+		\nologoinbg%
+		\begin{frame}{1D Simulation}%
+			\begin{figure}%
+				\centering%
+				\begin{subfigure}{0.43\textwidth}%
+					\begin{overprint}%
+						\onslide<1>\includegraphics[width=\textwidth]%
+										{figures/results/1D/densities.png}%
+						\onslide<2>\includegraphics[width=\textwidth]%
+										{figures/results/1D/prs_ne_dens.png}%
+					\end{overprint}%
+				\end{subfigure}%
+				\hspace{0.7cm}%
+				\begin{subfigure}{0.43\textwidth}%
+					\begin{overprint}%
+						\onslide<1>\includegraphics[width=\textwidth]%
+											{figures/results/1D/potential.png}%
+						\onslide<2>\includegraphics[width=\textwidth]%
+											{figures/results/1D/densities_Omin.png}%
+					\end{overprint}%
+				\end{subfigure}%
+				\caption{(Entladung bei~%
+						  \SI{5}{\pascal} und \SI{400}{\volt})}%
+			\end{figure}%
+			\begin{block}%
+				\onslide<1-2>{%
+					Dichte und phasenaufgelöstes Potential in 1D mit~%
+					Injektion negativer Ionen von der Kathode\linebreak%
+					$\Rightarrow \,\, \eta = I($O$^{-}) / %
+					 I($O$_{2}) = 0,03$%
+				}%
+			\end{block}%
+		\end{frame}%
 %
+		\begin{frame}%
+			\begin{figure}%
+				\centering%
+				\begin{subfigure}{0.49\textwidth}%
+					\includegraphics[height=0.6\textheight]%
+							{figures/results/1D/elastcoll.png}%
+				\end{subfigure}%
+				\hspace{-1.0cm}%
+				\begin{subfigure}{0.43\textwidth}%
+						\includegraphics[width=\textwidth]%
+								{figures/results/1D/densities_Omin.png}%
+				\end{subfigure}%
+            \end{figure}%
+			\begin{block}%
+				\onslide<2>{%
+					$\Rightarrow$~Schicht nicht vollständig stoßlos\linebreak
+					Dynamik der schnellen negativen Ionen von der gegenueberliegenden Elektrode~%
+					stark durch elastische Stöße mit O$_{2}$ beeinflusst
+				}%
+			\end{block}%
+		\end{frame}%
+		\logoinbg%  	
+%                   	
 % Energieverteilungen:
-		\begin{frame}{Energieverteilungen}
-		\end{frame}
-%
-%
-% Dynamik negativer Ionen:
-		\begin{frame}{Dynamik negativer Ionen}
-		\end{frame}
-%
-%
-%
-%
-% 2D Simulationen:
+		\begin{frame}{Dynamik negativer Ionen}%
+			\begin{figure}%
+				\centering%
+				\begin{subfigure}{0.48\textwidth}%
+					\includegraphics[width=\textwidth]%
+							{figures/results/1D/snix_edf.png}%
+					\caption*{{\scriptsize%
+						(Energieverteilung der negativen Ionen von der Oberfläche)}}%
+				\end{subfigure}%
+				\begin{subfigure}{0.48\textwidth}%
+					\begin{overprint}%
+						\onslide<1>\includegraphics[width=\textwidth]%
+										{figures/results/1D/snix_close_edf.png}%
+						\caption*{{\scriptsize%
+							(Anodenbereich der EVF von O$^{-}$)}}%
+						\onslide<2>\includegraphics[width=\textwidth]%
+										{figures/results/1D/snix_surface_edf.png}%
+						\caption*{{\scriptsize%
+						(Surfaceplot der O$^{-}$ EVF)}}%
+						\onslide<3-4>\includegraphics[width=\textwidth]%
+										{figures/results/1D/ix_edf.png}%
+						\caption*{{\scriptsize%
+							(EVF der O$^{+}_{2}$ Ionen)}}%
+						\onslide<5>\includegraphics[width=\textwidth]%
+										{figures/results/1D/ex_edf.png}%
+						\caption*{{\scriptsize%
+							(EVF der Elektronen)}}%
+					\end{overprint}%
+				\end{subfigure}%
+			\end{figure}%
+			\only<1-2>{\begin{block}{}%
+					hochenergetische Struktur bei $\sim$\SI{100}{\electronvolt} %
+					vor Anode, abnehmend zur Kathode mit mittlerer freien %
+					Weglänge der O$^{-}$%
+				\end{block}}%
+			\only<3>{\begin{block}{}%
+					langsame Ionen im Bulk der Entladung\linebreak%
+					$\rightarrow$ schnelle O$^{-}$ abgebremst und kehren in %
+					Randschicht um%
+				\end{block}}%
+			\only<4>{\begin{block}{}%
+					Struktur über großen Energiebereich vor %
+					den Elektroden?%
+				\end{block}}
+			\only<5>{\begin{block}{}\centering%
+					Struktur über großen Energiebereich vor %
+					den Elektroden?\linebreak%
+					bei Elektronen keine sichtbar!%
+				\end{block}}%
+		\end{frame}%
+%                   	
+		\begin{frame}{Dynamik negativer Ionen}%
+			\begin{figure}%
+				\centering%
+				\includegraphics[height=0.75\textheight]%
+							{figures/results/1D/snix_allpi_edf.png}%
+					\caption*{{\scriptsize%
+							(Phasenaufgelöster Anodenbereich der O$^{-}$)}}%
+			\end{figure}%
+		\end{frame}%
+%                 
+		\nologoinbg
+		\begin{frame}{Experiment-Vergleich}%
+			\begin{figure}%
+				\centering%
+				\begin{subfigure}{0.47\textwidth}
+					\includegraphics[width=\textwidth]%
+									{figures/neg_mg.png}%
+					\caption*{{\scriptsize%
+							(Experiment)}}%
+				\end{subfigure}
+				\begin{subfigure}{0.47\textwidth}
+					\includegraphics[width=\textwidth]%
+									{figures/results/1D/power_energy_cuts.png}%
+					\caption*{{\scriptsize%
+							(Simulation)}}%
+					\end{subfigure}
+			\end{figure}%
+			\begin{block}{}
+				\only<1>{%
+					\stichpunkt{bisher: Vermutung für hochenergetische Struktur in O$^{-}$ EVF %
+								im Vergleich zu Experiment bestätigt}}
+				\only<2>{%
+					\stichpunkt{Spannungsvariation zeigt Abhängigkeit der Energieverteilung %
+								der Oberflächenprozesse}}
+				\only<3>{%
+				\stichpunkt{niederergetische Struktur nicht in Experiment zu finden}}
+			\end{block}
+		\end{frame}%
+		\logoinbg
+%                   	
+%                   	
+% 2D Simulationen:  	
 	\section{Simulationen in 2D}
-%
+%                   	
 		\begin{frame}{Simulationen in 2D}
-		\end{frame}
+		\end{frame} 	
 %
 % Vergleich mit 1D:
 		\begin{frame}{Vergleich mit 1D}
