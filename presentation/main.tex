@@ -430,9 +430,9 @@
 					$\rightarrow$ schnelle O$^{-}$ abgebremst und kehren in %
 					Randschicht um%
 				\end{block}}%
-			\only<4>{\begin{block}{}%
+			\only<4>{\begin{block}{}\centering%
 					Struktur über großen Energiebereich vor %
-					den Elektroden?%
+					den Elektroden?\linebreak%
 				\end{block}}
 			\only<5>{\begin{block}{}\centering%
 					Struktur über großen Energiebereich vor %
@@ -479,14 +479,37 @@
 				\stichpunkt{niederergetische Struktur nicht in Experiment zu finden}}
 			\end{block}
 		\end{frame}%
-		\logoinbg
 %                   	
 %                   	
 % 2D Simulationen:  	
 	\section{Simulationen in 2D}
 %                   	
 		\begin{frame}{Simulationen in 2D}
+			\begin{block}{}
+				\onslide<1->{%
+					\stichpunkt{Annahme einer zylinder-symmetrische Entladung um Mitte %
+								der Elektrode}}
+				\onslide<2->{%
+					\stichpunkt{jetzt: verschiedene Kombinationen von Randbedingungen,\linebreak%
+								zBsp. Dielektrika}}
+				\onslide<3->{%
+					\stichpunkt{viel größerer numerischer Aufwand}}
+			\end{block}
+			\begin{figure}%
+				\centering%
+				\begin{subfigure}{0.47\textwidth}
+					\centering
+					\includegraphics[height=0.35\textheight]%
+						{figures/domain_slice.png}%
+				\end{subfigure}
+				\begin{subfigure}{0.47\textwidth}
+					\centering
+					\includegraphics[height=0.35\textheight]%
+						{figures/radial_cylinder.png}%
+					\end{subfigure}
+			\end{figure}%
 		\end{frame} 	
+		\logoinbg
 %
 % Vergleich mit 1D:
 		\begin{frame}{Vergleich mit 1D}
@@ -515,9 +538,9 @@
 %
 %
 % Referenzen:
-	\section{Referenzen}
 %
 		\begin{frame}{Referenzen}
+			\printbibliography
 		\end{frame}
 %
 %
