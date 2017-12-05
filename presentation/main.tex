@@ -58,7 +58,7 @@
 
 \author[P. Hacker]{Philipp\ Hacker}
 
-\date{\today}
+\date{08.12.2017}
 
 \institute[Uni Greifswald]% (optional)
 {%
@@ -422,7 +422,7 @@
 			\end{figure}%
 			\only<1-2>{\begin{block}{}%
 					hochenergetische Struktur bei $\sim$\SI{100}{\electronvolt} %
-					vor Anode, abnehmend zur Kathode mit mittlerer freien %
+					vor Anode, abnehmend zur Kathode mit mittlerer freier %
 					Weglänge der O$^{-}$%
 				\end{block}}%
 			\only<3>{\begin{block}{}%
@@ -486,13 +486,13 @@
 %                   	
 		\begin{frame}{Simulationen in 2D}
 			\begin{block}{}
-				\onslide<1->{%
+				\onslide<1-3>{%
 					\stichpunkt{Annahme einer zylinder-symmetrische Entladung um Mitte %
 								der Elektrode}}
-				\onslide<2->{%
+				\onslide<2-3>{%
 					\stichpunkt{jetzt: verschiedene Kombinationen von Randbedingungen,\linebreak%
 								zBsp. Dielektrika}}
-				\onslide<3->{%
+				\onslide<3>{%
 					\stichpunkt{viel größerer numerischer Aufwand}}
 			\end{block}
 			\begin{figure}%
@@ -509,22 +509,169 @@
 					\end{subfigure}
 			\end{figure}%
 		\end{frame} 	
-		\logoinbg
 %
 % Vergleich mit 1D:
-		\begin{frame}{Vergleich mit 1D}
-		\end{frame}
+		\begin{frame}{Vergleich mit 1D}%
+			\begin{figure}%
+				\begin{subfigure}{0.48\textwidth}%
+					\begin{overprint}
+						\centering%
+						\onslide<1>\includegraphics[width=0.85\textwidth]%
+							{figures/results/2D/compare/45365_dens.png}%
+						\onslide<2>\includegraphics[width=0.85\textwidth]%
+							{figures/results/2D/compare/onedtwod_45431_denscompare.png}%
+					\end{overprint}
+				\end{subfigure}
+				\begin{subfigure}{0.48\textwidth}%
+					\begin{overprint}
+						\centering%
+						\onslide<1>\includegraphics[width=0.85\textwidth]%
+							{figures/results/2D/compare/45365prs_pot.png}%
+						\onslide<2>\includegraphics[width=0.85\textwidth]%
+							{figures/results/2D/compare/onedtwod_45431_phicompare.png}%
+					\end{overprint}
+				\end{subfigure}%
+				\caption*{{\scriptsize%
+						   (Dichte und Potential bei \SI{5}{\pascal} und \SI{400}{\volt} %
+				  			im Vergleich)}}%
+			\end{figure}%
+			\begin{block}
+				\only<2>{$\Rightarrow$ globales Flussgleichgewicht verändert Plasma %
+						 um den Gesamtstrom in die Randschichten anzugleichen}
+			\end{block}
+		\end{frame}%
+%		
+		\begin{frame}{Vergleich mit 1D}%
+			\begin{figure}%
+				\begin{subfigure}{0.48\textwidth}%
+					\centering%
+					\includegraphics[width=0.75\textwidth]%
+						{figures/results/2D/compare/onedtwod_45431_denscompare.png}%
+				\end{subfigure}
+				\begin{subfigure}{0.48\textwidth}%
+					\centering%
+					\includegraphics[width=0.75\textwidth]%
+						{figures/results/2D/compare/onedtwod_45431_phicompare.png}%
+				\end{subfigure}%
+			\end{figure}%
+			\begin{block}%
+				\onslide<1-3>{\stichpunkt{vergleichbare Profile um die Zylinderachse}}%
+				\onslide<2-3>{\stichpunkt{2D Bulk-Ausdehnung geringer als in 1D}}%
+				\onslide<3>{\stichpunkt{Randschicht und Dichteabfall größer in 2D}}%
+			\end{block}%
+		\end{frame}%
 %
-% Negative Ionen EVF:
-		\begin{frame}{Negative Ionen EVF}
-		\end{frame}
+		\begin{frame}%
+			\begin{figure}%
+				\centering%
+				\vspace*{0.7cm}
+				\includegraphics[height=0.9\textheight]%
+								{figures/results/2D/compare/twod_alldensphi_45431.png}%
+			\end{figure}%
+		\end{frame}%
+		\logoinbg
 %
 % Asymmetrische Randbedingungen:
-		\begin{frame}{Asymmetrische Ranbedingungen}
-		\end{frame}
+		\begin{frame}{Asymmetrische Ranbedingungen}%
+			\begin{columns}%
+				\begin{column}{0.45\textwidth}%
+					\begin{figure}%
+						\centering%
+						\begin{overprint}%
+							\onslide<1>\includegraphics[width=0.85\textwidth]%
+											  			{figures/results/2D/44332/phi.png}%
+							\caption*{{\scriptsize%
+								(Potential, \SI{5}{\pascal}, \SI{500}{\volt},\linebreak%
+								 $U_{sb}=$\SI{-400}{\volt})}}%
+								 \onslide<2>\includegraphics[width=0.85\textwidth]%
+														{figures/results/2D/44332/i_dens.png}%
+							\caption*{{\scriptsize%
+								(Ionendichte, \SI{5}{\pascal},\linebreak%
+								 \SI{400}{\volt}, $U_{sb}=$\SI{-500}{\volt})}}%
+							\onslide<3>\includegraphics[width=0.85\textwidth]%
+														{figures/results/2D/44332/i_velz.png}%
+							\caption*{{\scriptsize%
+								(axiale Ionengeschwindigkeit,\linebreak%
+								 \SI{5}{\pascal}, \SI{400}{\volt}, %
+								 $U_{sb}=$\SI{-500}{\volt})}}%
+						\end{overprint}%
+					\end{figure}%
+				\end{column}%
+				\begin{column}{0.45\textwidth}
+					\begin{block}{}%
+						\only<1-3>{%
+							\stichpunkt{linke Elektrode getrieben, restliche %
+										Randbedingungen sind geerdet}}%
+						\only<2-3>{%
+							\stichpunkt{Asymmetrie des Bulk und der Randschichten}}%
+						\only<3>{%
+							\stichpunkt{größere Beschleunigung bei kleinerer Randschicht}}%
+					\end{block}%
+				\end{column}%
+			\end{columns}%
+		\end{frame}%
+%
+		\begin{frame}{Asymmetrische Ranbedingungen}%
+			\begin{columns}%
+				\begin{column}{0.45\textwidth}
+					\begin{block}{}%
+						\only<1-3>{%
+							\stichpunkt{beide Elektroden getrieben, obere/linke %
+										Bereiche geerdet und rechts `floatet'\linebreak%
+										$\Rightarrow$ offene Randbedingung}}%
+						\only<2-3>{%
+							\stichpunkt{sehr viel höheres Plasmapotential}}%
+						\only<3>{%
+							\stichpunkt{ähnliche Randschichten, größer als zuvor geringere Geschwindigkeiten}}%
+					\end{block}%
+				\end{column}%
+				\begin{column}{0.45\textwidth}%
+					\begin{figure}%
+						\centering%
+						\begin{overprint}%
+							\onslide<1>\includegraphics[width=0.85\textwidth]%
+											  			{figures/results/2D/44426/phi.png}%
+							\caption*{{\scriptsize%
+								(Potential, \SI{5}{\pascal}, \SI{400}{\volt},\linebreak%
+								 $U_{sb}=$\SI{-400}{\volt})}}%
+								 \onslide<2>\includegraphics[width=0.85\textwidth]%
+														{figures/results/2D/44426/i_dens.png}%
+							\caption*{{\scriptsize%
+								(Ionendichte, \SI{5}{\pascal},\linebreak%
+								 \SI{400}{\volt}, $U_{sb}=$\SI{-400}{\volt})}}%
+							\onslide<3>\includegraphics[width=0.85\textwidth]%
+														{figures/results/2D/44426/i_velz.png}%
+							\caption*{{\scriptsize%
+								(axiale Ionengeschwindigkeit,\linebreak%
+								 \SI{5}{\pascal}, \SI{400}{\volt}, %
+								 $U_{sb}=$\SI{-400}{\volt})}}%
+						\end{overprint}%
+					\end{figure}%
+				\end{column}%
+			\end{columns}%
+		\end{frame}%
 %
 % Einfluss des Self Bias:
 		\begin{frame}{Einfluss des Self Bias}
+			\begin{block}{}%
+					Was für einen Einfluss hat der Self-Bias auf die Dynamik der O$^{-}$ %
+					von der Oberfläche?
+			\end{block}%
+			\begin{figure}%
+				\begin{subfigure}
+					\centering%
+					\includegraphics[width=0.9\textwidth]%
+						  			{figures/results/2D/SFB/ni_dens_25830000.png}%
+				\end{subfigure}
+				\begin{subfigure}
+					\centering%
+					\includegraphics[width=0.9\textwidth]%
+						  			{figures/results/2D/SFB/velni_z_25830000.png}%
+				\end{subfigure}
+				\caption*{{\scriptsize%
+							(Ionendichte und axiale Geschwindigkeit einer Entladung %
+							bei \SI{6}{\pascal}, \SI{400}{\volt} und $U_{sb}=$\SI{-200}{\volt})}}%
+			\end{figure}%
 		\end{frame}
 %
 %
