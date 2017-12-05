@@ -379,13 +379,13 @@
 								{figures/results/1D/densities_Omin.png}%
 				\end{subfigure}%
             \end{figure}%
-			\begin{block}%
+			\begin{alertblock}%
 				\onslide<2>{%
 					$\Rightarrow$~Schicht nicht vollständig stoßlos\linebreak
 					Dynamik der schnellen negativen Ionen von der gegenueberliegenden Elektrode~%
 					stark durch elastische Stöße mit O$_{2}$ beeinflusst
 				}%
-			\end{block}%
+			\end{alertblock}%
 		\end{frame}%
 		\logoinbg%  	
 %                   	
@@ -420,25 +420,25 @@
 					\end{overprint}%
 				\end{subfigure}%
 			\end{figure}%
-			\only<1-2>{\begin{block}{}%
+			\only<1-2>{\begin{alertblock}{}%
 					hochenergetische Struktur bei $\sim$\SI{100}{\electronvolt} %
 					vor Anode, abnehmend zur Kathode mit mittlerer freier %
 					Weglänge der O$^{-}$%
-				\end{block}}%
-			\only<3>{\begin{block}{}%
+				\end{alertblock}}%
+			\only<3>{\begin{alertblock}{}%
 					langsame Ionen im Bulk der Entladung\linebreak%
 					$\rightarrow$ schnelle O$^{-}$ abgebremst und kehren in %
 					Randschicht um%
-				\end{block}}%
-			\only<4>{\begin{block}{}\centering%
+				\end{alertblock}}%
+			\only<4>{\begin{alertblock}{}\centering%
 					Struktur über großen Energiebereich vor %
 					den Elektroden?\linebreak%
-				\end{block}}
-			\only<5>{\begin{block}{}\centering%
+				\end{alertblock}}
+			\only<5>{\begin{alertblock}{}\centering%
 					Struktur über großen Energiebereich vor %
 					den Elektroden?\linebreak%
 					bei Elektronen keine sichtbar!%
-				\end{block}}%
+				\end{alertblock}}%
 		\end{frame}%
 %                   	
 		\begin{frame}{Dynamik negativer Ionen}%
@@ -485,7 +485,7 @@
 	\section{Simulationen in 2D}
 %                   	
 		\begin{frame}{Simulationen in 2D}
-			\begin{block}{}
+			\begin{exampleblock}{}
 				\onslide<1-3>{%
 					\stichpunkt{Annahme einer zylinder-symmetrische Entladung um Mitte %
 								der Elektrode}}
@@ -494,7 +494,7 @@
 								zBsp. Dielektrika}}
 				\onslide<3>{%
 					\stichpunkt{viel größerer numerischer Aufwand}}
-			\end{block}
+			\end{exampleblock}
 			\begin{figure}%
 				\centering%
 				\begin{subfigure}{0.47\textwidth}
@@ -535,10 +535,10 @@
 						   (Dichte und Potential bei \SI{5}{\pascal} und \SI{400}{\volt} %
 				  			im Vergleich)}}%
 			\end{figure}%
-			\begin{block}
+			\begin{alertblock}
 				\only<2>{$\Rightarrow$ globales Flussgleichgewicht verändert Plasma %
 						 um den Gesamtstrom in die Randschichten anzugleichen}
-			\end{block}
+			\end{alertblock}
 		\end{frame}%
 %		
 		\begin{frame}{Vergleich mit 1D}%
@@ -599,12 +599,12 @@
 				\end{column}%
 				\begin{column}{0.45\textwidth}
 					\begin{block}{}%
-						\only<1-3>{%
+						\onslide<1-3>{%
 							\stichpunkt{linke Elektrode getrieben, restliche %
 										Randbedingungen sind geerdet}}%
-						\only<2-3>{%
+						\onslide<2-3>{%
 							\stichpunkt{Asymmetrie des Bulk und der Randschichten}}%
-						\only<3>{%
+						\onslide<3>{%
 							\stichpunkt{größere Beschleunigung bei kleinerer Randschicht}}%
 					\end{block}%
 				\end{column}%
@@ -615,13 +615,13 @@
 			\begin{columns}%
 				\begin{column}{0.45\textwidth}
 					\begin{block}{}%
-						\only<1-3>{%
+						\onslide<1-3>{%
 							\stichpunkt{beide Elektroden getrieben, obere/linke %
 										Bereiche geerdet und rechts `floatet'\linebreak%
 										$\Rightarrow$ offene Randbedingung}}%
-						\only<2-3>{%
+						\onslide<2-3>{%
 							\stichpunkt{sehr viel höheres Plasmapotential}}%
-						\only<3>{%
+						\onslide<3>{%
 							\stichpunkt{ähnliche Randschichten, größer als zuvor geringere Geschwindigkeiten}}%
 					\end{block}%
 				\end{column}%
@@ -650,37 +650,124 @@
 				\end{column}%
 			\end{columns}%
 		\end{frame}%
+		\nologoinbg
 %
 % Einfluss des Self Bias:
 		\begin{frame}{Einfluss des Self Bias}
-			\begin{block}{}%
-					Was für einen Einfluss hat der Self-Bias auf die Dynamik der O$^{-}$ %
-					von der Oberfläche?
-			\end{block}%
-			\begin{figure}%
-				\begin{subfigure}
-					\centering%
-					\includegraphics[width=0.9\textwidth]%
-						  			{figures/results/2D/SFB/ni_dens_25830000.png}%
-				\end{subfigure}
-				\begin{subfigure}
-					\centering%
-					\includegraphics[width=0.9\textwidth]%
-						  			{figures/results/2D/SFB/velni_z_25830000.png}%
-				\end{subfigure}
-				\caption*{{\scriptsize%
-							(Ionendichte und axiale Geschwindigkeit einer Entladung %
-							bei \SI{6}{\pascal}, \SI{400}{\volt} und $U_{sb}=$\SI{-200}{\volt})}}%
-			\end{figure}%
+			\onslide<1->{%
+				\begin{exampleblock}{}%
+						Was für einen Einfluss hat der Self-Bias auf die Dynamik der O$^{-}$ %
+						von der Oberfläche?
+				\end{exampleblock}%
+			}
+			\only<2->{%
+				\begin{figure}%
+					\begin{subfigure}{0.45\textwidth}
+						\centering%
+						\includegraphics[width=0.75\textwidth]%
+							  			{figures/results/2D/SFB/ni_dens_25830000.png}%
+					\end{subfigure}
+					\begin{subfigure}{0.45\textwidth}
+						\centering%
+						\includegraphics[width=0.75\textwidth]%
+							  			{figures/results/2D/SFB/velni_z_25830000.png}%
+					\end{subfigure}
+					\caption*{{\scriptsize%
+								(Ionendichte und axiale Geschwindigkeit einer Entladung %
+								bei \SI{6}{\pascal}, \SI{400}{\volt} und $U_{sb}=$\SI{-200}{\volt})}}%
+				\end{figure}%
+			}
 		\end{frame}
+		\logoinbg
 %
-%
+		\begin{frame}{Einfluss des Self-Bias}%
+			\begin{columns}%
+				\begin{column}{0.45\textwidth}%
+					\only<1-3>{%
+						\begin{block}{}%
+							\onslide<1-3>{\stichpunkt{%
+								hohe, axiale Geschwindigkeit der Ionen}}%
+							\onslide<2-3>{\stichpunkt{%
+								abbremsen in der Randschicht bzw. Bulk-Kante}}%
+							\onslide<3>{\stichpunkt{%
+								signifikanter Anteil der an der linken Elektrode erzeugten Teilchen erreicht andere Seite}}%
+						\end{block}
+					}
+					\only<4-5>{%
+						\begin{alertblock}{Erkenntnis}%
+							Die negativen Ionen treffen auf die Anode mit hoher kinetischer Energie aufgrund der zusätzlichen Beschleunigung in der Randschicht durch den Self-Bias.
+						\end{alertblock}
+					}
+					\only<6-7>{%
+						\begin{alertblock}{Erkenntnis}%
+							\onslide<6-7>{\stichpunkt{stoßbehaftete Schicht $\Rightarrow$ kalte Ionen im Bulk}}%
+							\onslide<7>{\stichpunkt{Asymmetrie und Self-Bias notwendig zur Beschreibung der Effekte}}%
+						\end{alertblock}
+					}
+				\end{column}%
+				\begin{column}{0.45\textwidth}%
+					\begin{figure}
+						\begin{overprint}
+							\centering
+							\onslide<1-3>\includegraphics[width=0.8\textwidth]%
+											{figures/results/2D/SFB/velni_z_25830000.png}%
+							\caption*{{\scriptsize%
+								(axiale Ionengeschwindigkeit,\linebreak%
+									\SI{6}{\pascal}, \SI{400}{\volt} und $U_{sb}=$\SI{-200}{\volt})}}%
+							\onslide<4>\includegraphics[height=0.55\textheight]%
+											{figures/results/2D/SFB/ni_distz.png}%
+							\caption*{{\scriptsize%
+								(axiale Ionenenergieverteilung,\linebreak%
+							\SI{6}{\pascal}, \SI{400}{\volt} und $U_{sb}=$\SI{-200}{\volt})}}%
+							\onslide<5>\includegraphics[height=0.5\textheight]%
+											{figures/results/2D/SFB/ni_cut.png}%
+							\caption*{{\scriptsize%
+								(Ionenenergieverteilung an der Anode,\linebreak%
+							\SI{6}{\pascal}, \SI{400}{\volt})}}%
+							\onslide<6-7>\includegraphics[height=0.55\textheight]%
+											{figures/results/2D/SFB/ni_distz.png}%
+							\caption*{{\scriptsize%
+								(axiale Ionenenergieverteilung,\linebreak%
+							\SI{6}{\pascal}, \SI{400}{\volt} und $U_{sb}=$\SI{-200}{\volt})}}%
+						\end{overprint}%
+					\end{figure}%
+				\end{column}%
+			\end{columns}%
+		\end{frame}%
 %
 %
 % Ausblick:
 	\section{Ausblick}
 %
-		\begin{frame}{Ausblick}
+		\begin{frame}{Fazit \& Ausblick}
+			\begin{columns}
+				\begin{column}{0.46\textwidth}
+					\only<1>{\begin{alertblock}{Zusammenfassung}%
+						\stichpunkt{Äquivalenz von axialen Profilen einer 2D-PIC Simulation und einem 1D-Model gezeigt}%
+						\stichpunkt{Asymmetrie und Self-Bias genutzt um Dynamik negativer Ionen in CCRF-Entladungen zu studieren}%
+					\end{alertblock}}
+					\only<2>{\begin{figure}
+						\centering
+						\includegraphics[width=\textwidth]%
+								{figures/results/2D/SFB/power_energy_cuts.png}%
+						\caption*{{\scriptsize%
+								(Simulationsergebnisse, O$^{-}$ Verteilung)}}%
+					\end{figure}}
+				\end{column}
+				\begin{column}{0.46\textwidth}
+					\only<1>{\begin{exampleblock}{Ausblick}%
+						\stichpunkt{Verbesserung durch tatsächliche Stoßquerschnitte und Koeffizienten der Oberflächenprozesse}%
+						\stichpunkt{2D-PIC für andere Modelle, wie zbsp. Sputtering nutzen}%
+					\end{exampleblock}}
+					\only<2>{\begin{figure}
+						\centering
+						\includegraphics[width=\textwidth]%
+								{figures/neg_mg.png}%
+						\caption*{{\scriptsize%
+								(Experimentergebnisse, O$^{-}$-Verteilung)}}%
+					\end{figure}}
+				\end{column}
+			\end{columns}
 		\end{frame}
 %
 %
