@@ -9,15 +9,30 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \documentclass{beamer}
-\usetheme{UniGreifswald}
+%\usetheme{UniGreifswald}
+\usetheme{Warsaw}
+\beamertemplatenavigationsymbolsempty
+\setbeamertemplate{footline}[page number]
 
 \usepackage[ngerman]{babel}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 
 \usepackage[autostyle=true]{csquotes}
-\usepackage[backend=bibtex,natbib=true]{biblatex}
-% Use the bibtex backend with the authoryear citation style
+\usepackage[%
+%			style=authoryear,%
+			style=verbose,%
+			autocite=footnote,%
+			maxbibnames=15,%
+			maxcitenames=10,%
+%			babel,%
+%			hyperref=true,%
+			abbreviate=false,%
+			backend=bibtex,%
+%			mcite%
+%			labelyear
+]{biblatex}
+
 \addbibresource{bibcontents/preamble.bib} % The filename of the bibliography
 \addbibresource{bibcontents/master.bib} % The filename of the bibliography
 
@@ -28,38 +43,18 @@
 \usepackage{caption}
 \usepackage{subcaption}
 \captionsetup{labelformat=empty,labelsep=none}
-\usepackage[normalem]{ulem}
 
-\newcommand{\redout}{\bgroup\markoverwith%
-	{\textcolor{red}{\rule[0.5ex]{2pt}{0.8pt}}}\ULon}
 \newcommand{\diff}{\text{d}}
 \newcommand{\tenpo}[1]{\cdot 10^{#1}}
 \newcommand{\ix}[1]{_\text{#1}}
 \newcommand{\imag}{\mathbf{i}}
 \newcommand{\fett}[1]{\textbf{#1}}
 \newcommand{\stichpunkt}[1]{\begin{itemize}\item #1\end{itemize}}
-
 \renewcommand*{\bibfont}{\scriptsize}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% BLOCKTEMPLATE
-% 
-% \onslide<->{
-% 	\begin{frame}{}{}
-% 		\begin{block}{}
-% 		\onslide<->{}	
-% 		\end{block}
-% 	\end{frame}
-% }
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \title{Kinetic\ Effects\ in\ RF\ Discharges}
-
-% \subtitle{}
-
 \author[P. Hacker]{Philipp\ Hacker}
-
 \date{08.12.2017}
-
 \institute[Uni Greifswald]% (optional)
 {%
 	Mathematisch-Naturwissenschaftliche\ Fakultät\\%
@@ -68,9 +63,6 @@
 }
 
 \begin{document}
-%
-%
-%
 %
 % Title-Folie mit Betreuer/Gutachter:
 	\begin{frame}
@@ -83,699 +75,710 @@
 % Folie mit Inhaltsverzeichnis:
 	\frame{\tableofcontents}
 %
-%
-%
-%
 % Motivations-Sektion:
 	\section{Motivation}
 %
 % Kapazitiv gekoppelte RF-Plasmen:
 		\begin{frame}{Kapazitive gekopplte RF-Plasmen}
 			\begin{columns}
-				\column{0.45\textwidth}
-					\begin{block}
-						\onslide<1-3>{%
-							\stichpunkt{Anwendung in Halbleiter- %
-							und Computerchip-Industrie}%
-						}%
-						\onslide<2-3>{%
-							\stichpunkt{in elektronegativen %
-							CCRF-Entladungen treffen schnelle Ionen %
-							auf die Elektroden}%
-						}%
-						\onslide<3>{%
-							\stichpunkt{Oberflächenprozesse an der %
-							Elektrode mit negativen Ionen}%
-						}%
+				\begin{column}{0.45\textwidth}
+					\begin{block}{}
+						\stichpunkt{Anwendung in Technologie-Industrie bei Sputter- und Ätzprozessen}%
+						\stichpunkt{Energieverteilungen der Plasmaspezies besonders wichtig}%
+						\stichpunkt{schnelle Anionen in CCRF-Entladungen}%
 					\end{block}
-				\column{0.45\textwidth}
-					\onslide<1-3>{%
-						\begin{figure}%
-							\includegraphics[width=\textwidth]%
-											{figures/niondist_material.png}
-							\vspace*{0.5cm}%
-							\caption{{\scriptsize\raggedleft%
-									  (Negative Ionen Energieverteilung in Sauerstoffentladungen)~%
-									  \cite{Scheuer15}}}%
-						\end{figure}%
-					}%
-			\end{columns}%
-		\end{frame}%
-%
-% Randschichteffekte:
-		\nologoinbg%
-		\begin{frame}{Randschichteffekte}%
-			\begin{columns}
-				\begin{column}{0.45\textwidth}%
-				 	\begin{figure}%
+				\end{column}
+				\begin{column}{0.45\textwidth}
+					\begin{figure}%
 						\includegraphics[width=\textwidth]%
 										{figures/circuitselfbias_1.png}%
-						\vspace*{0.1cm}
-						\caption{{\scriptsize\raggedright%
-								  (Schema einer Entladung)~%
-								  \cite{Piel10}}}%
+						\caption{{\scriptsize%
+								(Schema einer Entladung\footnotemark)}}%
 					\end{figure}%
 				\end{column}%
-				\begin{column}{0.45\textwidth}%
-					\begin{block}%
-						\onslide<1-3>{%
-							\stichpunkt{negative Aufladung der Wände durch schnellere Elektronen\newline%
-										$\rightarrow$Self-Bias}%
-						}%
-						\onslide<2-3>{%
-							\stichpunkt{Ionen werden auf Bohm-Geschwindigkeit beschleunigt\newline%
-										$v\ix{i,B}=\sqrt{\frac{k\ix{B}T\ix{e}}{m\ix{i}}}$}%
-						}%
-						\onslide<3>{%
-							\stichpunkt{Asymmetrie der getriebenen/geerden Elektroden}%
-						}%
-					\end{block}%
-				\end{column}%
 			\end{columns}%
+			\footcitetext{Piel10}%
 		\end{frame}%
-		\begin{frame}{Randschichteffekte}%
-			\begin{columns}%
-				\begin{column}{0.45\textwidth}%
- 					\begin{figure}%
-						\includegraphics[width=\textwidth]%
-										{figures/sheath_piel.png}%
-						\vspace*{0.25cm}%
-						\caption{{\scriptsize\raggedright%
-								  (Dichte und Potential vor einer Wand)~%
-								 \cite{Piel10}}}%
-					\end{figure}%
-				\end{column}%
-				\begin{column}{0.45\textwidth}%
-					\begin{block}%
-						\onslide<1>{%
-							\stichpunkt{\dots}
-							\stichpunkt{Kapazitive Kopplung führt zur Verschiebung des Plasma-Potentials}%
-						}%
-					\end{block}%
-				\end{column}%
-			\end{columns}%
-		\end{frame}%
-%
-% Oberflaechen- und Stossprozesse:
-		\begin{frame}{Oberflächen- und Stoßprozesse}%
-			\begin{figure}%
-				\centering%
-				\includegraphics[height=0.7\textheight]%
-								{figures/xsections_selection.pdf}%
-				\caption{(ausgewählte Stoßquerschnitte in Sauerstoff)}%
-			\end{figure}%
-		\end{frame}%
-%
-		\logoinbg%
-%
-% Das Experiment:
-	\section{Experiment}
-%
-		\begin{frame}{Das Experiment}%
-			\begin{columns}%
-				\begin{column}{0.48\textwidth}%
-					\begin{block}%
-						\onslide<1-3>{%
-							\stichpunkt{große Asymmetrie zwischen geerdeter~%
-													Kammer und CCRF-Elektrode}%
-						}%
-						\onslide<2-3>{%
-							\stichpunkt{niedrige Gasflüsse und -drücke~%
-							($\le$\SI{5}{sc\centi\meter}, \SI{15}{\pascal})}%
-						}%
-						\onslide<3>{%
-							\stichpunkt{Elektrodenabstand~%
-													$\sim$\SI{5}{\centi\meter}}%
-						}%							
-					\end{block}%	
-				\end{column}%
-				\begin{column}{0.48\textwidth}%
+	
+		\begin{frame}{Experiment}%
+			\begin{columns}
+				\begin{column}{0.5\textwidth}
 					\begin{figure}%
 						\centering
-						\includegraphics[width=\textwidth]%
-														{figures/chamber_exp.pdf}%
-						\caption{(Draufsicht des Experimentes)~\cite{Scheuer15}}%
-					\end{figure}%	
-				\end{column}%
-			\end{columns}%
-		\end{frame}%
-%
-		\begin{frame}%
-			\begin{figure}%
-				\begin{subfigure}{0.47\textwidth}%
-					\includegraphics[width=\textwidth]%
-									{figures/niondist_material.png}%
-				\end{subfigure}%
-				\begin{subfigure}{0.47\textwidth}%
-					\includegraphics[width=\textwidth]%
-									{figures/neg_mg.png}%
-				\end{subfigure}%
-			\end{figure}%
-			\begin{block}
-				\onslide<2-3>{%
-					Struktur in EVF der negativen Ionen in Sauerstoff, Scheuer et.~al\ \cite{Scheuer15}\\%
-					Hochenergetische Spitze in Abhängigkeit der Leistung und Material\\%
-				}%
-				\onslide<3>{%
-					$\Rightarrow$ Anionen von der Elektrode?%
-				}%
-			\end{block}%
-		\end{frame}%
-%
-		\begin{frame}%
-			\begin{figure}%
-				\centering%
-				\includegraphics[height=0.3\textheight]%
-								{figures/saha_langmuir.pdf}%
-			\end{figure}%
-			\begin{block}
-				\onslide<2>{%
-					Saha-Langmuir Gleichung:\\%
-						Ionisation hängt von Austrittsarbeit, Ionisationsenergie, Oberflächentemperatur, %
-						Spannung und quantenmechanischen Koeffizienten des Materials ab%
-				}%
-			\end{block}%
-		\end{frame}%
-%
-		\begin{frame}%
-			\begin{figure}%
-				\centering%
-				\includegraphics[height=0.3\textheight]%
-				{figures/saha_langmuir.pdf}%
-			\end{figure}%
-			\begin{block}
-				\onslide<1>{%
-					Saha-Langmuir Gleichung:\\%
-					\redout{Ionisation hängt von Austrittsarbeit, Ionisationsenergie, Oberflächentemperatur, %
-						Spannung und quantenmechanischen Koeffizienten des Materials ab%
-					}%
-				}%
-			\end{block}%
-		\end{frame}%
-%
-%
-%
+						\includegraphics[width=1.1\textwidth]%
+										{figures/niondist_material.png}%
+						\caption*{{\scriptsize%
+									(EVF negativer Ionen, Experiment\footnotemark)}}%
+					\end{figure}%
+				\end{column}
+				\footcitetext{Matthias15}
+				\begin{column}{0.45\textwidth}
+					\begin{block}{}
+						\stichpunkt{asymmetrische Niederdruckentladung in Sauerstoff\\%
+									$\Rightarrow$ Self-Bias}
+						\stichpunkt{hauptsächlich Produktion der O$^{-}$ durch diss. Anlagerung}
+						\stichpunkt{Vermutung: Bildung negativer Ionen an der Kathodenoberfläche}
+					\end{block}
+				\end{column}
+			\end{columns}
+		\end{frame}%	
 %
 % Particle-in-Cell Simulation:
 	\section{Particle-in-Cell Methode}
 %
 % Particle-in-Cell Simulation:
 		\begin{frame}{Particle-in-Cell Methode}%
-			\begin{columns}%
-				\begin{column}{0.45\textwidth}
-					\begin{block}
-						\onslide<2->{%
-%							\begin{align*}
-								$\left[1\right]:\,\,%
-								\Delta\Phi_{k}\left(r_{i,j},t\ix{k}\right)%
-								=-\frac{\rho_{k}%
-								\left(r_{i,j}, t_{k}\right)}{\varepsilon_{0}}$%
-								\linebreak\linebreak%
-%							\end{align*}
-						}%
-						\onslide<3->{%
-%							\begin{align*}%
-								$\left[2\right]:\,\,%
-								\vec{E}_{k}=-\vec{\nabla}\Phi_{k}$%
-								\linebreak\linebreak%
-%							\end{align*}%
-						}%
-						\onslide<4->{%
-%							\begin{align*}%
-								$\left[3\right]:\,\,%
-								\frac{\diff \vec{v}_{k,n}}{\diff t}=%
-								\frac{q_{n}}{m_{n}}\vec{E}_{k}%
-								\left(r_{n},t_{k}\right)$%
-								\linebreak\linebreak%
-%							\end{align*}%
-						}%
-						\onslide<5->{%
-%							\begin{align*}%
-								$\left[4\right]:\,\,%
-								\frac{\diff \vec{x}_{k,n}}{\diff t}=%
-								\vec{v}_{k,n}$%
-%							\end{align*}%
-						}%
-					\end{block}
-				\end{column}
-				\begin{column}{0.55\textwidth}%
-					\begin{figure}%
-						\centering%
-						\includegraphics[width=\textwidth]%
-						{figures/picscheme.pdf}
-					\end{figure}
-				\end{column}
-			\end{columns}
-			\end{frame}
+			\begin{figure}%
+				\centering%
+				\includegraphics[width=0.75\textwidth]%
+								{figures/picscheme.pdf}
+				\caption*{{\scriptsize%
+							(PIC-Zyklus\footnotemark)}}
+				\footcitetext{Matthias15}
+			\end{figure}
+			\vspace{-1.0cm}
+			\begin{block}{Stabilitätsbedingungen}
+				\centering$%
+				\Delta t\le\frac{\omega\ix{p,e}}{5},%
+				\quad\quad\quad%
+				\Delta r\le\frac{\lambda\ix{D,e}}{2}%
+				$
+			\end{block}	
+		\end{frame}
 %
+% Boltzmann-Gleichung:
+			\begin{frame}{Particle-in-Cell Methode}
+				\begin{block}{Boltzmann-Gleichung}
+					\raggedright%
+					Lösen in jedem Schritt:
+					\begin{align*}
+						\frac{\partial f\ix{j}}{\partial t}+\vec{v}\cdot\nabla_{\vec{r}}\,f\ix{j}%
+						+&\frac{q\ix{j}}{m\ix{j}}\vec{E}\cdot\nabla_{\vec{v}}\,f\ix{j}%
+						=\left(\frac{\partial f\ix{j}}{\partial t}\right)\ix{Coll}%
+						\onslide<2>{%
+							\\&\Bigg\Downarrow%
+							Linearisierung%
+							\\%
+							f\ix{j}(x,v,t+\Delta t)=%
+								(1+\Delta& t\cdot I)(1+\Delta t\cdot D)f\ix{j}(x,v,t)%
+						}
+					\end{align*}
+				\end{block}
+				\onslide<2>{\begin{alertblock}{}%
+					wenige Stöße und große freie Weglängen\\%
+					$\Rightarrow$ kinetische Simulation notwendig%
+				\end{alertblock}}
+			\end{frame}
+%		
 % Vergleich mit 1D Simulationen:  
 	\section{1D Simulation}
 %
 % Ergebnisse von 1D:
-		\nologoinbg%
 		\begin{frame}{1D Simulation}%
-			\begin{figure}%
+			\begin{block}{}
+			\end{block}
+			\begin{figure}
 				\centering%
-				\begin{subfigure}{0.43\textwidth}%
-					\begin{overprint}%
-						\onslide<1>\includegraphics[width=\textwidth]%
-										{figures/results/1D/densities.png}%
-						\onslide<2>\includegraphics[width=\textwidth]%
-										{figures/results/1D/prs_ne_dens.png}%
-					\end{overprint}%
-				\end{subfigure}%
-				\hspace{0.7cm}%
-				\begin{subfigure}{0.43\textwidth}%
-					\begin{overprint}%
-						\onslide<1>\includegraphics[width=\textwidth]%
-											{figures/results/1D/potential.png}%
-						\onslide<2>\includegraphics[width=\textwidth]%
-											{figures/results/1D/densities_Omin.png}%
-					\end{overprint}%
-				\end{subfigure}%
-				\caption{(Entladung bei~%
-						  \SI{5}{\pascal} und \SI{400}{\volt})}%
-			\end{figure}%
-			\begin{block}%
-				\onslide<1-2>{%
-					Dichte und phasenaufgelöstes Potential in 1D mit~%
-					Injektion negativer Ionen von der Kathode\linebreak%
-					$\Rightarrow \,\, \eta = I($O$^{-}) / %
-					 I($O$_{2}) = 0,03$%
-				}%
-			\end{block}%
+				\includegraphics[height=0.5\textheight]%
+								{figures/results/1D/densities.png}
+				\caption*{{\scriptsize%
+							(Dichten einer Entladung bei \SI{800}{\volt}%
+							und \SI{5}{\pascal}\footnotemark)}}%
+			\end{figure}
+			\footcitetext{Matthias17}
+%			\begin{figure}%
+%				\centering%
+%				\begin{subfigure}{0.43\textwidth}%
+%					\includegraphics[width=\textwidth]%
+%									{figures/results/1D/prs_ne_dens.png}%
+%				\end{subfigure}%
+%				\begin{subfigure}{0.43\textwidth}%
+%					\includegraphics[width=\textwidth]%
+%									{figures/results/1D/densities_Omin.png}%
+%				\end{subfigure}%
+%				\caption{(Entladung bei~%
+%						  \SI{5}{\pascal} und \SI{400}{\volt})}%
+%			\end{figure}%
 		\end{frame}%
-%
-		\begin{frame}%
-			\begin{figure}%
-				\centering%
-				\begin{subfigure}{0.49\textwidth}%
-					\includegraphics[height=0.6\textheight]%
-							{figures/results/1D/elastcoll.png}%
-				\end{subfigure}%
-				\hspace{-1.0cm}%
-				\begin{subfigure}{0.43\textwidth}%
-						\includegraphics[width=\textwidth]%
-								{figures/results/1D/densities_Omin.png}%
-				\end{subfigure}%
-            \end{figure}%
-			\begin{alertblock}%
-				\onslide<2>{%
-					$\Rightarrow$~Schicht nicht vollständig stoßlos\linebreak
-					Dynamik der schnellen negativen Ionen von der gegenueberliegenden Elektrode~%
-					stark durch elastische Stöße mit O$_{2}$ beeinflusst
-				}%
-			\end{alertblock}%
-		\end{frame}%
-		\logoinbg%  	
 %                   	
 % Energieverteilungen:
 		\begin{frame}{Dynamik negativer Ionen}%
-			\begin{figure}%
-				\centering%
-				\begin{subfigure}{0.48\textwidth}%
-					\includegraphics[width=\textwidth]%
-							{figures/results/1D/snix_edf.png}%
-					\caption*{{\scriptsize%
-						(Energieverteilung der negativen Ionen von der Oberfläche)}}%
-				\end{subfigure}%
-				\begin{subfigure}{0.48\textwidth}%
-					\begin{overprint}%
-						\onslide<1>\includegraphics[width=\textwidth]%
-										{figures/results/1D/snix_close_edf.png}%
-						\caption*{{\scriptsize%
-							(Anodenbereich der EVF von O$^{-}$)}}%
-						\onslide<2>\includegraphics[width=\textwidth]%
-										{figures/results/1D/snix_surface_edf.png}%
-						\caption*{{\scriptsize%
-						(Surfaceplot der O$^{-}$ EVF)}}%
-						\onslide<3-4>\includegraphics[width=\textwidth]%
-										{figures/results/1D/ix_edf.png}%
-						\caption*{{\scriptsize%
-							(EVF der O$^{+}_{2}$ Ionen)}}%
-						\onslide<5>\includegraphics[width=\textwidth]%
-										{figures/results/1D/ex_edf.png}%
-						\caption*{{\scriptsize%
-							(EVF der Elektronen)}}%
-					\end{overprint}%
-				\end{subfigure}%
-			\end{figure}%
-			\only<1-2>{\begin{alertblock}{}%
-					hochenergetische Struktur bei $\sim$\SI{100}{\electronvolt} %
-					vor Anode, abnehmend zur Kathode mit mittlerer freier %
-					Weglänge der O$^{-}$%
-				\end{alertblock}}%
-			\only<3>{\begin{alertblock}{}%
-					langsame Ionen im Bulk der Entladung\linebreak%
-					$\rightarrow$ schnelle O$^{-}$ abgebremst und kehren in %
-					Randschicht um%
-				\end{alertblock}}%
-			\only<4>{\begin{alertblock}{}\centering%
-					Struktur über großen Energiebereich vor %
-					den Elektroden?\linebreak%
-				\end{alertblock}}
-			\only<5>{\begin{alertblock}{}\centering%
-					Struktur über großen Energiebereich vor %
-					den Elektroden?\linebreak%
-					bei Elektronen keine sichtbar!%
-				\end{alertblock}}%
 		\end{frame}%
 %                   	
 		\begin{frame}{Dynamik negativer Ionen}%
 			\begin{figure}%
 				\centering%
 				\includegraphics[height=0.75\textheight]%
-							{figures/results/1D/snix_allpi_edf.png}%
+								{figures/results/1D/snix_allpi_edf.png}%
 					\caption*{{\scriptsize%
-							(Phasenaufgelöster Anodenbereich der O$^{-}$)}}%
+								(Phasenaufgelöster Anodenbereich der O$^{-}$)}}%
 			\end{figure}%
 		\end{frame}%
-%                 
-		\nologoinbg
-		\begin{frame}{Experiment-Vergleich}%
-			\begin{figure}%
-				\centering%
-				\begin{subfigure}{0.47\textwidth}
-					\includegraphics[width=\textwidth]%
-									{figures/neg_mg.png}%
-					\caption*{{\scriptsize%
-							(Experiment)}}%
-				\end{subfigure}
-				\begin{subfigure}{0.47\textwidth}
-					\includegraphics[width=\textwidth]%
-									{figures/results/1D/power_energy_cuts.png}%
-					\caption*{{\scriptsize%
-							(Simulation)}}%
-					\end{subfigure}
-			\end{figure}%
-			\begin{block}{}
-				\only<1>{%
-					\stichpunkt{bisher: Vermutung für hochenergetische Struktur in O$^{-}$ EVF %
-								im Vergleich zu Experiment bestätigt}}
-				\only<2>{%
-					\stichpunkt{Spannungsvariation zeigt Abhängigkeit der Energieverteilung %
-								der Oberflächenprozesse}}
-				\only<3>{%
-				\stichpunkt{niederergetische Struktur nicht in Experiment zu finden}}
-			\end{block}
-		\end{frame}%
-%                   	
+%
+%		\begin{frame}{Experiment-Vergleich}%
+%			\begin{figure}%
+%				\centering%
+%				\begin{subfigure}{0.47\textwidth}
+%					\includegraphics[width=\textwidth]%
+%									{figures/neg_mg.png}%
+%					\caption*{{\scriptsize%
+%							(Experiment)}}%
+%				\end{subfigure}
+%				\begin{subfigure}{0.47\textwidth}
+%					\includegraphics[width=\textwidth]%
+%									{figures/results/1D/power_energy_cuts.png}%
+%					\caption*{{\scriptsize%
+%							(Simulation)}}%
+%					\end{subfigure}
+%			\end{figure}%
+%			\begin{block}{}
+%				\only<1>{%
+%					\stichpunkt{bisher: Vermutung für hochenergetische Struktur in O$^{-}$ EVF %
+%								im Vergleich zu Experiment bestätigt}}
+%				\only<2>{%
+%					\stichpunkt{Spannungsvariation zeigt Abhängigkeit der Energieverteilung %
+%								der Oberflächenprozesse}}
+%				\only<3>{%
+%				\stichpunkt{niederergetische Struktur nicht in Experiment zu finden}}
+%			\end{block}
+%		\end{frame}%           	
 %                   	
 % 2D Simulationen:  	
-	\section{Simulationen in 2D}
+%	\section{Simulationen in 2D}
 %                   	
-		\begin{frame}{Simulationen in 2D}
-			\begin{exampleblock}{}
-				\onslide<1-3>{%
-					\stichpunkt{Annahme einer zylinder-symmetrische Entladung um Mitte %
-								der Elektrode}}
-				\onslide<2-3>{%
-					\stichpunkt{jetzt: verschiedene Kombinationen von Randbedingungen,\linebreak%
-								zBsp. Dielektrika}}
-				\onslide<3>{%
-					\stichpunkt{viel größerer numerischer Aufwand}}
-			\end{exampleblock}
-			\begin{figure}%
-				\centering%
-				\begin{subfigure}{0.47\textwidth}
-					\centering
-					\includegraphics[height=0.35\textheight]%
-						{figures/domain_slice.png}%
-				\end{subfigure}
-				\begin{subfigure}{0.47\textwidth}
-					\centering
-					\includegraphics[height=0.35\textheight]%
-						{figures/radial_cylinder.png}%
-					\end{subfigure}
-			\end{figure}%
-		\end{frame} 	
+%		\begin{frame}{Simulationen in 2D}
+%			\begin{exampleblock}{}
+%				\onslide<1-3>{%
+%					\stichpunkt{Annahme einer zylinder-symmetrische Entladung um Mitte %
+%								der Elektrode}}
+%				\onslide<2-3>{%
+%					\stichpunkt{jetzt: verschiedene Kombinationen von Randbedingungen,\linebreak%
+%								zBsp. Dielektrika}}
+%				\onslide<3>{%
+%					\stichpunkt{viel größerer numerischer Aufwand}}
+%			\end{exampleblock}
+%			\begin{figure}%
+%				\centering%
+%				\begin{subfigure}{0.47\textwidth}
+%					\centering
+%					\includegraphics[height=0.35\textheight]%
+%						{figures/domain_slice.png}%
+%				\end{subfigure}
+%				\begin{subfigure}{0.47\textwidth}
+%					\centering
+%					\includegraphics[height=0.35\textheight]%
+%						{figures/radial_cylinder.png}%
+%					\end{subfigure}
+%			\end{figure}%
+%		\end{frame} 	
 %
 % Vergleich mit 1D:
-		\begin{frame}{Vergleich mit 1D}%
-			\begin{figure}%
-				\begin{subfigure}{0.48\textwidth}%
-					\begin{overprint}
-						\centering%
-						\onslide<1>\includegraphics[width=0.85\textwidth]%
-							{figures/results/2D/compare/45365_dens.png}%
-						\onslide<2>\includegraphics[width=0.85\textwidth]%
-							{figures/results/2D/compare/onedtwod_45431_denscompare.png}%
-					\end{overprint}
-				\end{subfigure}
-				\begin{subfigure}{0.48\textwidth}%
-					\begin{overprint}
-						\centering%
-						\onslide<1>\includegraphics[width=0.85\textwidth]%
-							{figures/results/2D/compare/45365prs_pot.png}%
-						\onslide<2>\includegraphics[width=0.85\textwidth]%
-							{figures/results/2D/compare/onedtwod_45431_phicompare.png}%
-					\end{overprint}
-				\end{subfigure}%
-				\caption*{{\scriptsize%
-						   (Dichte und Potential bei \SI{5}{\pascal} und \SI{400}{\volt} %
-				  			im Vergleich)}}%
-			\end{figure}%
-			\begin{alertblock}
-				\only<2>{$\Rightarrow$ globales Flussgleichgewicht verändert Plasma %
-						 um den Gesamtstrom in die Randschichten anzugleichen}
-			\end{alertblock}
-		\end{frame}%
+%		\begin{frame}{Vergleich mit 1D}%
+%			\begin{figure}%
+%				\begin{subfigure}{0.48\textwidth}%
+%					\begin{overprint}
+%						\centering%
+%						\onslide<1>\includegraphics[width=0.85\textwidth]%
+%							{figures/results/2D/compare/45365_dens.png}%
+%						\onslide<2>\includegraphics[width=0.85\textwidth]%
+%							{figures/results/2D/compare/onedtwod_45431_denscompare.png}%
+%					\end{overprint}
+%				\end{subfigure}
+%				\begin{subfigure}{0.48\textwidth}%
+%					\begin{overprint}
+%						\centering%
+%						\onslide<1>\includegraphics[width=0.85\textwidth]%
+%							{figures/results/2D/compare/45365prs_pot.png}%
+%						\onslide<2>\includegraphics[width=0.85\textwidth]%
+%							{figures/results/2D/compare/onedtwod_45431_phicompare.png}%
+%					\end{overprint}
+%				\end{subfigure}%
+%				\caption*{{\scriptsize%
+%						   (Dichte und Potential bei \SI{5}{\pascal} und \SI{400}{\volt} %
+%				  			im Vergleich)}}%
+%			\end{figure}%
+%			\begin{alertblock}
+%				\only<2>{$\Rightarrow$ globales Flussgleichgewicht verändert Plasma %
+%						 um den Gesamtstrom in die Randschichten anzugleichen}
+%			\end{alertblock}
+%		\end{frame}%
 %		
-		\begin{frame}{Vergleich mit 1D}%
-			\begin{figure}%
-				\begin{subfigure}{0.48\textwidth}%
-					\centering%
-					\includegraphics[width=0.75\textwidth]%
-						{figures/results/2D/compare/onedtwod_45431_denscompare.png}%
-				\end{subfigure}
-				\begin{subfigure}{0.48\textwidth}%
-					\centering%
-					\includegraphics[width=0.75\textwidth]%
-						{figures/results/2D/compare/onedtwod_45431_phicompare.png}%
-				\end{subfigure}%
-			\end{figure}%
-			\begin{block}%
-				\onslide<1-3>{\stichpunkt{vergleichbare Profile um die Zylinderachse}}%
-				\onslide<2-3>{\stichpunkt{2D Bulk-Ausdehnung geringer als in 1D}}%
-				\onslide<3>{\stichpunkt{Randschicht und Dichteabfall größer in 2D}}%
-			\end{block}%
-		\end{frame}%
+%		\begin{frame}{Vergleich mit 1D}%
+%			\begin{figure}%
+%				\begin{subfigure}{0.48\textwidth}%
+%					\centering%
+%					\includegraphics[width=0.75\textwidth]%
+%						{figures/results/2D/compare/onedtwod_45431_denscompare.png}%
+%				\end{subfigure}
+%				\begin{subfigure}{0.48\textwidth}%
+%					\centering%
+%					\includegraphics[width=0.75\textwidth]%
+%						{figures/results/2D/compare/onedtwod_45431_phicompare.png}%
+%				\end{subfigure}%
+%			\end{figure}%
+%			\begin{block}%
+%				\onslide<1-3>{\stichpunkt{vergleichbare Profile um die Zylinderachse}}%
+%				\onslide<2-3>{\stichpunkt{2D Bulk-Ausdehnung geringer als in 1D}}%
+%				\onslide<3>{\stichpunkt{Randschicht und Dichteabfall größer in 2D}}%
+%			\end{block}%
+%		\end{frame}%
 %
-		\begin{frame}%
-			\begin{figure}%
-				\centering%
-				\vspace*{0.7cm}
-				\includegraphics[height=0.9\textheight]%
-								{figures/results/2D/compare/twod_alldensphi_45431.png}%
-			\end{figure}%
-		\end{frame}%
-		\logoinbg
+%		\begin{frame}%
+%			\begin{figure}%
+%				\centering%
+%				\vspace*{0.7cm}
+%				\includegraphics[height=0.9\textheight]%
+%								{figures/results/2D/compare/twod_alldensphi_45431.png}%
+%			\end{figure}%
+%		\end{frame}%
 %
 % Asymmetrische Randbedingungen:
-		\begin{frame}{Asymmetrische Ranbedingungen}%
-			\begin{columns}%
-				\begin{column}{0.45\textwidth}%
-					\begin{figure}%
-						\centering%
-						\begin{overprint}%
-							\onslide<1>\includegraphics[width=0.85\textwidth]%
-											  			{figures/results/2D/44332/phi.png}%
-							\caption*{{\scriptsize%
-								(Potential, \SI{5}{\pascal}, \SI{500}{\volt},\linebreak%
-								 $U_{sb}=$\SI{-400}{\volt})}}%
-								 \onslide<2>\includegraphics[width=0.85\textwidth]%
-														{figures/results/2D/44332/i_dens.png}%
-							\caption*{{\scriptsize%
-								(Ionendichte, \SI{5}{\pascal},\linebreak%
-								 \SI{400}{\volt}, $U_{sb}=$\SI{-500}{\volt})}}%
-							\onslide<3>\includegraphics[width=0.85\textwidth]%
-														{figures/results/2D/44332/i_velz.png}%
-							\caption*{{\scriptsize%
-								(axiale Ionengeschwindigkeit,\linebreak%
-								 \SI{5}{\pascal}, \SI{400}{\volt}, %
-								 $U_{sb}=$\SI{-500}{\volt})}}%
-						\end{overprint}%
-					\end{figure}%
-				\end{column}%
-				\begin{column}{0.45\textwidth}
-					\begin{block}{}%
-						\onslide<1-3>{%
-							\stichpunkt{linke Elektrode getrieben, restliche %
-										Randbedingungen sind geerdet}}%
-						\onslide<2-3>{%
-							\stichpunkt{Asymmetrie des Bulk und der Randschichten}}%
-						\onslide<3>{%
-							\stichpunkt{größere Beschleunigung bei kleinerer Randschicht}}%
-					\end{block}%
-				\end{column}%
-			\end{columns}%
-		\end{frame}%
+%		\begin{frame}{Asymmetrische Ranbedingungen}%
+%			\begin{columns}%
+%				\begin{column}{0.45\textwidth}%
+%					\begin{figure}%
+%						\centering%
+%						\begin{overprint}%
+%							\onslide<1>\includegraphics[width=0.85\textwidth]%
+%											  			{figures/results/2D/44332/phi.png}%
+%							\caption*{{\scriptsize%
+%								(Potential, \SI{5}{\pascal}, \SI{500}{\volt},\linebreak%
+%								 $U_{sb}=$\SI{-400}{\volt})}}%
+%								 \onslide<2>\includegraphics[width=0.85\textwidth]%
+%														{figures/results/2D/44332/i_dens.png}%
+%							\caption*{{\scriptsize%
+%								(Ionendichte, \SI{5}{\pascal},\linebreak%
+%								 \SI{400}{\volt}, $U_{sb}=$\SI{-500}{\volt})}}%
+%							\onslide<3>\includegraphics[width=0.85\textwidth]%
+%														{figures/results/2D/44332/i_velz.png}%
+%							\caption*{{\scriptsize%
+%								(axiale Ionengeschwindigkeit,\linebreak%
+%								 \SI{5}{\pascal}, \SI{400}{\volt}, %
+%								 $U_{sb}=$\SI{-500}{\volt})}}%
+%						\end{overprint}%
+%					\end{figure}%
+%				\end{column}%
+%				\begin{column}{0.45\textwidth}
+%					\begin{block}{}%
+%						\onslide<1-3>{%
+%							\stichpunkt{linke Elektrode getrieben, restliche %
+%										Randbedingungen sind geerdet}}%
+%						\onslide<2-3>{%
+%							\stichpunkt{Asymmetrie des Bulk und der Randschichten}}%
+%						\onslide<3>{%
+%							\stichpunkt{größere Beschleunigung bei kleinerer Randschicht}}%
+%					\end{block}%
+%				\end{column}%
+%			\end{columns}%
+%		\end{frame}%
 %
-		\begin{frame}{Asymmetrische Ranbedingungen}%
-			\begin{columns}%
-				\begin{column}{0.45\textwidth}
-					\begin{block}{}%
-						\onslide<1-3>{%
-							\stichpunkt{beide Elektroden getrieben, obere/linke %
-										Bereiche geerdet und rechts `floatet'\linebreak%
-										$\Rightarrow$ offene Randbedingung}}%
-						\onslide<2-3>{%
-							\stichpunkt{sehr viel höheres Plasmapotential}}%
-						\onslide<3>{%
-							\stichpunkt{ähnliche Randschichten, größer als zuvor geringere Geschwindigkeiten}}%
-					\end{block}%
-				\end{column}%
-				\begin{column}{0.45\textwidth}%
-					\begin{figure}%
-						\centering%
-						\begin{overprint}%
-							\onslide<1>\includegraphics[width=0.85\textwidth]%
-											  			{figures/results/2D/44426/phi.png}%
-							\caption*{{\scriptsize%
-								(Potential, \SI{5}{\pascal}, \SI{400}{\volt},\linebreak%
-								 $U_{sb}=$\SI{-400}{\volt})}}%
-								 \onslide<2>\includegraphics[width=0.85\textwidth]%
-														{figures/results/2D/44426/i_dens.png}%
-							\caption*{{\scriptsize%
-								(Ionendichte, \SI{5}{\pascal},\linebreak%
-								 \SI{400}{\volt}, $U_{sb}=$\SI{-400}{\volt})}}%
-							\onslide<3>\includegraphics[width=0.85\textwidth]%
-														{figures/results/2D/44426/i_velz.png}%
-							\caption*{{\scriptsize%
-								(axiale Ionengeschwindigkeit,\linebreak%
-								 \SI{5}{\pascal}, \SI{400}{\volt}, %
-								 $U_{sb}=$\SI{-400}{\volt})}}%
-						\end{overprint}%
-					\end{figure}%
-				\end{column}%
-			\end{columns}%
-		\end{frame}%
-		\nologoinbg
+%		\begin{frame}{Asymmetrische Ranbedingungen}%
+%			\begin{columns}%
+%				\begin{column}{0.45\textwidth}
+%					\begin{block}{}%
+%						\onslide<1-3>{%
+%							\stichpunkt{beide Elektroden getrieben, obere/linke %
+%										Bereiche geerdet und rechts `floatet'\linebreak%
+%										$\Rightarrow$ offene Randbedingung}}%
+%						\onslide<2-3>{%
+%							\stichpunkt{sehr viel höheres Plasmapotential}}%
+%						\onslide<3>{%
+%							\stichpunkt{ähnliche Randschichten, größer als zuvor geringere Geschwindigkeiten}}%
+%					\end{block}%
+%				\end{column}%
+%				\begin{column}{0.45\textwidth}%
+%					\begin{figure}%
+%						\centering%
+%						\begin{overprint}%
+%							\onslide<1>\includegraphics[width=0.85\textwidth]%
+%											  			{figures/results/2D/44426/phi.png}%
+%							\caption*{{\scriptsize%
+%								(Potential, \SI{5}{\pascal}, \SI{400}{\volt},\linebreak%
+%								 $U_{sb}=$\SI{-400}{\volt})}}%
+%								 \onslide<2>\includegraphics[width=0.85\textwidth]%
+%														{figures/results/2D/44426/i_dens.png}%
+%							\caption*{{\scriptsize%
+%								(Ionendichte, \SI{5}{\pascal},\linebreak%
+%								 \SI{400}{\volt}, $U_{sb}=$\SI{-400}{\volt})}}%
+%							\onslide<3>\includegraphics[width=0.85\textwidth]%
+%														{figures/results/2D/44426/i_velz.png}%
+%							\caption*{{\scriptsize%
+%								(axiale Ionengeschwindigkeit,\linebreak%
+%								 \SI{5}{\pascal}, \SI{400}{\volt}, %
+%								 $U_{sb}=$\SI{-400}{\volt})}}%
+%						\end{overprint}%
+%					\end{figure}%
+%				\end{column}%
+%			\end{columns}%
+%		\end{frame}%
 %
 % Einfluss des Self Bias:
-		\begin{frame}{Einfluss des Self Bias}
-			\onslide<1->{%
-				\begin{exampleblock}{}%
-						Was für einen Einfluss hat der Self-Bias auf die Dynamik der O$^{-}$ %
-						von der Oberfläche?
-				\end{exampleblock}%
-			}
-			\only<2->{%
-				\begin{figure}%
-					\begin{subfigure}{0.45\textwidth}
-						\centering%
-						\includegraphics[width=0.75\textwidth]%
-							  			{figures/results/2D/SFB/ni_dens_25830000.png}%
-					\end{subfigure}
-					\begin{subfigure}{0.45\textwidth}
-						\centering%
-						\includegraphics[width=0.75\textwidth]%
-							  			{figures/results/2D/SFB/velni_z_25830000.png}%
-					\end{subfigure}
-					\caption*{{\scriptsize%
-								(Ionendichte und axiale Geschwindigkeit einer Entladung %
-								bei \SI{6}{\pascal}, \SI{400}{\volt} und $U_{sb}=$\SI{-200}{\volt})}}%
-				\end{figure}%
-			}
-		\end{frame}
-		\logoinbg
+%		\begin{frame}{Einfluss des Self Bias}
+%			\onslide<1->{%
+%				\begin{exampleblock}{}%
+%						Was für einen Einfluss hat der Self-Bias auf die Dynamik der O$^{-}$ %
+%						von der Oberfläche?
+%				\end{exampleblock}%
+%			}
+%			\only<2->{%
+%				\begin{figure}%
+%					\begin{subfigure}{0.45\textwidth}
+%						\centering%
+%						\includegraphics[width=0.75\textwidth]%
+%							  			{figures/results/2D/SFB/ni_dens_25830000.png}%
+%					\end{subfigure}
+%					\begin{subfigure}{0.45\textwidth}
+%						\centering%
+%						\includegraphics[width=0.75\textwidth]%
+%							  			{figures/results/2D/SFB/velni_z_25830000.png}%
+%					\end{subfigure}
+%					\caption*{{\scriptsize%
+%								(Ionendichte und axiale Geschwindigkeit einer Entladung %
+%								bei \SI{6}{\pascal}, \SI{400}{\volt} und $U_{sb}=$\SI{-200}{\volt})}}%
+%				\end{figure}%
+%			}
+%		\end{frame}
 %
-		\begin{frame}{Einfluss des Self-Bias}%
-			\begin{columns}%
-				\begin{column}{0.45\textwidth}%
-					\only<1-3>{%
-						\begin{block}{}%
-							\onslide<1-3>{\stichpunkt{%
-								hohe, axiale Geschwindigkeit der Ionen}}%
-							\onslide<2-3>{\stichpunkt{%
-								abbremsen in der Randschicht bzw. Bulk-Kante}}%
-							\onslide<3>{\stichpunkt{%
-								signifikanter Anteil der an der linken Elektrode erzeugten Teilchen erreicht andere Seite}}%
-						\end{block}
-					}
-					\only<4-5>{%
-						\begin{alertblock}{Erkenntnis}%
-							Die negativen Ionen treffen auf die Anode mit hoher kinetischer Energie aufgrund der zusätzlichen Beschleunigung in der Randschicht durch den Self-Bias.
-						\end{alertblock}
-					}
-					\only<6-7>{%
-						\begin{alertblock}{Erkenntnis}%
-							\onslide<6-7>{\stichpunkt{stoßbehaftete Schicht $\Rightarrow$ kalte Ionen im Bulk}}%
-							\onslide<7>{\stichpunkt{Asymmetrie und Self-Bias notwendig zur Beschreibung der Effekte}}%
-						\end{alertblock}
-					}
-				\end{column}%
-				\begin{column}{0.45\textwidth}%
-					\begin{figure}
-						\begin{overprint}
-							\centering
-							\onslide<1-3>\includegraphics[width=0.8\textwidth]%
-											{figures/results/2D/SFB/velni_z_25830000.png}%
-							\caption*{{\scriptsize%
-								(axiale Ionengeschwindigkeit,\linebreak%
-									\SI{6}{\pascal}, \SI{400}{\volt} und $U_{sb}=$\SI{-200}{\volt})}}%
-							\onslide<4>\includegraphics[height=0.55\textheight]%
-											{figures/results/2D/SFB/ni_distz.png}%
-							\caption*{{\scriptsize%
-								(axiale Ionenenergieverteilung,\linebreak%
-							\SI{6}{\pascal}, \SI{400}{\volt} und $U_{sb}=$\SI{-200}{\volt})}}%
-							\onslide<5>\includegraphics[height=0.5\textheight]%
-											{figures/results/2D/SFB/ni_cut.png}%
-							\caption*{{\scriptsize%
-								(Ionenenergieverteilung an der Anode,\linebreak%
-							\SI{6}{\pascal}, \SI{400}{\volt})}}%
-							\onslide<6-7>\includegraphics[height=0.55\textheight]%
-											{figures/results/2D/SFB/ni_distz.png}%
-							\caption*{{\scriptsize%
-								(axiale Ionenenergieverteilung,\linebreak%
-							\SI{6}{\pascal}, \SI{400}{\volt} und $U_{sb}=$\SI{-200}{\volt})}}%
-						\end{overprint}%
-					\end{figure}%
-				\end{column}%
-			\end{columns}%
-		\end{frame}%
+%		\begin{frame}{Einfluss des Self-Bias}%
+%			\begin{columns}%
+%				\begin{column}{0.45\textwidth}%
+%					\only<1-3>{%
+%						\begin{block}{}%
+%							\onslide<1-3>{\stichpunkt{%
+%								hohe, axiale Geschwindigkeit der Ionen}}%
+%							\onslide<2-3>{\stichpunkt{%
+%								abbremsen in der Randschicht bzw. Bulk-Kante}}%
+%							\onslide<3>{\stichpunkt{%
+%								signifikanter Anteil der an der linken Elektrode erzeugten Teilchen erreicht andere Seite}}%
+%						\end{block}
+%					}
+%					\only<4-5>{%
+%						\begin{alertblock}{Erkenntnis}%
+%							Die negativen Ionen treffen auf die Anode mit hoher kinetischer Energie aufgrund der zusätzlichen Beschleunigung in der Randschicht durch den Self-Bias.
+%						\end{alertblock}
+%					}
+%					\only<6-7>{%
+%						\begin{alertblock}{Erkenntnis}%
+%							\onslide<6-7>{\stichpunkt{stoßbehaftete Schicht $\Rightarrow$ kalte Ionen im Bulk}}%
+%							\onslide<7>{\stichpunkt{Asymmetrie und Self-Bias notwendig zur Beschreibung der Effekte}}%
+%						\end{alertblock}
+%					}
+%				\end{column}%
+%				\begin{column}{0.45\textwidth}%
+%					\begin{figure}
+%						\begin{overprint}
+%							\centering
+%							\onslide<1-3>\includegraphics[width=0.8\textwidth]%
+%											{figures/results/2D/SFB/velni_z_25830000.png}%
+%							\caption*{{\scriptsize%
+%								(axiale Ionengeschwindigkeit,\linebreak%
+%									\SI{6}{\pascal}, \SI{400}{\volt} und $U_{sb}=$\SI{-200}{\volt})}}%
+%							\onslide<4>\includegraphics[height=0.55\textheight]%
+%											{figures/results/2D/SFB/ni_distz.png}%
+%							\caption*{{\scriptsize%
+%								(axiale Ionenenergieverteilung,\linebreak%
+%							\SI{6}{\pascal}, \SI{400}{\volt} und $U_{sb}=$\SI{-200}{\volt})}}%
+%							\onslide<5>\includegraphics[height=0.5\textheight]%
+%											{figures/results/2D/SFB/ni_cut.png}%
+%							\caption*{{\scriptsize%
+%								(Ionenenergieverteilung an der Anode,\linebreak%
+%							\SI{6}{\pascal}, \SI{400}{\volt})}}%
+%							\onslide<6-7>\includegraphics[height=0.55\textheight]%
+%											{figures/results/2D/SFB/ni_distz.png}%
+%							\caption*{{\scriptsize%
+%								(axiale Ionenenergieverteilung,\linebreak%
+%							\SI{6}{\pascal}, \SI{400}{\volt} und $U_{sb}=$\SI{-200}{\volt})}}%
+%						\end{overprint}%
+%					\end{figure}%
+%				\end{column}%
+%			\end{columns}%
+%		\end{frame}%
 %
 %
 % Ausblick:
-	\section{Ausblick}
+%	\section{Ausblick}
 %
-		\begin{frame}{Fazit \& Ausblick}
-			\begin{columns}
-				\begin{column}{0.46\textwidth}
-					\only<1>{\begin{alertblock}{Zusammenfassung}%
-						\stichpunkt{Äquivalenz von axialen Profilen einer 2D-PIC Simulation und einem 1D-Model gezeigt}%
-						\stichpunkt{Asymmetrie und Self-Bias genutzt um Dynamik negativer Ionen in CCRF-Entladungen zu studieren}%
-					\end{alertblock}}
-					\only<2>{\begin{figure}
-						\centering
-						\includegraphics[width=\textwidth]%
-								{figures/results/2D/SFB/power_energy_cuts.png}%
-						\caption*{{\scriptsize%
-								(Simulationsergebnisse, O$^{-}$ Verteilung)}}%
-					\end{figure}}
-				\end{column}
-				\begin{column}{0.46\textwidth}
-					\only<1>{\begin{exampleblock}{Ausblick}%
-						\stichpunkt{Verbesserung durch tatsächliche Stoßquerschnitte und Koeffizienten der Oberflächenprozesse}%
-						\stichpunkt{2D-PIC für andere Modelle, wie zbsp. Sputtering nutzen}%
-					\end{exampleblock}}
-					\only<2>{\begin{figure}
-						\centering
-						\includegraphics[width=\textwidth]%
-								{figures/neg_mg.png}%
-						\caption*{{\scriptsize%
-								(Experimentergebnisse, O$^{-}$-Verteilung)}}%
-					\end{figure}}
-				\end{column}
-			\end{columns}
-		\end{frame}
-%
+%		\begin{frame}{Fazit \& Ausblick}
+%			\begin{columns}
+%				\begin{column}{0.46\textwidth}
+%					\only<1>{\begin{alertblock}{Zusammenfassung}%
+%						\stichpunkt{Äquivalenz von axialen Profilen einer 2D-PIC Simulation und einem 1D-Model gezeigt}%
+%						\stichpunkt{Asymmetrie und Self-Bias genutzt um Dynamik negativer Ionen in CCRF-Entladungen zu studieren}%
+%					\end{alertblock}}
+%					\only<2>{\begin{figure}
+%						\centering
+%						\includegraphics[width=\textwidth]%
+%								{figures/results/2D/SFB/power_energy_cuts.png}%
+%						\caption*{{\scriptsize%
+%								(Simulationsergebnisse, O$^{-}$ Verteilung)}}%
+%					\end{figure}}
+%				\end{column}
+%				\begin{column}{0.46\textwidth}
+%					\only<1>{\begin{exampleblock}{Ausblick}%
+%						\stichpunkt{Verbesserung durch tatsächliche Stoßquerschnitte und Koeffizienten der Oberflächenprozesse}%
+%						\stichpunkt{2D-PIC für andere Modelle, wie zbsp. Sputtering nutzen}%
+%					\end{exampleblock}}
+%					\only<2>{\begin{figure}
+%						\centering
+%						\includegraphics[width=\textwidth]%
+%								{figures/neg_mg.png}%
+%						\caption*{{\scriptsize%
+%								(Experimentergebnisse, O$^{-}$-Verteilung)}}%
+%					\end{figure}}
+%				\end{column}
+%			\end{columns}
+%		\end{frame}
 %
 % Referenzen:
-%
 		\begin{frame}{Referenzen}
 			\printbibliography
 		\end{frame}
 %
+		\begin{frame}
+		\end{frame}
+
+
+
+
+% Randschichteffekte:
+%		\begin{frame}{Randschicht}%
+%			\begin{columns}
+%				\begin{column}{0.45\textwidth}%
+%				 	\begin{figure}%
+%						\includegraphics[width=\textwidth]%
+%										{figures/circuitselfbias_1.png}%
+%						\caption{{\scriptsize\raggedright%
+%								  (Schema einer Entladung\footnotemark)}}%
+%					\end{figure}%
+%				\end{column}%
+%				\footcitetext{Piel10}
+%				\begin{column}{0.45\textwidth}%
+%					\begin{block}%
+%						\stichpunkt{negative Aufladung der Wände durch schnellere Elektronen\newline%
+%									$\rightarrow$Self-Bias}%
+%						\stichpunkt{Ionen werden auf Bohm-Geschwindigkeit beschleunigt\newline%
+%									$v\ix{i,B}=\sqrt{\frac{k\ix{B}T\ix{e}}{m\ix{i}}}$}%
+%						\stichpunkt{Asymmetrie der getriebenen/geerden Elektroden}%
+%					\end{block}%
+%				\end{column}%
+%			\end{columns}%
+%		\end{frame}%
 %
+%		\begin{frame}{Randschicht}%
+%			\begin{columns}%
+%				\begin{column}{0.45\textwidth}%
+% 					\begin{figure}%
+%						\includegraphics[width=\textwidth]%
+%										{figures/sheath_piel.png}%
+%						\caption{{\scriptsize%
+%								  (Dichte und Potential vor einer Wand\footnotemark)}}%
+%					\end{figure}%
+%				\end{column}%
+%				\footcitetext{Piel10}
+%				\begin{column}{0.45\textwidth}%
+%					\begin{block}%
+%							\stichpunkt{Kapazitive Kopplung führt zur Verschiebung des Plasma-Potentials}%
+%					\end{block}%
+%				\end{column}%
+%			\end{columns}%
+%		\end{frame}%
+%
+% Oberflaechen- und Stossprozesse:
+%		\begin{frame}{Oberflächen- und Stoßprozesse}%
+%			\begin{figure}%
+%				\centering%
+%				\includegraphics[height=0.7\textheight]%
+%								{figures/xsections_selection.pdf}%
+%				\caption{(ausgewählte Stoßquerschnitte in Sauerstoff)}%
+%			\end{figure}%
+%		\end{frame}%
+%
+%		\begin{frame}{Experiment}%
+%			\begin{columns}%
+%				\begin{column}{0.48\textwidth}%
+%					\begin{block}%
+%						\stichpunkt{große Asymmetrie zwischen geerdeter~%
+%									Kammer und CCRF-Elektrode}%
+%						\stichpunkt{niedrige Gasflüsse und -drücke~%
+%									($\le$\SI{5}{sc\centi\meter}, \SI{15}{\pascal})}%
+%						\stichpunkt{Elektrodenabstand~%
+%									$\sim$\SI{5}{\centi\meter}}%
+%					\end{block}%	
+%				\end{column}%
+%				\begin{column}{0.48\textwidth}%
+%					\begin{figure}%
+%						\centering
+%						\includegraphics[width=\textwidth]%
+%										{figures/chamber_exp.pdf}%
+%						\caption{(Experiment-Reaktor, Draufsicht\footnotemark)}}%
+%					\end{figure}%	
+%				\end{column}%
+%				\footcitetext{Scheuer15}
+%			\end{columns}%
+%		\end{frame}%
+%
+%		\begin{frame}%
+%			\begin{figure}%
+%				\includegraphics[width=0.8\textwidth]%
+%								{figures/neg_mg.png}%
+%			\end{figure}%
+%		\end{frame}%
+%
+%		\begin{frame}{Saha-Langmuir}%
+%			\begin{figure}%
+%				\centering%
+%				\includegraphics[height=0.3\textheight]%
+%								{figures/saha_langmuir.pdf}%
+%				\caption*{{\scriptsize%
+%							(Schema der Oberflächenprozesse negativer %
+%							und positiver Ionen\footnotemark)}
+%			\end{figure}%
+%			\footcitetext{Matthias15}
+%			\begin{block}
+%				\begin{align*}
+%					\alpha^{-}(B^{-})=\frac{(1-r^{-})%
+%						\,w^{-}}{(1-r)\,w}\cdot&\exp\left(%
+%						\frac{-\overline{\Phi}_{-}+e\sqrt{eV\ix{ext}}+A(B)}{k\ix{B}T}\right)%
+%				\end{align*}
+%			\end{block}
+%		\end{frame}%
+%
+% Particle-in-Cell Simulation:
+%		\begin{frame}{Particle-in-Cell Methode}%
+%			\begin{block}{}
+%				\centering$%
+%				\Delta\Phi=-\frac{\rho}{\varepsilon\ix{0}}%
+%				\quad\Rightarrow\quad%
+%				\frac{\diff \vec{v}}{\diff t}=-\frac{q}{m}\vec{\nabla}\Phi%
+%				\quad\Rightarrow\quad%
+%				\frac{\diff \vec{x}}{\diff t}=\vec{v}$
+%			\end{block}	
+%		\end{frame}
+%
+% Ergebnisse von 1D:
+%		\begin{frame}{1D Simulation}%
+%			\begin{figure}%
+%				\centering%
+%				\begin{subfigure}{0.43\textwidth}%
+%					\begin{overprint}%
+%						\onslide<1>\includegraphics[width=\textwidth]%
+%										{figures/results/1D/densities.png}%
+%						\onslide<2>\includegraphics[width=\textwidth]%
+%										{figures/results/1D/prs_ne_dens.png}%
+%					\end{overprint}%
+%				\end{subfigure}%
+%				\hspace{0.7cm}%
+%				\begin{subfigure}{0.43\textwidth}%
+%					\begin{overprint}%
+%						\onslide<1>\includegraphics[width=\textwidth]%
+%											{figures/results/1D/potential.png}%
+%						\onslide<2>\includegraphics[width=\textwidth]%
+%											{figures/results/1D/densities_Omin.png}%
+%					\end{overprint}%
+%				\end{subfigure}%
+%				\caption{(Entladung bei~%
+%						  \SI{5}{\pascal} und \SI{400}{\volt})}%
+%			\end{figure}%
+%			\begin{block}%
+%				\onslide<1-2>{%
+%					Dichte und phasenaufgelöstes Potential in 1D mit~%
+%					Injektion negativer Ionen von der Kathode\linebreak%
+%					$\Rightarrow \,\, \eta = I($O$^{-}) / %
+%					 I($O$^{+}_{2}) = 0,03$%
+%				}%
+%			\end{block}%
+%		\end{frame}%
+%
+%		\begin{frame}%
+%			\begin{figure}%
+%				\centering%
+%				\begin{subfigure}{0.49\textwidth}%
+%					\includegraphics[height=0.6\textheight]%
+%									{figures/results/1D/elastcoll.png}%
+%				\end{subfigure}%
+%				\begin{subfigure}{0.43\textwidth}%
+%					\includegraphics[width=\textwidth]%
+%									{figures/results/1D/densities_Omin.png}%
+%				\end{subfigure}%
+%            \end{figure}%
+%			\begin{alertblock}%
+%					$\Rightarrow$~Schicht nicht vollständig stoßlos\linebreak
+%					Dynamik der schnellen negativen Ionen von der gegenueberliegenden Elektrode~%
+%					stark durch elastische Stöße mit O$_{2}$ beeinflusst
+%			\end{alertblock}%
+%		\end{frame}%
+%
+% Energieverteilungen:
+%		\begin{frame}{Dynamik negativer Ionen}%
+%			\begin{figure}%
+%				\centering%
+%				\begin{subfigure}{0.48\textwidth}%
+%					\includegraphics[width=\textwidth]%
+%									{figures/results/1D/snix_edf.png}%
+%					\caption*{{\scriptsize%
+%								(Energieverteilung der negativen Ionen von der Oberfläche)}}%
+%				\end{subfigure}%
+%				\begin{subfigure}{0.48\textwidth}%
+%					\begin{overprint}%
+%						\onslide<1>\includegraphics[width=\textwidth]%
+%													{figures/results/1D/snix_close_edf.png}%
+%						\caption*{{\scriptsize%
+%									(Anodenbereich der EVF von O$^{-}$)}}%
+%						\onslide<2>\includegraphics[width=\textwidth]%
+%													{figures/results/1D/snix_surface_edf.png}%
+%						\caption*{{\scriptsize%
+%						(Surfaceplot der O$^{-}$ EVF)}}%
+%						\onslide<3-4>\includegraphics[width=\textwidth]%
+%														{figures/results/1D/ix_edf.png}%
+%						\caption*{{\scriptsize%
+%							(EVF der O$^{+}_{2}$ Ionen)}}%
+%						\onslide<5>\includegraphics[width=\textwidth]%
+%													{figures/results/1D/ex_edf.png}%
+%						\caption*{{\scriptsize%
+%									(EVF der Elektronen)}}%
+%					\end{overprint}%
+%				\end{subfigure}%
+%			\end{figure}%
+%			\only<1-2>{\begin{alertblock}{}%
+%					hochenergetische Struktur bei $\sim$\SI{100}{\electronvolt} %
+%					vor Anode, abnehmend zur Kathode mit mittlerer freier %
+%					Weglänge der O$^{-}$%
+%				\end{alertblock}}%
+%			\only<3>{\begin{alertblock}{}%
+%					langsame Ionen im Bulk der Entladung\linebreak%
+%					$\rightarrow$ schnelle O$^{-}$ abgebremst und kehren in %
+%					Randschicht um%
+%				\end{alertblock}}%
+%			\only<4>{\begin{alertblock}{}\centering%
+%					Struktur über großen Energiebereich vor %
+%					den Elektroden?\linebreak%
+%				\end{alertblock}}
+%			\only<5>{\begin{alertblock}{}\centering%
+%					Struktur über großen Energiebereich vor %
+%					den Elektroden?\linebreak%
+%					bei Elektronen keine sichtbar!%
+%				\end{alertblock}}%
+%		\end{frame}%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \end{document}
