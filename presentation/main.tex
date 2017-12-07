@@ -22,16 +22,16 @@
 
 \usepackage[autostyle=true]{csquotes}
 \usepackage[%
-%			style=authortitle,%
-			style=verbose,%
-			autocite=footnote,%
+			style=authortitle,%
+%			style=verbose,%
+%			autocite=footnote,%
 			maxbibnames=15,%
 			maxcitenames=15,%
-			babel=hyphen,%
-			hyperref=true,%
-			abbreviate=false,%
-			backend=bibtex,%
-			mcite%
+%			babel=hyphen,%
+%			hyperref=true,%
+%			abbreviate=false,%
+			backend=bibtex%
+%			mcite%
 %			labelyear
 ]{biblatex}
 
@@ -88,8 +88,8 @@
 % Title-Folie mit Betreuer/Gutachter:
 	\begin{frame}
 	    \tikz[overlay,remember picture]{ 
-			\node[at=(current page.north west)] (source) {};
-			\node[opacity = 0.08, below right= 0.168\paperheight and -0.335\paperheight of source] {
+			\node[at=(current page.north east)] (source) {};
+			\node[opacity = 0.04, below left= 0.168\paperheight and -0.335\paperheight of source] {
 				\includegraphics[height=0.85\paperheight]{Uni-Siegel.png}
 				}
 			}
@@ -100,7 +100,15 @@
 	\end{frame}
 %	
 % Folie mit Inhaltsverzeichnis:
-	\frame{\tableofcontents}
+	\begin{frame}
+	    \tikz[overlay,remember picture]{ 
+			\node[at=(current page.north east)] (source) {};
+			\node[opacity = 0.04, below left= 0.168\paperheight and -0.335\paperheight of source] {
+				\includegraphics[height=0.85\paperheight]{Uni-Siegel.png}
+			}
+		}
+		\tableofcontents
+	\end{frame}
 %
 % Motivations-Sektion:
 	\section{Motivation}
@@ -120,7 +128,7 @@
 						\includegraphics[width=\textwidth]%
 										{figures/circuitselfbias_1.png}%
 						\caption{{\scriptsize%
-								(Schema einer Entladung\footnotemark)}}%
+								(Schema einer Entladung~\footnotemark)}}%
 					\end{figure}%
 				\end{column}%
 			\end{columns}%
@@ -135,7 +143,7 @@
 						\includegraphics[width=1.0\textwidth]%
 										{figures/SFB/neg_mg_one_only.png}%
 						\caption*{{\scriptsize%
-									(EVF negativer Ionen, Experiment\footnotemark)}}%
+									(EVF negativer Ionen, Experiment~\footnotemark)}}%
 					\end{figure}%
 				\end{column}
 				\footcitetext{Matthias15}
@@ -155,16 +163,16 @@
 %
 % Particle-in-Cell Simulation:
 		\begin{frame}{Particle-in-Cell Methode}%
+			\addtocounter{footnote}{-1}
 			\begin{figure}%
 				\centering%
-				\includegraphics[width=0.75\textwidth]%
+				\includegraphics[width=0.83\textwidth]%
 								{figures/picscheme.pdf}
 				\caption*{{\scriptsize%
-							(PIC-Zyklus\footnotemark)}}
-				\footcitetext{Matthias15}
-				\addtocounter{footnote}{-1}
+							(PIC-Zyklus~\footnotemark)}}
+				%\footcitetext{Matthias15}
 			\end{figure}
-			\vspace{-1.0cm}
+			%\vspace{-1.0cm}
 			\begin{block}{Stabilitätsbedingungen}
 				\centering$%
 				\Delta t\le\frac{\omega\ix{p,e}}{5},%
@@ -211,7 +219,7 @@
 										{figures/SFB/5Pa_densities_zoom.png}
 						\caption*{{\scriptsize%
 								(Dichten einer Entladung bei~800~V$\ix{pp}$~%
-								und~\SI{5}{\pascal}\footnotemark,\\
+								und~\SI{5}{\pascal}~\footnotemark,\\
 								Trennung der Anionen auf Oberflächen- und Volumenprozesse)}}%
 					\end{figure}
 				\end{column}
@@ -241,10 +249,10 @@
 								{figures/SFB/5Pa_400V_energy_sims_top.png}
 				\caption*{{\scriptsize%
 							(EVF der $O^{-}$ von der Oberfläche; Entladung bei~800~V$\ix{pp}$~%
-							und~\SI{5}{\pascal}\footnotemark)}}
+							und~\SI{5}{\pascal}~\footnotemark)}}
 			\end{figure}%
 			\vspace*{-0.75cm}
-			\footcitetext{Matthias17}%
+			%\footcitetext{Matthias17}%
 			\addtocounter{footnote}{-1}
 		\end{frame}%
 %	
@@ -256,9 +264,9 @@
 			\end{figure}%
 			\vspace*{-0.5cm}
 			\begin{block}{}{\scriptsize%
-				elastische Stöße der $O^{-}$ ohne (links) und mit SIE (rechts, $\eta=0,03$, getrennte Anionenspezies)\footnotemark}
+				elastische Stöße der $O^{-}$ ohne (links) und mit SIE (rechts, $\eta=0,03$, getrennte Anionenspezies)~\footnotemark}
 			\end{block}
-			\footcitetext{Matthias17}%
+			%\footcitetext{Matthias17}%
 			\addtocounter{footnote}{-1}
 		\end{frame}%
 %	
@@ -282,10 +290,10 @@
 					\end{alertblock}
 					\begin{flushleft}
 						{\scriptsize%
-							(Phase der EVF von Oberflächen-Anionen bei $U\ix{rf}=0$, Entladung bei 1600~V$\ix{pp}$ und \SI{5}{\pascal}\footnotemark)}
+							(Phase der EVF von Oberflächen-Anionen bei $U\ix{rf}=0$, Entladung bei 1600~V$\ix{pp}$ und \SI{5}{\pascal}~\footnotemark)}
 					\end{flushleft}
 				\end{column}
-				\footcitetext{Matthias17}%
+				%\footcitetext{Matthias17}%
 				\addtocounter{footnote}{-1}
 			\end{columns}
 		\end{frame}%
@@ -314,13 +322,13 @@
 							(Anionen-EVF versch. Spannungen vor Randschicht der geerdeten Elektrode; bei \SI{5}{\pascal} mit $\eta=0,03$~\footnotemark)}	
 					\end{flushright}
 				\end{column}
-				\footcitetext{Matthias17}%
+				%\footcitetext{Matthias17}%
 				\addtocounter{footnote}{-1}
 			\end{columns}
 		\end{frame}%
 %
 		\begin{frame}{Experiment-Ergebnisse}%
-			\addtocounter{footnote}{-2}
+			\addtocounter{footnote}{-1}
 			\begin{columns}
 				\begin{column}{0.5\textwidth}
 					\begin{figure}
@@ -344,41 +352,130 @@
 		\end{frame}%
 %	
 		\begin{frame}{Simulationen in 2D}%
+			\addtocounter{footnote}{-1}
 			\begin{columns}
-				\begin{column}{0.5\textwidth}
+				\begin{column}{0.45\textwidth}
 					\begin{block}{}
-						\stichpunkt{}
+						\stichpunkt{getriebene Kathode; Anode und Domänengrenzen geerdet\\%
+									$\Rightarrow$ große Asymmetrie}
+						\stichpunkt{Self-Bias als negativer Gleichspannungsanteil auf Kathode}
+						\stichpunkt{Modellierung nach experimentellen Werten}
 					\end{block}
 				\end{column}
-				\begin{column}{0.5\textwidth}
+				\begin{column}{0.45\textwidth}
+					\vspace*{-0.2cm}
+					\begin{figure}
+						\centering
+						\includegraphics[height=0.38\textheight]%
+										{figures/domain_slice.png}%
+						\linebreak%
+						\includegraphics[height=0.38\textheight]%
+										{figures/radial_cylinder.png}%
+						\caption*{{\scriptsize%
+									(Schemata der 2D Simulation~\footnotemark)}}
+					\end{figure}
+				\end{column}
+				%\footcitetext{Matthias15}
+			\end{columns}
+		\end{frame}
+	
+		\begin{frame}{Simulationen in 2D}%
+			\begin{figure}
+				\begin{subfigure}{0.33\textwidth}
+					\includegraphics[width=\textwidth]%
+									{figures/SFB/ni_dens_25830000.png}%
+				\end{subfigure}
+				\begin{subfigure}{0.33\textwidth}
+					\includegraphics[width=\textwidth]%
+									{figures/SFB/velni_z_25830000.png}%
+				\end{subfigure}
+				\hfill%
+				\begin{subfigure}{0.3\textwidth}
+					\caption*{{\scriptsize%
+						(Dichte und axiale Geschwindigkeit negativer Ionen;~%
+						Entladung bei \SI{6}{\pascal}; $\eta=0,03$; 800~V$\ix{pp}$~%
+						und $U\ix{sb}=-200$~V~\footnotemark)}}
+				\end{subfigure}
+			\end{figure}
+			\footcitetext{Matthias17}
+			\vspace*{-0.5cm}
+			\begin{alertblock}{}
+				\stichpfeil{Anionen von der Oberfläche in Randschicht %
+							auf die gegenüberliegende Elektrode beschleunigt}
+			\end{alertblock}
+		\end{frame}
+	
+		\begin{frame}{EVF der Anionen}
+			\addtocounter{footnote}{-1}
+			\begin{columns}
+				\begin{column}{0.6\textwidth}
+					\begin{figure}
+						\centering%
+						\includegraphics[width=\textwidth]%
+										{figures/SFB/ni_cut.png}
+						\caption*{{\scriptsize%
+									(Anionen-EVF an geerdeter Elektrode versch. Self-Bias Spannungen; Entladung bei %
+									\SI{6}{\pascal}, 800~V$\ix{pp}$~\footnotemark)}}
+					\end{figure}
+				\end{column}
+				\begin{column}{0.4\textwidth}
+					\begin{block}{}
+						\stichpunkt{Energie einfallender $O^{-}$ von Self-Bias abhängig}
+					\end{block}
+					\begin{alertblock}{}
+						\stichpfeil{Einfluss des Self-Bias weiter bestätigt Hypothese}
+					\end{alertblock}
 				\end{column}
 			\end{columns}
 		\end{frame}
+	
+		\begin{frame}{EVF der Anionen}
+			\begin{figure}
+				\centering
+				\includegraphics[width=0.55\textwidth]%
+								{figures/SFB/ni_distz.png}
+				\caption*{{\scriptsize%
+						(Anionen-EVF einer simulierten Entladung bei \SI{6}{\pascal}, %
+						400~V$\ix{pp}$ und $U\ix{sb}=200$~V)}}
+			\end{figure}
+			\begin{block}{}
+				\stichpfeil{hochenergetische $O^{-}$ wie im Experiment aus Entladung entfernt}
+			\end{block}
+		\end{frame}
 
-%
-% Ausblick:
 	\section{Ausblick}
-%
 		\begin{frame}{Fazit \& Ausblick}
+			\tikz[overlay,remember picture]{ 
+				\node[at=(current page.north east)] (source) {};
+				\node[opacity = 0.04, below left= 0.168\paperheight and -0.335\paperheight of source] {
+					\includegraphics[height=0.85\paperheight]{Uni-Siegel.png}
+				}
+			}
 			\begin{columns}
 				\begin{column}{0.46\textwidth}
 					\begin{alertblock}{Zusammenfassung}%
-						\stichpunkt{}%
+						\stichpunkt{1D \& 2D Simulationen angewendet, um Dynamik neg. Ionen aus Oberflächen zu studieren}%
+						\stichpunkt{Self-Bias implementiert und Asymmetrie für Experiment-Vergleich genutzt}
 					\end{alertblock}
 				\end{column}
 				\begin{column}{0.46\textwidth}
 					\begin{exampleblock}{Ausblick}%
-						\stichpunkt{}%
+						\stichpunkt{andere Aspekte von asymmetrischen CCRF-Plasmen studieren, %
+									z.B. Sputter- oder Ätz-Modelle}%
+						\stichpunkt{vorhandenes Modell erweitern für einen Power-Scan wie im Experiment}
 					\end{exampleblock}
 				\end{column}
 			\end{columns}
 		\end{frame}
-%
-		\begin{frame}
-		\end{frame}
 
-% Referenzen:
+	\section*{}
 		\begin{frame}{Referenzen}
+			\tikz[overlay,remember picture]{ 
+				\node[at=(current page.north east)] (source) {};
+				\node[opacity = 0.04, below left= 0.168\paperheight and -0.335\paperheight of source] {
+					\includegraphics[height=0.85\paperheight]{Uni-Siegel.png}
+				}
+			}
 			\begin{columns}
 				\begin{column}{0.1\textwidth}
 				\end{column}
@@ -387,28 +484,15 @@
 				\end{column}
 			\end{columns}
 		\end{frame}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+		
+		\begin{frame}
+			\tikz[overlay,remember picture]{ 
+				\node[at=(current page.north east)] (source) {};
+				\node[opacity = 0.04, below left= 0.168\paperheight and -0.335\paperheight of source] {
+					\includegraphics[height=0.85\paperheight]{Uni-Siegel.png}
+				}
+			}
+		\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -420,14 +504,11 @@
 
 	\appendix
 	\backupbegin
-	
-		\begin{frame}
-		\end{frame}
 
 		\begin{frame}{Randschicht}%
 			\begin{columns}
 				\begin{column}{0.45\textwidth}%
-					\addtocounter{footnote}{-1}
+					\addtocounter{footnote}{-3}
 				 	\begin{figure}%
 						\includegraphics[width=\textwidth]%
 										{figures/sheath_piel.png}%
@@ -581,30 +662,7 @@
 				\caption*{{\scriptsize%
 						(Phasenaufgelöster Anodenbereich, Energieverteilung der $O^{-}$)}}%
 			\end{figure}%
-		\end{frame}%
-          	 	            	
-		\begin{frame}{Simulationen in 2D}
-			\begin{exampleblock}{}
-					\stichpunkt{Annahme einer zylinder-symmetrische Entladung um Mitte %
-								der Elektrode}
-					\stichpunkt{jetzt: verschiedene Kombinationen von Randbedingungen,\linebreak%
-								zBsp. Dielektrika}
-					\stichpunkt{viel größerer numerischer Aufwand}
-			\end{exampleblock}
-			\begin{figure}%
-				\centering%
-				\begin{subfigure}{0.47\textwidth}
-					\centering
-					\includegraphics[height=0.35\textheight]%
-						{figures/domain_slice.png}%
-				\end{subfigure}
-				\begin{subfigure}{0.47\textwidth}
-					\centering
-					\includegraphics[height=0.35\textheight]%
-						{figures/radial_cylinder.png}%
-					\end{subfigure}
-			\end{figure}%
-		\end{frame} 
+		\end{frame}% 
 
 		\begin{frame}{Vergleich mit 1D}%
 			\begin{figure}%
@@ -721,42 +779,23 @@
 		\begin{frame}{Einfluss des Self-Bias}%
 			\begin{columns}%
 				\begin{column}{0.45\textwidth}%
-						\begin{alertblock}{Erkenntnis}%
-							Die negativen Ionen treffen auf die Anode mit hoher kinetischer %
-							Energie aufgrund der zusätzlichen Beschleunigung in der Randschicht durch den Self-Bias.
-						\end{alertblock}
-					\end{column}%
-					\begin{column}{0.45\textwidth}%
-						\begin{figure}%
-							\includegraphics[height=0.55\textheight]%
-											{figures/results/2D/SFB/ni_distz.png}%
-							\caption*{{\scriptsize%
-								(axiale Ionenenergieverteilung,\linebreak%
-								\SI{6}{\pascal}, \SI{400}{\volt} und $U_{sb}=$\SI{-200}{\volt})}}%
-						\end{figure}%
-					\end{column}%
-				\end{columns}%
-			\end{frame}%
-
-			\begin{frame}{Einfluss des Self-Bias}%
-				\begin{columns}%
-					\begin{column}{0.45\textwidth}%
-						\begin{alertblock}{}%
-							\stichpunkt{stoßbehaftete Schicht $\Rightarrow$ kalte Ionen im Bulk}%
-							\stichpunkt{Asymmetrie und Self-Bias notwendig zur Beschreibung der Effekte}%
-						\end{alertblock}
-				\end{column}%
-				\begin{column}{0.45\textwidth}%
-					\begin{figure}
-						\includegraphics[height=0.5\textheight]%
-										{figures/results/2D/SFB/ni_cut.png}%
-						\caption*{{\scriptsize%
-							(Ionenenergieverteilung an der Anode,\linebreak%
-							\SI{6}{\pascal}, \SI{400}{\volt})}}%
-					\end{figure}%
-				\end{column}%
-			\end{columns}%
-		\end{frame}%
+					\begin{alertblock}{}%
+						\stichpunkt{stoßbehaftete Schicht $\Rightarrow$ kalte Ionen im Bulk}%
+						\stichpunkt{Asymmetrie und Self-Bias notwendig zur Beschreibung der Effekte}%
+					\end{alertblock}
+			\end{column}%
+			\begin{column}{0.45\textwidth}%
+				\begin{figure}
+					\includegraphics[height=0.5\textheight]%
+									{figures/results/2D/SFB/ni_cut.png}%
+					\caption*{{\scriptsize%
+						(Ionenenergieverteilung an der Anode,\linebreak%
+						\SI{6}{\pascal}, \SI{400}{\volt}~\footnotemark)}}%
+				\end{figure}%
+			\end{column}%
+		\footcitetext{Matthias17}
+		\end{columns}%
+	\end{frame}%
 
 	\backupend
 
